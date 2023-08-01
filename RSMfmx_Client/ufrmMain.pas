@@ -29,6 +29,14 @@ type
     lstServerControls: TListBoxItem;
     lblServerControls: TLabel;
     imgServerControls: TImage;
+    lstServerConfig: TListBoxItem;
+    imgServerConfig: TImage;
+    lblServerConfig: TLabel;
+    lstServerInstaller: TListBoxItem;
+    imgServerInstaller: TImage;
+    lblServerInstaller: TLabel;
+    tbtmServerConfig: TTabItem;
+    tbtmServerInstaller: TTabItem;
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
