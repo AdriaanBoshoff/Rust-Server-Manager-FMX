@@ -6,9 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Menus, FMX.StdCtrls, FMX.MultiView, FMX.Controls.Presentation, FMX.Layouts,
-  FMX.TabControl, FMX.Ani, FMX.Objects, FMX.ListBox, System.Rtti,
-  FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit, FMX.SpinBox,
-  FMX.EditBox, FMX.NumberBox;
+  FMX.TabControl, FMX.Ani, FMX.Objects, FMX.ListBox, System.Rtti, FMX.Grid.Style,
+  FMX.Grid, FMX.ScrollBox, FMX.Edit, FMX.SpinBox, FMX.EditBox, FMX.NumberBox;
 
 type
   TfrmMain = class(TForm)
@@ -180,6 +179,7 @@ type
     btnAdjustAffinity: TButton;
     lblServerOptionsHeader: TLabel;
     procedure btnShowHideServerInfoClick(Sender: TObject);
+    procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
   private
@@ -223,6 +223,11 @@ begin
 
     Exit;
   end;
+end;
+
+procedure TfrmMain.cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+begin
+  Abort;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
