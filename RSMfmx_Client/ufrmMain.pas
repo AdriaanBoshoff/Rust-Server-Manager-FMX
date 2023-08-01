@@ -1,4 +1,4 @@
-unit ufrmMain;
+﻿unit ufrmMain;
 
 interface
 
@@ -185,6 +185,7 @@ type
   private
     { Private declarations }
     procedure ModifyUIForRelease;
+    procedure ResetServerInfoValues;
   public
     { Public declarations }
   end;
@@ -257,6 +258,21 @@ begin
   tbcNav.TabIndex := tbtmNavServerControls.Index;
   lstNav.ItemIndex := lstServerControls.Index;
   {$ENDIF}
+end;
+
+procedure TfrmMain.ResetServerInfoValues;
+begin
+  lblPlayerCountValue.Text := '--- / ---';
+  lblQueuedValue.Text := '---';
+  lblJoiningValue.Text := '---';
+  lblNetworkOutValue.Text := '---b/s ↑';
+  lblNetworkInValue.Text := '---b/s ↓';
+  lblServerFPSValue.Text := '---';
+  lblServerEntityCountValue.Text := '---';
+  lblServerProtocolValue.Text := '---';
+  lblServerMemoryUsageValue.Text := '---';
+  lblLastWipeValue.Text := '---';
+  lblServerSizeValue.Text := '---';
 end;
 
 end.
