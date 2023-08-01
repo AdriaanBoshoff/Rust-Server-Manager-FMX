@@ -84,17 +84,17 @@ object frmMain: TfrmMain
       Sizes = (
         678s
         453s)
-      object tbtmNavServerConfig: TTabItem
+      object tbtmNavServerControls: TTabItem
         CustomIcon = <
           item
           end>
         IsSelected = True
-        Size.Width = 92.000000000000000000
+        Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
-        Text = 'Server Config'
+        Text = 'Server Controls'
       end
     end
   end
@@ -145,5 +145,76 @@ object frmMain: TfrmMain
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
+    object lstNav: TListBox
+      Align = Client
+      Size.Width = 60.000000000000000000
+      Size.Height = 477.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      OnChange = lstNavChange
+      Viewport.Width = 56.000000000000000000
+      Viewport.Height = 473.000000000000000000
+      object lstServerControls: TListBoxItem
+        Size.Width = 56.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object lblServerControls: TLabel
+          Align = Client
+          StyledSettings = [Family, FontColor]
+          Margins.Left = 8.000000000000000000
+          Size.Width = 0.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'Server Controls'
+          TabOrder = 46
+        end
+        object imgServerControls: TImage
+          MultiResBitmap.Height = 48
+          MultiResBitmap.Width = 48
+          MultiResBitmap = <
+            item
+              Width = 48
+              Height = 48
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+                87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0193494441546843ED99C18E82400C86C1BB9B3DEBD977D783F77D27B389F000
+                E85FF6DF6E740607277426BAFD9206E8B4FF508192C1C6719C90611876B023AC
+                BFCC44626107D89632011833D1BD018132C937F39F06B9A7D86456BA01083A32
+                271B68EC29A758E9B6DC2A08EADBB65DF330970E1A9FDC1FB1D20D0A904AB93B
+                82842026462ACF4A77C5EDCBE205D4C60BA84DB102D04C7AEE8E48779903C37F
+                E9B8554A5E812F6EB3413D698D9FBAFFA03B09C315BA15BCC8B6B013879F4672
+                611BCA4DC37885EE240C57E8BE414E00B687750C4B22B1CC899E7CB137B115DE
+                856AF37E05E05636E9D7021EC4222BB20373B381466C41536C4566D2AFE13359
+                914591139060D862FD1AFED9B7CD03CE94538AF46A4166E7EEC852EF176FA3B5
+                79CF02F0C0D9F76B2B700226FD9AC30ADD4918AED03D0D2637E9D71C52E84EC2
+                70856E25686598DCE40BDAFDE4F7ED708A545E2062359195AEB7D1DA7801B579
+                F902824E80362A2DF08387B9C4FEE030D18D5D01AB2F6865BECCE197B25A9195
+                F9322748206CD1159920638C5954D771FE2F4D73051013F9B18567B8B7000000
+                0049454E44AE426082}
+              FileName = 
+                'D:\Github\RSMfmx_v3.1\RSMfmx_Client\Assets\Icons\Nav\server-cont' +
+                'rols_48.png'
+            end>
+          Align = MostLeft
+          HitTest = False
+          MarginWrapMode = Center
+          Margins.Top = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 55.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+    end
   end
 end

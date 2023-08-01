@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Menus, FMX.StdCtrls, FMX.MultiView, FMX.Controls.Presentation, FMX.Layouts,
-  FMX.TabControl, FMX.Ani;
+  FMX.TabControl, FMX.Ani, FMX.Objects, FMX.ListBox;
 
 type
   TfrmMain = class(TForm)
@@ -20,13 +20,18 @@ type
     lytServerInfo: TLayout;
     mniFile: TMenuItem;
     tbcNav: TTabControl;
-    tbtmNavServerConfig: TTabItem;
+    tbtmNavServerControls: TTabItem;
     tbcServerInfo: TTabControl;
     tbtmServerInfo: TTabItem;
     btnShowHideServerInfo: TSpeedButton;
     fltnmtnServerInfoExpand: TFloatAnimation;
+    lstNav: TListBox;
+    lstServerControls: TListBoxItem;
+    lblServerControls: TLabel;
+    imgServerControls: TImage;
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure lstNavChange(Sender: TObject);
   private
     { Private declarations }
     procedure ModifyUIForRelease;
@@ -72,7 +77,19 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  // Change UI Layout for redistribution
   ModifyUIForRelease;
+end;
+
+procedure TfrmMain.lstNavChange(Sender: TObject);
+begin
+  // Check for -1 Indexes
+  if lstNav.ItemIndex < -1 then
+    Exit;
+
+  // Switch to tab
+  tbcNav.TabIndex := lstNav.ItemIndex;
+  lblNavHeader.Text := tbcNav.Tabs[tbcNav.TabIndex].Text;
 end;
 
 { TfrmMain }
@@ -80,7 +97,10 @@ end;
 procedure TfrmMain.ModifyUIForRelease;
 begin
   {$IFDEF RELEASE}
+  // Set Default Nav Items
   tbcNav.TabPosition := TTabPosition.None;
+  tbcNav.TabIndex := tbtmNavServerControls.Index;
+  lstNav.ItemIndex := lstServerControls.Index;
   {$ENDIF}
 end;
 
