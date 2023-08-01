@@ -46,11 +46,12 @@ object frmMain: TfrmMain
       TabOrder = 1
       object btnShowHideServerInfo: TSpeedButton
         Align = Right
+        Hint = 'Show / Hide Server Info'
         Position.X = 878.000000000000000000
         Size.Width = 60.000000000000000000
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
-        StyleLookup = 'priortoolbutton'
+        StyleLookup = 'nexttoolbutton'
         Text = 'ServerInfo'
         OnClick = btnShowHideServerInfoClick
       end

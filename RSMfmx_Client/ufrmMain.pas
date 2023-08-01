@@ -51,6 +51,8 @@ begin
 
     fltnmtnServerInfoExpand.Start;
 
+    btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
+
     Exit;
   end;
 
@@ -61,6 +63,8 @@ begin
     fltnmtnServerInfoExpand.StopValue := 0;
 
     fltnmtnServerInfoExpand.Start;
+
+    btnShowHideServerInfo.StyleLookup := 'priortoolbutton';
 
     Exit;
   end;
