@@ -42,11 +42,22 @@ object frmMain: TfrmMain
       TextSettings.Font.Size = 20.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
       TextSettings.HorzAlign = Center
-      Text = 'Server Config'
+      Text = 'Server Controls'
       TabOrder = 1
+      object btnShowHideServerInfo: TSpeedButton
+        Align = Right
+        Position.X = 878.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'priortoolbutton'
+        Text = 'ServerInfo'
+        OnClick = btnShowHideServerInfoClick
+      end
     end
     object btnNavBurger: TSpeedButton
       Align = Left
+      Hint = 'Navbar'
       Size.Width = 60.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
@@ -94,6 +105,36 @@ object frmMain: TfrmMain
     Size.Height = 477.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
+    object tbcServerInfo: TTabControl
+      Align = Client
+      Size.Width = 200.000000000000000000
+      Size.Height = 477.000000000000000000
+      Size.PlatformDefault = False
+      TabIndex = 0
+      TabOrder = 0
+      TabPosition = None
+      Sizes = (
+        200s
+        477s)
+      object tbtmServerInfo: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Server Info'
+      end
+    end
+    object fltnmtnServerInfoExpand: TFloatAnimation
+      Duration = 0.200000002980232200
+      PropertyName = 'Width'
+      StartValue = 200.000000000000000000
+      StopValue = 0.000000000000000000
+    end
   end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
