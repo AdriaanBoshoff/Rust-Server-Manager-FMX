@@ -2,8 +2,8 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'RSMfmx v3.1'
-  ClientHeight = 563
-  ClientWidth = 938
+  ClientHeight = 601
+  ClientWidth = 980
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -11,7 +11,7 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   DesignerMasterStyle = 0
   object mnbrMain: TMenuBar
-    Size.Width = 938.000000000000000000
+    Size.Width = 980.000000000000000000
     Size.Height = 24.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
@@ -20,23 +20,23 @@ object frmMain: TfrmMain
     end
   end
   object statMain: TStatusBar
-    Position.Y = 541.000000000000000000
+    Position.Y = 579.000000000000000000
     ShowSizeGrip = True
-    Size.Width = 938.000000000000000000
+    Size.Width = 980.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
   end
   object tlbHeader: TToolBar
     Position.Y = 24.000000000000000000
-    Size.Width = 938.000000000000000000
+    Size.Width = 980.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
     object lblNavHeader: TLabel
       Align = Contents
       StyledSettings = [Family, FontColor]
-      Size.Width = 938.000000000000000000
+      Size.Width = 980.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 20.000000000000000000
@@ -47,7 +47,7 @@ object frmMain: TfrmMain
       object btnShowHideServerInfo: TSpeedButton
         Align = Right
         Hint = 'Show / Hide Server Info'
-        Position.X = 878.000000000000000000
+        Position.X = 920.000000000000000000
         Size.Width = 60.000000000000000000
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
@@ -69,42 +69,296 @@ object frmMain: TfrmMain
   object lytMain: TLayout
     Align = Client
     Margins.Left = 60.000000000000000000
-    Size.Width = 678.000000000000000000
-    Size.Height = 477.000000000000000000
+    Size.Width = 720.000000000000000000
+    Size.Height = 515.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
     object tbcNav: TTabControl
       Align = Client
-      Size.Width = 678.000000000000000000
-      Size.Height = 477.000000000000000000
+      Size.Width = 720.000000000000000000
+      Size.Height = 515.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
-        678s
-        453s
-        678s
-        453s
-        678s
-        453s)
+        720s
+        491s
+        720s
+        491s
+        720s
+        491s)
       object tbtmNavServerControls: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
         Text = 'Server Controls'
+        object rctnglServerControlsHeader: TRectangle
+          Align = Top
+          Fill.Color = xFF1F222A
+          Padding.Left = 10.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 710.000000000000000000
+          Size.Height = 35.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = claNull
+          XRadius = 10.000000000000000000
+          YRadius = 10.000000000000000000
+          object lytServerPIDInfo: TLayout
+            Align = Left
+            Position.X = 10.000000000000000000
+            Size.Width = 92.000000000000000000
+            Size.Height = 35.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object lblServerPIDHeader: TLabel
+              Align = MostLeft
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 60.000000000000000000
+              Size.Height = 35.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Server PID:'
+              TabOrder = 0
+            end
+            object lblServerPIDValue: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size]
+              Margins.Left = 3.000000000000000000
+              Position.X = 63.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 35.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claOrange
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+        end
+        object rctnglServerControls: TRectangle
+          Align = Left
+          Fill.Color = xFF1F222A
+          Padding.Left = 10.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 45.000000000000000000
+          Size.Width = 148.000000000000000000
+          Size.Height = 441.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = claNull
+          XRadius = 10.000000000000000000
+          YRadius = 10.000000000000000000
+          object lblServerControlsHeader: TLabel
+            Align = MostTop
+            StyledSettings = [Family, FontColor]
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 5.000000000000000000
+            Size.Width = 128.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {04060000000000000004000000}
+            TextSettings.HorzAlign = Center
+            Text = 'Server Controls'
+            TabOrder = 0
+          end
+          object btnStartServer: TButton
+            Align = Top
+            CanFocus = False
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Top = 20.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 42.000000000000000000
+            Size.Width = 128.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 5
+            Text = 'Start Server'
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TintColor = claGreen
+          end
+          object btnStopServer: TButton
+            Align = Top
+            CanFocus = False
+            Enabled = False
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Top = 20.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 92.000000000000000000
+            Size.Width = 128.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 4
+            Text = 'Stop Server'
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TintColor = xFFCA8300
+          end
+          object btnRestartServer: TButton
+            Align = Top
+            CanFocus = False
+            Enabled = False
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Top = 20.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 142.000000000000000000
+            Size.Width = 128.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 3
+            Text = 'Restart Server'
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TintColor = xFFB9B900
+          end
+          object btnForceSave: TButton
+            Align = Top
+            CanFocus = False
+            Enabled = False
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Top = 80.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 252.000000000000000000
+            Size.Width = 128.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 2
+            Text = 'Force Save'
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TintColor = xFF158EFF
+          end
+          object btnKillServer: TButton
+            Align = Bottom
+            CanFocus = False
+            Enabled = False
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Bottom = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 401.000000000000000000
+            Size.Width = 128.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 1
+            Text = 'Kill Server'
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TintColor = claDarkred
+          end
+        end
+        object rctnglServerOptions: TRectangle
+          Align = Client
+          Fill.Color = xFF1F222A
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 557.000000000000000000
+          Size.Height = 441.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = claNull
+          XRadius = 10.000000000000000000
+          YRadius = 10.000000000000000000
+          object vrtscrlbxServerControlsMain: TVertScrollBox
+            Align = Client
+            Padding.Left = 10.000000000000000000
+            Padding.Right = 10.000000000000000000
+            Size.Width = 557.000000000000000000
+            Size.Height = 441.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Viewport.Width = 557.000000000000000000
+            Viewport.Height = 441.000000000000000000
+            object lytServerAffinity: TLayout
+              Align = Top
+              Margins.Top = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 32.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object swtchServerAffinity: TSwitch
+                Align = Left
+                IsChecked = False
+                Position.Y = 2.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+              end
+              object lblServerAffinityHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 78.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Server Affinity'
+                TabOrder = 1
+              end
+              object btnAdjustAffinity: TButton
+                Align = Left
+                CanFocus = False
+                Margins.Left = 10.000000000000000000
+                Margins.Top = 2.000000000000000000
+                Margins.Bottom = 2.000000000000000000
+                Position.X = 133.000000000000000000
+                Position.Y = 2.000000000000000000
+                Size.Width = 80.000000000000000000
+                Size.Height = 21.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 2
+                Text = 'Adjust'
+              end
+            end
+            object lblServerOptionsHeader: TLabel
+              Align = MostTop
+              StyledSettings = [Family, FontColor]
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 5.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 14.000000000000000000
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              Text = 'Server Options'
+              TabOrder = 0
+            end
+          end
+        end
       end
       object tbtmServerConfig: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -117,16 +371,16 @@ object frmMain: TfrmMain
           Padding.Right = 10.000000000000000000
           Margins.Top = 10.000000000000000000
           Margins.Bottom = 5.000000000000000000
-          Size.Width = 678.000000000000000000
-          Size.Height = 438.000000000000000000
+          Size.Width = 720.000000000000000000
+          Size.Height = 476.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Viewport.Width = 662.000000000000000000
-          Viewport.Height = 438.000000000000000000
+          Viewport.Width = 704.000000000000000000
+          Viewport.Height = 476.000000000000000000
           object lytHostnameHeader: TLayout
             Align = Top
             Position.X = 10.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
@@ -147,7 +401,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 25.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -155,7 +409,7 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              Size.Width = 642.000000000000000000
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'My Rust Server'
@@ -174,7 +428,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 55.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 2
@@ -195,7 +449,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 80.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 3
@@ -204,7 +458,7 @@ object frmMain: TfrmMain
               Align = Client
               TabOrder = 0
               ReadOnly = True
-              Size.Width = 642.000000000000000000
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Select Server Tags'
@@ -223,7 +477,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 110.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 4
@@ -244,7 +498,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 135.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 5
@@ -253,7 +507,7 @@ object frmMain: TfrmMain
               Align = Client
               TabOrder = 0
               ReadOnly = True
-              Size.Width = 642.000000000000000000
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Server Description'
@@ -273,7 +527,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 165.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 6
@@ -294,7 +548,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 190.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 7
@@ -302,7 +556,7 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              Size.Width = 642.000000000000000000
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Server URL'
@@ -321,7 +575,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 220.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 8
@@ -342,7 +596,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 245.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 9
@@ -350,7 +604,7 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              Size.Width = 642.000000000000000000
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Server Banner URL'
@@ -370,7 +624,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 275.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 10
@@ -391,7 +645,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 300.000000000000000000
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 11
@@ -399,7 +653,7 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              Size.Width = 642.000000000000000000
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'App Logo URL'
@@ -421,7 +675,7 @@ object frmMain: TfrmMain
             Position.X = 10.000000000000000000
             Position.Y = 335.000000000000000000
             ShowCheck = False
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 95.000000000000000000
             Size.PlatformDefault = False
             Text = 'Server Map'
@@ -432,7 +686,7 @@ object frmMain: TfrmMain
               Margins.Left = 10.000000000000000000
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Size.Width = 622.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
@@ -477,7 +731,7 @@ object frmMain: TfrmMain
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Client
                 TabOrder = 3
-                Size.Width = 322.000000000000000000
+                Size.Width = 364.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextPrompt = 'https://rustservermanager.com/maps/test.map'
@@ -498,7 +752,7 @@ object frmMain: TfrmMain
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 35.000000000000000000
-              Size.Width = 622.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 1
@@ -577,7 +831,7 @@ object frmMain: TfrmMain
             Position.X = 10.000000000000000000
             Position.Y = 440.000000000000000000
             ShowCheck = False
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 100.000000000000000000
             Size.PlatformDefault = False
             Text = 'Miscellaneous'
@@ -588,7 +842,7 @@ object frmMain: TfrmMain
               Margins.Left = 10.000000000000000000
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Size.Width = 622.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
@@ -650,7 +904,7 @@ object frmMain: TfrmMain
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 35.000000000000000000
-              Size.Width = 622.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 5
@@ -668,7 +922,7 @@ object frmMain: TfrmMain
                 Cursor = crHandPoint
                 HitTest = True
                 Margins.Left = 5.000000000000000000
-                Size.Width = 444.000000000000000000
+                Size.Width = 486.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextSettings.WordWrap = False
@@ -695,7 +949,7 @@ object frmMain: TfrmMain
             Position.X = 10.000000000000000000
             Position.Y = 550.000000000000000000
             ShowCheck = False
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 121.000000000000000000
             Size.PlatformDefault = False
             Text = 'Server Networking'
@@ -706,7 +960,7 @@ object frmMain: TfrmMain
               Margins.Left = 10.000000000000000000
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Size.Width = 622.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
@@ -796,7 +1050,7 @@ object frmMain: TfrmMain
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 30.000000000000000000
-              Size.Width = 622.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 1
@@ -868,7 +1122,7 @@ object frmMain: TfrmMain
                 TabOrder = 5
                 Password = True
                 Text = 'ChangeMe'
-                Size.Width = 147.000000000000000000
+                Size.Width = 189.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextPrompt = 'Rcon Password'
@@ -899,7 +1153,7 @@ object frmMain: TfrmMain
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 60.000000000000000000
-              Size.Width = 622.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 2
@@ -984,7 +1238,7 @@ object frmMain: TfrmMain
             Position.X = 10.000000000000000000
             Position.Y = 681.000000000000000000
             ShowCheck = False
-            Size.Width = 642.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 250.000000000000000000
             Size.PlatformDefault = False
             Text = 'Server.cfg - Add convars to the server.cfg file.'
@@ -1009,23 +1263,23 @@ object frmMain: TfrmMain
   end
   object lytServerInfo: TLayout
     Align = Right
-    Position.X = 738.000000000000000000
+    Position.X = 780.000000000000000000
     Position.Y = 64.000000000000000000
     Size.Width = 200.000000000000000000
-    Size.Height = 477.000000000000000000
+    Size.Height = 515.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
     object tbcServerInfo: TTabControl
       Align = Client
       Size.Width = 200.000000000000000000
-      Size.Height = 477.000000000000000000
+      Size.Height = 515.000000000000000000
       Size.PlatformDefault = False
       TabIndex = 0
       TabOrder = 0
       TabPosition = None
       Sizes = (
         200s
-        477s)
+        515s)
       object tbtmServerInfo: TTabItem
         CustomIcon = <
           item
@@ -1571,7 +1825,7 @@ object frmMain: TfrmMain
     object lstNav: TListBox
       Align = Client
       Size.Width = 60.000000000000000000
-      Size.Height = 477.000000000000000000
+      Size.Height = 515.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       DisableFocusEffect = True
@@ -1580,7 +1834,7 @@ object frmMain: TfrmMain
       DefaultItemStyles.GroupFooterStyle = ''
       OnChange = lstNavChange
       Viewport.Width = 56.000000000000000000
-      Viewport.Height = 473.000000000000000000
+      Viewport.Height = 511.000000000000000000
       object lstServerControls: TListBoxItem
         Size.Width = 56.000000000000000000
         Size.Height = 50.000000000000000000
