@@ -78,7 +78,7 @@ object frmMain: TfrmMain
       Size.Width = 678.000000000000000000
       Size.Height = 477.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 2
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -92,7 +92,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -116,7 +116,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 98.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -156,6 +156,520 @@ object frmMain: TfrmMain
         StyleLookup = ''
         TabOrder = 0
         Text = 'Server Info'
+        object rctnglServerInfo: TRectangle
+          Align = Top
+          Fill.Color = xFF1F222A
+          Padding.Left = 10.000000000000000000
+          Padding.Top = 5.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 190.000000000000000000
+          Size.Height = 311.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = claNull
+          XRadius = 10.000000000000000000
+          YRadius = 10.000000000000000000
+          object lblServerInfoHeader: TLabel
+            Align = Top
+            StyledSettings = [Family, FontColor]
+            Position.X = 10.000000000000000000
+            Position.Y = 5.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {04060000000000000004000000}
+            TextSettings.HorzAlign = Center
+            Text = 'Server Info'
+            TabOrder = 0
+          end
+          object lytPlayerCount: TLayout
+            Align = Top
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 27.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object lblPlayerCountHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 42.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claLime
+              TextSettings.WordWrap = False
+              Text = 'Players:'
+              TabOrder = 0
+            end
+            object lblPlayerCountValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 129.000000000000000000
+              Size.Width = 41.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '--- / ---'
+              TabOrder = 1
+            end
+          end
+          object lytQueued: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 52.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 11
+            object lblQueuedHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 46.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claYellow
+              TextSettings.WordWrap = False
+              Text = 'Queued:'
+              TabOrder = 0
+            end
+            object lblQueuedValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 155.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+          object lytJoining: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 77.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 10
+            object lblJoiningHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 43.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claOrange
+              TextSettings.WordWrap = False
+              Text = 'Joining:'
+              TabOrder = 0
+            end
+            object lblJoiningValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 155.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+          object lytNetworkIn: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 127.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 9
+            object lblNetworkInHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 64.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Network In:'
+              TabOrder = 0
+            end
+            object lblNetworkInValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 129.000000000000000000
+              Size.Width = 41.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---b/s '#8595
+              TabOrder = 1
+            end
+          end
+          object lytNetworkOut: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 102.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object lblNetworkOutHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 74.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Network Out:'
+              TabOrder = 0
+            end
+            object lblNetworkOutValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 129.000000000000000000
+              Size.Width = 41.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---b/s '#8593
+              TabOrder = 1
+            end
+          end
+          object lytServerFPS: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 152.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 8
+            object lblServerFPSHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 61.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Server FPS:'
+              TabOrder = 0
+            end
+            object lblServerFPSValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 155.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+          object lytServerVersion: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 202.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 7
+            object lblServerProtocolHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 49.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Protocol:'
+              TabOrder = 0
+            end
+            object lblServerProtocolValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 155.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+          object lytServerEntityCount: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 177.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            object lblServerEntityCountHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 71.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Entity Count:'
+              TabOrder = 0
+            end
+            object lblServerEntityCountValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 155.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+          object lytServerMemoryUsage: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 227.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 6
+            object lblServerMemoryUsageHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 67.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'RAM Usage:'
+              TabOrder = 0
+            end
+            object lblServerMemoryUsageValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 155.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+          object lytServerSize: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 277.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 5
+            object lblServerSizeHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 63.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Server Size:'
+              TabOrder = 0
+            end
+            object lblServerSizeValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 155.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+          object lytLastWipe: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 252.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 4
+            object lblLastWipeHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 57.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Last Wipe:'
+              TabOrder = 0
+            end
+            object lblLastWipeValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 155.000000000000000000
+              Size.Width = 15.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---'
+              TabOrder = 1
+            end
+          end
+        end
+        object rctnglSystemInfo: TRectangle
+          Align = Top
+          Fill.Color = xFF1F222A
+          Padding.Left = 10.000000000000000000
+          Padding.Top = 5.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 321.000000000000000000
+          Size.Width = 190.000000000000000000
+          Size.Height = 90.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = claNull
+          XRadius = 10.000000000000000000
+          YRadius = 10.000000000000000000
+          object lblSystemInfoHeader: TLabel
+            Align = Top
+            StyledSettings = [Family, FontColor]
+            Position.X = 10.000000000000000000
+            Position.Y = 5.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {04060000000000000004000000}
+            TextSettings.HorzAlign = Center
+            Text = 'System Info'
+            TabOrder = 0
+          end
+          object lytCPUUsage: TLayout
+            Align = Top
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 27.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object lblCPUUsageHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 63.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claLime
+              TextSettings.WordWrap = False
+              Text = 'CPU Usage:'
+              TabOrder = 0
+            end
+            object lblCPUUsageValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 145.000000000000000000
+              Size.Width = 25.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---%'
+              TabOrder = 1
+            end
+          end
+          object lytRamUsage: TLayout
+            Align = Top
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 57.000000000000000000
+            Size.Width = 170.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object lblRamUsageheader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 67.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.FontColor = claLime
+              TextSettings.WordWrap = False
+              Text = 'RAM Usage:'
+              TabOrder = 0
+            end
+            object lblRamUsageValue: TLabel
+              Align = Right
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Position.X = 145.000000000000000000
+              Size.Width = 25.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claGray
+              TextSettings.WordWrap = False
+              Text = '---%'
+              TabOrder = 1
+            end
+          end
+        end
       end
     end
     object fltnmtnServerInfoExpand: TFloatAnimation
