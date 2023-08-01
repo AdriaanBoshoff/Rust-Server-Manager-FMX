@@ -78,7 +78,7 @@ object frmMain: TfrmMain
       Size.Width = 678.000000000000000000
       Size.Height = 477.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -92,7 +92,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -104,13 +104,894 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
         Text = 'Server Config'
+        object vrtscrlbxServerConfig: TVertScrollBox
+          Align = Client
+          Padding.Left = 10.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 678.000000000000000000
+          Size.Height = 438.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Viewport.Width = 662.000000000000000000
+          Viewport.Height = 438.000000000000000000
+          object lytHostnameHeader: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object lblHostnameHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 59.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Hostname:'
+              TabOrder = 0
+            end
+          end
+          object lytHostnameValue: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 25.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object edtHostnameValue: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Size.Width = 642.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'My Rust Server'
+              object btnClearHostname: TClearEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 28.000000000000000000
+                Size.Height = 21.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+              end
+            end
+          end
+          object lytServerTagsHeader: TLayout
+            Align = Top
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 55.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object lblServerTagsHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 65.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Server Tags:'
+              TabOrder = 0
+            end
+          end
+          object lytServerTagsValue: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 80.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            object edtServerTagsValue: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              ReadOnly = True
+              Size.Width = 642.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Select Server Tags'
+              object btnSelectServerTags: TEllipsesEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 28.000000000000000000
+                Size.Height = 21.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+              end
+            end
+          end
+          object lytServerDescriptionHeader: TLayout
+            Align = Top
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 110.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 4
+            object lblServerDescriptionHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 104.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Server Description:'
+              TabOrder = 0
+            end
+          end
+          object lytServerDescriptionValue: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 135.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 5
+            object edtServerDescriptionValue: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              ReadOnly = True
+              Size.Width = 642.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Server Description'
+              object btnEditServerDescription: TEllipsesEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 28.000000000000000000
+                Size.Height = 21.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                Text = 'Server Description'
+              end
+            end
+          end
+          object lytServerURLHeader: TLayout
+            Align = Top
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 165.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 6
+            object lblServerURLHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 63.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Server URL:'
+              TabOrder = 0
+            end
+          end
+          object lytServerURLValue: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 190.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 7
+            object edtServerURLValue: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Size.Width = 642.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Server URL'
+              object btnClearServerURL: TClearEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 28.000000000000000000
+                Size.Height = 21.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+              end
+            end
+          end
+          object lytServerBannerURLHeader: TLayout
+            Align = Top
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 220.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 8
+            object lblServerBannerURL: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 105.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Server Banner URL:'
+              TabOrder = 0
+            end
+          end
+          object lytServerBannerURLValue: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 245.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 9
+            object edtServerBannerURLValue: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Size.Width = 642.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Server Banner URL'
+              object btnClearServerBannerURL: TClearEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 28.000000000000000000
+                Size.Height = 21.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                Text = 'Server Banner URL'
+              end
+            end
+          end
+          object lytAppLogoURLHeader: TLayout
+            Align = Top
+            Margins.Top = 5.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 275.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 10
+            object lblAppLogoURLHeader: TLabel
+              Align = Left
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 125.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = '[Rust+] App Logo URL:'
+              TabOrder = 0
+            end
+          end
+          object lytAppLogoURLValue: TLayout
+            Align = Top
+            Position.X = 10.000000000000000000
+            Position.Y = 300.000000000000000000
+            Size.Width = 642.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 11
+            object edtAppLogoURLValue: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Size.Width = 642.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'App Logo URL'
+              object btnClearAppLogoURL: TClearEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 28.000000000000000000
+                Size.Height = 21.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+              end
+            end
+          end
+          object expndrServerMap: TExpander
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            Margins.Top = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 335.000000000000000000
+            ShowCheck = False
+            Size.Width = 642.000000000000000000
+            Size.Height = 95.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Server Map'
+            TabOrder = 12
+            ContentSize = '70'
+            object lytServerMap1: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              object lblServerMapHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 70.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'Server Map:'
+                TabOrder = 1
+              end
+              object cbbServerMap: TComboBox
+                Align = Left
+                CanFocus = False
+                Items.Strings = (
+                  'Custom Map'
+                  'Procedural Map'
+                  'Barren'
+                  'CraggyIsland')
+                ItemIndex = 0
+                Position.X = 70.000000000000000000
+                Size.Width = 150.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 2
+              end
+              object lblCustomMapURLHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 230.000000000000000000
+                Size.Width = 70.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'Server Map:'
+                TabOrder = 0
+              end
+              object edtCustomMapURLValue: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 3
+                Size.Width = 322.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'https://rustservermanager.com/maps/test.map'
+                object btnClearCustomMapURL: TClearEditButton
+                  CanFocus = False
+                  Cursor = crArrow
+                  Size.Width = 28.000000000000000000
+                  Size.Height = 21.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                end
+              end
+            end
+            object lytServerMap2: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 35.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object lblMapSize: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 70.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'Map Size:'
+                TabOrder = 0
+              end
+              object nmbrbxMapSize: TNumberBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 1
+                Cursor = crIBeam
+                Min = 1000.000000000000000000
+                Max = 8000.000000000000000000
+                Value = 3500.000000000000000000
+                TextSettings.HorzAlign = Center
+                Position.X = 70.000000000000000000
+                HorzIncrement = 0.000000000000000000
+                VertIncrement = 0.000000000000000000
+                Size.Width = 150.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblMapSeed: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 230.000000000000000000
+                Size.Width = 70.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'Map Seed:'
+                TabOrder = 2
+              end
+              object nmbrbxMapSeed: TNumberBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 3
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 9999999999999.000000000000000000
+                Value = 484681789.000000000000000000
+                TextSettings.HorzAlign = Center
+                Position.X = 305.000000000000000000
+                HorzIncrement = 0.000000000000000000
+                VertIncrement = 0.000000000000000000
+                Margins.Left = 5.000000000000000000
+                Size.Width = 150.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object btnGenerateMapSeed: TSpeedButton
+                Align = Left
+                Margins.Left = 3.000000000000000000
+                Position.X = 458.000000000000000000
+                Size.Width = 25.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'refreshtoolbuttonbordered'
+                Text = 'btnGenerateMapSeed'
+              end
+            end
+          end
+          object expndrMiscServerConfig: TExpander
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            Margins.Top = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 440.000000000000000000
+            ShowCheck = False
+            Size.Width = 642.000000000000000000
+            Size.Height = 100.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Miscellaneous'
+            TabOrder = 13
+            ContentSize = '75'
+            object lytMaxPlayers: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              object lblMaxPlayers: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 69.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Max Players:'
+                TabOrder = 1
+              end
+              object spnbxMaxPlayers: TSpinBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 2
+                Cursor = crIBeam
+                Max = 9999.000000000000000000
+                Value = 50.000000000000000000
+                Position.X = 74.000000000000000000
+                Margins.Left = 5.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblCensorPlayerList: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 184.000000000000000000
+                Size.Width = 93.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Censor Playerlist:'
+                TabOrder = 0
+              end
+              object swtchCensorPlayerlist: TSwitch
+                Align = Left
+                IsChecked = True
+                Margins.Left = 5.000000000000000000
+                Position.X = 282.000000000000000000
+                Position.Y = 2.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 3
+              end
+            end
+            object lytServerGamemode: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 35.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 5
+              object cbbServerGamemodeValue: TComboBox
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Position.X = 73.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+              end
+              object lblServerGamemodeDescriptionValue: TLabel
+                Align = Client
+                Cursor = crHandPoint
+                HitTest = True
+                Margins.Left = 5.000000000000000000
+                Size.Width = 444.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = False
+                Text = '- GAMEMODE DESCRIPTION'#13#10'2'
+                TabOrder = 1
+              end
+              object lblServerGameModeHead: TLabel
+                Align = MostLeft
+                AutoSize = True
+                Size.Width = 68.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = False
+                Text = 'Game Mode:'
+                TabOrder = 2
+              end
+            end
+          end
+          object expndrServerNetworking: TExpander
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            Margins.Top = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 550.000000000000000000
+            ShowCheck = False
+            Size.Width = 642.000000000000000000
+            Size.Height = 121.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Server Networking'
+            TabOrder = 14
+            ContentSize = '96'
+            object lytServerNetworking1: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              object lblServerIPHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 60.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'Server IP:'
+                TabOrder = 2
+              end
+              object edtServerIP: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 3
+                Text = '0.0.0.0'
+                TextSettings.HorzAlign = Center
+                Position.X = 60.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = '0.0.0.0'
+              end
+              object lblServerPortHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 170.000000000000000000
+                Size.Width = 105.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = '[UDP] Server Port:'
+                TabOrder = 1
+              end
+              object nmbrbxServerPort: TNumberBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 5
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 99999999.000000000000000000
+                Value = 28015.000000000000000000
+                TextSettings.HorzAlign = Center
+                Position.X = 275.000000000000000000
+                HorzIncrement = 0.000000000000000000
+                VertIncrement = 0.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblQueryPortHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 385.000000000000000000
+                Size.Width = 105.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = '[UDP] Query Port:'
+                TabOrder = 0
+              end
+              object nmbrbxQueryPort: TNumberBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 4
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 99999999.000000000000000000
+                Value = 28016.000000000000000000
+                TextSettings.HorzAlign = Center
+                Position.X = 490.000000000000000000
+                HorzIncrement = 0.000000000000000000
+                VertIncrement = 0.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+              end
+            end
+            object lytServerNetworking2: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 30.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object lblRconIPHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 60.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'Rcon IP:'
+                TabOrder = 2
+              end
+              object edtRconIPValue: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 3
+                Text = '0.0.0.0'
+                TextSettings.HorzAlign = Center
+                Position.X = 60.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = '0.0.0.0'
+              end
+              object lblRconPortHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 170.000000000000000000
+                Size.Width = 105.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = '[TCP] Rcon Port:'
+                TabOrder = 1
+              end
+              object nmbrbxRconPortValue: TNumberBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 4
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 99999999.000000000000000000
+                Value = 28016.000000000000000000
+                TextSettings.HorzAlign = Center
+                Position.X = 275.000000000000000000
+                HorzIncrement = 0.000000000000000000
+                VertIncrement = 0.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblRconPasswordHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 385.000000000000000000
+                Size.Width = 90.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'Rcon Password:'
+                TabOrder = 0
+              end
+              object edtRconPasswordValue: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 5
+                Password = True
+                Text = 'ChangeMe'
+                Size.Width = 147.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'Rcon Password'
+                object btnViewRconPassword: TPasswordEditButton
+                  CanFocus = False
+                  Cursor = crArrow
+                  Size.Width = 28.000000000000000000
+                  Size.Height = 21.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                end
+                object btnCopyRconPassword: TEditButton
+                  CanFocus = False
+                  Cursor = crArrow
+                  Position.X = 28.000000000000000000
+                  Size.Width = 40.000000000000000000
+                  Size.Height = 21.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 1
+                  Text = 'Copy'
+                end
+              end
+            end
+            object lytServerNetworking3: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 60.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              object lblAppIPHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 60.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'App IP:'
+                TabOrder = 2
+              end
+              object edtAppIPValue: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 3
+                Text = '0.0.0.0'
+                TextSettings.HorzAlign = Center
+                Position.X = 60.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = '0.0.0.0'
+              end
+              object lblAppPortValue: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 170.000000000000000000
+                Size.Width = 105.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = '[TCP] App Port:'
+                TabOrder = 1
+              end
+              object nmbrbxAppPortValue: TNumberBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 4
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 99999999.000000000000000000
+                Value = 28017.000000000000000000
+                TextSettings.HorzAlign = Center
+                Position.X = 275.000000000000000000
+                HorzIncrement = 0.000000000000000000
+                VertIncrement = 0.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object lblAppPublicIPHeader: TLabel
+                Align = Left
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 385.000000000000000000
+                Size.Width = 90.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                Text = 'App PublicIP:'
+                TabOrder = 0
+              end
+              object edtAppPublicIPValue: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 5
+                TextSettings.HorzAlign = Center
+                Position.X = 475.000000000000000000
+                Size.Width = 150.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'Public IP'
+              end
+            end
+          end
+          object expndrServerConfigServerCFG: TExpander
+            Align = Top
+            Margins.Top = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 681.000000000000000000
+            ShowCheck = False
+            Size.Width = 642.000000000000000000
+            Size.Height = 250.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Server.cfg - Add convars to the server.cfg file.'
+            TabOrder = 15
+            ContentSize = '225'
+          end
+        end
       end
       object tbtmServerInstaller: TTabItem
         CustomIcon = <

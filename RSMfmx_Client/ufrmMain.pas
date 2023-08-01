@@ -6,7 +6,9 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Menus, FMX.StdCtrls, FMX.MultiView, FMX.Controls.Presentation, FMX.Layouts,
-  FMX.TabControl, FMX.Ani, FMX.Objects, FMX.ListBox;
+  FMX.TabControl, FMX.Ani, FMX.Objects, FMX.ListBox, System.Rtti,
+  FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit, FMX.SpinBox,
+  FMX.EditBox, FMX.NumberBox;
 
 type
   TfrmMain = class(TForm)
@@ -80,6 +82,85 @@ type
     lytRamUsage: TLayout;
     lblRamUsageheader: TLabel;
     lblRamUsageValue: TLabel;
+    vrtscrlbxServerConfig: TVertScrollBox;
+    lytHostnameHeader: TLayout;
+    lblHostnameHeader: TLabel;
+    lytHostnameValue: TLayout;
+    edtHostnameValue: TEdit;
+    btnClearHostname: TClearEditButton;
+    lytServerTagsHeader: TLayout;
+    lblServerTagsHeader: TLabel;
+    lytServerTagsValue: TLayout;
+    edtServerTagsValue: TEdit;
+    btnSelectServerTags: TEllipsesEditButton;
+    lytServerDescriptionHeader: TLayout;
+    lblServerDescriptionHeader: TLabel;
+    lytServerDescriptionValue: TLayout;
+    edtServerDescriptionValue: TEdit;
+    btnEditServerDescription: TEllipsesEditButton;
+    lytServerURLHeader: TLayout;
+    lblServerURLHeader: TLabel;
+    lytServerURLValue: TLayout;
+    edtServerURLValue: TEdit;
+    btnClearServerURL: TClearEditButton;
+    lytServerBannerURLHeader: TLayout;
+    lblServerBannerURL: TLabel;
+    lytServerBannerURLValue: TLayout;
+    edtServerBannerURLValue: TEdit;
+    btnClearServerBannerURL: TClearEditButton;
+    lytAppLogoURLHeader: TLayout;
+    lblAppLogoURLHeader: TLabel;
+    lytAppLogoURLValue: TLayout;
+    edtAppLogoURLValue: TEdit;
+    btnClearAppLogoURL: TClearEditButton;
+    expndrServerMap: TExpander;
+    lytServerMap1: TLayout;
+    lblServerMapHeader: TLabel;
+    cbbServerMap: TComboBox;
+    lblCustomMapURLHeader: TLabel;
+    edtCustomMapURLValue: TEdit;
+    btnClearCustomMapURL: TClearEditButton;
+    lytServerMap2: TLayout;
+    lblMapSize: TLabel;
+    nmbrbxMapSize: TNumberBox;
+    lblMapSeed: TLabel;
+    nmbrbxMapSeed: TNumberBox;
+    btnGenerateMapSeed: TSpeedButton;
+    expndrMiscServerConfig: TExpander;
+    lytMaxPlayers: TLayout;
+    lblMaxPlayers: TLabel;
+    spnbxMaxPlayers: TSpinBox;
+    lblCensorPlayerList: TLabel;
+    swtchCensorPlayerlist: TSwitch;
+    lytServerGamemode: TLayout;
+    cbbServerGamemodeValue: TComboBox;
+    lblServerGamemodeDescriptionValue: TLabel;
+    lblServerGameModeHead: TLabel;
+    expndrServerNetworking: TExpander;
+    lytServerNetworking1: TLayout;
+    lblServerIPHeader: TLabel;
+    edtServerIP: TEdit;
+    lblServerPortHeader: TLabel;
+    nmbrbxServerPort: TNumberBox;
+    lblQueryPortHeader: TLabel;
+    nmbrbxQueryPort: TNumberBox;
+    lytServerNetworking2: TLayout;
+    lblRconIPHeader: TLabel;
+    edtRconIPValue: TEdit;
+    lblRconPortHeader: TLabel;
+    nmbrbxRconPortValue: TNumberBox;
+    lblRconPasswordHeader: TLabel;
+    edtRconPasswordValue: TEdit;
+    btnViewRconPassword: TPasswordEditButton;
+    btnCopyRconPassword: TEditButton;
+    lytServerNetworking3: TLayout;
+    lblAppIPHeader: TLabel;
+    edtAppIPValue: TEdit;
+    lblAppPortValue: TLabel;
+    nmbrbxAppPortValue: TNumberBox;
+    lblAppPublicIPHeader: TLabel;
+    edtAppPublicIPValue: TEdit;
+    expndrServerConfigServerCFG: TExpander;
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
