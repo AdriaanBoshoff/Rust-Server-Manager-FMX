@@ -274,8 +274,13 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="ufrmMain.pas">
-            <Form>Form1</Form>
+            <Form>frmMain</Form>
             <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="DataModules\udmStyles.pas">
+            <Form>dmStyles</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

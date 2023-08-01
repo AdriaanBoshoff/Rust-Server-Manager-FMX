@@ -1,9 +1,10 @@
-object Form1: TForm1
+object frmMain: TfrmMain
   Left = 0
   Top = 0
-  Caption = 'Form1'
-  ClientHeight = 480
-  ClientWidth = 640
+  Caption = 'RSMfmx v3.1'
+  ClientHeight = 560
+  ClientWidth = 935
+  StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
