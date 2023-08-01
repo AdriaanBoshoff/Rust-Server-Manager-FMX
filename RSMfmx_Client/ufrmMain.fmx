@@ -2,33 +2,49 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'RSMfmx v3.1'
-  ClientHeight = 560
-  ClientWidth = 935
+  ClientHeight = 563
+  ClientWidth = 938
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object mnbrMain: TMenuBar
-    Size.Width = 935.000000000000000000
+    Size.Width = 938.000000000000000000
     Size.Height = 24.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object mniFile: TMenuItem
+      Text = 'File'
+    end
+  end
+  object statMain: TStatusBar
+    Position.Y = 541.000000000000000000
+    ShowSizeGrip = True
+    Size.Width = 938.000000000000000000
+    Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
   end
-  object statMain: TStatusBar
-    Position.Y = 538.000000000000000000
-    ShowSizeGrip = True
-    Size.Width = 935.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 2
-  end
   object tlbHeader: TToolBar
     Position.Y = 24.000000000000000000
-    Size.Width = 935.000000000000000000
+    Size.Width = 938.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 4
+    TabOrder = 3
+    object lblNavHeader: TLabel
+      Align = Contents
+      StyledSettings = [Family, FontColor]
+      Size.Width = 938.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.HorzAlign = Center
+      Text = 'Server Config'
+      TabOrder = 1
+    end
     object btnNavBurger: TSpeedButton
       Align = Left
       Size.Width = 60.000000000000000000
@@ -38,6 +54,47 @@ object frmMain: TfrmMain
       Text = 'NAV'
     end
   end
+  object lytMain: TLayout
+    Align = Client
+    Margins.Left = 60.000000000000000000
+    Size.Width = 678.000000000000000000
+    Size.Height = 477.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    object tbcNav: TTabControl
+      Align = Client
+      Size.Width = 678.000000000000000000
+      Size.Height = 477.000000000000000000
+      Size.PlatformDefault = False
+      TabIndex = 0
+      TabOrder = 0
+      TabPosition = PlatformDefault
+      Sizes = (
+        678s
+        453s)
+      object tbtmNavServerConfig: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 92.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Server Config'
+      end
+    end
+  end
+  object lytServerInfo: TLayout
+    Align = Right
+    Position.X = 738.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 477.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+  end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
     Mode = NavigationPane
@@ -45,6 +102,6 @@ object frmMain: TfrmMain
     Size.Width = 250.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 2
   end
 end

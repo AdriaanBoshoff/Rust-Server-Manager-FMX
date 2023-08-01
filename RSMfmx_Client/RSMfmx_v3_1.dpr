@@ -9,7 +9,14 @@ uses
 {$R *.res}
 
 begin
+  {$IFDEF DEBUG}
+  ReportMemoryLeaksOnShutdown := True;
+  {$ENDIF}
+
   Application.Initialize;
+
+  Application.Title := 'RSMfmx v3.1';
+
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TdmStyles, dmStyles);
   Application.Run;
