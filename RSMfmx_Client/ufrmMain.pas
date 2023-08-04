@@ -5,10 +5,11 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   System.Math, FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
-  udmStyles, FMX.Menus, FMX.StdCtrls, FMX.MultiView, FMX.Controls.Presentation,
-  FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects, FMX.ListBox, System.Rtti,
-  FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit, FMX.SpinBox, FMX.EditBox,
-  FMX.NumberBox, FMX.Trayicon.Win;
+  udmStyles, udmIcons, FMX.Menus, FMX.StdCtrls, FMX.MultiView,
+  FMX.Controls.Presentation, FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects,
+  FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
+  FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
+  Winapi.Windows;
 
 type
   TfrmMain = class(TForm)
@@ -183,17 +184,26 @@ type
     mniOpenFolder: TMenuItem;
     mniOpenServerRoot: TMenuItem;
     btnAppSettings: TSpeedButton;
+    lytAppVersion: TLayout;
+    lblAppVersionValue: TLabel;
+    lblAppVersionHeader: TLabel;
+    mniSepExit: TMenuItem;
+    mniExitRSM: TMenuItem;
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure FormCreate(Sender: TObject);
+    procedure lblAppVersionValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
+    procedure mniExitRSMClick(Sender: TObject);
     procedure mniFileClick(Sender: TObject);
+    procedure trayIconMainClick(Sender: TObject);
   private
     { Private declarations }
     // UI
     procedure ResetServerInfoValues;
+    procedure BringToForeground;
     // Startup
     procedure ModifyUIForRelease;
     procedure CreateClasses;
@@ -217,6 +227,11 @@ procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   // Classes
   FreeClasses;
+end;
+
+procedure TfrmMain.BringToForeground;
+begin
+  SetForegroundWindow(ApplicationHWND);
 end;
 
 procedure TfrmMain.btnGenerateMapSeedClick(Sender: TObject);
@@ -282,6 +297,11 @@ begin
   serverConfig.Free;
 end;
 
+procedure TfrmMain.lblAppVersionValueResized(Sender: TObject);
+begin
+  lytAppVersion.Width := lblAppVersionHeader.Width + 5 + lblAppVersionValue.Width;
+end;
+
 procedure TfrmMain.lstNavChange(Sender: TObject);
 begin
   // Check for -1 Indexes
@@ -291,6 +311,11 @@ begin
   // Switch to tab
   tbcNav.TabIndex := lstNav.ItemIndex;
   lblNavHeader.Text := tbcNav.Tabs[tbcNav.TabIndex].Text;
+end;
+
+procedure TfrmMain.mniExitRSMClick(Sender: TObject);
+begin
+  Self.Close;
 end;
 
 procedure TfrmMain.mniFileClick(Sender: TObject);
@@ -321,6 +346,11 @@ begin
   lblServerMemoryUsageValue.Text := '---';
   lblLastWipeValue.Text := '---';
   lblServerSizeValue.Text := '---';
+end;
+
+procedure TfrmMain.trayIconMainClick(Sender: TObject);
+begin
+  Self.BringToForeground;
 end;
 
 end.
