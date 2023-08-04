@@ -4,7 +4,8 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   ufrmMain in 'ufrmMain.pas' {frmMain},
-  udmStyles in 'DataModules\udmStyles.pas' {dmStyles: TDataModule};
+  udmStyles in 'DataModules\udmStyles.pas' {dmStyles: TDataModule},
+  uServerConfig in 'Units\Configs\uServerConfig.pas';
 
 {$R *.res}
 

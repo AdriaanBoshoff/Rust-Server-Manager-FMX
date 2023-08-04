@@ -4,10 +4,11 @@ interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
-  FMX.Menus, FMX.StdCtrls, FMX.MultiView, FMX.Controls.Presentation, FMX.Layouts,
-  FMX.TabControl, FMX.Ani, FMX.Objects, FMX.ListBox, System.Rtti, FMX.Grid.Style,
-  FMX.Grid, FMX.ScrollBox, FMX.Edit, FMX.SpinBox, FMX.EditBox, FMX.NumberBox;
+  System.Math, FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  udmStyles, FMX.Menus, FMX.StdCtrls, FMX.MultiView, FMX.Controls.Presentation,
+  FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects, FMX.ListBox, System.Rtti,
+  FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit, FMX.SpinBox, FMX.EditBox,
+  FMX.NumberBox, FMX.Trayicon.Win;
 
 type
   TfrmMain = class(TForm)
@@ -178,14 +179,23 @@ type
     lblServerAffinityHeader: TLabel;
     btnAdjustAffinity: TButton;
     lblServerOptionsHeader: TLabel;
+    trayIconMain: TFMXTrayIcon;
+    procedure FormDestroy(Sender: TObject);
+    procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
+    procedure mniFileClick(Sender: TObject);
   private
     { Private declarations }
-    procedure ModifyUIForRelease;
+    // UI
     procedure ResetServerInfoValues;
+    // Startup
+    procedure ModifyUIForRelease;
+    procedure CreateClasses;
+    // Shutdown
+    procedure FreeClasses;
   public
     { Public declarations }
   end;
@@ -195,7 +205,24 @@ var
 
 implementation
 
+uses
+  uServerConfig;
+
 {$R *.fmx}
+
+procedure TfrmMain.FormDestroy(Sender: TObject);
+begin
+  // Classes
+  FreeClasses;
+end;
+
+procedure TfrmMain.btnGenerateMapSeedClick(Sender: TObject);
+begin
+  Randomize;
+  nmbrbxMapSeed.Value := RandomRange(1, 99999999);
+end;
+
+{ TfrmMain }
 
 procedure TfrmMain.btnShowHideServerInfoClick(Sender: TObject);
 begin
@@ -231,10 +258,25 @@ begin
   Abort;
 end;
 
+procedure TfrmMain.CreateClasses;
+begin
+  // Server Config
+  serverConfig := TServerConfig.Create;
+end;
+
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  // Classes
+  CreateClasses;
+
   // Change UI Layout for redistribution
   ModifyUIForRelease;
+end;
+
+procedure TfrmMain.FreeClasses;
+begin
+  // Server Config
+  serverConfig.Free;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);
@@ -248,7 +290,10 @@ begin
   lblNavHeader.Text := tbcNav.Tabs[tbcNav.TabIndex].Text;
 end;
 
-{ TfrmMain }
+procedure TfrmMain.mniFileClick(Sender: TObject);
+begin
+  trayIconMain.Hint := 'test';
+end;
 
 procedure TfrmMain.ModifyUIForRelease;
 begin
