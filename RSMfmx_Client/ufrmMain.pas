@@ -9,7 +9,7 @@ uses
   FMX.Controls.Presentation, FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects,
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
   FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
-  Winapi.Windows, System.IOUtils;
+  Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo;
 
 type
   TfrmMain = class(TForm)
@@ -128,12 +128,12 @@ type
     nmbrbxMapSeed: TNumberBox;
     btnGenerateMapSeed: TSpeedButton;
     expndrMiscServerConfig: TExpander;
-    lytMaxPlayers: TLayout;
+    lytServerConfigMisc1: TLayout;
     lblMaxPlayers: TLabel;
     spnbxMaxPlayers: TSpinBox;
     lblCensorPlayerList: TLabel;
     swtchCensorPlayerlist: TSwitch;
-    lytServerGamemode: TLayout;
+    lytServerConfigMisc2: TLayout;
     cbbServerGamemodeValue: TComboBox;
     lblServerGamemodeDescriptionValue: TLabel;
     lblServerGameModeHead: TLabel;
@@ -202,6 +202,10 @@ type
     edtSearchOnlinePlayers: TEdit;
     btnRefreshOnlinePlayers: TSpeedButton;
     vrtscrlbxOnlinePlayers: TVertScrollBox;
+    vrtscrlbxServerInfo: TVertScrollBox;
+    mmoServerCFG: TMemo;
+    btnEditRadioList: TButton;
+    btnEditEmojis: TButton;
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
@@ -261,7 +265,7 @@ begin
   if lytServerInfo.Width = 0 then
   begin
     fltnmtnServerInfoExpand.StartValue := 0;
-    fltnmtnServerInfoExpand.StopValue := 200;
+    fltnmtnServerInfoExpand.StopValue := 220;
 
     fltnmtnServerInfoExpand.Start;
 
@@ -271,9 +275,9 @@ begin
   end;
 
   // Collapse
-  if lytServerInfo.Width = 200 then
+  if lytServerInfo.Width = 220 then
   begin
-    fltnmtnServerInfoExpand.StartValue := 200;
+    fltnmtnServerInfoExpand.StartValue := 220;
     fltnmtnServerInfoExpand.StopValue := 0;
 
     fltnmtnServerInfoExpand.Start;

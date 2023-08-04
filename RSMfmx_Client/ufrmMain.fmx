@@ -132,26 +132,26 @@ object frmMain: TfrmMain
   object lytMain: TLayout
     Align = Client
     Margins.Left = 60.000000000000000000
-    Size.Width = 740.000000000000000000
+    Size.Width = 720.000000000000000000
     Size.Height = 514.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
     object tbcNav: TTabControl
       Align = Client
-      Size.Width = 740.000000000000000000
+      Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
       TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
-        740s
+        720s
         490s
-        740s
+        720s
         490s
-        740s
+        720s
         490s
-        740s
+        720s
         490s)
       object tbtmNavServerControls: TTabItem
         CustomIcon = <
@@ -176,7 +176,7 @@ object frmMain: TfrmMain
           Margins.Right = 5.000000000000000000
           Position.X = 5.000000000000000000
           Position.Y = 5.000000000000000000
-          Size.Width = 730.000000000000000000
+          Size.Width = 710.000000000000000000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = claNull
@@ -205,6 +205,8 @@ object frmMain: TfrmMain
               Align = Left
               AutoSize = True
               StyledSettings = [Family, Size]
+              Hint = 'Process ID for the RustDedicated.exe process'
+              HitTest = True
               Margins.Left = 3.000000000000000000
               Position.X = 63.000000000000000000
               Size.Width = 15.000000000000000000
@@ -341,7 +343,7 @@ object frmMain: TfrmMain
           Margins.Top = 5.000000000000000000
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
-          Size.Width = 577.000000000000000000
+          Size.Width = 557.000000000000000000
           Size.Height = 440.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = claNull
@@ -351,18 +353,18 @@ object frmMain: TfrmMain
             Align = Client
             Padding.Left = 10.000000000000000000
             Padding.Right = 10.000000000000000000
-            Size.Width = 577.000000000000000000
+            Size.Width = 557.000000000000000000
             Size.Height = 440.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
-            Viewport.Width = 577.000000000000000000
+            Viewport.Width = 557.000000000000000000
             Viewport.Height = 440.000000000000000000
             object lytServerAffinity: TLayout
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 32.000000000000000000
-              Size.Width = 557.000000000000000000
+              Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 1
@@ -410,7 +412,7 @@ object frmMain: TfrmMain
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 5.000000000000000000
-              Size.Width = 557.000000000000000000
+              Size.Width = 537.000000000000000000
               Size.Height = 17.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 14.000000000000000000
@@ -440,16 +442,16 @@ object frmMain: TfrmMain
           Padding.Right = 10.000000000000000000
           Margins.Top = 10.000000000000000000
           Margins.Bottom = 5.000000000000000000
-          Size.Width = 740.000000000000000000
+          Size.Width = 720.000000000000000000
           Size.Height = 475.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Viewport.Width = 724.000000000000000000
+          Viewport.Width = 704.000000000000000000
           Viewport.Height = 475.000000000000000000
           object lytHostnameHeader: TLayout
             Align = Top
             Position.X = 10.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
@@ -470,7 +472,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 25.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -478,7 +480,8 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              Size.Width = 704.000000000000000000
+              Hint = 'Title that will be displayed in the server list'
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'My Rust Server'
@@ -497,7 +500,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 55.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 2
@@ -518,7 +521,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 80.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 3
@@ -527,7 +530,8 @@ object frmMain: TfrmMain
               Align = Client
               TabOrder = 0
               ReadOnly = True
-              Size.Width = 704.000000000000000000
+              Hint = 'Tags to be shown in the server list'
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Select Server Tags'
@@ -546,7 +550,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 110.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 4
@@ -567,7 +571,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 135.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 5
@@ -576,7 +580,8 @@ object frmMain: TfrmMain
               Align = Client
               TabOrder = 0
               ReadOnly = True
-              Size.Width = 704.000000000000000000
+              Hint = 'Description to be shown in the server list'
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Server Description'
@@ -596,7 +601,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 165.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 6
@@ -617,7 +622,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 190.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 7
@@ -625,7 +630,8 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              Size.Width = 704.000000000000000000
+              Hint = 'URL to open when the client presses "WEBSITE" on the server list'
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Server URL'
@@ -644,7 +650,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 220.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 8
@@ -665,7 +671,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 245.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 9
@@ -673,7 +679,10 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              Size.Width = 704.000000000000000000
+              Hint = 
+                'Banner Image for the server list. The banner image should be a d' +
+                'irect link.'#13#10#13#10'Eg.'#13#10'https://mysite.com/banner.png'
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Server Banner URL'
@@ -693,7 +702,7 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 275.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 10
@@ -714,7 +723,7 @@ object frmMain: TfrmMain
             Align = Top
             Position.X = 10.000000000000000000
             Position.Y = 300.000000000000000000
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 11
@@ -722,7 +731,8 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              Size.Width = 704.000000000000000000
+              Hint = 'Server Icon to be shown in the Rust+ Mobile App'
+              Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'App Logo URL'
@@ -744,7 +754,7 @@ object frmMain: TfrmMain
             Position.X = 10.000000000000000000
             Position.Y = 335.000000000000000000
             ShowCheck = False
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 95.000000000000000000
             Size.PlatformDefault = False
             Text = 'Server Map'
@@ -755,7 +765,7 @@ object frmMain: TfrmMain
               Margins.Left = 10.000000000000000000
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Size.Width = 684.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
@@ -801,7 +811,12 @@ object frmMain: TfrmMain
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Client
                 TabOrder = 3
-                Size.Width = 384.000000000000000000
+                Hint = 
+                  'URL for your custom map. Players joining your server will downlo' +
+                  'ad the custom map from this link.'#13#10#13#10'Eg.'#13#10'https://mysite.com/myC' +
+                  'ustomMap.map'#13#10#13#10'Using DropBox:'#13#10'Make sure to change the "dl=0" a' +
+                  't the end of the URL to "dl=1"'
+                Size.Width = 364.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextPrompt = 'https://rustservermanager.com/maps/test.map'
@@ -822,7 +837,7 @@ object frmMain: TfrmMain
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 35.000000000000000000
-              Size.Width = 684.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 1
@@ -848,6 +863,12 @@ object frmMain: TfrmMain
                 Position.X = 70.000000000000000000
                 HorzIncrement = 0.000000000000000000
                 VertIncrement = 0.000000000000000000
+                Hint = 
+                  'Size of the map the server should generate.'#13#10#13#10'Only Applies to:'#13 +
+                  #10'- Procedural Map'#13#10'- Barren Map'#13#10#13#10'WARNING: Changing the seed or' +
+                  ' size while using one of the maps above will result in a new sav' +
+                  'e being generated. This can be reverted if you change the size b' +
+                  'ack to normal.'
                 Size.Width = 150.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -876,6 +897,12 @@ object frmMain: TfrmMain
                 Position.X = 305.000000000000000000
                 HorzIncrement = 0.000000000000000000
                 VertIncrement = 0.000000000000000000
+                Hint = 
+                  'Seed of the map the server should generate.'#13#10#13#10'Only Applies to:'#13 +
+                  #10'- Procedural Map'#13#10'- Barren Map'#13#10#13#10'WARNING: Changing the seed or' +
+                  ' size while using one of the maps above will result in a new sav' +
+                  'e being generated. This can be reverted if you change the size b' +
+                  'ack to normal.'
                 Margins.Left = 5.000000000000000000
                 Size.Width = 150.000000000000000000
                 Size.Height = 25.000000000000000000
@@ -903,18 +930,20 @@ object frmMain: TfrmMain
             Position.X = 10.000000000000000000
             Position.Y = 440.000000000000000000
             ShowCheck = False
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 100.000000000000000000
             Size.PlatformDefault = False
             Text = 'Miscellaneous'
             TabOrder = 13
             ContentSize = '75'
-            object lytMaxPlayers: TLayout
+            object lytServerConfigMisc1: TLayout
               Align = Top
               Margins.Left = 10.000000000000000000
+              Margins.Top = 4.000000000000000000
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Size.Width = 684.000000000000000000
+              Position.Y = 4.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
@@ -938,6 +967,7 @@ object frmMain: TfrmMain
                 Max = 9999.000000000000000000
                 Value = 50.000000000000000000
                 Position.X = 74.000000000000000000
+                Hint = 'Maximum players allowed on your server at a time.'
                 Margins.Left = 5.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
@@ -959,6 +989,10 @@ object frmMain: TfrmMain
               end
               object swtchCensorPlayerlist: TSwitch
                 Align = Left
+                Hint = 
+                  'When enabled it hides the names of online players in the server ' +
+                  'from steam. It effects website like BattleMetrics showing player' +
+                  's in the server'
                 IsChecked = True
                 Margins.Left = 5.000000000000000000
                 Position.X = 282.000000000000000000
@@ -968,18 +1002,32 @@ object frmMain: TfrmMain
                 Size.PlatformDefault = False
                 TabOrder = 3
               end
+              object btnEditRadioList: TButton
+                Align = Right
+                StyledSettings = [Family, Size, FontColor]
+                Hint = 'Edit the Radio list for the boombox'
+                Position.X = 564.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'tintedbutton'
+                TabOrder = 4
+                Text = 'Edit Radio List'
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TintColor = claDarkred
+              end
             end
-            object lytServerGamemode: TLayout
+            object lytServerConfigMisc2: TLayout
               Align = Top
               Margins.Left = 10.000000000000000000
               Margins.Top = 10.000000000000000000
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 35.000000000000000000
-              Size.Width = 684.000000000000000000
+              Position.Y = 39.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 5
+              TabOrder = 4
               object cbbServerGamemodeValue: TComboBox
                 Align = Left
                 Margins.Left = 5.000000000000000000
@@ -991,15 +1039,28 @@ object frmMain: TfrmMain
               end
               object lblServerGamemodeDescriptionValue: TLabel
                 Align = Client
-                Cursor = crHandPoint
                 HitTest = True
                 Margins.Left = 5.000000000000000000
-                Size.Width = 506.000000000000000000
+                Size.Width = 486.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextSettings.WordWrap = False
                 Text = '- GAMEMODE DESCRIPTION'#13#10'2'
                 TabOrder = 1
+                object btnEditEmojis: TButton
+                  Align = Right
+                  StyledSettings = [Family, Size, FontColor]
+                  Hint = 'Add / Remove Custom Chat Emojis'
+                  Position.X = 386.000000000000000000
+                  Size.Width = 100.000000000000000000
+                  Size.Height = 25.000000000000000000
+                  Size.PlatformDefault = False
+                  StyleLookup = 'tintedbutton'
+                  TabOrder = 3
+                  Text = 'Edit Emojis'
+                  TextSettings.Font.StyleExt = {00060000000000000004000000}
+                  TintColor = xFFBC6700
+                end
               end
               object lblServerGameModeHead: TLabel
                 Align = MostLeft
@@ -1021,7 +1082,7 @@ object frmMain: TfrmMain
             Position.X = 10.000000000000000000
             Position.Y = 550.000000000000000000
             ShowCheck = False
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 121.000000000000000000
             Size.PlatformDefault = False
             Text = 'Server Networking'
@@ -1032,7 +1093,7 @@ object frmMain: TfrmMain
               Margins.Left = 10.000000000000000000
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Size.Width = 684.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
@@ -1053,6 +1114,12 @@ object frmMain: TfrmMain
                 Text = '0.0.0.0'
                 TextSettings.HorzAlign = Center
                 Position.X = 60.000000000000000000
+                Hint = 
+                  'If your machine has more than one network adapter then you can e' +
+                  'nter the IP address here to force the server to listen on a spec' +
+                  'ific adapter.'#13#10#13#10'Default:'#13#10'- 0.0.0.0  (This will make the server' +
+                  ' listen on all adapters)'#13#10#13#10'WARNING:'#13#10'- Do not touch this if you' +
+                  ' do not understand what this is for.'
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1082,6 +1149,10 @@ object frmMain: TfrmMain
                 Position.X = 275.000000000000000000
                 HorzIncrement = 0.000000000000000000
                 VertIncrement = 0.000000000000000000
+                Hint = 
+                  'Port for the server traffic. This port is required to be open to' +
+                  ' have players join your server.'#13#10#13#10'Port Details:'#13#10'- Protocol: UD' +
+                  'P'#13#10'- Default: 28015'
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1110,6 +1181,10 @@ object frmMain: TfrmMain
                 Position.X = 490.000000000000000000
                 HorzIncrement = 0.000000000000000000
                 VertIncrement = 0.000000000000000000
+                Hint = 
+                  'Port used to communicate with Steam networking. This port is res' +
+                  'ponsible for making your server show in the server list.'#13#10#13#10'Port' +
+                  ' Details:'#13#10'- Protocol: UDP'#13#10'- Default: 28016'
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1122,7 +1197,7 @@ object frmMain: TfrmMain
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 30.000000000000000000
-              Size.Width = 684.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 1
@@ -1143,6 +1218,12 @@ object frmMain: TfrmMain
                 Text = '0.0.0.0'
                 TextSettings.HorzAlign = Center
                 Position.X = 60.000000000000000000
+                Hint = 
+                  'If your machine has more than one network adapter then you can e' +
+                  'nter the IP address here to force the server to listen on a spec' +
+                  'ific adapter.'#13#10#13#10'Default:'#13#10'- 0.0.0.0  (This will make the server' +
+                  ' listen on all adapters)'#13#10#13#10'WARNING:'#13#10'- Do not touch this if you' +
+                  ' do not understand what this is for.'
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1172,6 +1253,10 @@ object frmMain: TfrmMain
                 Position.X = 275.000000000000000000
                 HorzIncrement = 0.000000000000000000
                 VertIncrement = 0.000000000000000000
+                Hint = 
+                  'RCON (Remote Console) port. This port needs to be open in order ' +
+                  'to be able to use rcon tools.'#13#10#13#10'Port Details:'#13#10'- Protocol: TCP'#13 +
+                  #10'- Default: 28016'
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1194,7 +1279,10 @@ object frmMain: TfrmMain
                 TabOrder = 5
                 Password = True
                 Text = 'ChangeMe'
-                Size.Width = 209.000000000000000000
+                Hint = 
+                  'Password to access the server Rcon (Remote Console). Note that n' +
+                  'o special characters is allows. Only A-z and 0-9 characters.'
+                Size.Width = 189.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextPrompt = 'Rcon Password'
@@ -1225,7 +1313,7 @@ object frmMain: TfrmMain
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 60.000000000000000000
-              Size.Width = 684.000000000000000000
+              Size.Width = 664.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 2
@@ -1246,6 +1334,12 @@ object frmMain: TfrmMain
                 Text = '0.0.0.0'
                 TextSettings.HorzAlign = Center
                 Position.X = 60.000000000000000000
+                Hint = 
+                  'If your machine has more than one network adapter then you can e' +
+                  'nter the IP address here to force the server to listen on a spec' +
+                  'ific adapter.'#13#10#13#10'Default:'#13#10'- 0.0.0.0  (This will make the server' +
+                  ' listen on all adapters)'#13#10#13#10'WARNING:'#13#10'- Do not touch this if you' +
+                  ' do not understand what this is for.'
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1275,6 +1369,9 @@ object frmMain: TfrmMain
                 Position.X = 275.000000000000000000
                 HorzIncrement = 0.000000000000000000
                 VertIncrement = 0.000000000000000000
+                Hint = 
+                  'Rust + Mobile App Port.'#13#10#13#10'Port Details:'#13#10'- Protocol: TCP'#13#10'- Def' +
+                  'ault: 28017'
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1297,6 +1394,10 @@ object frmMain: TfrmMain
                 TabOrder = 5
                 TextSettings.HorzAlign = Center
                 Position.X = 475.000000000000000000
+                Hint = 
+                  'It'#39's possible that the Rust + service can fail to detect your pu' +
+                  'blic IP. If this happens then enter your public IP here.'#13#10#13#10'Note' +
+                  ': You can get your IP address from https://myip.expert'
                 Size.Width = 150.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -1310,12 +1411,26 @@ object frmMain: TfrmMain
             Position.X = 10.000000000000000000
             Position.Y = 681.000000000000000000
             ShowCheck = False
-            Size.Width = 704.000000000000000000
+            Size.Width = 684.000000000000000000
             Size.Height = 250.000000000000000000
             Size.PlatformDefault = False
             Text = 'Server.cfg - Add convars to the server.cfg file.'
             TabOrder = 15
             ContentSize = '225'
+            object mmoServerCFG: TMemo
+              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+              DataDetectorTypes = []
+              Align = Client
+              Margins.Left = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Size.Width = 664.000000000000000000
+              Size.Height = 215.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Viewport.Width = 652.000000000000000000
+              Viewport.Height = 207.000000000000000000
+            end
           end
         end
       end
@@ -1344,35 +1459,39 @@ object frmMain: TfrmMain
         StyleLookup = ''
         TabOrder = 0
         Text = 'Player Manager'
+        ExplicitSize.cx = 103.000000000000000000
+        ExplicitSize.cy = 24.000000000000000000
         object tbcPlayerManager: TTabControl
           Align = Client
           FullSize = True
-          Size.Width = 740.000000000000000000
+          Size.Width = 720.000000000000000000
           Size.Height = 490.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
           TabPosition = Top
           Sizes = (
-            740s
+            720s
             466s
-            740s
+            720s
             466s
-            740s
+            720s
             466s
-            740s
+            720s
             466s)
           object tbtmOnlinePlayers: TTabItem
             CustomIcon = <
               item
               end>
             IsSelected = True
-            Size.Width = 185.000000000000000000
+            Size.Width = 180.000000000000000000
             Size.Height = 24.000000000000000000
             Size.PlatformDefault = False
             StyleLookup = ''
             TabOrder = 0
             Text = 'Online Players'
+            ExplicitSize.cx = 180.000000000000000000
+            ExplicitSize.cy = 24.000000000000000000
             object rctnglOnlinePlayersHeader: TRectangle
               Align = Top
               Fill.Color = xFF1F222A
@@ -1385,7 +1504,7 @@ object frmMain: TfrmMain
               Margins.Right = 5.000000000000000000
               Position.X = 5.000000000000000000
               Position.Y = 5.000000000000000000
-              Size.Width = 730.000000000000000000
+              Size.Width = 710.000000000000000000
               Size.Height = 35.000000000000000000
               Size.PlatformDefault = False
               Stroke.Color = claNull
@@ -1397,7 +1516,7 @@ object frmMain: TfrmMain
                 TabOrder = 0
                 TextSettings.HorzAlign = Center
                 Margins.Right = 5.000000000000000000
-                Size.Width = 690.000000000000000000
+                Size.Width = 670.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextPrompt = 'Search Online Players'
@@ -1405,7 +1524,7 @@ object frmMain: TfrmMain
               object btnRefreshOnlinePlayers: TSpeedButton
                 Align = Right
                 Hint = 'Refresh Online Players'
-                Position.X = 700.000000000000000000
+                Position.X = 680.000000000000000000
                 Position.Y = 5.000000000000000000
                 Size.Width = 25.000000000000000000
                 Size.Height = 25.000000000000000000
@@ -1420,11 +1539,11 @@ object frmMain: TfrmMain
               Margins.Top = 5.000000000000000000
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 5.000000000000000000
-              Size.Width = 730.000000000000000000
+              Size.Width = 710.000000000000000000
               Size.Height = 416.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 1
-              Viewport.Width = 730.000000000000000000
+              Viewport.Width = 710.000000000000000000
               Viewport.Height = 416.000000000000000000
             end
           end
@@ -1433,36 +1552,42 @@ object frmMain: TfrmMain
               item
               end>
             IsSelected = False
-            Size.Width = 185.000000000000000000
+            Size.Width = 180.000000000000000000
             Size.Height = 24.000000000000000000
             Size.PlatformDefault = False
             StyleLookup = ''
             TabOrder = 0
             Text = 'Banned Players'
+            ExplicitSize.cx = 180.000000000000000000
+            ExplicitSize.cy = 24.000000000000000000
           end
           object tbtmPlayerReports: TTabItem
             CustomIcon = <
               item
               end>
             IsSelected = False
-            Size.Width = 185.000000000000000000
+            Size.Width = 180.000000000000000000
             Size.Height = 24.000000000000000000
             Size.PlatformDefault = False
             StyleLookup = ''
             TabOrder = 0
             Text = 'Player Reports'
+            ExplicitSize.cx = 180.000000000000000000
+            ExplicitSize.cy = 24.000000000000000000
           end
           object tbtmPlayerDatabase: TTabItem
             CustomIcon = <
               item
               end>
             IsSelected = False
-            Size.Width = 185.000000000000000000
+            Size.Width = 180.000000000000000000
             Size.Height = 24.000000000000000000
             Size.PlatformDefault = False
             StyleLookup = ''
             TabOrder = 0
             Text = 'Player Database'
+            ExplicitSize.cx = 180.000000000000000000
+            ExplicitSize.cy = 24.000000000000000000
           end
         end
       end
@@ -1470,22 +1595,22 @@ object frmMain: TfrmMain
   end
   object lytServerInfo: TLayout
     Align = Right
-    Position.X = 800.000000000000000000
+    Position.X = 780.000000000000000000
     Position.Y = 64.000000000000000000
-    Size.Width = 200.000000000000000000
+    Size.Width = 220.000000000000000000
     Size.Height = 514.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
     object tbcServerInfo: TTabControl
       Align = Client
-      Size.Width = 200.000000000000000000
+      Size.Width = 220.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
       TabIndex = 0
       TabOrder = 0
       TabPosition = None
       Sizes = (
-        200s
+        220s
         514s)
       object tbtmServerInfo: TTabItem
         CustomIcon = <
@@ -1500,517 +1625,526 @@ object frmMain: TfrmMain
         Text = 'Server Info'
         ExplicitSize.cx = 8.000000000000000000
         ExplicitSize.cy = 8.000000000000000000
-        object rctnglServerInfo: TRectangle
-          Align = Top
-          Fill.Color = xFF1F222A
-          Padding.Left = 10.000000000000000000
-          Padding.Top = 5.000000000000000000
-          Padding.Right = 10.000000000000000000
-          Margins.Left = 5.000000000000000000
-          Margins.Top = 5.000000000000000000
-          Margins.Right = 5.000000000000000000
-          Position.X = 5.000000000000000000
-          Position.Y = 5.000000000000000000
-          Size.Width = 190.000000000000000000
-          Size.Height = 311.000000000000000000
+        object vrtscrlbxServerInfo: TVertScrollBox
+          Align = Client
+          Size.Width = 220.000000000000000000
+          Size.Height = 514.000000000000000000
           Size.PlatformDefault = False
-          Stroke.Color = claNull
-          XRadius = 10.000000000000000000
-          YRadius = 10.000000000000000000
-          object lblServerInfoHeader: TLabel
+          TabOrder = 0
+          Viewport.Width = 220.000000000000000000
+          Viewport.Height = 514.000000000000000000
+          object rctnglServerInfo: TRectangle
             Align = Top
-            StyledSettings = [Family, FontColor]
-            Position.X = 10.000000000000000000
+            Fill.Color = xFF1F222A
+            Padding.Left = 10.000000000000000000
+            Padding.Top = 5.000000000000000000
+            Padding.Right = 10.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
             Position.Y = 5.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 17.000000000000000000
+            Size.Width = 210.000000000000000000
+            Size.Height = 311.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.Font.Size = 14.000000000000000000
-            TextSettings.Font.StyleExt = {04060000000000000004000000}
-            TextSettings.HorzAlign = Center
-            Text = 'Server Info'
-            TabOrder = 0
+            Stroke.Color = claNull
+            XRadius = 10.000000000000000000
+            YRadius = 10.000000000000000000
+            object lblServerInfoHeader: TLabel
+              Align = Top
+              StyledSettings = [Family, FontColor]
+              Position.X = 10.000000000000000000
+              Position.Y = 5.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 14.000000000000000000
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.HorzAlign = Center
+              Text = 'Server Info'
+              TabOrder = 0
+            end
+            object lytPlayerCount: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 27.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object lblPlayerCountHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 42.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claLime
+                TextSettings.WordWrap = False
+                Text = 'Players:'
+                TabOrder = 0
+              end
+              object lblPlayerCountValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 149.000000000000000000
+                Size.Width = 41.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '--- / ---'
+                TabOrder = 1
+              end
+            end
+            object lytQueued: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 52.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 11
+              object lblQueuedHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 46.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claYellow
+                TextSettings.WordWrap = False
+                Text = 'Queued:'
+                TabOrder = 0
+              end
+              object lblQueuedValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 175.000000000000000000
+                Size.Width = 15.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---'
+                TabOrder = 1
+              end
+            end
+            object lytJoining: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 77.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 10
+              object lblJoiningHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 43.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claOrange
+                TextSettings.WordWrap = False
+                Text = 'Joining:'
+                TabOrder = 0
+              end
+              object lblJoiningValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 175.000000000000000000
+                Size.Width = 15.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---'
+                TabOrder = 1
+              end
+            end
+            object lytNetworkIn: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 127.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 9
+              object lblNetworkInHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 64.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Network In:'
+                TabOrder = 0
+              end
+              object lblNetworkInValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 149.000000000000000000
+                Size.Width = 41.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---b/s '#8595
+                TabOrder = 1
+              end
+            end
+            object lytNetworkOut: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 102.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              object lblNetworkOutHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 74.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Network Out:'
+                TabOrder = 0
+              end
+              object lblNetworkOutValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 149.000000000000000000
+                Size.Width = 41.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---b/s '#8593
+                TabOrder = 1
+              end
+            end
+            object lytServerFPS: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 152.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 8
+              object lblServerFPSHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 61.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Server FPS:'
+                TabOrder = 0
+              end
+              object lblServerFPSValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 175.000000000000000000
+                Size.Width = 15.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---'
+                TabOrder = 1
+              end
+            end
+            object lytServerVersion: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 202.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 7
+              object lblServerProtocolHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 49.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Protocol:'
+                TabOrder = 0
+              end
+              object lblServerProtocolValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 175.000000000000000000
+                Size.Width = 15.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---'
+                TabOrder = 1
+              end
+            end
+            object lytServerEntityCount: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 177.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              object lblServerEntityCountHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 71.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Entity Count:'
+                TabOrder = 0
+              end
+              object lblServerEntityCountValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 175.000000000000000000
+                Size.Width = 15.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---'
+                TabOrder = 1
+              end
+            end
+            object lytServerMemoryUsage: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 227.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 6
+              object lblServerMemoryUsageHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 67.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'RAM Usage:'
+                TabOrder = 0
+              end
+              object lblServerMemoryUsageValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 175.000000000000000000
+                Size.Width = 15.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---'
+                TabOrder = 1
+              end
+            end
+            object lytServerSize: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 277.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 5
+              object lblServerSizeHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 63.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Server Size:'
+                TabOrder = 0
+              end
+              object lblServerSizeValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 175.000000000000000000
+                Size.Width = 15.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---'
+                TabOrder = 1
+              end
+            end
+            object lytLastWipe: TLayout
+              Align = Top
+              Position.X = 10.000000000000000000
+              Position.Y = 252.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 4
+              object lblLastWipeHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 57.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Last Wipe:'
+                TabOrder = 0
+              end
+              object lblLastWipeValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 175.000000000000000000
+                Size.Width = 15.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---'
+                TabOrder = 1
+              end
+            end
           end
-          object lytPlayerCount: TLayout
+          object rctnglSystemInfo: TRectangle
             Align = Top
+            Fill.Color = xFF1F222A
+            Padding.Left = 10.000000000000000000
+            Padding.Top = 5.000000000000000000
+            Padding.Right = 10.000000000000000000
+            Margins.Left = 5.000000000000000000
             Margins.Top = 5.000000000000000000
-            Position.X = 10.000000000000000000
-            Position.Y = 27.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 321.000000000000000000
+            Size.Width = 210.000000000000000000
+            Size.Height = 90.000000000000000000
             Size.PlatformDefault = False
-            TabOrder = 1
-            object lblPlayerCountHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 42.000000000000000000
-              Size.Height = 25.000000000000000000
+            Stroke.Color = claNull
+            XRadius = 10.000000000000000000
+            YRadius = 10.000000000000000000
+            object lblSystemInfoHeader: TLabel
+              Align = Top
+              StyledSettings = [Family, FontColor]
+              Position.X = 10.000000000000000000
+              Position.Y = 5.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 17.000000000000000000
               Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.FontColor = claLime
-              TextSettings.WordWrap = False
-              Text = 'Players:'
+              TextSettings.Font.Size = 14.000000000000000000
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.HorzAlign = Center
+              Text = 'System Info'
               TabOrder = 0
             end
-            object lblPlayerCountValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 129.000000000000000000
-              Size.Width = 41.000000000000000000
+            object lytCPUUsage: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 27.000000000000000000
+              Size.Width = 190.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '--- / ---'
+              TabOrder = 2
+              object lblCPUUsageHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 63.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claLime
+                TextSettings.WordWrap = False
+                Text = 'CPU Usage:'
+                TabOrder = 0
+              end
+              object lblCPUUsageValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 165.000000000000000000
+                Size.Width = 25.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---%'
+                TabOrder = 1
+              end
+            end
+            object lytRamUsage: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 57.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
               TabOrder = 1
-            end
-          end
-          object lytQueued: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 52.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 11
-            object lblQueuedHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 46.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.FontColor = claYellow
-              TextSettings.WordWrap = False
-              Text = 'Queued:'
-              TabOrder = 0
-            end
-            object lblQueuedValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 155.000000000000000000
-              Size.Width = 15.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---'
-              TabOrder = 1
-            end
-          end
-          object lytJoining: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 77.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 10
-            object lblJoiningHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 43.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.FontColor = claOrange
-              TextSettings.WordWrap = False
-              Text = 'Joining:'
-              TabOrder = 0
-            end
-            object lblJoiningValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 155.000000000000000000
-              Size.Width = 15.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---'
-              TabOrder = 1
-            end
-          end
-          object lytNetworkIn: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 127.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 9
-            object lblNetworkInHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 64.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.WordWrap = False
-              Text = 'Network In:'
-              TabOrder = 0
-            end
-            object lblNetworkInValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 129.000000000000000000
-              Size.Width = 41.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---b/s '#8595
-              TabOrder = 1
-            end
-          end
-          object lytNetworkOut: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 102.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 2
-            object lblNetworkOutHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 74.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.WordWrap = False
-              Text = 'Network Out:'
-              TabOrder = 0
-            end
-            object lblNetworkOutValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 129.000000000000000000
-              Size.Width = 41.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---b/s '#8593
-              TabOrder = 1
-            end
-          end
-          object lytServerFPS: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 152.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 8
-            object lblServerFPSHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 61.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.WordWrap = False
-              Text = 'Server FPS:'
-              TabOrder = 0
-            end
-            object lblServerFPSValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 155.000000000000000000
-              Size.Width = 15.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---'
-              TabOrder = 1
-            end
-          end
-          object lytServerVersion: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 202.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 7
-            object lblServerProtocolHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 49.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.WordWrap = False
-              Text = 'Protocol:'
-              TabOrder = 0
-            end
-            object lblServerProtocolValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 155.000000000000000000
-              Size.Width = 15.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---'
-              TabOrder = 1
-            end
-          end
-          object lytServerEntityCount: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 177.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 3
-            object lblServerEntityCountHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 71.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.WordWrap = False
-              Text = 'Entity Count:'
-              TabOrder = 0
-            end
-            object lblServerEntityCountValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 155.000000000000000000
-              Size.Width = 15.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---'
-              TabOrder = 1
-            end
-          end
-          object lytServerMemoryUsage: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 227.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 6
-            object lblServerMemoryUsageHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 67.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.WordWrap = False
-              Text = 'RAM Usage:'
-              TabOrder = 0
-            end
-            object lblServerMemoryUsageValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 155.000000000000000000
-              Size.Width = 15.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---'
-              TabOrder = 1
-            end
-          end
-          object lytServerSize: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 277.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 5
-            object lblServerSizeHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 63.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.WordWrap = False
-              Text = 'Server Size:'
-              TabOrder = 0
-            end
-            object lblServerSizeValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 155.000000000000000000
-              Size.Width = 15.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---'
-              TabOrder = 1
-            end
-          end
-          object lytLastWipe: TLayout
-            Align = Top
-            Position.X = 10.000000000000000000
-            Position.Y = 252.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 4
-            object lblLastWipeHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 57.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.WordWrap = False
-              Text = 'Last Wipe:'
-              TabOrder = 0
-            end
-            object lblLastWipeValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 155.000000000000000000
-              Size.Width = 15.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---'
-              TabOrder = 1
-            end
-          end
-        end
-        object rctnglSystemInfo: TRectangle
-          Align = Top
-          Fill.Color = xFF1F222A
-          Padding.Left = 10.000000000000000000
-          Padding.Top = 5.000000000000000000
-          Padding.Right = 10.000000000000000000
-          Margins.Left = 5.000000000000000000
-          Margins.Top = 5.000000000000000000
-          Margins.Right = 5.000000000000000000
-          Position.X = 5.000000000000000000
-          Position.Y = 321.000000000000000000
-          Size.Width = 190.000000000000000000
-          Size.Height = 90.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Color = claNull
-          XRadius = 10.000000000000000000
-          YRadius = 10.000000000000000000
-          object lblSystemInfoHeader: TLabel
-            Align = Top
-            StyledSettings = [Family, FontColor]
-            Position.X = 10.000000000000000000
-            Position.Y = 5.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 17.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Size = 14.000000000000000000
-            TextSettings.Font.StyleExt = {04060000000000000004000000}
-            TextSettings.HorzAlign = Center
-            Text = 'System Info'
-            TabOrder = 0
-          end
-          object lytCPUUsage: TLayout
-            Align = Top
-            Margins.Top = 5.000000000000000000
-            Position.X = 10.000000000000000000
-            Position.Y = 27.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 2
-            object lblCPUUsageHeader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 63.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.FontColor = claLime
-              TextSettings.WordWrap = False
-              Text = 'CPU Usage:'
-              TabOrder = 0
-            end
-            object lblCPUUsageValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 145.000000000000000000
-              Size.Width = 25.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---%'
-              TabOrder = 1
-            end
-          end
-          object lytRamUsage: TLayout
-            Align = Top
-            Margins.Top = 5.000000000000000000
-            Position.X = 10.000000000000000000
-            Position.Y = 57.000000000000000000
-            Size.Width = 170.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 1
-            object lblRamUsageheader: TLabel
-              Align = Left
-              AutoSize = True
-              StyledSettings = [Family, Size, FontColor]
-              Size.Width = 67.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.FontColor = claLime
-              TextSettings.WordWrap = False
-              Text = 'RAM Usage:'
-              TabOrder = 0
-            end
-            object lblRamUsageValue: TLabel
-              Align = Right
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Position.X = 145.000000000000000000
-              Size.Width = 25.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claGray
-              TextSettings.WordWrap = False
-              Text = '---%'
-              TabOrder = 1
+              object lblRamUsageheader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 67.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claLime
+                TextSettings.WordWrap = False
+                Text = 'RAM Usage:'
+                TabOrder = 0
+              end
+              object lblRamUsageValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 165.000000000000000000
+                Size.Width = 25.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claGray
+                TextSettings.WordWrap = False
+                Text = '---%'
+                TabOrder = 1
+              end
             end
           end
         end
@@ -2072,20 +2206,20 @@ object frmMain: TfrmMain
               PNG = {
                 89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
                 87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                01A5494441546843ED98414F84301085C1106E269EF5EC7FD78377FF933191BD
-                41023A8F3C27590B161AA68D38DF856E79339DE9C2D0B6721C27649AA6C7711C
-                5FFABEBF7C6E045AB17916DB07BA09B0F27B050611A377DAEF466CDF9606B3F2
-                1B8019A24D32E2E389EE142BBF35AF0AFEB2B66D6FF93395AEAEEB3BB667ACFC
-                060920533667C420D02C11B3B3F27BC3EB9FC513288D27509A6C090CC3706173
-                06D5650B947FD3F1AA644BA0699A573693912F71DC071357D81D857285DD0A96
-                01580EF0F66EB894B8A7BB75A857D81D857285DD5720002C0724988EB228D0C2
-                662DF86C5F622BBC0A95E67C0958D56B202FA2FD8E0C62DA2683AA41770A8297
-                60EC776410414CBBDD70A0A0E461E62949666962164100104B3087D56BB9BFF9
-                B1F9850FBA53B2D46A80D1D99C39EAFBE265B434E74C405E44FB7A6D05829760
-                0EAFD7BCADB03B0AE50ABBD7C1CC539B0CCA29DD29BCA5B03B0AE50ABB95A094
-                E151B03841FB39F851653470623590955F2FA3A5F1044A73BE04AC7664D94EE6
-                AC4ED0B29DCC611980E5002760375C4A049B1A2BBF8B4088E580181DB6230356
-                7E1DE7FF52555F5E1D46D3D19687820000000049454E44AE426082}
+                01A6494441546843ED98414F84301085C1847032F1AC67FFBB1EBCFB9F8C89EC
+                090EA0F3C87392B560A161DA88F35DE89637D3992E0C6D2BC77142A6697A1CC7
+                F1A5EFFBCBE746A0159B67B17DA09B002BBF576010317AA7FD6EC4F66D69302B
+                BF019821DA24233E9EE84EB1F25BF3AAE02F6BDBF6963F53E9EABABE637BC6CA
+                6F9000326573460C02CD12313B2BBF37BCFE593C81D27802A5C996C0300C1736
+                67505DB640F9371DAF4AB6049AA679653319F912C77D307185DD512857D8AD60
+                1980E5006FEF864B897BBA5B877A85DD512857D87D0502C0724082E9288B022D
+                6CD682CFF625B6C2AB5069CE978055BD06F222DAEFC820A66D32A81A74A72078
+                09C67E470611C4B4DB0D070A4A1E669E9264962666110400B1047358BD96FB9B
+                1F9B5FF8A03B254BAD06189DCD99A3BE2F5E464B73CE04E445B4AFD756207809
+                E6F07ACDDB0ABBA350AEB07B1DCC3CB5C9A09CD29DC25B0ABBA350AEB05B094A
+                191E058B13B49F831F55460327560359F9F5325A1A4FA034E74BC06A4796ED64
+                CEEA042DDBC91C9601580E700276C3A544B0A9B1F2BB0884580E88D1613B3260
+                E5D771FE2F55F5052038466DE5F8D7220000000049454E44AE426082}
               FileName = 
                 'D:\Github\RSMfmx_v3.1\RSMfmx_Client\Assets\Icons\Nav\server-cont' +
                 'rols_48.png'
@@ -2117,33 +2251,33 @@ object frmMain: TfrmMain
               PNG = {
                 89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
                 87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                0337494441546843ED98BB6B14411CC7EFB5E7A9280AA7B1D0134304C1D60744
-                5050106C52289AD6076A61E3452CFC0B626191E61AC1476BA1165114D1D85809
-                F111444C2E55D042CFC22216F7F6F3DBFD7978D9BDB0DEEE5D169D0F4C66E637
-                BF9BF9CECE6F66271B33180C861525AE795F69369B09B29146A3B157EAF178FC
-                356992D4907AA4417CAE56ABBD276F03DB3B26B44DDDA2093A33D56A75CE91EC
-                86B65926B14ADD7DE11942F495231D61492D358502E2F6241289F35A95FA33C9
-                B11DB50D80ED26F569ADDAC8DCD0F282B4A0A6CED0C1FA72B95C9227D24BEAF5
-                FA1D1D5204DE75AC9D114D685BA73F69219BA90D66994DA7D359ADF60CC699D7
-                A24CA055EE846A72E9F20C21667A99349A4C26430D21627CC0B2ACAD52AE542A
-                DF285F622271CA05046E529FCFD8BF4AF937AC5695B0BA479A50D3CAC0931E24
-                14CA764C784053850737A4EED10481E7105A57CD2DC446DB19758B36083D4058
-                3C46744912E547D886B5D960E827812F73ECBF35A48BA4835437903E70DC1538
-                1D3FD90E5106D139CEED22791B6CCC1A9BF2ACBA45137426B841BE7124BBD163
-                71BFBAF78C4E6FE2C368384131E5583CC9122AC7B52CBFB945D814599131DEAA
-                9BC5C6043FE2F3CA7608865CE61ED0D794D63B83F02D3CBD8AFD187DC239FE5C
-                7F2E13195573A88826FA1ED0615AB82E735DF2E74A063E18FE86E54248C263B9
-                CBDCD210BA4DBDC8C52CDFA310BA4F5F2FB51E1C26289B78DA5E5F0F7413EF53
-                F768824E39465DFF2222BE8AF8BE5CCC02C72B4257935D40F721F28DA41996BB
-                C072CF49BBC1F0BFC29EC8B03FC638A966D8D43FE5CEC40BEF06F69E7F30080C
-                C2D722764A4EA4A5309179B29CBA4613C48F3B72BDA1FDA9BA06A6D39B384F3A
-                D5ED6715DEC6BB791B67A44C3F0F395627D03DC2D17AC5760026F196FE7D7DCC
-                C5D7FF6715061AB41F53483001FB7B8FC0C416D4DC15F4B543BB6AE1BACCE157
-                62A0EF5A0D839DF2877EB32479D175856A72E9F20C21060AF4719793279F4AA5
-                764999817F507E42180C5B96B55D6D8B94AFD2BFAF10428BFF8FBB61C0521F93
-                CB1C037B42FB35758D2EE83CCD24161DC90ED46B64D749A1FDCF105A475EF0A4
-                E5FF8293081E62F9BF509EE42499B51B0D0683E11F2016FB0546CB57A69412BF
-                370000000049454E44AE426082}
+                033E494441546843ED98BB6B14411CC7EFB5B7A7A2289CC6424F0C11045B1F10
+                414141B049A1685A1FA8858D17B1F02FD0C222CD35828FD6422DA228A2B1B112
+                E22388985CAAA085C6C222C2ED3DFDFC767F1E5E762F9CB77B9745F7037333F3
+                9BDFCD7E67E63773731B8B8888885851E29AF79546A391201BA9D7EB7BA41E8F
+                C75F93264875A9871AC4E7AAD5EA7BF216B0BD63405BD52D9CA03353A954661D
+                C96E689B6110A6BA77846708D1578E74982535D4140888DB9D4824CE6955EACF
+                24C776C43600B69BD4A7B46A236343CB0BD2BC9ADA4307EB4AA5D282CC482FA9
+                D56A77F49122F0AE636D8F6842DB5AFD4A13D94C2D30CAAC699A59ADF60C9E33
+                A7451940B3DC0ED5E4D2E519428CF4126934994C061A42C4F88061185BA45C2E
+                97BF51BEC840E296651510B8517D3E63FF2AE5DFB05A15C2EA1E695C4D2B0333
+                3D482858764C78405B99891B52F77082C0B308ADA9E62662A3EDB4BA851B84EE
+                272C1ECBC69444F911B6616D8E88E827BE2F73ECBFD5A40BA40354D7933E70DC
+                15381D3FD90E6106D139CEED22790B6CCC2A9BF28CBA85137426B841BE7124BB
+                D163719FBAF78C76BFC487D0709C62CAB1789225548E6959BE738BB029B22263
+                E9747A93D818E0477C5ED90EFE90CBDC03FA9AD47A7B10BE99D92BDBD3D8219C
+                E3CFF5EB32905135078A68A2EF017D4C13D765AE4BFE5C49DF07C3DFB05C0849
+                782C77995B1A42B7A917B9A4E57B1442F7E9EBA5D6FDC30065134FD9EBEB816E
+                E2BDEA1E4ED029C7A8EB2F22E22B88EFCBC5CC77BC227415D979741F24DF409A
+                66B90B2CF7ACB44744FCAFB02732EC8F314EAA6936F54FB933F18377037BCF5F
+                18F806E16B103B2927D25218C81C594E5DC309E2AF3972BDA1FDA9BAFAA6DD2F
+                719E74B2DBD72A9665ED324D332365FA79C8B13A8EEE118ED6CBB6033088B7F4
+                DFD1CB5C7C3B7FADC28306ED690A080660BFEF11B866CCABB92BE86BBB76D5C4
+                7599C36F8119FCAED520D8211FF49B4580FCD075856A72E9F20C211EE6EBE52E
+                274F3E954AED94320FFE6118C613C260987C9BDA16B9F05DA1FF8E42082D9DBF
+                DC0D0266FAA85CE678B027B45F55D7F082CE530C62D191EC40BD4A769D14D87F
+                86C03AF2829996FF0527103CC4F27FA13CC14932633746444444FC03C462BF00
+                95E9576D6E8F069E0000000049454E44AE426082}
               FileName = 
                 'D:\Github\RSMfmx_v3.1\RSMfmx_Client\Assets\Icons\Nav\server-conf' +
                 'ig_48.png'
@@ -2188,55 +2322,55 @@ object frmMain: TfrmMain
               PNG = {
                 89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
                 87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                05F8494441546843ED995B88555518C7E7CCB9348E4E1166338E1A91F5126929
-                19283919A4C498CC985221E6CB48440451904FD54325D1434150500495F41044
-                C52864616679816ED44363D29874A172B28870266BCE6DA6DF7FED6FA6D967EF
-                7D3CE7EC3D13847F58ACB5BECBFFFBD6DA6BAFB5F6394DE7F01F236575E2181F
-                1FBF80D29A4AA5A8C6CF3437378F982A51243280B1B1B1F954DD24BBBA5C2E5F
-                43B92297CBB57A5A0F8542E1AF743A3D88CD0083F98041EDA33E69EA990709A4
-                497C13C9BE9FCFE7CB9AE67A804F09DF7DE2A0DB6CB43303826E2C168BC7BD54
-                E203AE6370F618FDF4414B85597BDBE2260EB8F710A3DDC2250B886FE0B1FF66
-                B1A60DC418522C0B9B0C20DC0271DE624C3B08354ACCDB2C7C3C40B415C29271
-                CF1888598E3D0878D64054F028671EF624AA2EA7C87300C7F9EC0E5FB29F5F64
-                A2D8E02C18CD643247681EA78C523A88B30AD9A5D287019FA16C36BB8C33E394
-                896A033BC25E9B88D86026FF20D11D34E718BD0F1A04BA0F9D7108C865B799D6
-                067C7A3DD7F828954A474970B1F1E668DF4C7998A47652DF8DEC12D3A5E83FC2
-                60C7E45709741B647756609B66E90C7A6EF1C0E3FF9EC0BA666896BBE1FDCE54
-                9320619DC82FA29F2D3BDA8F9ACA077CBFA23AFB890D918EF64400D75AE3D44E
-                E6AE1B247880FEFD943EDACF687949CE93FA18D92C9A29DA9F485609F4B7BA24
-                AB4101CC3E1648E2A0F8685E4692A39A6912B8D305990264EDD87E2A1F0DC864
-                EBD4AF04FA779D531470EC9C98A90470973809FAAC3AD44FB8202120EE02E28E
-                500AB4E7629EA61D38F53509541DE61604CE7D9E697CC0B5429CACDD13D6EF74
-                412280C92B66E70E2FCDB6FA9540BFCD39187C2F05FA2E6BC6024BE25BAAA36A
-                1370212FF3480D77FFAFAD5E6475E8BE4F8E375AD3A17200575BB361906C990F
-                976D24FCB7898629AD0C6496D70D07FA8903F3B4D5E75BED03392EB56610ACB1
-                610C628147FFA4D139D0DF233909DE61A2005067586ADF98DD5592D13FA67E25
-                F4AE5085DF2070BE12E5EB1835F422DB3EEFFB948473BD743C991F692F34B10F
-                7AC165C3D23BAC3E7697AB1F05F4EECC8804064B21ED6720A1A76214F0BBC528
-                7C80EB35E9E13B89CD764A3BDD16EAEBD0BD61BA61FA6EF691BD20591544EF44
-                5301E1B590D5F40586DD5BE61600EA16F4BB3CCB206C60ABCC5637E0A2A78944
-                6D039800E42B49E03D730E8080BF6233B17B4402D335F0BCAAF5CD92FA892573
-                08BF1D9436E9A9978BCB638D0676D597501470EC22E8419150EB92B695E685A6
-                6E187064E0BA97E4F5825685D944BEC41B50B6583712D8ADA49CA736F659DA8B
-                A8EBFA6EC0E7624A0F4F64A7BDFC358189FBDC288280EC653D5A88EFC13667E2
-                4860D7367569417E04D9325347021B5DEEDC25AE5E10EF25A30902E2C9AB0403
-                D155783BCD8CA943815EF7F84D243F203F3D62FA4B4CED03F24E127853768D02
-                8EC0857012E83B48C07706F0784FC88966DACC42213DC93D271FEA774CEC201D
-                1CF7C17D5AFA46817F119EEABF1B117CBFD9FBA09D03E7AA1FD898B5E8092810
-                EDAC64F8ACD0BA752431513931A120E066B30F0082A7CD460751E84E40F2A73C
-                EB7177FFA19FD4F55CE8B530D1C0489F94FA7C0B8001F4CB86C4D631AB5F50FB
-                4E5EFADAC5DCD3B2FE12E79800EC1D0BDF3E2B8161E8473DB3A9CBDE1C4A16C2
-                8F24A3FE8C813D4E791EFDA86424BE453CD40FA99F04E05AEF92AB1524B4DB7C
-                7D40FE98F4102E207977A84D8001E4913F68FA79747F37552C1033F29A1209FC
-                B4230D7914FF0299BE6D379B8DFE7EB989FE03943E8ABB6D52B7550EAE51B09D
-                FF0CDF3CF1D60D1CF58BB45B1653818C49293F857EAE994E02D9DAA877A85E58
-                ECEB8DBA3190D0ED9A758FD20FE40566FA1083D9A5C7CC6CFD60AAD8504C62BB
-                271D1BF0F5DA6CCC08144B1367E19301845D10FF6231A60D5AF354F1964D1418
-                84FE62EAF742250F2D436234F6C2D60382F424F5A20ABC470370D6B7CFC70571
-                7541DBC8ACEDD70BE7A5523BE483EF5E71D0ADED840D41C38E534112BA217693
-                C86ACA72125B9CCBE57CFF05B0B6FF443688ED402A953A80487F74D7F7A74508
-                1219401848543F4CCD26594DB87E993BE369CEE1FF84A6A67F00D4D34AF3E2E3
-                03CB0000000049454E44AE426082}
+                05FA494441546843ED995F8854551CC77776669C75758B30DB75D588AC97484B
+                C940C9CD2025D664D7140B315F56222288827CAA1E2A891E0A828222A8A48720
+                2A56210B334B13FA473EB426AD497FA8DC2C2274B3E6CFCE6E9FEFB9BFDDF6CE
+                BD779C997B7783F00397F3E7F7F79E7BCE3DE7CE349DE73F266565E28C8D8D5D
+                C8D59A4AA528C6CE3637370F9B285112B981D1D1D17914DD24BBAA5C2E5F3B32
+                3272652E976BF5A41E8542E1AF4C263388CE0037F30137B58FF2A489A71F1248
+                93F846127E3F9FCF9735CCF580CD08B6FBE48366B3B99D1E08BAA1542A1DF752
+                890FBE8EE1B3C7DC4F1D9A2A8CDADB163771F0BD8718ED162E59707C238FFD37
+                8B3565B0568614CBC226030EB7907CC1624C39C4CA1373B3858F078EB66AC199
+                EF698398E5D837819FD5382A7A2EA71F7B1255A753E43E80E1BC62B1F825EFF3
+                8BAD2B36CCEF7C369B3D4CF538579EAB83382BD91F2E933C0C7218C266297BC6
+                29EBAA0DDE087B6D2062C340FE41A23BA8CE36F73E7413C83E74CA2190CB6E53
+                AD0D6C7A3DD3F8B02B1F25C145E67706F55BB81E26A99D9477D377A9C952B41F
+                D1AC915D25C8D64BEF9CA09B666319F4CCE2C1E3FF9EC03A666894BBF1FB9D89
+                262061EDC82F229F253DEA8F9AC807B65F519C7BC7C691B6F644C0D71AF3A937
+                993B6E90E001DAF773F5517F46D34BFD3CA94FE89B493545FD53F55582FC3697
+                643514C0F463411207E58FEAE524294648E04E176412F4B5A3FB996C7443D6B7
+                56ED4A90BFEB8CA2C0B09340751FCC22B84B3E09FAAC1A944FB8202110773E71
+                87B98AD4E7A09EA61ED8F53508141D661604E33E4F353EF85A2E9FCCDD13D6EE
+                74412240E515D3739B97465BED4A906F7306866F5120EFB26A2C9812DF521C55
+                9D4416F0FE1FAEE1ECFFB5950BAD0C7DEF93E34D567554DEC035566D18922DA7
+                D3E96D24FCB7759DE16A65E4667ACD70908F6F98A7ADBCC04A1FE4B8C4AA4198
+                636750880523FEA4B973D0DEA37E12BCC3BA0220CE30D5BE31BDABD547FB98DA
+                9568AD50849F2030BE0AE1EB2835B490ED3DEFFB94C4E73AC9D8137EA4BEC0BA
+                7D68814B87A9F791DAE85DA17614C8DD9E11090A4B70DACF8D84EE8A516077AB
+                B9F081AFD724677A9D44673B573BCD16CAEB91BD21999E3E6D37FAF4BDA0BE2A
+                44BF892683C3EB7056D317187A6F995900C42DC877799A41ECC6569AAE4EC025
+                4F12496D37300ECE5790C07B661C8080BFA233FEF68804D5D5F87955F39B29F5
+                1353E610763BB8DA24A75C265F9ED768D0AB3E85A2C0B08BA007E5845287B4AD
+                542F3271C3E02383AF7B495E0BB42AA613B988D7236CB16624E8ADE0CAA98E7E
+                96FA42CABABE1BB0B984AB8727B2D3167F4D30705F988B20387B598F16C7F7A0
+                3BC3BA2341AF6DF2D4C2F961FA969A38127474B87387B87A21DE4BE626088E27
+                8E127614DE4E3563E25090EB1CBF91E40764A7474C7BB1897DD0DF49026F4AAF
+                51F01138104E80BC83047C7B008FF7848CA8A64D2D14C949EE39D950BE63DD0E
+                C9F0711FBE4F4BDE28D897F053FD772382EF377D1F7A73605CF5031BB5163D01
+                05A29E551F36CB356F9D9398540E4C2804DC64FA0170F0B4E968230A7D13F04E
+                3FE5698FB9F34FE5138D49AF858906257D52EAF32D0037D02F1D125BCBA81EA1
+                F4EDBCB4F516734FCBDA8B9D6102D81A0B7F7D568262E8473DA3A9C3DE6CAE2C
+                0E3F561FE5E7DCD8E35CCF23CFAB8FC4B7C80FE5436A2701BED6B9E46A858476
+                9BAD0FFA1F931C87F349DE6D6AE3907F81FE074D3E97F6EF268A0531238F2991
+                60D7C17C1EF25CFC0B49E9DB7693E9E8EF979B693FC0D5C7E54E9B946D9537D7
+                28BCCE7FC6DF5CF9AD1B0CF58BB49B1693A18B41293F857C8EA94E40DF9AA835
+                542F16FB0673DD1824743B7E427FDCA5BFC8481FE26676E931335A3F9828368A
+                496CF7A46383BF5E1B8D6941B13470163E1970D8C59AF8C5624C199AF314F1A6
+                4D14DC84FE62EAF742258FA621311A5BB0F540909EA416AA601D0DE0B3BEF77C
+                5C88AB03DA06466DBF169C974AEDC806DBBDF241B3B61D3684860D2743123A21
+                7693C82AAE658CE8A25C2EE7FB2F80F5F3277D83E80EA452A90374E98FEEFAFE
+                B40821911B088344F5C3D42C92D580EB97B9B39EE43CFF279A9AFE01DDAC4A48
+                2997C2230000000049454E44AE426082}
               FileName = 
                 'D:\Github\RSMfmx_v3.1\RSMfmx_Client\Assets\Icons\Nav\server-inst' +
                 'aller_48.png'
@@ -2281,29 +2415,30 @@ object frmMain: TfrmMain
               PNG = {
                 89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
                 87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                02C6494441546843ED983D6B1451148677D74408A8889828984AC446B150B4D1
-                7FB0091689829669144541F10F680CD8F913C45A49A3AD1A885D3401DBE01776
-                22C4648D16815D9F73E7DD319399D9EC7C2C1BE13EF0E6CC3DE7DC7BCE9DAF4C
-                52F1783C1E8FA74C9ACDE6087A8896D02F69114DA311A5ED4C5AADD6259A5CC3
-                26623134A9F49D05FD59F3CDA0D5742C0776D62668C86E9BD433BF157257D1B0
-                A617A2265B94DBD56A75AF8EB785DC7D985BC1A818656D604C360B79E6C448DD
-                0097F822577B0EDB7E93BC41E30A6FE5A86C168EC946C8583719167864F76A12
-                2C36A3B4107C5DDFFF6D98B3AAE921B833D54D84443B031D212772F9192F29D4
-                35CC59D474479EBA46EC16E201BBA3C34EDC956DF352360B2F641D39EBC66197
-                0D6D381572D694EE609CE9350A3FD1414D77E4A96B94F216AAD56ADF31535624
-                F0A4E33A69B5A638E33FE42A44D206DEC976624136844D3CC75CA6B9D859DA84
-                3DB893E4CE06C308B9EAC6E0328D0727291D72EA4A8F416C183D40EF5143B2E3
-                FB4C8DDC369B215EA86E041267342706B169A5954EA9759930865EA3F6597C85
-                BA3B0305A0465FEA7AF252952D04977808730E5D40A7D071348ADA5FA80DF40D
-                2DA30F681E2DF036FA83ED0F3C5703343E819EA1DFC1A3D63DCC59D7DC098603
-                5AB638B6188BD6D1637445EE10E2BBF05F479FAC9132B0B5D0350E63BF97F05F
-                45D64B9D78FA4649184237916B0CFB1133A8B003DF28BE398BF702D6B74FE723
-                2AE7C0BD1BDF67C56DA33790DDB2FFC071162D5B521BC6910F275C87F17D0DA2
-                BD831A5FD021957530BEA7B083B1F57AC605ED0047EC430ADF099720183F55A8
-                E750EB89CA3A189F5428049FFD87E374951F6FF9B03AAFDC1072F6F09658D7D0
-                1659216FBF863D85DA2BD43EA0A1EB05636FB208F8E76D031B34167B38F0455E
-                B1246FFBA55926DDD4C7B5514B6AFE7F81DE074BF97BA09FF80DF41BBF018FC7
-                E3F178FA47A5F2175398029624C4941A0000000049454E44AE426082}
+                02D0494441546843ED98CF6B135110C7B349150A2A2256057B12F1A27850F4A2
+                FF415B3C58053DF6A2280A8AFF80D68237FF04F1AC78D1AB5AA8B76A0B5E8BBF
+                F026424D6BF55092F89997EF2ED96E3666B31B13E17D60987D33F3DECCBC7D79
+                5D2D793C1E8FC75324F57A7D5FAD56BB8F2C233F254BC8ACF914369C341A8D0B
+                14BA866E8BF968625AE1C305F559F1F566A9E958CCD035A16393BAF35B21B6CA
+                9C314DCF45593A17D474B35C2EEFD4F0AF10BB8B393734CC45210DC0A474167A
+                999320B5015EF13976699ED71DDE24AFB14DC9BD9543D259382C1D2363DEF6B0
+                C003A42D2C38A7B0086C5D9FFF10E654353D0273A6BC6DD10E748498D8EB67F1
+                65B9BA86394B9AEEE825AF9138424110DCD2632AAC755B8F212FA4B3F05CDAD1
+                63DE24ECCCBA6BB703C4AC29DCC1CE64BA46E107B257D31DBDE4350AB985B816
+                BFB1833334D29029158B8119E2BFCB948B760DBC95EEC4A274044D3CA5A88B14
+                98D8A516AAC44C13FB4CE3567ACA9B8002A6DCFBEA0031130A4F806F8C577D0F
+                7967C74262CF77991A3B36ADE4CD1B8364739A9300DFACC20AA7D0BC743BC9A4
+                5748B88B2FBBDE811C0C2AAFA75702E95CF08A4751A791B31CD7E3E823C83812
+                7EA1AE235F91156EA1F7E8056491DBE8377A3050E808859FE78C3E417EB95F5A
+                0698B361736D0D86235A363FB698FD6858FC21FA92CC11F82BD8AFE2FF688514
+                81ADC59A57784CFC5DC27E59B54CE04F6F948051E47A5818FA036A9BDC0EFCE3
+                D8E6CDDF0FC8699FCE0795CE81793BF64FF25BA3D7AC56B99B60388573C58242
+                B0C53E9C301D20E64BD3DB3FC8F199DCFB95D6C1F88EDC0ED57AD239ED0143E2
+                438A49475D8020E6B15C7D875C8F94D6412DC7E48A20C6FE87E344C0C31B6E83
+                338A8D206607F60D0DAD8155C6BB35EC2B14B65AA954F668E86A41D94D1683B8
+                056B6093C2123F0EAEBBD8156B5DEBF19FD04D7E1AD80CD20AFB1F1A300AF9F7
+                C020F10D0C1ADF80C7E3F1783C83A354FA03BA131CAAEB1BCDA5000000004945
+                4E44AE426082}
               FileName = 
                 'D:\Github\RSMfmx_v3.1\RSMfmx_Client\Assets\Icons\Nav\player-mana' +
                 'ger_48.png'
@@ -2347,7 +2482,7 @@ object frmMain: TfrmMain
     Hint = 'RSMfmx v3.1'
     ID = 1
     OnClick = trayIconMainClick
-    Left = 416
-    Top = 304
+    Left = 600
+    Top = 216
   end
 end
