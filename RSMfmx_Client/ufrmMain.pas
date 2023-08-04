@@ -198,6 +198,10 @@ type
     tbtmBannedPlayers: TTabItem;
     tbtmPlayerReports: TTabItem;
     tbtmPlayerDatabase: TTabItem;
+    rctnglOnlinePlayersHeader: TRectangle;
+    edtSearchOnlinePlayers: TEdit;
+    btnRefreshOnlinePlayers: TSpeedButton;
+    vrtscrlbxOnlinePlayers: TVertScrollBox;
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
