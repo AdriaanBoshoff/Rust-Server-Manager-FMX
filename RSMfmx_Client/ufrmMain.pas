@@ -210,12 +210,19 @@ type
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+    procedure edtCustomMapURLValueEnter(Sender: TObject);
+    procedure edtCustomMapURLValueExit(Sender: TObject);
+    procedure edtRconPasswordValueEnter(Sender: TObject);
+    procedure edtRconPasswordValueExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblAppVersionValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
     procedure mniFileClick(Sender: TObject);
     procedure trayIconMainClick(Sender: TObject);
+  private
+    { Private Variables }
+    FServerInfoExpandAfter: Boolean;
   private
     { Private declarations }
     // UI
@@ -224,8 +231,11 @@ type
     // Startup
     procedure ModifyUIForRelease;
     procedure CreateClasses;
+    procedure InitVariables;
     // Shutdown
     procedure FreeClasses;
+    procedure HideServerInfo;
+    procedure ShowServerInfo;
   public
     { Public declarations }
   end;
@@ -263,29 +273,11 @@ procedure TfrmMain.btnShowHideServerInfoClick(Sender: TObject);
 begin
   // Expand
   if lytServerInfo.Width = 0 then
-  begin
-    fltnmtnServerInfoExpand.StartValue := 0;
-    fltnmtnServerInfoExpand.StopValue := 220;
-
-    fltnmtnServerInfoExpand.Start;
-
-  //  btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
-
-    Exit;
-  end;
+    ShowServerInfo;
 
   // Collapse
   if lytServerInfo.Width = 220 then
-  begin
-    fltnmtnServerInfoExpand.StartValue := 220;
-    fltnmtnServerInfoExpand.StopValue := 0;
-
-    fltnmtnServerInfoExpand.Start;
-
-   // btnShowHideServerInfo.StyleLookup := 'priortoolbutton';
-
-    Exit;
-  end;
+    HideServerInfo;
 end;
 
 procedure TfrmMain.cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -297,6 +289,36 @@ procedure TfrmMain.CreateClasses;
 begin
   // Server Config
   serverConfig := TServerConfig.Create;
+end;
+
+procedure TfrmMain.edtCustomMapURLValueEnter(Sender: TObject);
+begin
+// Used in ShowServerInfo to check if the server info
+  // was visible before editing the rcon password
+  FServerInfoExpandAfter := (lytServerInfo.Width = 0);
+
+  if edtCustomMapURLValue.Width < 600 then
+    HideServerInfo;
+end;
+
+procedure TfrmMain.edtCustomMapURLValueExit(Sender: TObject);
+begin
+  ShowServerInfo;
+end;
+
+procedure TfrmMain.edtRconPasswordValueEnter(Sender: TObject);
+begin
+  // Used in ShowServerInfo to check if the server info
+  // was visible before editing the rcon password
+  FServerInfoExpandAfter := (lytServerInfo.Width = 0);
+
+  if edtRconPasswordValue.Width < 600 then
+    HideServerInfo;
+end;
+
+procedure TfrmMain.edtRconPasswordValueExit(Sender: TObject);
+begin
+  ShowServerInfo;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
@@ -312,6 +334,25 @@ procedure TfrmMain.FreeClasses;
 begin
   // Server Config
   serverConfig.Free;
+end;
+
+procedure TfrmMain.HideServerInfo;
+begin
+  if lytServerInfo.Width = 220 then
+  begin
+    fltnmtnServerInfoExpand.StartValue := 220;
+    fltnmtnServerInfoExpand.StopValue := 0;
+
+    fltnmtnServerInfoExpand.Start;
+
+   // btnShowHideServerInfo.StyleLookup := 'priortoolbutton';
+  end;
+end;
+
+procedure TfrmMain.InitVariables;
+begin
+  // Default Value
+  Self.FServerInfoExpandAfter := False;
 end;
 
 procedure TfrmMain.lblAppVersionValueResized(Sender: TObject);
@@ -366,6 +407,24 @@ begin
   lblServerMemoryUsageValue.Text := '---';
   lblLastWipeValue.Text := '---';
   lblServerSizeValue.Text := '---';
+end;
+
+procedure TfrmMain.ShowServerInfo;
+begin
+  // If the server info was not visible before editing
+  // the rcon password then do not show it.
+  if FServerInfoExpandAfter then
+    Exit;
+
+  if lytServerInfo.Width = 0 then
+  begin
+    fltnmtnServerInfoExpand.StartValue := 0;
+    fltnmtnServerInfoExpand.StopValue := 220;
+
+    fltnmtnServerInfoExpand.Start;
+
+  //  btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
+  end;
 end;
 
 procedure TfrmMain.trayIconMainClick(Sender: TObject);
