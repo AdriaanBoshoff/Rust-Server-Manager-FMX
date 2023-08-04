@@ -255,6 +255,7 @@ object frmMain: TfrmMain
             Align = Top
             CanFocus = False
             StyledSettings = [Family, Size, FontColor]
+            Hint = 'Start the Rust Server'
             Margins.Top = 20.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 42.000000000000000000
@@ -272,6 +273,9 @@ object frmMain: TfrmMain
             CanFocus = False
             Enabled = False
             StyledSettings = [Family, Size, FontColor]
+            Hint = 
+              'Graceful shutdown.'#13#10#13#10'RSM will send the "quit" command via rcon ' +
+              'to the server in order to perform a propper server shutdown.'
             Margins.Top = 20.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 92.000000000000000000
@@ -289,6 +293,9 @@ object frmMain: TfrmMain
             CanFocus = False
             Enabled = False
             StyledSettings = [Family, Size, FontColor]
+            Hint = 
+              'RSM will properly shutdown your server and then start it back up' +
+              '.'
             Margins.Top = 20.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 142.000000000000000000
@@ -306,6 +313,7 @@ object frmMain: TfrmMain
             CanFocus = False
             Enabled = False
             StyledSettings = [Family, Size, FontColor]
+            Hint = 'RSM sends the "save" command to the server over rcon.'
             Margins.Top = 80.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 252.000000000000000000
@@ -323,6 +331,10 @@ object frmMain: TfrmMain
             CanFocus = False
             Enabled = False
             StyledSettings = [Family, Size, FontColor]
+            Hint = 
+              'RSM will kill the server process using the server PID.'#13#10#13#10'WARNIN' +
+              'G'#13#10'- Chances of data loss is high.'#13#10'- Save corruption is possibl' +
+              'e hoever the chances of this is low. Make sure you have backups.'
             Margins.Bottom = 10.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 400.000000000000000000
@@ -370,6 +382,9 @@ object frmMain: TfrmMain
               TabOrder = 1
               object swtchServerAffinity: TSwitch
                 Align = Left
+                Hint = 
+                  'Enable RSM to force windows to run the server on selected CPU th' +
+                  'reads.'
                 IsChecked = False
                 Position.Y = 2.000000000000000000
                 Size.Width = 40.000000000000000000
@@ -394,6 +409,11 @@ object frmMain: TfrmMain
               object btnAdjustAffinity: TButton
                 Align = Left
                 CanFocus = False
+                Hint = 
+                  'Set the CPU threads the server should run on. It'#39's recommended t' +
+                  'o only choose a 3 threads at a time.'#13#10#13#10'WARNING'#13#10'- If you run mu' +
+                  'ltiple servers then make sure none of them are running on the sa' +
+                  'me threads as this will'#13#10'  cause performance issues.'
                 Margins.Left = 10.000000000000000000
                 Margins.Top = 2.000000000000000000
                 Margins.Bottom = 2.000000000000000000
@@ -2470,6 +2490,7 @@ object frmMain: TfrmMain
     end
     object btnAppSettings: TSpeedButton
       Align = Bottom
+      Hint = 'RSM related settings'
       Position.Y = 464.000000000000000000
       Size.Width = 60.000000000000000000
       Size.Height = 50.000000000000000000
