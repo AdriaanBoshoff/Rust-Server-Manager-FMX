@@ -5,7 +5,8 @@ uses
   FMX.Forms,
   ufrmMain in 'ufrmMain.pas' {frmMain},
   udmStyles in 'DataModules\udmStyles.pas' {dmStyles: TDataModule},
-  uServerConfig in 'Units\Configs\uServerConfig.pas';
+  uServerConfig in 'Units\Configs\uServerConfig.pas',
+  udmIcons in 'DataModules\udmIcons.pas' {dmIcons: TDataModule};
 
 {$R *.res}
 
@@ -20,5 +21,6 @@ begin
 
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TdmStyles, dmStyles);
+  Application.CreateForm(TdmIcons, dmIcons);
   Application.Run;
 end.
