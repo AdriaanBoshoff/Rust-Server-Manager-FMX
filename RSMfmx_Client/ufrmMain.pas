@@ -9,7 +9,7 @@ uses
   FMX.Controls.Presentation, FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects,
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
   FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
-  Winapi.Windows;
+  Winapi.Windows, System.IOUtils;
 
 type
   TfrmMain = class(TForm)
@@ -189,6 +189,15 @@ type
     lblAppVersionHeader: TLabel;
     mniSepExit: TMenuItem;
     mniExitRSM: TMenuItem;
+    tbtmPlayerManager: TTabItem;
+    lstPlayerManager: TListBoxItem;
+    imgPlayerManager: TImage;
+    lblPlayerManager: TLabel;
+    tbcPlayerManager: TTabControl;
+    tbtmOnlinePlayers: TTabItem;
+    tbtmBannedPlayers: TTabItem;
+    tbtmPlayerReports: TTabItem;
+    tbtmPlayerDatabase: TTabItem;
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
@@ -252,7 +261,7 @@ begin
 
     fltnmtnServerInfoExpand.Start;
 
-    btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
+  //  btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
 
     Exit;
   end;
@@ -265,7 +274,7 @@ begin
 
     fltnmtnServerInfoExpand.Start;
 
-    btnShowHideServerInfo.StyleLookup := 'priortoolbutton';
+   // btnShowHideServerInfo.StyleLookup := 'priortoolbutton';
 
     Exit;
   end;
@@ -330,6 +339,9 @@ begin
   tbcNav.TabPosition := TTabPosition.None;
   tbcNav.TabIndex := tbtmNavServerControls.Index;
   lstNav.ItemIndex := lstServerControls.Index;
+
+  // Default Player Manager Items
+  tbcPlayerManager.TabIndex := tbtmOnlinePlayers.Index;
   {$ENDIF}
 end;
 

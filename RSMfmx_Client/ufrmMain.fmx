@@ -114,7 +114,7 @@ object frmMain: TfrmMain
         Size.Width = 60.000000000000000000
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
-        StyleLookup = 'nexttoolbutton'
+        StyleLookup = 'drawertoolbuttonbordered'
         Text = 'ServerInfo'
         OnClick = btnShowHideServerInfoClick
       end
@@ -141,10 +141,12 @@ object frmMain: TfrmMain
       Size.Width = 740.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 3
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
+        740s
+        490s
         740s
         490s
         740s
@@ -423,7 +425,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1331,6 +1333,85 @@ object frmMain: TfrmMain
         ExplicitSize.cx = 98.000000000000000000
         ExplicitSize.cy = 24.000000000000000000
       end
+      object tbtmPlayerManager: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 103.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Player Manager'
+        object tbcPlayerManager: TTabControl
+          Align = Client
+          FullSize = True
+          Size.Width = 740.000000000000000000
+          Size.Height = 490.000000000000000000
+          Size.PlatformDefault = False
+          TabIndex = 0
+          TabOrder = 0
+          TabPosition = Top
+          Sizes = (
+            740s
+            466s
+            740s
+            466s
+            740s
+            466s
+            740s
+            466s)
+          object tbtmOnlinePlayers: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = True
+            Size.Width = 185.000000000000000000
+            Size.Height = 24.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'Online Players'
+          end
+          object tbtmBannedPlayers: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
+            Size.Width = 185.000000000000000000
+            Size.Height = 24.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'Banned Players'
+          end
+          object tbtmPlayerReports: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
+            Size.Width = 185.000000000000000000
+            Size.Height = 24.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'Player Reports'
+          end
+          object tbtmPlayerDatabase: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
+            Size.Width = 185.000000000000000000
+            Size.Height = 24.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'Player Database'
+          end
+        end
+      end
     end
   end
   object lytServerInfo: TLayout
@@ -2130,6 +2211,73 @@ object frmMain: TfrmMain
           TabOrder = 50
         end
       end
+      object lstPlayerManager: TListBoxItem
+        Position.Y = 150.000000000000000000
+        Size.Width = 56.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object imgPlayerManager: TImage
+          MultiResBitmap.Height = 48
+          MultiResBitmap.Width = 48
+          MultiResBitmap = <
+            item
+              Width = 48
+              Height = 48
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+                87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                02EB494441546843ED974D6B534114869B188534EAA25815EC4AC48DE242D195
+                FFA02D82B60B5D76A3280A8A7F406BC19D3F415CBBD46DB5A83B51C16DF10B77
+                6262CC87A14D9BF89CC99BD06B7263927B632ACC03C39C7B3EE69C993B33B919
+                F3783C1E8F274E6AB5DAFECDCDCD7B1B1B1BEF8AC562C91AF25B748B6693DBF6
+                A45EAFCF97CBE5027D47CCC624E6E4BEBDA0BEF96C365B6B941A8EF96CBB49D8
+                D6E8B6F27F82EF4F6226151E89A4FA4850D38DF1F1F13D7AFC2BF8EE25E6BA1E
+                2311D7046624F6CC20319D089D00AFF81C49569A3709B7C87374B33207585B5B
+                3B2CB16788392231403F79436180FBB48E30E092DC5AF4B3FF9BD83950780BD4
+                7DE5ED8856A02BF8045EBFDDF932F58CFD3628DC31485EA36D0B2512899B1243
+                61AC5B121DC43C95D833C43C91E818246F474AA552D14DB70BB665E4EE6065FA
+                BA46214FDBA770C720798D586EA16432F92D9D4E2FE472B9BA54A1980F2CB0E2
+                DFA58A173BF56EBA5DC06759EE017813737638E5D6893C3EE7E51E204ADE0024
+                98957F28F84CCBBD0D6C9324BACB217D63DBC29AC9E8EE101AD8365B899A3700
+                C99614D306B645B9C54EAC7999ED0C41CF9AAB88BCDCF30A446054793D839250
+                1F095E719AEE0CED2CDBF504ED2807778A1BC97DA1663299622A95FACAD5B94A
+                7B8FEA25ED35D76FC5EC23812253147E813DFA389FCFFFB283D60F8542A16CB1
+                36068F290D1B1D1BCC0E0D833FA0BF28750BEC3BD05FA956AB1FAD9038B0B118
+                F33262DB0F2BFA4BAA651A7BF8447148D3AE350BA3FF40B7536607F629742B66
+                1F06146A9FCE8794CE817A17B57C32BB267AD56A95B9018AD31857CDA909BAC0
+                8713AA83EBEBEB5F1AD6E1418ECFE43EA0B40E9E6FCBEC50ADA79CD104BB6F9D
+                650B041D730E82D57924D3D021D743A57550CB71995AD8871DFA93F62DFF4ABA
+                0018338A77542A951F320D1D72E594D6816A77C31284DA5F24B2D96C756262A2
+                ED7070DD05AE580B90F84FE8253F5FB6D5445861FFC3048C58FE0F8C123F8151
+                E327E0F1783C1ECFE8181BFB0D1EEC253DA399EE5D0000000049454E44AE4260
+                82}
+              FileName = 'D:\Github\RSMfmx-v3\Client\Assets\TestIcons\icons8-users-48.png'
+            end>
+          Align = MostLeft
+          HitTest = False
+          MarginWrapMode = Center
+          Margins.Top = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 55.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblPlayerManager: TLabel
+          Align = Client
+          StyledSettings = [Family, FontColor]
+          Margins.Left = 8.000000000000000000
+          Size.Width = 0.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'Player Manager'
+          TabOrder = 50
+        end
+      end
     end
     object btnAppSettings: TSpeedButton
       Align = Bottom
@@ -2145,7 +2293,7 @@ object frmMain: TfrmMain
     Hint = 'RSMfmx v3.1'
     ID = 1
     OnClick = trayIconMainClick
-    Left = 264
-    Top = 192
+    Left = 416
+    Top = 304
   end
 end
