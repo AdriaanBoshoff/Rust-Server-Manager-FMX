@@ -180,6 +180,9 @@ type
     btnAdjustAffinity: TButton;
     lblServerOptionsHeader: TLabel;
     trayIconMain: TFMXTrayIcon;
+    mniOpenFolder: TMenuItem;
+    mniOpenServerRoot: TMenuItem;
+    btnAppSettings: TSpeedButton;
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);

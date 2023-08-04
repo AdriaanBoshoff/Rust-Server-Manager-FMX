@@ -19,6 +19,14 @@ object frmMain: TfrmMain
     object mniFile: TMenuItem
       Text = 'File'
       OnClick = mniFileClick
+      object mniOpenFolder: TMenuItem
+        Locked = True
+        Text = 'Open Folder'
+        object mniOpenServerRoot: TMenuItem
+          Locked = True
+          Text = 'Server Root'
+        end
+      end
     end
   end
   object statMain: TStatusBar
@@ -820,6 +828,7 @@ object frmMain: TfrmMain
               end
               object btnGenerateMapSeed: TSpeedButton
                 Align = Left
+                Hint = 'Randomize Seed'
                 Margins.Left = 3.000000000000000000
                 Position.X = 458.000000000000000000
                 Size.Width = 25.000000000000000000
@@ -1837,7 +1846,7 @@ object frmMain: TfrmMain
     object lstNav: TListBox
       Align = Client
       Size.Width = 60.000000000000000000
-      Size.Height = 515.000000000000000000
+      Size.Height = 465.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       DisableFocusEffect = True
@@ -1846,7 +1855,7 @@ object frmMain: TfrmMain
       DefaultItemStyles.GroupFooterStyle = ''
       OnChange = lstNavChange
       Viewport.Width = 56.000000000000000000
-      Viewport.Height = 511.000000000000000000
+      Viewport.Height = 461.000000000000000000
       object lstServerControls: TListBoxItem
         Size.Width = 56.000000000000000000
         Size.Height = 50.000000000000000000
@@ -2068,6 +2077,15 @@ object frmMain: TfrmMain
           TabOrder = 50
         end
       end
+    end
+    object btnAppSettings: TSpeedButton
+      Align = Bottom
+      Position.Y = 465.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'optionstoolbutton'
+      Text = 'Settings'
     end
   end
   object trayIconMain: TFMXTrayIcon
