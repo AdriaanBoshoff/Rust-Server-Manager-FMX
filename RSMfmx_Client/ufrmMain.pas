@@ -250,11 +250,7 @@ uses
 
 {$R *.fmx}
 
-procedure TfrmMain.FormDestroy(Sender: TObject);
-begin
-  // Classes
-  FreeClasses;
-end;
+{ TfrmMain }
 
 procedure TfrmMain.BringToForeground;
 begin
@@ -266,8 +262,6 @@ begin
   Randomize;
   nmbrbxMapSeed.Value := RandomRange(1, 99999999);
 end;
-
-{ TfrmMain }
 
 procedure TfrmMain.btnShowHideServerInfoClick(Sender: TObject);
 begin
@@ -289,6 +283,12 @@ procedure TfrmMain.CreateClasses;
 begin
   // Server Config
   serverConfig := TServerConfig.Create;
+end;
+
+procedure TfrmMain.FormDestroy(Sender: TObject);
+begin
+  // Classes
+  FreeClasses;
 end;
 
 procedure TfrmMain.edtCustomMapURLValueEnter(Sender: TObject);

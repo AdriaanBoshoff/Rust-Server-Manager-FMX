@@ -294,7 +294,6 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="Units\Configs\uServerConfig.pas"/>
         <DCCReference Include="DataModules\udmIcons.pas">
             <Form>dmIcons</Form>
             <FormType>dfm</FormType>
@@ -302,6 +301,7 @@
         </DCCReference>
         <DCCReference Include="Libs\XSuperObject\XSuperJSON.pas"/>
         <DCCReference Include="Libs\XSuperObject\XSuperObject.pas"/>
+        <DCCReference Include="Units\Configs\ServerConfig\uServerConfig.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -356,13 +356,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Debug\RSMfmx_v3_1.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win64\Debug\bin\RSMfmx_v3_1.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>RSMfmx_v3_1.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Debug\RSMfmx_v3_1.rsm" Configuration="Debug" Class="DebugSymbols">
+                <DeployFile LocalName="Win64\Debug\bin\RSMfmx_v3_1.rsm" Configuration="Debug" Class="DebugSymbols">
                     <Platform Name="Win64">
                         <RemoteName>RSMfmx_v3_1.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
