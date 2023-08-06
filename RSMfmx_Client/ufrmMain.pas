@@ -209,6 +209,7 @@ type
     btnSaveServerConfig: TButton;
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
+    procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure edtCustomMapURLValueEnter(Sender: TObject);
@@ -263,6 +264,53 @@ begin
   nmbrbxMapSeed.Value := RandomRange(1, 99999999);
 end;
 
+procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
+begin
+  // General Config
+  serverConfig.Hostname := edtHostnameValue.Text;
+  serverConfig.Tags := edtServerTagsValue.Text;
+  serverConfig.Description := edtServerDescriptionValue.Text;
+  serverConfig.ServerURL := edtServerURLValue.Text;
+  serverConfig.ServerBannerURL := edtServerBannerURLValue.Text;
+  serverConfig.AppLogoURL := edtAppLogoURLValue.Text;
+
+  // Map
+  serverConfig.Map.MapName := cbbServerMap.Selected.Text;
+  serverConfig.Map.MapIndex := cbbServerMap.ItemIndex;
+  serverConfig.Map.CustomMapURL := edtCustomMapURLValue.Text;
+  serverConfig.Map.MapSize := Trunc(nmbrbxMapSize.Value);
+  serverConfig.Map.MapSeed := Trunc(nmbrbxMapSeed.Value);
+
+  // Misc
+  serverConfig.Misc.MaxPlayers := Trunc(spnbxMaxPlayers.Value);
+  serverConfig.Misc.CensorPlayerList := swtchCensorPlayerlist.IsChecked;
+ // serverConfig.Misc.GameMode := cbbServerGamemodeValue.Selected.Text;
+
+ // Networking
+  serverConfig.Networking.ServerIP := edtServerIP.Text;
+  serverConfig.Networking.ServerPort := Trunc(nmbrbxServerPort.Value);
+  serverConfig.Networking.ServerQueryPort := Trunc(nmbrbxQueryPort.Value);
+  serverConfig.Networking.RconIP := edtRconIPValue.Text;
+  serverConfig.Networking.RconPort := Trunc(nmbrbxRconPortValue.Value);
+  serverConfig.Networking.RconPassword := edtRconPasswordValue.Text;
+  serverConfig.Networking.AppIP := edtAppIPValue.Text;
+  serverConfig.Networking.AppPort := Trunc(nmbrbxAppPortValue.Value);
+  serverConfig.Networking.AppPublicIP := edtAppPublicIPValue.Text;
+
+  try
+    // Save Server Config
+    serverConfig.SaveConfig;
+
+    ShowMessage('Config Saved!');
+  except
+    on E: Exception do
+    begin
+      serverConfig.LoadConfig; // Reset Config class if failed to save
+      ShowMessage('Error saving config.' + sLineBreak + E.Message);
+    end;
+  end;
+end;
+
 procedure TfrmMain.btnShowHideServerInfoClick(Sender: TObject);
 begin
   // Expand
@@ -314,8 +362,12 @@ begin
   // Classes
   CreateClasses;
 
+  // Variables
+  InitVariables;
+
   // Change UI Layout for redistribution
   ModifyUIForRelease;
+  ResetServerInfoValues;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);

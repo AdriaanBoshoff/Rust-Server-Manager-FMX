@@ -1077,7 +1077,7 @@ object frmMain: TfrmMain
                   Size.Height = 25.000000000000000000
                   Size.PlatformDefault = False
                   StyleLookup = 'tintedbutton'
-                  TabOrder = 2
+                  TabOrder = 3
                   Text = 'Edit Emojis'
                   TextSettings.Font.StyleExt = {00060000000000000004000000}
                   TintColor = xFFBC6700
@@ -1489,6 +1489,7 @@ object frmMain: TfrmMain
             TextSettings.Font.Size = 14.000000000000000000
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TintColor = claGreen
+            OnClick = btnSaveServerConfigClick
           end
         end
       end
