@@ -359,6 +359,14 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  {$IFDEF DEBUG}
+  Self.Caption := 'RSMfmx v3.1 (DEBUG BUILD)';
+  {$ENDIF}
+
+  {$IFDEF RELEASE}
+  Self.Caption := 'RSMfmx v3.1';
+  {$ENDIF}
+
   // Classes
   CreateClasses;
 
