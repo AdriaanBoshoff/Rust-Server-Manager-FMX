@@ -279,18 +279,6 @@ begin
   Abort;
 end;
 
-procedure TfrmMain.CreateClasses;
-begin
-  // Server Config
-  serverConfig := TServerConfig.Create;
-end;
-
-procedure TfrmMain.FormDestroy(Sender: TObject);
-begin
-  // Classes
-  FreeClasses;
-end;
-
 procedure TfrmMain.edtCustomMapURLValueEnter(Sender: TObject);
 begin
 // Used in ShowServerInfo to check if the server info
@@ -328,6 +316,18 @@ begin
 
   // Change UI Layout for redistribution
   ModifyUIForRelease;
+end;
+
+procedure TfrmMain.FormDestroy(Sender: TObject);
+begin
+  // Classes
+  FreeClasses;
+end;
+
+procedure TfrmMain.CreateClasses;
+begin
+  // Server Config
+  serverConfig := TServerConfig.Create;
 end;
 
 procedure TfrmMain.FreeClasses;
