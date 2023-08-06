@@ -207,6 +207,10 @@ type
     btnEditEmojis: TButton;
     rctnglServerConfigControls: TRectangle;
     btnSaveServerConfig: TButton;
+    tbtmOfflinePlayers: TTabItem;
+    rctnglOfflinePlayersHeader: TRectangle;
+    edtSearchOfflinePlayers: TEdit;
+    btnRefreshOfflinePlayers: TSpeedButton;
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
