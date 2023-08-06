@@ -180,7 +180,6 @@ type
     lblServerAffinityHeader: TLabel;
     btnAdjustAffinity: TButton;
     lblServerOptionsHeader: TLabel;
-    trayIconMain: TFMXTrayIcon;
     mniOpenFolder: TMenuItem;
     mniOpenServerRoot: TMenuItem;
     btnAppSettings: TSpeedButton;
@@ -206,6 +205,8 @@ type
     mmoServerCFG: TMemo;
     btnEditRadioList: TButton;
     btnEditEmojis: TButton;
+    rctnglServerConfigControls: TRectangle;
+    btnSaveServerConfig: TButton;
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
@@ -218,7 +219,6 @@ type
     procedure lblAppVersionValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
-    procedure mniFileClick(Sender: TObject);
     procedure trayIconMainClick(Sender: TObject);
   private
     { Private Variables }
@@ -374,11 +374,6 @@ end;
 procedure TfrmMain.mniExitRSMClick(Sender: TObject);
 begin
   Self.Close;
-end;
-
-procedure TfrmMain.mniFileClick(Sender: TObject);
-begin
-  trayIconMain.Hint := 'test';
 end;
 
 procedure TfrmMain.ModifyUIForRelease;
