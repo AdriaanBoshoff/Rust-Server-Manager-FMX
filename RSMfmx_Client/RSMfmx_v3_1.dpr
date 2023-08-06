@@ -6,7 +6,9 @@ uses
   ufrmMain in 'ufrmMain.pas' {frmMain},
   udmStyles in 'DataModules\udmStyles.pas' {dmStyles: TDataModule},
   uServerConfig in 'Units\Configs\uServerConfig.pas',
-  udmIcons in 'DataModules\udmIcons.pas' {dmIcons: TDataModule};
+  udmIcons in 'DataModules\udmIcons.pas' {dmIcons: TDataModule},
+  XSuperJSON in 'Libs\XSuperObject\XSuperJSON.pas',
+  XSuperObject in 'Libs\XSuperObject\XSuperObject.pas';
 
 {$R *.res}
 
