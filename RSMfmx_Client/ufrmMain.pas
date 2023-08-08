@@ -233,6 +233,8 @@ type
     // UI
     procedure ResetServerInfoValues;
     procedure BringToForeground;
+    // Server Config
+    procedure PopulateServerConfigUI;
     // Startup
     procedure ModifyUIForRelease;
     procedure CreateClasses;
@@ -380,6 +382,7 @@ begin
   // Change UI Layout for redistribution
   ModifyUIForRelease;
   ResetServerInfoValues;
+  PopulateServerConfigUI;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -451,6 +454,38 @@ begin
   // Default Player Manager Items
   tbcPlayerManager.TabIndex := tbtmOnlinePlayers.Index;
   {$ENDIF}
+end;
+
+procedure TfrmMain.PopulateServerConfigUI;
+begin
+  // General
+  edtHostnameValue.Text := serverConfig.Hostname;
+  edtServerTagsValue.Text := serverConfig.Tags;
+  edtServerDescriptionValue.Text := serverConfig.Description;
+  edtServerURLValue.Text := serverConfig.ServerURL;
+  edtServerBannerURLValue.Text := serverConfig.ServerBannerURL;
+  edtAppLogoURLValue.Text := serverConfig.AppLogoURL;
+
+  // Map
+  cbbServerMap.ItemIndex := serverConfig.Map.MapIndex;
+  edtCustomMapURLValue.Text := serverConfig.Map.CustomMapURL;
+  nmbrbxMapSize.Value := serverConfig.Map.MapSize;
+  nmbrbxMapSeed.Value := serverConfig.Map.MapSeed;
+
+  // Misc
+  spnbxMaxPlayers.Value := serverConfig.Misc.MaxPlayers;
+  swtchCensorPlayerlist.IsChecked := serverConfig.Misc.CensorPlayerList;
+
+  // Networking
+  edtServerIP.Text := serverConfig.Networking.ServerIP;
+  nmbrbxServerPort.Value := serverConfig.Networking.ServerPort;
+  nmbrbxQueryPort.Value := serverConfig.Networking.ServerQueryPort;
+  edtRconIPValue.Text := serverConfig.Networking.RconIP;
+  nmbrbxRconPortValue.value := serverConfig.Networking.RconPort;
+  edtRconPasswordValue.Text := serverConfig.Networking.RconPassword;
+  edtAppIPValue.Text := serverConfig.Networking.AppIP;
+  nmbrbxAppPortValue.Value := serverConfig.Networking.AppPort;
+  edtAppPublicIPValue.Text := serverConfig.Networking.AppPublicIP;
 end;
 
 procedure TfrmMain.ResetServerInfoValues;
