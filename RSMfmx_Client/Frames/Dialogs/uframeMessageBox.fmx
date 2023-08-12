@@ -1,0 +1,89 @@
+object frameMessageBox: TframeMessageBox
+  Size.Width = 718.000000000000000000
+  Size.Height = 487.000000000000000000
+  Size.PlatformDefault = False
+  object rctnglBG: TRectangle
+    Align = Contents
+    Fill.Color = claBlack
+    Opacity = 0.899999976158142100
+    Size.Width = 718.000000000000000000
+    Size.Height = 487.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object rctnglMain: TRectangle
+    Align = Center
+    Fill.Color = xFF303440
+    Size.Width = 286.000000000000000000
+    Size.Height = 112.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claNull
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object lblHeader: TLabel
+      Align = Top
+      AutoSize = True
+      StyledSettings = [Family, FontColor]
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Size.Width = 266.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.StyleExt = {04060000000000000004000000}
+      TextSettings.HorzAlign = Center
+      Text = 'MESSAGE HEADER'
+      TabOrder = 0
+      OnResized = OnTextResized
+    end
+    object lytButtons: TLayout
+      Align = Bottom
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 77.000000000000000000
+      Size.Width = 266.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object btnClose: TButton
+        Align = Right
+        Position.X = 186.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Close'
+        OnClick = btnCloseClick
+      end
+      object btnCopyMessage: TSpeedButton
+        Align = Left
+        Hint = 'Copy Message'
+        Size.Width = 25.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'pagecurltoolbutton'
+        Text = 'Copy'
+      end
+    end
+    object lblMessageValue: TLabel
+      Align = Top
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 34.000000000000000000
+      Size.Width = 266.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.HorzAlign = Center
+      Text = 'lblMessageValue'
+      TabOrder = 2
+      OnResized = OnTextResized
+    end
+  end
+end

@@ -8,7 +8,8 @@ uses
   udmIcons in 'DataModules\udmIcons.pas' {dmIcons: TDataModule},
   XSuperJSON in 'Libs\XSuperObject\XSuperJSON.pas',
   XSuperObject in 'Libs\XSuperObject\XSuperObject.pas',
-  uServerConfig in 'Units\Configs\ServerConfig\uServerConfig.pas';
+  uServerConfig in 'Units\Configs\ServerConfig\uServerConfig.pas',
+  uframeMessageBox in 'Frames\Dialogs\uframeMessageBox.pas' {frameMessageBox: TFrame};
 
 {$R *.res}
 

@@ -302,6 +302,11 @@
         <DCCReference Include="Libs\XSuperObject\XSuperJSON.pas"/>
         <DCCReference Include="Libs\XSuperObject\XSuperObject.pas"/>
         <DCCReference Include="Units\Configs\ServerConfig\uServerConfig.pas"/>
+        <DCCReference Include="Frames\Dialogs\uframeMessageBox.pas">
+            <Form>frameMessageBox</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
