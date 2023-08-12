@@ -309,7 +309,7 @@ begin
     serverConfig.SaveConfig;
 
    // ShowMessage('Config Saved!');
-    ShowMessageBox('Server Config', 'Server Config SAVED', Self);
+    ShowMessageBox('Saved Server Config!', 'Server Config', Self);
   except
     on E: Exception do
     begin
