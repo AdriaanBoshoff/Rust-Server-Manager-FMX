@@ -9,7 +9,7 @@ uses
   FMX.Controls.Presentation, FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects,
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
   FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
-  Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo;
+  Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading;
 
 type
   TfrmMain = class(TForm)
@@ -253,7 +253,7 @@ var
 implementation
 
 uses
-  uServerConfig, uframeMessageBox;
+  uServerConfig, RSM.Config, uframeMessageBox;
 
 {$R *.fmx}
 
@@ -399,12 +399,18 @@ procedure TfrmMain.CreateClasses;
 begin
   // Server Config
   serverConfig := TServerConfig.Create;
+
+  // RSM Config
+  rsmConfig := TRSMConfig.Create;
 end;
 
 procedure TfrmMain.FreeClasses;
 begin
   // Server Config
   serverConfig.Free;
+
+  // RSM Config
+  rsmConfig.Free;
 end;
 
 procedure TfrmMain.HideServerInfo;
