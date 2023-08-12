@@ -326,11 +326,17 @@ procedure TfrmMain.btnShowHideServerInfoClick(Sender: TObject);
 begin
   // Expand
   if lytServerInfo.Width = 0 then
+  begin
     ShowServerInfo;
+    rsmConfig.UI.ShowServerInfoPanel := True;
+  end;
 
   // Collapse
   if lytServerInfo.Width = 220 then
+  begin
     HideServerInfo;
+    rsmConfig.UI.ShowServerInfoPanel := False;
+  end;
 end;
 
 procedure TfrmMain.cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -459,6 +465,12 @@ begin
   Self.Top := rsmConfig.UI.windowPosY;
   Self.Height := Round(rsmConfig.UI.windowHeight);
   Self.Width := Round(rsmConfig.UI.windowWidth);
+
+  // Server Info Panel
+  if rsmConfig.UI.ShowServerInfoPanel then
+    ShowServerInfo
+  else
+    HideServerInfo;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);

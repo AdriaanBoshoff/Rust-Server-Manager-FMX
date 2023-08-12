@@ -22,12 +22,13 @@ type
       end;
     // UI
     type
-      TRSMConfigIU = record // Saved on main form destroy event except nav
+      TRSMConfigIU = record // Saved on main form destroy event except nav, serverinfo
         navIndex: Integer;  // Saved on index change
         windowPosX: Integer;
         windowPosY: Integer;
         windowHeight: Single;
         windowWidth: Single;
+        ShowServerInfoPanel: Boolean; // Saved on btnShowHideServerInfoClick
       end;
   private
       { Private Variables }
@@ -75,6 +76,7 @@ begin
   Self.UI.windowPosY := 0;
   Self.UI.windowHeight := 600;
   Self.UI.windowWidth := 1000;
+  Self.UI.ShowServerInfoPanel := True;
 
   // Setup Methods
   Self.FConfigFile := Self.GetConfigFile;
