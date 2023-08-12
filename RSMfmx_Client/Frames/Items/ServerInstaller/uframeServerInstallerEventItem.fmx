@@ -13,6 +13,9 @@ object frameServerInstallerEventItem: TframeServerInstallerEventItem
     Stroke.Color = claNull
     XRadius = 10.000000000000000000
     YRadius = 10.000000000000000000
+    OnClick = rctnglMainClick
+    OnMouseEnter = rctnglMainMouseEnter
+    OnMouseLeave = rctnglMainMouseLeave
     object lytDateTime: TLayout
       Align = Left
       Position.X = 10.000000000000000000

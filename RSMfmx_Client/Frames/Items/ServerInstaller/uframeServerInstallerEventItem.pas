@@ -14,6 +14,9 @@ type
     lblDateTime: TLabel;
     lytMessage: TLayout;
     lblMessage: TLabel;
+    procedure rctnglMainClick(Sender: TObject);
+    procedure rctnglMainMouseEnter(Sender: TObject);
+    procedure rctnglMainMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -24,7 +27,7 @@ type
 implementation
 
 uses
-  System.DateUtils;
+  System.DateUtils, uframeMessageBox;
 
 {$R *.fmx}
 { TframeServerInstallerEventItem }
@@ -54,6 +57,21 @@ begin
   Result.Margins.Top := 10;
   Result.lblDateTime.Text := FormatDateTime('yyyy.mm.dd hh:nn:ss', DTM);
   Result.lblMessage.Text := aMessage;
+end;
+
+procedure TframeServerInstallerEventItem.rctnglMainClick(Sender: TObject);
+begin
+  ShowMessageBox(lblMessage.Text, Format('Server Event - %s', [lblDateTime.Text]), Application.MainForm);
+end;
+
+procedure TframeServerInstallerEventItem.rctnglMainMouseEnter(Sender: TObject);
+begin
+  rctnglMain.Fill.Color := TAlphaColorRec.Darkred;
+end;
+
+procedure TframeServerInstallerEventItem.rctnglMainMouseLeave(Sender: TObject);
+begin
+  rctnglMain.Fill.Color := $FF2C303B;
 end;
 
 end.
