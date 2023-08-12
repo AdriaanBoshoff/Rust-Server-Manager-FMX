@@ -222,6 +222,9 @@ type
     lblAutoQuitSteamCMDHeader: TLabel;
     rctnglServerInstallerEvents: TRectangle;
     lblServerInstallerEvents: TLabel;
+    btnInstallServer: TButton;
+    btnVerifyServerFiles: TButton;
+    btnCleanInstallServer: TButton;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);

@@ -1609,6 +1609,67 @@ object frmMain: TfrmMain
               TabOrder = 1
             end
           end
+          object btnInstallServer: TButton
+            Align = Top
+            StyledSettings = [Family, FontColor]
+            Hint = 
+              'Install or Update your server files to the selected branch.'#13#10#13#10'N' +
+              'B: Modding frameworks like uMod / Oxide needs to be reinstalled ' +
+              'after updating your server.'
+            Margins.Top = 50.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 142.000000000000000000
+            Size.Width = 180.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 5
+            Text = 'Install / Update Server'
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TintColor = claDarkgreen
+          end
+          object btnVerifyServerFiles: TButton
+            Align = Top
+            StyledSettings = [Family, FontColor]
+            Hint = 
+              'Verify your server files.'#13#10#13#10'NB: Modding frameworks like uMod / ' +
+              'Oxide needs to be reinstalled after verifying your server files.'
+            Margins.Top = 25.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 217.000000000000000000
+            Size.Width = 180.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 4
+            Text = 'Verify Server Files'
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TintColor = xFFB36200
+          end
+          object btnCleanInstallServer: TButton
+            Align = Bottom
+            StyledSettings = [Family, FontColor]
+            Hint = 
+              'Perform a clean server install. This will delete all server file' +
+              's and reinstall them. SteamCMD will also be reinstalled.'#13#10#13#10'Your' +
+              ' ".\server", "oxide" and "carbonmod" folders will be ignored.'#13#10#13 +
+              #10'NB: Modding frameworks like uMod / Oxide needs to be reinstalle' +
+              'd after performing a clean install.'
+            Margins.Bottom = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 420.000000000000000000
+            Size.Width = 180.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 3
+            Text = 'Perform Clean Install'
+            TextSettings.Font.Size = 14.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TintColor = xFFAA0000
+          end
         end
         object rctnglServerInstallerEvents: TRectangle
           Align = Client
