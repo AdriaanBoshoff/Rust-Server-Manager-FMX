@@ -113,8 +113,10 @@ begin
     // Reset
     if param = '-reset' then
     begin
+      var paramOption := System.ParamStr(I + 1).ToLower;
+
       // Window Pos
-      if System.ParamStr(I + 1).ToLower = 'windowpos' then
+      if paramOption = 'windowpos' then
       begin
         Self.UI.windowPosX := 0;
         Self.UI.windowPosY := 0;
@@ -123,7 +125,7 @@ begin
       end;
 
       // Window Size
-      if System.ParamStr(I + 1).ToLower = 'windowsize' then
+      if paramOption = 'windowsize' then
       begin
         Self.UI.windowHeight := 600;
         Self.UI.windowWidth := 1000;
