@@ -1567,12 +1567,36 @@ object frmMain: TfrmMain
               CanFocus = False
               DisableFocusEffect = True
               Hint = 'Version of the server that will be installed'
+              ItemIndex = 0
               Margins.Left = 5.000000000000000000
               Size.Width = 134.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 1
               OnMouseWheel = cbbServerInstallerBranchMouseWheel
+              object lstServerBranchMain: TListBoxItem
+                IsSelected = True
+                Size.Width = 19.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                Text = 'Main'
+              end
+              object lstServerBranchStaging: TListBoxItem
+                Size.Width = 19.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                Text = 'Staging'
+              end
+              object lstServerBranchAux01: TListBoxItem
+                TabOrder = 2
+                Text = 'Aux01'
+              end
+              object lstServerBranchAux02: TListBoxItem
+                TabOrder = 3
+                Text = 'Aux02'
+              end
             end
           end
           object lytAutoQuitSteamCMD: TLayout
@@ -1655,9 +1679,9 @@ object frmMain: TfrmMain
             Hint = 
               'Perform a clean server install. This will delete all server file' +
               's and reinstall them. SteamCMD will also be reinstalled.'#13#10#13#10'Your' +
-              ' ".\server", "oxide" and "carbonmod" folders will be ignored.'#13#10#13 +
-              #10'NB: Modding frameworks like uMod / Oxide needs to be reinstalle' +
-              'd after performing a clean install.'
+              ' ".\server", ".\oxide" and ".\carbonmod" folders will be ignored' +
+              ' to avoid data loss.'#13#10#13#10'NB: Modding frameworks like uMod / Oxide' +
+              ' needs to be reinstalled after performing a clean install.'
             Margins.Bottom = 10.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 420.000000000000000000

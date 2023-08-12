@@ -226,6 +226,10 @@ type
     btnVerifyServerFiles: TButton;
     btnCleanInstallServer: TButton;
     vrtscrlbxServerInstallerEventsItems: TVertScrollBox;
+    lstServerBranchMain: TListBoxItem;
+    lstServerBranchStaging: TListBoxItem;
+    lstServerBranchAux01: TListBoxItem;
+    lstServerBranchAux02: TListBoxItem;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
@@ -266,6 +270,7 @@ type
     // Server Installer
     function AddServerInstallerEventItem(const DTM: TDateTime; const aMessage: string): TframeServerInstallerEventItem;
     procedure PopulateServerInstallerEvents;
+    function InstallSteamCMD: boolean;
   public
     { Public declarations }
   end;
@@ -276,7 +281,8 @@ var
 implementation
 
 uses
-  uServerConfig, RSM.Config, uframeMessageBox, udmDB_ServerInstallerEvents;
+  uServerConfig, RSM.Config, uframeMessageBox, udmDB_ServerInstallerEvents,
+  Rest.Client, System.Zip;
 
 {$R *.fmx}
 
@@ -316,7 +322,12 @@ end;
 
 procedure TfrmMain.btnInstallServerClick(Sender: TObject);
 begin
-  AddServerInstallerEventItem(Now, 'Installing Server...' + sLineBreak + 'test 2');
+  AddServerInstallerEventItem(Now, 'Install / Update Server');
+
+  if InstallSteamCMD then
+  begin
+    // Do something
+  end;
 end;
 
 procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
@@ -508,6 +519,61 @@ procedure TfrmMain.InitVariables;
 begin
   // Default Value
   Self.FServerInfoExpandAfter := False;
+end;
+
+function TfrmMain.InstallSteamCMD: boolean;
+begin
+  Result := False;
+
+  // Check if steamcmd exists
+  if TFile.Exists(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.exe') then
+  begin
+    Result := True;
+    Exit;
+  end;
+
+  // Create steamcmd folder
+  ForceDirectories(ExtractFilePath(ParamStr(0)) + 'steamcmd');
+
+  // Download SteamCMD
+  var memStream := TMemoryStream.Create;
+  try
+    AddServerInstallerEventItem(Now, 'Downloading SteamCMD...');
+
+    try
+      // Download Zip file
+      TDownloadURL.DownloadRawBytes('https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip', memStream);
+      // Save to drive
+      memStream.SaveToFile(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.zip');
+
+      // Check if downloaded zip is valid
+      if TZipFile.IsValid(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.zip') then
+      begin
+        // Open and Extract Zip
+        var zip := TZipFile.Create;
+        try
+          zip.Open(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.zip', zmRead);
+
+          AddServerInstallerEventItem(Now, 'Extracting SteamCMD...');
+          zip.ExtractAll(ExtractFilePath(ParamStr(0)) + 'steamcmd');
+
+          Result := True;
+        finally
+          zip.Free;
+        end;
+
+        AddServerInstallerEventItem(Now, 'Done. Deleting zip file.');
+        TFile.Delete(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.zip');
+      end;
+    except
+      on E: Exception do
+      begin
+        AddServerInstallerEventItem(Now, 'ERROR - ' + E.ClassName + ': ' + E.Message);
+      end;
+    end;
+  finally
+    memStream.Free;
+  end;
 end;
 
 procedure TfrmMain.lblAppVersionValueResized(Sender: TObject);
