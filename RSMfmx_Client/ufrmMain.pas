@@ -310,7 +310,7 @@ begin
   end
   else
   begin
-    ShowMessageBox('Platform does not support copying...', 'Copy Failure', Self);
+    ShowMessageBox('Platform does not support copying.', 'Copy Failure', Self);
   end;
 end;
 
