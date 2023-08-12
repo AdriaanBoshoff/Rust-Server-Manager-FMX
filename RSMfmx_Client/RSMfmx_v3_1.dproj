@@ -307,6 +307,14 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="DataModules\udmRSMAPI.pas">
+            <Form>dmRSMApi</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Units\Configs\RSMConfig\RSM.Config.pas">
+            <ContainerId>ConfigurationCompiler</ContainerId>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

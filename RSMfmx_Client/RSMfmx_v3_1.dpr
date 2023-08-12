@@ -9,7 +9,9 @@ uses
   XSuperJSON in 'Libs\XSuperObject\XSuperJSON.pas',
   XSuperObject in 'Libs\XSuperObject\XSuperObject.pas',
   uServerConfig in 'Units\Configs\ServerConfig\uServerConfig.pas',
-  uframeMessageBox in 'Frames\Dialogs\uframeMessageBox.pas' {frameMessageBox: TFrame};
+  uframeMessageBox in 'Frames\Dialogs\uframeMessageBox.pas' {frameMessageBox: TFrame},
+  udmRSMAPI in 'DataModules\udmRSMAPI.pas' {dmRSMApi: TDataModule},
+  RSM.Config in 'Units\Configs\RSMConfig\RSM.Config.pas';
 
 {$R *.res}
 
