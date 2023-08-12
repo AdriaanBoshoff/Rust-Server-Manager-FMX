@@ -52,6 +52,7 @@ begin
 
   Result := TframeServerInstallerEventItem.Create(Owner);
   Result.Name := uniqueName;
+  Result.Hint := aMessage;
   Result.Parent := Owner;
   Result.Align := TAlignLayout.Top;
   Result.Margins.Top := 10;

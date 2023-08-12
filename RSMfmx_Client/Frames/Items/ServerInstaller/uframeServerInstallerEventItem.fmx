@@ -1,6 +1,6 @@
 object frameServerInstallerEventItem: TframeServerInstallerEventItem
   Size.Width = 573.000000000000000000
-  Size.Height = 30.000000000000000000
+  Size.Height = 40.000000000000000000
   Size.PlatformDefault = False
   object rctnglMain: TRectangle
     Align = Client
@@ -8,7 +8,7 @@ object frameServerInstallerEventItem: TframeServerInstallerEventItem
     Padding.Left = 10.000000000000000000
     Padding.Right = 10.000000000000000000
     Size.Width = 573.000000000000000000
-    Size.Height = 30.000000000000000000
+    Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
     Stroke.Color = claNull
     XRadius = 10.000000000000000000
@@ -20,14 +20,14 @@ object frameServerInstallerEventItem: TframeServerInstallerEventItem
       Align = Left
       Position.X = 10.000000000000000000
       Size.Width = 110.000000000000000000
-      Size.Height = 30.000000000000000000
+      Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       object lblDateTime: TLabel
         Align = Client
         StyledSettings = [Family]
         Size.Width = 110.000000000000000000
-        Size.Height = 30.000000000000000000
+        Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         TextSettings.FontColor = xFF939393
@@ -39,7 +39,7 @@ object frameServerInstallerEventItem: TframeServerInstallerEventItem
       Align = Client
       Margins.Left = 5.000000000000000000
       Size.Width = 438.000000000000000000
-      Size.Height = 30.000000000000000000
+      Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       object lblMessage: TLabel
@@ -47,11 +47,12 @@ object frameServerInstallerEventItem: TframeServerInstallerEventItem
         AutoSize = True
         StyledSettings = [Family]
         Size.Width = 438.000000000000000000
-        Size.Height = 30.000000000000000000
+        Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         TextSettings.FontColor = claWhite
         TextSettings.WordWrap = False
+        TextSettings.Trimming = Word
         Text = 'Event Message'
         TabOrder = 0
       end
