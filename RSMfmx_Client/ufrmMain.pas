@@ -212,11 +212,22 @@ type
     rctnglOfflinePlayersHeader: TRectangle;
     edtSearchOfflinePlayers: TEdit;
     btnRefreshOfflinePlayers: TSpeedButton;
+    rctnglServerInstallerControls: TRectangle;
+    lblServerInstallerControlsHeader: TLabel;
+    lytServerInstallerBranch: TLayout;
+    lblServerInstallerBranchHeader: TLabel;
+    cbbServerInstallerBranch: TComboBox;
+    lytAutoQuitSteamCMD: TLayout;
+    swtchAutoQuitSteamCMD: TSwitch;
+    lblAutoQuitSteamCMDHeader: TLabel;
+    rctnglServerInstallerEvents: TRectangle;
+    lblServerInstallerEvents: TLabel;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
+    procedure cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure edtCustomMapURLValueEnter(Sender: TObject);
     procedure edtCustomMapURLValueExit(Sender: TObject);
@@ -269,6 +280,7 @@ end;
 
 procedure TfrmMain.btnCopyRconPasswordClick(Sender: TObject);
 begin
+  // Check if platform supports copying
   if TPlatformServices.Current.SupportsPlatformService(IFMXClipboardService) then
   begin
     var clp := IFMXClipboardService(TPlatformServices.Current.GetPlatformService(IFMXClipboardService));
@@ -352,6 +364,11 @@ begin
     HideServerInfo;
     rsmConfig.UI.ShowServerInfoPanel := False;
   end;
+end;
+
+procedure TfrmMain.cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+begin
+  Abort;
 end;
 
 procedure TfrmMain.cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
