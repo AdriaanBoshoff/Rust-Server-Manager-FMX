@@ -9,7 +9,8 @@ uses
   FMX.Controls.Presentation, FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects,
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
   FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
-  Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading;
+  Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading,
+  FMX.Clipboard, FMX.Platform;
 
 type
   TfrmMain = class(TForm)
@@ -211,6 +212,7 @@ type
     rctnglOfflinePlayersHeader: TRectangle;
     edtSearchOfflinePlayers: TEdit;
     btnRefreshOfflinePlayers: TSpeedButton;
+    procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
@@ -263,6 +265,19 @@ uses
 procedure TfrmMain.BringToForeground;
 begin
   SetForegroundWindow(ApplicationHWND);
+end;
+
+procedure TfrmMain.btnCopyRconPasswordClick(Sender: TObject);
+begin
+  if TPlatformServices.Current.SupportsPlatformService(IFMXClipboardService) then
+  begin
+    var clp := IFMXClipboardService(TPlatformServices.Current.GetPlatformService(IFMXClipboardService));
+    clp.SetClipboard(edtRconPasswordValue.Text);
+  end
+  else
+  begin
+    ShowMessageBox('Platform does not support copying...', 'Copy Failure', Self);
+  end;
 end;
 
 procedure TfrmMain.btnGenerateMapSeedClick(Sender: TObject);
