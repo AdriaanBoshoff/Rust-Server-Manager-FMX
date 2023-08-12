@@ -231,6 +231,7 @@ type
   private
     { Private declarations }
     // UI
+    procedure LoadRSMUIConfig;
     procedure ResetServerInfoValues;
     procedure BringToForeground;
     // Server Config
@@ -387,10 +388,18 @@ begin
   ModifyUIForRelease;
   ResetServerInfoValues;
   PopulateServerConfigUI;
+  LoadRSMUIConfig;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
+  // Save Window details
+  rsmConfig.UI.windowPosX := Self.Left;
+  rsmConfig.UI.windowPosY := Self.Top;
+  rsmConfig.UI.windowHeight := Self.Height;
+  rsmConfig.UI.windowWidth := Self.Width;
+  rsmConfig.SaveConfig;
+
   // Classes
   FreeClasses;
 end;
@@ -437,6 +446,21 @@ begin
   lytAppVersion.Width := lblAppVersionHeader.Width + 5 + lblAppVersionValue.Width;
 end;
 
+procedure TfrmMain.LoadRSMUIConfig;
+begin
+  // Nav - Check if nav index is within bounds before assigning
+  if rsmConfig.UI.navIndex <= lstNav.Items.Count - 1 then
+  begin
+    lstNav.ItemIndex := rsmConfig.UI.navIndex;
+  end;
+
+  // Window
+  Self.Left := rsmConfig.UI.windowPosX;
+  Self.Top := rsmConfig.UI.windowPosY;
+  Self.Height := Round(rsmConfig.UI.windowHeight);
+  Self.Width := Round(rsmConfig.UI.windowWidth);
+end;
+
 procedure TfrmMain.lstNavChange(Sender: TObject);
 begin
   // Check for -1 Indexes
@@ -446,6 +470,10 @@ begin
   // Switch to tab
   tbcNav.TabIndex := lstNav.ItemIndex;
   lblNavHeader.Text := tbcNav.Tabs[tbcNav.TabIndex].Text;
+
+  // Save Last Index
+  rsmConfig.UI.navIndex := lstNav.ItemIndex;
+  rsmConfig.SaveConfig;
 end;
 
 procedure TfrmMain.mniExitRSMClick(Sender: TObject);
