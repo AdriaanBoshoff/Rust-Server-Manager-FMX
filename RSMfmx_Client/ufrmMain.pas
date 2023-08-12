@@ -10,7 +10,7 @@ uses
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
   FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
   Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading,
-  FMX.Clipboard, FMX.Platform;
+  FMX.Clipboard, FMX.Platform, uframeServerInstallerEventItem;
 
 type
   TfrmMain = class(TForm)
@@ -256,12 +256,16 @@ type
     procedure PopulateServerConfigUI;
     // Startup
     procedure ModifyUIForRelease;
+    procedure CreateDataModules;
     procedure CreateClasses;
     procedure InitVariables;
     // Shutdown
     procedure FreeClasses;
     procedure HideServerInfo;
     procedure ShowServerInfo;
+    // Server Installer
+    function AddServerInstallerEventItem(const DTM: TDateTime; const aMessage: string): TframeServerInstallerEventItem;
+    procedure PopulateServerInstallerEvents;
   public
     { Public declarations }
   end;
@@ -272,11 +276,18 @@ var
 implementation
 
 uses
-  uServerConfig, RSM.Config, uframeMessageBox, uframeServerInstallerEventItem;
+  uServerConfig, RSM.Config, uframeMessageBox, udmDB_ServerInstallerEvents;
 
 {$R *.fmx}
 
 { TfrmMain }
+
+function TfrmMain.AddServerInstallerEventItem(const DTM: TDateTime; const aMessage: string): TframeServerInstallerEventItem;
+begin
+  dmDB_ServerInstallerEvents.AddEvent(DTM, aMessage);
+
+  Result := TframeServerInstallerEventItem.CreateEventItem(DTM, aMessage, vrtscrlbxServerInstallerEventsItems);
+end;
 
 procedure TfrmMain.BringToForeground;
 begin
@@ -305,7 +316,7 @@ end;
 
 procedure TfrmMain.btnInstallServerClick(Sender: TObject);
 begin
-  TframeServerInstallerEventItem.CreateEventItem(Now, 'Installing Server', vrtscrlbxServerInstallerEventsItems);
+  AddServerInstallerEventItem(Now, 'Installing Server...' + sLineBreak + 'test 2');
 end;
 
 procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
@@ -426,6 +437,9 @@ begin
   Self.Caption := 'RSMfmx v3.1';
   {$ENDIF}
 
+  // Data Modules
+  CreateDataModules;
+
   // Classes
   CreateClasses;
 
@@ -437,6 +451,7 @@ begin
   ResetServerInfoValues;
   PopulateServerConfigUI;
   LoadRSMUIConfig;
+  PopulateServerInstallerEvents;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -459,6 +474,12 @@ begin
 
   // RSM Config
   rsmConfig := TRSMConfig.Create;
+end;
+
+procedure TfrmMain.CreateDataModules;
+begin
+  // Server Installer Events DB
+  dmDB_ServerInstallerEvents := TdmDB_ServerInstallerEvents.Create(Self);
 end;
 
 procedure TfrmMain.FreeClasses;
@@ -578,6 +599,15 @@ begin
   edtAppIPValue.Text := serverConfig.Networking.AppIP;
   nmbrbxAppPortValue.Value := serverConfig.Networking.AppPort;
   edtAppPublicIPValue.Text := serverConfig.Networking.AppPublicIP;
+end;
+
+procedure TfrmMain.PopulateServerInstallerEvents;
+begin
+  for var aEvent in dmDB_ServerInstallerEvents.GetAllEvents do
+  begin
+    var aItem := TframeServerInstallerEventItem.CreateEventItem(aEvent.DTM, aEvent.EventMessage, vrtscrlbxServerInstallerEventsItems);
+    aItem.Tag := aEvent.ID;
+  end;
 end;
 
 procedure TfrmMain.ResetServerInfoValues;
