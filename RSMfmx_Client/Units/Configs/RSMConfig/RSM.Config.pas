@@ -6,15 +6,6 @@ type
   TRSMConfig = class
   private
   { Private Types }
-    // REST API
-    type
-      TRSMConfigAPI = record
-        Enabled: boolean;
-        APIKey: string;
-        UseTLS: Boolean;
-        Port: Integer;
-        BindIP: string;
-      end;
     // Licensing
     type
       TRSMConfigLicense = record
@@ -39,7 +30,6 @@ type
   public
     { Public Variables }
     License: TRSMConfigLicense;
-    API: TRSMConfigAPI;
     UI: TRSMConfigIU;
   public
     { Public Methods }
@@ -62,13 +52,6 @@ constructor TRSMConfig.Create;
 begin
   // Licensing
   Self.License.LicenseKey := '';
-
-  // Rest API
-  Self.API.Enabled := False;
-  Self.API.APIKey := 'CHANGE_ME!';
-  Self.API.UseTLS := True;
-  Self.API.Port := 7788;
-  Self.API.BindIP := '0.0.0.0';
 
   // UI
   Self.UI.navIndex := 0;
