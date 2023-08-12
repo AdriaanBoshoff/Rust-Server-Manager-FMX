@@ -304,13 +304,11 @@ begin
   serverConfig.Networking.AppPublicIP := edtAppPublicIPValue.Text;
 
   try
-    raise Exception.Create('Error Message');
-
     // Save Server Config
     serverConfig.SaveConfig;
 
    // ShowMessage('Config Saved!');
-    TframeMessageBox.ShowMessageBox('Server Config', 'Server Config SAVED', Self);
+    ShowMessageBox('Server Config', 'Server Config SAVED', Self);
   except
     on E: Exception do
     begin
@@ -318,7 +316,7 @@ begin
 
       var errMessage := Format('Failed to save server config %s %s: %s', [sLineBreak, E.ClassName, E.Message]);
 
-      TframeMessageBox.ShowMessageBox(errMessage, 'Server Config', Self);
+      ShowMessageBox(errMessage, 'Server Config', Self);
     end;
   end;
 end;

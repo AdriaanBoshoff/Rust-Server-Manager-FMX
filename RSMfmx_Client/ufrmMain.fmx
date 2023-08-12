@@ -816,14 +816,16 @@ object frmMain: TfrmMain
               end
               object lblCustomMapURLHeader: TLabel
                 Align = Left
+                AutoSize = True
                 StyledSettings = [Family, Size, FontColor]
                 Margins.Left = 10.000000000000000000
                 Position.X = 230.000000000000000000
-                Size.Width = 70.000000000000000000
+                Size.Width = 98.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextSettings.Font.StyleExt = {00060000000000000004000000}
-                Text = 'Server Map:'
+                TextSettings.WordWrap = False
+                Text = 'Custom Map URL:'
                 TabOrder = 0
               end
               object edtCustomMapURLValue: TEdit
@@ -835,7 +837,8 @@ object frmMain: TfrmMain
                   'ad the custom map from this link.'#13#10#13#10'Eg.'#13#10'https://mysite.com/myC' +
                   'ustomMap.map'#13#10#13#10'Using DropBox:'#13#10'Make sure to change the "dl=0" a' +
                   't the end of the URL to "dl=1"'
-                Size.Width = 364.000000000000000000
+                Margins.Left = 5.000000000000000000
+                Size.Width = 331.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextPrompt = 'https://rustservermanager.com/maps/test.map'
@@ -1077,7 +1080,7 @@ object frmMain: TfrmMain
                   Size.Height = 25.000000000000000000
                   Size.PlatformDefault = False
                   StyleLookup = 'tintedbutton'
-                  TabOrder = 2
+                  TabOrder = 3
                   Text = 'Edit Emojis'
                   TextSettings.Font.StyleExt = {00060000000000000004000000}
                   TintColor = xFFBC6700
@@ -2415,7 +2418,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Server Config'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstServerInstaller: TListBoxItem
@@ -2504,7 +2507,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Server Installer'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstPlayerManager: TListBoxItem
@@ -2570,7 +2573,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Player Manager'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
     end
