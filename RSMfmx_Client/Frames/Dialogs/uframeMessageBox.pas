@@ -22,8 +22,9 @@ type
     { Private declarations }
   public
     { Public declarations }
-    class procedure ShowMessageBox(const aMessage, aTitle: string; const aContainer: TFmxObject);
   end;
+
+procedure ShowMessageBox(const aMessage, aTitle: string; const aContainer: TFmxObject);
 
 implementation
 
@@ -53,7 +54,7 @@ begin
   rctnglMain.Height := caclHeight;
 end;
 
-class procedure TframeMessageBox.ShowMessageBox(const aMessage, aTitle: string; const aContainer: TFmxObject);
+procedure ShowMessageBox(const aMessage, aTitle: string; const aContainer: TFmxObject);
 begin
   var aFrame := TframeMessageBox.Create(aContainer);
   aFrame.Parent := aContainer;
