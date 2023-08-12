@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Objects, FMX.Controls.Presentation, FMX.Layouts;
+  FMX.Objects, FMX.Controls.Presentation, FMX.Layouts, FMX.Clipboard,
+  FMX.Platform;
 
 type
   TframeMessageBox = class(TFrame)
@@ -17,6 +18,7 @@ type
     lblMessageValue: TLabel;
     btnCopyMessage: TSpeedButton;
     procedure btnCloseClick(Sender: TObject);
+    procedure btnCopyMessageClick(Sender: TObject);
     procedure OnTextResized(Sender: TObject);
   private
     { Private declarations }
@@ -33,6 +35,20 @@ implementation
 procedure TframeMessageBox.btnCloseClick(Sender: TObject);
 begin
   Self.Free;
+end;
+
+procedure TframeMessageBox.btnCopyMessageClick(Sender: TObject);
+begin
+ // Check if platform supports copying
+  if TPlatformServices.Current.SupportsPlatformService(IFMXClipboardService) then
+  begin
+    var clp := IFMXClipboardService(TPlatformServices.Current.GetPlatformService(IFMXClipboardService));
+    clp.SetClipboard(lblMessageValue.Text);
+  end
+  else
+  begin
+    ShowMessageBox('Platform does not support copying.', 'Copy Failure', Self);
+  end;
 end;
 
 procedure TframeMessageBox.OnTextResized(Sender: TObject);

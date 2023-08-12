@@ -65,6 +65,7 @@ object frameMessageBox: TframeMessageBox
         Size.PlatformDefault = False
         StyleLookup = 'pagecurltoolbutton'
         Text = 'Copy'
+        OnClick = btnCopyMessageClick
       end
     end
     object lblMessageValue: TLabel
