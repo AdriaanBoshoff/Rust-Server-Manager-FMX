@@ -104,6 +104,34 @@ begin
 
   // Save Config again after loading to populate new properties in the file.
   Self.SaveConfig;
+
+  // Check Params
+  for var I := 1 to System.ParamCount do
+  begin
+    var param := System.ParamStr(I).ToLower;
+
+    // Reset
+    if param = '-reset' then
+    begin
+      // Window Pos
+      if System.ParamStr(I + 1).ToLower = 'windowpos' then
+      begin
+        Self.UI.windowPosX := 0;
+        Self.UI.windowPosY := 0;
+
+        Self.SaveConfig;
+      end;
+
+      // Window Size
+      if System.ParamStr(I + 1).ToLower = 'windowsize' then
+      begin
+        Self.UI.windowHeight := 600;
+        Self.UI.windowWidth := 1000;
+
+        Self.SaveConfig;
+      end;
+    end;
+  end;
 end;
 
 procedure TRSMConfig.SaveConfig;
