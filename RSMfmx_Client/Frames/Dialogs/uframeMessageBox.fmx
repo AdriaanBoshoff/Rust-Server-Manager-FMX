@@ -27,9 +27,9 @@ object frameMessageBox: TframeMessageBox
       Margins.Right = 10.000000000000000000
       Position.X = 10.000000000000000000
       Size.Width = 266.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.Size = 16.000000000000000000
       TextSettings.Font.StyleExt = {04060000000000000004000000}
       TextSettings.HorzAlign = Center
       Text = 'MESSAGE HEADER'
@@ -75,7 +75,7 @@ object frameMessageBox: TframeMessageBox
       Margins.Top = 10.000000000000000000
       Margins.Right = 10.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 34.000000000000000000
+      Position.Y = 32.000000000000000000
       Size.Width = 266.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
