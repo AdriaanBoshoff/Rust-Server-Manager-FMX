@@ -113,6 +113,10 @@ begin
     // Reset
     if param = '-reset' then
     begin
+      // Skip if there's no options supplied
+      if I + 1 > System.ParamCount then
+        Continue;
+
       var paramOption := System.ParamStr(I + 1).ToLower;
 
       // Window Pos
