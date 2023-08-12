@@ -1628,6 +1628,7 @@ object frmMain: TfrmMain
             TextSettings.Font.Size = 14.000000000000000000
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TintColor = claDarkgreen
+            OnClick = btnInstallServerClick
           end
           object btnVerifyServerFiles: TButton
             Align = Top
@@ -1700,6 +1701,16 @@ object frmMain: TfrmMain
             TextSettings.HorzAlign = Center
             Text = 'Server Installer Events'
             TabOrder = 0
+          end
+          object vrtscrlbxServerInstallerEventsItems: TVertScrollBox
+            Align = Client
+            Margins.Bottom = 10.000000000000000000
+            Size.Width = 485.000000000000000000
+            Size.Height = 448.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Viewport.Width = 485.000000000000000000
+            Viewport.Height = 448.000000000000000000
           end
         end
       end

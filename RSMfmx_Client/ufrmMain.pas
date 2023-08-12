@@ -225,9 +225,11 @@ type
     btnInstallServer: TButton;
     btnVerifyServerFiles: TButton;
     btnCleanInstallServer: TButton;
+    vrtscrlbxServerInstallerEventsItems: TVertScrollBox;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
+    procedure btnInstallServerClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -270,7 +272,7 @@ var
 implementation
 
 uses
-  uServerConfig, RSM.Config, uframeMessageBox;
+  uServerConfig, RSM.Config, uframeMessageBox, uframeServerInstallerEventItem;
 
 {$R *.fmx}
 
@@ -299,6 +301,11 @@ procedure TfrmMain.btnGenerateMapSeedClick(Sender: TObject);
 begin
   Randomize;
   nmbrbxMapSeed.Value := RandomRange(1, 99999999);
+end;
+
+procedure TfrmMain.btnInstallServerClick(Sender: TObject);
+begin
+  TframeServerInstallerEventItem.CreateEventItem(Now, 'Installing Server', vrtscrlbxServerInstallerEventsItems);
 end;
 
 procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
