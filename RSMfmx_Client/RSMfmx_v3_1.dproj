@@ -319,6 +319,7 @@
             <Form>frmServerInstaller</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Units\uSteamCMD.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

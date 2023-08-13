@@ -1,0 +1,113 @@
+unit uSteamCMD;
+
+interface
+
+uses
+  FMX.Forms;
+
+type
+  TSteamCMD = class
+  public
+  { Public Variables }
+    FSTEAMCMD_PATH: string;
+  public
+  { Public Methods }
+    constructor Create(const SteamCMDPath: string);
+    procedure DownloadSteamCMD;
+    procedure InstallApp(const AppID: Integer; const InstallDir: string; const QuitSteamCMDAfterComplete: Boolean; const VerifyFiles: Boolean = False; const Beta: string = 'none');
+  end;
+
+var
+  steamCMD: TSteamCMD;
+
+implementation
+
+uses
+  Rest.Client, System.Classes, System.SysUtils, System.IOUtils, System.Zip,
+  Winapi.Windows;
+
+{ TSteamCMD }
+
+constructor TSteamCMD.Create(const SteamCMDPath: string);
+begin
+  FSTEAMCMD_PATH := SteamCMDPath;
+  ForceDirectories(FSTEAMCMD_PATH);
+end;
+
+procedure TSteamCMD.DownloadSteamCMD;
+begin
+  if TFile.Exists(TPath.Combine(FSTEAMCMD_PATH, 'steamcmd.exe')) then
+  begin
+    Exit;
+  end;
+
+  var memStream := TMemoryStream.Create;
+  try
+    TDownloadURL.DownloadRawBytes('https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip', memStream);
+
+    memStream.SaveToFile(TPath.Combine(FSTEAMCMD_PATH, 'steamcmd.zip'));
+
+    TZipFile.ExtractZipFile(TPath.Combine(FSTEAMCMD_PATH, 'steamcmd.zip'), FSTEAMCMD_PATH);
+
+    TFile.Delete(TPath.Combine(FSTEAMCMD_PATH, 'steamcmd.zip'));
+  finally
+    memStream.Free;
+  end;
+end;
+
+procedure TSteamCMD.InstallApp(const AppID: Integer; const InstallDir: string; const QuitSteamCMDAfterComplete: Boolean; const VerifyFiles: Boolean; const Beta: string);
+var
+  StartupInfo: TStartupInfo;
+  ProcessInfo: TProcessInformation;
+begin
+  var steamcmd_file := TPath.Combine(FSTEAMCMD_PATH, 'steamcmd.exe');
+
+  ZeroMemory(@StartupInfo, SizeOf(StartupInfo));
+  ZeroMemory(@ProcessInfo, SizeOf(ProcessInfo));
+
+  StartupInfo.lpTitle := PChar('RSMv3 - SteamCMD');
+  StartupInfo.cb := SizeOf(StartupInfo);
+
+  var startStr := steamcmd_file;
+  startStr := startStr + Format(' +force_install_dir "%s"', [InstallDir]);
+  startStr := startStr + Format(' +login %s', ['anonymous']);
+  startStr := startStr + Format(' +app_update %d', [AppID]);
+
+  if not Beta.Trim.IsEmpty then
+    startStr := startStr + ' -beta ' + Beta;
+
+  if VerifyFiles then
+    startStr := startStr + ' -validate';
+
+  if QuitSteamCMDAfterComplete then
+    startStr := startStr + ' +quit';
+
+  if not CreateProcessW(nil, PWideChar(startStr), nil, nil, False, 0, nil, PWideChar(ExtractFilePath(ParamStr(0))), StartupInfo, ProcessInfo) then
+  begin
+    RaiseLastOSError;
+  end
+  else
+  begin
+    while WaitForSingleObject(ProcessInfo.hProcess, 10) > 0 do
+    begin
+      Application.ProcessMessages;
+    end;
+
+    CloseHandle(ProcessInfo.hThread);
+    CloseHandle(ProcessInfo.hProcess);
+  end;
+end;
+
+initialization
+begin
+  steamCMD := TSteamCMD.Create(TPath.Combine(ExtractFilePath(ParamStr(0)), 'steamcmd'));
+end;
+
+
+finalization
+begin
+  steamCMD.Free;
+end;
+
+end.
+

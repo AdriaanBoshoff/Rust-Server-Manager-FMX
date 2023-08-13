@@ -12,7 +12,8 @@ uses
   uframeMessageBox in 'Frames\Dialogs\uframeMessageBox.pas' {frameMessageBox: TFrame},
   udmRSMAPI in 'DataModules\udmRSMAPI.pas' {dmRSMApi: TDataModule},
   RSM.Config in 'Units\Configs\RSMConfig\RSM.Config.pas',
-  ufrmServerInstaller in 'Modules\ServerInstaller\ufrmServerInstaller.pas' {frmServerInstaller};
+  ufrmServerInstaller in 'Modules\ServerInstaller\ufrmServerInstaller.pas' {frmServerInstaller},
+  uSteamCMD in 'Units\uSteamCMD.pas';
 
 {$R *.res}
 
