@@ -10,7 +10,7 @@ uses
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
   FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
   Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading,
-  FMX.Clipboard, FMX.Platform, uframeServerInstallerEventItem;
+  FMX.Clipboard, FMX.Platform;
 
 type
   TfrmMain = class(TForm)
@@ -212,28 +212,9 @@ type
     rctnglOfflinePlayersHeader: TRectangle;
     edtSearchOfflinePlayers: TEdit;
     btnRefreshOfflinePlayers: TSpeedButton;
-    rctnglServerInstallerControls: TRectangle;
-    lblServerInstallerControlsHeader: TLabel;
-    lytServerInstallerBranch: TLayout;
-    lblServerInstallerBranchHeader: TLabel;
-    cbbServerInstallerBranch: TComboBox;
-    lytAutoQuitSteamCMD: TLayout;
-    swtchAutoQuitSteamCMD: TSwitch;
-    lblAutoQuitSteamCMDHeader: TLabel;
-    rctnglServerInstallerEvents: TRectangle;
-    lblServerInstallerEvents: TLabel;
-    btnInstallServer: TButton;
-    btnVerifyServerFiles: TButton;
-    btnCleanInstallServer: TButton;
-    vrtscrlbxServerInstallerEventsItems: TVertScrollBox;
-    lstServerBranchMain: TListBoxItem;
-    lstServerBranchStaging: TListBoxItem;
-    lstServerBranchAux01: TListBoxItem;
-    lstServerBranchAux02: TListBoxItem;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
-    procedure btnInstallServerClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -260,17 +241,13 @@ type
     procedure PopulateServerConfigUI;
     // Startup
     procedure ModifyUIForRelease;
-    procedure CreateDataModules;
     procedure CreateClasses;
     procedure InitVariables;
+    procedure CreateModules;
     // Shutdown
     procedure FreeClasses;
     procedure HideServerInfo;
     procedure ShowServerInfo;
-    // Server Installer
-    function AddServerInstallerEventItem(const DTM: TDateTime; const aMessage: string): TframeServerInstallerEventItem;
-    procedure PopulateServerInstallerEvents;
-    function InstallSteamCMD: boolean;
   public
     { Public declarations }
   end;
@@ -281,19 +258,11 @@ var
 implementation
 
 uses
-  uServerConfig, RSM.Config, uframeMessageBox, udmDB_ServerInstallerEvents,
-  Rest.Client, System.Zip;
+  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller;
 
 {$R *.fmx}
 
 { TfrmMain }
-
-function TfrmMain.AddServerInstallerEventItem(const DTM: TDateTime; const aMessage: string): TframeServerInstallerEventItem;
-begin
-  dmDB_ServerInstallerEvents.AddEvent(DTM, aMessage);
-
-  Result := TframeServerInstallerEventItem.CreateEventItem(DTM, aMessage, vrtscrlbxServerInstallerEventsItems);
-end;
 
 procedure TfrmMain.BringToForeground;
 begin
@@ -318,16 +287,6 @@ procedure TfrmMain.btnGenerateMapSeedClick(Sender: TObject);
 begin
   Randomize;
   nmbrbxMapSeed.Value := RandomRange(1, 99999999);
-end;
-
-procedure TfrmMain.btnInstallServerClick(Sender: TObject);
-begin
-  AddServerInstallerEventItem(Now, 'Install / Update Server');
-
-  if InstallSteamCMD then
-  begin
-    // Do something
-  end;
 end;
 
 procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
@@ -448,21 +407,20 @@ begin
   Self.Caption := 'RSMfmx v3.1';
   {$ENDIF}
 
-  // Data Modules
-  CreateDataModules;
-
   // Classes
   CreateClasses;
 
   // Variables
   InitVariables;
 
+  // Modules
+  CreateModules;
+
   // Change UI Layout for redistribution
   ModifyUIForRelease;
   ResetServerInfoValues;
   PopulateServerConfigUI;
   LoadRSMUIConfig;
-  PopulateServerInstallerEvents;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -487,10 +445,12 @@ begin
   rsmConfig := TRSMConfig.Create;
 end;
 
-procedure TfrmMain.CreateDataModules;
+procedure TfrmMain.CreateModules;
 begin
-  // Server Installer Events DB
-  dmDB_ServerInstallerEvents := TdmDB_ServerInstallerEvents.Create(Self);
+  // Server Installer Module
+  frmServerInstaller := TfrmServerInstaller.Create(tbtmServerInstaller);
+  while frmServerInstaller.ChildrenCount > 0 do
+    frmServerInstaller.Children[0].Parent := tbtmServerInstaller;
 end;
 
 procedure TfrmMain.FreeClasses;
@@ -519,61 +479,6 @@ procedure TfrmMain.InitVariables;
 begin
   // Default Value
   Self.FServerInfoExpandAfter := False;
-end;
-
-function TfrmMain.InstallSteamCMD: boolean;
-begin
-  Result := False;
-
-  // Check if steamcmd exists
-  if TFile.Exists(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.exe') then
-  begin
-    Result := True;
-    Exit;
-  end;
-
-  // Create steamcmd folder
-  ForceDirectories(ExtractFilePath(ParamStr(0)) + 'steamcmd');
-
-  // Download SteamCMD
-  var memStream := TMemoryStream.Create;
-  try
-    AddServerInstallerEventItem(Now, 'Downloading SteamCMD...');
-
-    try
-      // Download Zip file
-      TDownloadURL.DownloadRawBytes('https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip', memStream);
-      // Save to drive
-      memStream.SaveToFile(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.zip');
-
-      // Check if downloaded zip is valid
-      if TZipFile.IsValid(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.zip') then
-      begin
-        // Open and Extract Zip
-        var zip := TZipFile.Create;
-        try
-          zip.Open(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.zip', zmRead);
-
-          AddServerInstallerEventItem(Now, 'Extracting SteamCMD...');
-          zip.ExtractAll(ExtractFilePath(ParamStr(0)) + 'steamcmd');
-
-          Result := True;
-        finally
-          zip.Free;
-        end;
-
-        AddServerInstallerEventItem(Now, 'Done. Deleting zip file.');
-        TFile.Delete(ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.zip');
-      end;
-    except
-      on E: Exception do
-      begin
-        AddServerInstallerEventItem(Now, 'ERROR - ' + E.ClassName + ': ' + E.Message);
-      end;
-    end;
-  finally
-    memStream.Free;
-  end;
 end;
 
 procedure TfrmMain.lblAppVersionValueResized(Sender: TObject);
@@ -665,15 +570,6 @@ begin
   edtAppIPValue.Text := serverConfig.Networking.AppIP;
   nmbrbxAppPortValue.Value := serverConfig.Networking.AppPort;
   edtAppPublicIPValue.Text := serverConfig.Networking.AppPublicIP;
-end;
-
-procedure TfrmMain.PopulateServerInstallerEvents;
-begin
-  for var aEvent in dmDB_ServerInstallerEvents.GetAllEvents do
-  begin
-    var aItem := TframeServerInstallerEventItem.CreateEventItem(aEvent.DTM, aEvent.EventMessage, vrtscrlbxServerInstallerEventsItems);
-    aItem.Tag := aEvent.ID;
-  end;
 end;
 
 procedure TfrmMain.ResetServerInfoValues;

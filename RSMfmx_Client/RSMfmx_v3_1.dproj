@@ -315,15 +315,9 @@
         <DCCReference Include="Units\Configs\RSMConfig\RSM.Config.pas">
             <ContainerId>ConfigurationCompiler</ContainerId>
         </DCCReference>
-        <DCCReference Include="Frames\Items\ServerInstaller\uframeServerInstallerEventItem.pas">
-            <Form>frameServerInstallerEventItem</Form>
+        <DCCReference Include="Modules\ServerInstaller\ufrmServerInstaller.pas">
+            <Form>frmServerInstaller</Form>
             <FormType>fmx</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="DataModules\udmDB_ServerInstallerEvents.pas">
-            <Form>dmDB_ServerInstallerEvents</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

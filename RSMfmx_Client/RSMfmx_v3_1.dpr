@@ -12,8 +12,7 @@ uses
   uframeMessageBox in 'Frames\Dialogs\uframeMessageBox.pas' {frameMessageBox: TFrame},
   udmRSMAPI in 'DataModules\udmRSMAPI.pas' {dmRSMApi: TDataModule},
   RSM.Config in 'Units\Configs\RSMConfig\RSM.Config.pas',
-  uframeServerInstallerEventItem in 'Frames\Items\ServerInstaller\uframeServerInstallerEventItem.pas' {frameServerInstallerEventItem: TFrame},
-  udmDB_ServerInstallerEvents in 'DataModules\udmDB_ServerInstallerEvents.pas' {dmDB_ServerInstallerEvents: TDataModule};
+  ufrmServerInstaller in 'Modules\ServerInstaller\ufrmServerInstaller.pas' {frmServerInstaller};
 
 {$R *.res}
 
