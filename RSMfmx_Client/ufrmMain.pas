@@ -425,12 +425,20 @@ end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
-  // Save Window details
-  rsmConfig.UI.windowPosX := Self.Left;
-  rsmConfig.UI.windowPosY := Self.Top;
-  rsmConfig.UI.windowHeight := Self.Height;
-  rsmConfig.UI.windowWidth := Self.Width;
-  rsmConfig.SaveConfig;
+  // Dont save UI pos when maximized
+  if not (Self.WindowState = TWindowState.wsMaximized) then
+  begin
+    // Save Window size
+    rsmConfig.UI.windowHeight := Self.Height;
+    rsmConfig.UI.windowWidth := Self.Width;
+
+    // Save Window pos
+    rsmConfig.UI.windowPosX := Self.Left;
+    rsmConfig.UI.windowPosY := Self.Top;
+
+    // Save RSM Config
+    rsmConfig.SaveConfig;
+  end;
 
   // Classes
   FreeClasses;
