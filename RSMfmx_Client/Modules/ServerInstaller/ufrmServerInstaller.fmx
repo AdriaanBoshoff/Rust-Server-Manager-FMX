@@ -1,0 +1,245 @@
+object frmServerInstaller: TfrmServerInstaller
+  Left = 0
+  Top = 0
+  Caption = 'Server Installer'
+  ClientHeight = 530
+  ClientWidth = 797
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object rctnglServerInstallerControls: TRectangle
+    Align = Left
+    Fill.Color = xFF1F222A
+    Padding.Left = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 520.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claNull
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object lblServerInstallerControlsHeader: TLabel
+      Align = MostTop
+      StyledSettings = [Family, FontColor]
+      Margins.Top = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 180.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {04060000000000000004000000}
+      TextSettings.HorzAlign = Center
+      Text = 'Installer Options'
+      TabOrder = 0
+    end
+    object lytServerInstallerBranch: TLayout
+      Align = Top
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 180.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object lblServerInstallerBranchHeader: TLabel
+        Align = Left
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Size.Width = 41.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'Branch:'
+        TabOrder = 0
+      end
+      object cbbServerInstallerBranch: TComboBox
+        Align = Client
+        CanFocus = False
+        DisableFocusEffect = True
+        Hint = 'Version of the server that will be installed'
+        ItemIndex = 0
+        Margins.Left = 5.000000000000000000
+        Size.Width = 134.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lstServerBranchMain: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Main'
+        end
+        object lstServerBranchStaging: TListBoxItem
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Staging'
+        end
+        object lstServerBranchAux01: TListBoxItem
+          TabOrder = 2
+          Text = 'Aux01'
+        end
+        object lstServerBranchAux02: TListBoxItem
+          TabOrder = 3
+          Text = 'Aux02'
+        end
+      end
+    end
+    object lytAutoQuitSteamCMD: TLayout
+      Align = Top
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 67.000000000000000000
+      Size.Width = 180.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object swtchAutoQuitSteamCMD: TSwitch
+        Align = Left
+        Hint = 
+          'Automatically close the SteamCMD window after steamcmd finished ' +
+          'running commands'
+        IsChecked = True
+        Position.Y = 2.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+      object lblAutoQuitSteamCMDHeader: TLabel
+        Align = Left
+        AutoSize = True
+        Margins.Left = 5.000000000000000000
+        Position.X = 45.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.WordWrap = False
+        Text = 'Auto Close SteamCMD'
+        TabOrder = 1
+      end
+    end
+    object btnInstallServer: TButton
+      Align = Top
+      StyledSettings = [Family, FontColor]
+      Hint = 
+        'Install or Update your server files to the selected branch.'#13#10#13#10'N' +
+        'B: Modding frameworks like uMod / Oxide needs to be reinstalled ' +
+        'after updating your server.'
+      Margins.Top = 50.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 142.000000000000000000
+      Size.Width = 180.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tintedbutton'
+      TabOrder = 5
+      Text = 'Install / Update Server'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TintColor = claDarkgreen
+      OnClick = btnInstallServerClick
+    end
+    object btnVerifyServerFiles: TButton
+      Align = Top
+      StyledSettings = [Family, FontColor]
+      Hint = 
+        'Verify your server files.'#13#10#13#10'NB: Modding frameworks like uMod / ' +
+        'Oxide needs to be reinstalled after verifying your server files.'
+      Margins.Top = 25.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 217.000000000000000000
+      Size.Width = 180.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tintedbutton'
+      TabOrder = 4
+      Text = 'Verify Server Files'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TintColor = xFFB36200
+      OnClick = btnVerifyServerFilesClick
+    end
+    object btnCleanInstallServer: TButton
+      Align = Bottom
+      StyledSettings = [Family, FontColor]
+      Hint = 
+        'Perform a clean server install. This will delete all server file' +
+        's and reinstall them. SteamCMD will also be reinstalled.'#13#10#13#10'Your' +
+        ' ".\server", ".\oxide" and ".\carbonmod" folders will be ignored' +
+        ' to avoid data loss.'#13#10#13#10'NB: Modding frameworks like uMod / Oxide' +
+        ' needs to be reinstalled after performing a clean install.'
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 460.000000000000000000
+      Size.Width = 180.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tintedbutton'
+      TabOrder = 3
+      Text = 'Perform Clean Install'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TintColor = xFFAA0000
+      OnClick = btnCleanInstallServerClick
+    end
+  end
+  object rctnglServerInstallerLogBG: TRectangle
+    Align = Client
+    Fill.Color = xFF1F222A
+    Padding.Left = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 10.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 582.000000000000000000
+    Size.Height = 520.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claNull
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object lblServerInstallerLogHeader: TLabel
+      Align = MostTop
+      StyledSettings = [Family, FontColor]
+      Margins.Top = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 562.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {04060000000000000004000000}
+      TextSettings.HorzAlign = Center
+      Text = 'Installer Log'
+      TabOrder = 0
+    end
+    object mmoServerInstallerLog: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      ReadOnly = True
+      Align = Client
+      Margins.Top = 10.000000000000000000
+      Size.Width = 562.000000000000000000
+      Size.Height = 478.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Viewport.Width = 550.000000000000000000
+      Viewport.Height = 470.000000000000000000
+    end
+  end
+end
