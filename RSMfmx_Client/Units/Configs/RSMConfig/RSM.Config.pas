@@ -20,6 +20,7 @@ type
         windowHeight: Single;
         windowWidth: Single;
         ShowServerInfoPanel: Boolean; // Saved on btnShowHideServerInfoClick
+        serverInstallerBranchIndex: Integer; // Item index for server installer branch
       end;
   private
       { Private Variables }
@@ -60,6 +61,7 @@ begin
   Self.UI.windowHeight := 600;
   Self.UI.windowWidth := 1000;
   Self.UI.ShowServerInfoPanel := True;
+  Self.UI.serverInstallerBranchIndex := 0;
 
   // Setup Methods
   Self.FConfigFile := Self.GetConfigFile;

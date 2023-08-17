@@ -73,6 +73,7 @@ object frmServerInstaller: TfrmServerInstaller
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
+        OnChange = cbbServerInstallerBranchChange
         object lstServerBranchMain: TListBoxItem
           IsSelected = True
           Size.Width = 19.000000000000000000

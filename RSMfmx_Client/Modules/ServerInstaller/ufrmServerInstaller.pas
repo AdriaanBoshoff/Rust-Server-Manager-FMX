@@ -31,6 +31,7 @@ type
     procedure btnCleanInstallServerClick(Sender: TObject);
     procedure btnInstallServerClick(Sender: TObject);
     procedure btnVerifyServerFilesClick(Sender: TObject);
+    procedure cbbServerInstallerBranchChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -53,7 +54,7 @@ var
 implementation
 
 uses
-  System.Zip, Rest.Client, uSteamCMD, uframeMessageBox;
+  System.Zip, Rest.Client, uSteamCMD, uframeMessageBox, RSM.Config;
 
 {$R *.fmx}
 
@@ -64,64 +65,80 @@ end;
 
 procedure TfrmServerInstaller.btnCleanInstallServerClick(Sender: TObject);
 begin
-  AddLog('Performing Clean Install...');
+  if FIsInstallingServer then
+  begin
+    ShowMessageBox('Server is currently busy installing!', 'SteamCMD busy', Self.Owner as TFmxObject);
+    Exit;
+  end;
 
-  AddLog('Deleting Installed Files.');
+  try
+    AddLog('Performing Clean Install...');
 
-  // Bundles Folder
-  if TDirectory.Exists(FServerInstallPath + 'Bundles') then
-    TDirectory.Delete(FServerInstallPath + 'Bundles', True);
+    AddLog('Deleting Installed Files.');
 
-  // cfg Folder
-  if TDirectory.Exists(FServerInstallPath + 'cfg') then
-    TDirectory.Delete(FServerInstallPath + 'cfg', True);
+    // Bundles Folder
+    if TDirectory.Exists(FServerInstallPath + 'Bundles') then
+      TDirectory.Delete(FServerInstallPath + 'Bundles', True);
 
-  // MonoBleedingEdge Folder
-  if TDirectory.Exists(FServerInstallPath + 'MonoBleedingEdge') then
-    TDirectory.Delete(FServerInstallPath + 'MonoBleedingEdge', True);
+    // cfg Folder
+    if TDirectory.Exists(FServerInstallPath + 'cfg') then
+      TDirectory.Delete(FServerInstallPath + 'cfg', True);
 
-  // RustDedicated_Data Folder
-  if TDirectory.Exists(FServerInstallPath + 'RustDedicated_Data') then
-    TDirectory.Delete(FServerInstallPath + 'RustDedicated_Data', True);
+    // MonoBleedingEdge Folder
+    if TDirectory.Exists(FServerInstallPath + 'MonoBleedingEdge') then
+      TDirectory.Delete(FServerInstallPath + 'MonoBleedingEdge', True);
 
-  // steamapps Folder
-  if TDirectory.Exists(FServerInstallPath + 'steamapps') then
-    TDirectory.Delete(FServerInstallPath + 'steamapps', True);
+    // RustDedicated_Data Folder
+    if TDirectory.Exists(FServerInstallPath + 'RustDedicated_Data') then
+      TDirectory.Delete(FServerInstallPath + 'RustDedicated_Data', True);
 
-  // steamcmd Folder
-  if TDirectory.Exists(FServerInstallPath + 'steamcmd') then
-    TDirectory.Delete(FServerInstallPath + 'steamcmd', True);
+    // steamapps Folder
+    if TDirectory.Exists(FServerInstallPath + 'steamapps') then
+      TDirectory.Delete(FServerInstallPath + 'steamapps', True);
 
-  // RustDedicated.exe file
-  if TFile.Exists(FServerInstallPath + 'RustDedicated.exe') then
-    TFile.Delete(FServerInstallPath + 'RustDedicated.exe');
+    // steamcmd Folder
+    if TDirectory.Exists(FServerInstallPath + 'steamcmd') then
+      TDirectory.Delete(FServerInstallPath + 'steamcmd', True);
 
-  // steam_api64.dll file
-  if TFile.Exists(FServerInstallPath + 'steam_api64.dll') then
-    TFile.Delete(FServerInstallPath + 'steam_api64.dll');
+    // RustDedicated.exe file
+    if TFile.Exists(FServerInstallPath + 'RustDedicated.exe') then
+      TFile.Delete(FServerInstallPath + 'RustDedicated.exe');
 
-  // steamclient64.dll file
-  if TFile.Exists(FServerInstallPath + 'steamclient64.dll') then
-    TFile.Delete(FServerInstallPath + 'steamclient64.dll');
+    // steam_api64.dll file
+    if TFile.Exists(FServerInstallPath + 'steam_api64.dll') then
+      TFile.Delete(FServerInstallPath + 'steam_api64.dll');
 
-  // tier0_s64.dll file
-  if TFile.Exists(FServerInstallPath + 'tier0_s64.dll') then
-    TFile.Delete(FServerInstallPath + 'tier0_s64.dll');
+    // steamclient64.dll file
+    if TFile.Exists(FServerInstallPath + 'steamclient64.dll') then
+      TFile.Delete(FServerInstallPath + 'steamclient64.dll');
 
-  // UnityCrashHandler64.exe file
-  if TFile.Exists(FServerInstallPath + 'UnityCrashHandler64.exe') then
-    TFile.Delete(FServerInstallPath + 'UnityCrashHandler64.exe');
+    // tier0_s64.dll file
+    if TFile.Exists(FServerInstallPath + 'tier0_s64.dll') then
+      TFile.Delete(FServerInstallPath + 'tier0_s64.dll');
 
-  // UnityPlayer.dll file
-  if TFile.Exists(FServerInstallPath + 'UnityPlayer.dll') then
-    TFile.Delete(FServerInstallPath + 'UnityPlayer.dll');
+    // UnityCrashHandler64.exe file
+    if TFile.Exists(FServerInstallPath + 'UnityCrashHandler64.exe') then
+      TFile.Delete(FServerInstallPath + 'UnityCrashHandler64.exe');
 
-  // vstdlib_s64.dllfile
-  if TFile.Exists(FServerInstallPath + 'vstdlib_s64.dll') then
-    TFile.Delete(FServerInstallPath + 'vstdlib_s64.dll');
+    // UnityPlayer.dll file
+    if TFile.Exists(FServerInstallPath + 'UnityPlayer.dll') then
+      TFile.Delete(FServerInstallPath + 'UnityPlayer.dll');
 
-  // Install Server Files
-  btnInstallServerClick(btnCleanInstallServer);
+    // vstdlib_s64.dllfile
+    if TFile.Exists(FServerInstallPath + 'vstdlib_s64.dll') then
+      TFile.Delete(FServerInstallPath + 'vstdlib_s64.dll');
+
+    // Install Server Files
+    btnInstallServerClick(btnCleanInstallServer);
+
+    FIsInstallingServer := False;
+  except
+    on E: Exception do
+    begin
+      FIsInstallingServer := False;
+      AddLog('ERROR - ' + E.ClassName + ': ' + E.Message);
+    end;
+  end;
 end;
 
 procedure TfrmServerInstaller.btnInstallServerClick(Sender: TObject);
@@ -224,6 +241,12 @@ begin
   end;
 end;
 
+procedure TfrmServerInstaller.cbbServerInstallerBranchChange(Sender: TObject);
+begin
+  rsmConfig.UI.serverInstallerBranchIndex := cbbServerInstallerBranch.ItemIndex;
+  rsmConfig.SaveConfig;
+end;
+
 procedure TfrmServerInstaller.FormCreate(Sender: TObject);
 begin
   // Vars
@@ -234,6 +257,9 @@ begin
   Self.FSteamCMDFilePath := ExtractFilePath(ParamStr(0)) + 'steamcmd\steamcmd.exe';
   // SteamCMD Zip Path
   Self.FSteamCMDZipPath := ExtractFilePath(FSteamCMDFilePath) + 'steamcmd.zip';
+
+  // Server Branch
+  cbbServerInstallerBranch.ItemIndex := rsmConfig.UI.serverInstallerBranchIndex;
 end;
 
 procedure TfrmServerInstaller.InstallSteamCMD;
