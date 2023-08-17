@@ -204,6 +204,7 @@ type
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
+    procedure btnStartServerClick(Sender: TObject);
     procedure cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure edtCustomMapURLValueEnter(Sender: TObject);
@@ -245,7 +246,7 @@ var
 implementation
 
 uses
-  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller;
+  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller, uWinUtils;
 
 {$R *.fmx}
 
@@ -341,6 +342,51 @@ begin
   begin
     HideServerInfo;
     rsmConfig.UI.ShowServerInfoPanel := False;
+  end;
+end;
+
+procedure TfrmMain.btnStartServerClick(Sender: TObject);
+begin
+  var rustDedicatedExe := ExtractFilePath(ParamStr(0)) + 'RustDedicated.exe';
+
+  // Check if server is installed
+  if not TFile.Exists(rustDedicatedExe) then
+  begin
+    ShowMessageBox('Server not installed!', 'Start Failure', Self);
+    Exit;
+  end;
+
+  // Build Params
+  var slParams := TStringList.Create;
+  try
+    // Console Mode
+    slParams.Add('-batchmode -nographics -silent-crashes ^');
+
+    // Server Identity
+    slParams.Add('+server.identity "rsm" ^');
+
+    // TEMP
+    slParams.Add('+server.level "CraggyIsland" ^');
+
+    // Networking - Server
+    slParams.Add('+server.ip ' + serverConfig.Networking.ServerIP + ' ^');
+    slParams.Add('+server.port ' + serverConfig.Networking.ServerPort.ToString + ' ^');
+    slParams.Add('+server.queryport ' + serverConfig.Networking.ServerQueryPort.ToString + ' ^');
+
+    // Networking - RCON
+    slParams.Add('+rcon.ip ' + serverConfig.Networking.RconIP + ' ^');
+    slParams.Add('+rcon.port ' + serverConfig.Networking.RconPort.ToString + ' ^');
+    slParams.Add('+rcon.password ' + serverConfig.Networking.RconPassword + ' ^');
+
+    // Networking - Rust +
+    slParams.Add('+app.listenip ' + serverConfig.Networking.AppIP + ' ^');
+    slParams.Add('+app.port ' + serverConfig.Networking.AppPort.ToString + ' ^');
+    if not serverConfig.Networking.AppPublicIP.Trim.IsEmpty then // Dont add if empty
+      slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
+
+    CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False)
+  finally
+    slParams.Free;
   end;
 end;
 

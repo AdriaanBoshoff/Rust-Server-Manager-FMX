@@ -140,7 +140,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 3
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -266,6 +266,7 @@ object frmMain: TfrmMain
             Text = 'Start Server'
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TintColor = claGreen
+            OnClick = btnStartServerClick
           end
           object btnStopServer: TButton
             Align = Top
@@ -446,7 +447,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1515,7 +1516,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 103.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
