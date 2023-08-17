@@ -320,6 +320,7 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Units\uSteamCMD.pas"/>
+        <DCCReference Include="uWinUtils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

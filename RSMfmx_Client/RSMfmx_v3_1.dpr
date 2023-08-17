@@ -13,7 +13,8 @@ uses
   udmRSMAPI in 'DataModules\udmRSMAPI.pas' {dmRSMApi: TDataModule},
   RSM.Config in 'Units\Configs\RSMConfig\RSM.Config.pas',
   ufrmServerInstaller in 'Modules\ServerInstaller\ufrmServerInstaller.pas' {frmServerInstaller},
-  uSteamCMD in 'Units\uSteamCMD.pas';
+  uSteamCMD in 'Units\uSteamCMD.pas',
+  uWinUtils in 'uWinUtils.pas';
 
 {$R *.res}
 
