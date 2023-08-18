@@ -366,6 +366,13 @@ begin
     Exit;
   end;
 
+  // Check if Server is running
+  if serverProcess.isRunning then
+  begin
+    ShowMessageBox('Server is already running with PID: ' + serverProcess.PID.ToString, 'Start Failure', Self);
+    Exit;
+  end;
+
   // Build Params
   var slParams := TStringList.Create;
   try
@@ -674,7 +681,9 @@ begin
   if serverProcess.PID = -1 then
     Exit;
 
-  // Set Running state
+  { Set Running state }
+
+  // Labels
   var isServerRunning := serverProcess.isRunning;
   if isServerRunning then
   begin
@@ -684,8 +693,13 @@ begin
   begin
     lblServerPIDValue.Text := '---';
   end;
+
+  // Server Controls
   btnStartServer.Enabled := not isServerRunning;
   btnKillServer.Enabled := isServerRunning;
+
+  // Server Config
+
 end;
 
 procedure TfrmMain.trayIconMainClick(Sender: TObject);
