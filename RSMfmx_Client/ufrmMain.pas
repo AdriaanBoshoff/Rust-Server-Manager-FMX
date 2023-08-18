@@ -218,7 +218,6 @@ type
     procedure lstNavChange(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
-    procedure trayIconMainClick(Sender: TObject);
   private
     { Private Variables }
     // Server Info auto expand
@@ -699,12 +698,15 @@ begin
   btnKillServer.Enabled := isServerRunning;
 
   // Server Config
-
-end;
-
-procedure TfrmMain.trayIconMainClick(Sender: TObject);
-begin
-  Self.BringToForeground;
+  lytServerMap1.Enabled := not isServerRunning;
+  lytServerMap2.Enabled := not isServerRunning;
+  lytServerNetworking1.Enabled := not isServerRunning;
+  lblRconIPHeader.Enabled := not isServerRunning;
+  edtRconIPValue.Enabled := not isServerRunning;
+  lblRconPortHeader.Enabled := not isServerRunning;
+  nmbrbxRconPortValue.Enabled := not isServerRunning;
+  edtRconPasswordValue.ReadOnly := isServerRunning;
+  lytServerNetworking3.Enabled := not isServerRunning;
 end;
 
 end.
