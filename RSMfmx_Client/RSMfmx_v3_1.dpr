@@ -14,7 +14,8 @@ uses
   RSM.Config in 'Units\Configs\RSMConfig\RSM.Config.pas',
   ufrmServerInstaller in 'Modules\ServerInstaller\ufrmServerInstaller.pas' {frmServerInstaller},
   uSteamCMD in 'Units\uSteamCMD.pas',
-  uWinUtils in 'uWinUtils.pas';
+  uWinUtils in 'uWinUtils.pas',
+  uServerProcess in 'Units\uServerProcess.pas';
 
 {$R *.res}
 

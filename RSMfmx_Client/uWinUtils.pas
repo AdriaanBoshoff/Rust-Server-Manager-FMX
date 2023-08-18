@@ -45,8 +45,6 @@ begin
   begin
     // Failed to create the process
     Result := -1;
-
-    RaiseLastOSError;
   end;
 end;
 

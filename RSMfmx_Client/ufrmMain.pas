@@ -199,9 +199,11 @@ type
     btnEditEmojis: TButton;
     rctnglServerConfigControls: TRectangle;
     btnSaveServerConfig: TButton;
+    tmrCheckServerRunningStatus: TTimer;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
+    procedure btnKillServerClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure btnStartServerClick(Sender: TObject);
@@ -215,9 +217,11 @@ type
     procedure lblAppVersionValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
+    procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
     procedure trayIconMainClick(Sender: TObject);
   private
     { Private Variables }
+    // Server Info auto expand
     FServerInfoExpandAfter: Boolean;
   private
     { Private declarations }
@@ -246,7 +250,8 @@ var
 implementation
 
 uses
-  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller, uWinUtils;
+  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller, uWinUtils,
+  uServerProcess;
 
 {$R *.fmx}
 
@@ -275,6 +280,11 @@ procedure TfrmMain.btnGenerateMapSeedClick(Sender: TObject);
 begin
   Randomize;
   nmbrbxMapSeed.Value := RandomRange(1, 99999999);
+end;
+
+procedure TfrmMain.btnKillServerClick(Sender: TObject);
+begin
+  serverProcess.KillProcess;
 end;
 
 procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
@@ -384,7 +394,9 @@ begin
     if not serverConfig.Networking.AppPublicIP.Trim.IsEmpty then // Dont add if empty
       slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
 
-    CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False)
+    // Save PID
+    serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
+    serverProcess.Save;
   finally
     slParams.Free;
   end;
@@ -484,6 +496,9 @@ begin
 
   // RSM Config
   rsmConfig := TRSMConfig.Create;
+
+  // Server Process
+  serverProcess := TServerProcess.Create;
 end;
 
 procedure TfrmMain.CreateModules;
@@ -501,6 +516,9 @@ begin
 
   // RSM Config
   rsmConfig.Free;
+
+  // Server Process
+  serverProcess.Free;
 end;
 
 procedure TfrmMain.HideServerInfo;
@@ -644,6 +662,30 @@ begin
 
   //  btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
   end;
+end;
+
+procedure TfrmMain.tmrCheckServerRunningStatusTimer(Sender: TObject);
+begin
+  // Check if serverProcess is assigned
+  if not Assigned(serverProcess) then
+    Exit;
+
+  // Check if PID is default value
+  if serverProcess.PID = -1 then
+    Exit;
+
+  // Set Running state
+  var isServerRunning := serverProcess.isRunning;
+  if isServerRunning then
+  begin
+    lblServerPIDValue.Text := serverProcess.PID.ToString;
+  end
+  else
+  begin
+    lblServerPIDValue.Text := '---';
+  end;
+  btnStartServer.Enabled := not isServerRunning;
+  btnKillServer.Enabled := isServerRunning;
 end;
 
 procedure TfrmMain.trayIconMainClick(Sender: TObject);
