@@ -399,6 +399,9 @@ begin
     // Server Identity
     slParams.Add('+server.identity "rsm" ^');
 
+    // Server Game Mode
+    slParams.Add('+server.gamemode "' + serverConfig.GameMode.GameModeName + '" ^');
+
     // Server Map
     if not (serverConfig.Map.MapIndex = lstMapCustom.Index) then
       slParams.Add('+server.level "' + serverConfig.Map.MapName + '" ^')
@@ -747,6 +750,7 @@ begin
   nmbrbxRconPortValue.Enabled := not isServerRunning;
   edtRconPasswordValue.ReadOnly := isServerRunning;
   lytServerNetworking3.Enabled := not isServerRunning;
+  lytServerConfigMisc2.Enabled := not isServerRunning;
 end;
 
 end.
