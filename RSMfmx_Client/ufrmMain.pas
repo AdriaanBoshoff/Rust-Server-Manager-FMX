@@ -215,6 +215,7 @@ type
     procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure btnStartServerClick(Sender: TObject);
+    procedure cbbServerGamemodeValueMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure edtCustomMapURLValueEnter(Sender: TObject);
@@ -330,6 +331,9 @@ begin
   serverConfig.GameMode.Index := cbbServerGamemodeValue.ItemIndex;
   serverConfig.GameMode.GameModeName := cbbServerGamemodeValue.Selected.ItemData.Detail;
 
+  // Server.cfg
+  serverConfig.ServerCFGText := mmoServerCFG.Text;
+
   try
     // Save Server Config
     serverConfig.SaveConfig;
@@ -425,6 +429,11 @@ begin
   finally
     slParams.Free;
   end;
+end;
+
+procedure TfrmMain.cbbServerGamemodeValueMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+begin
+  Abort;
 end;
 
 procedure TfrmMain.cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -635,7 +644,10 @@ begin
   edtAppLogoURLValue.Text := serverConfig.AppLogoURL;
 
   // Map
-  cbbServerMap.ItemIndex := serverConfig.Map.MapIndex;
+  if serverConfig.Map.MapIndex <= cbbServerMap.Count - 1 then // Prevent range index issues
+    cbbServerMap.ItemIndex := serverConfig.Map.MapIndex
+  else
+    cbbServerMap.ItemIndex := lstMapProcedural.Index;
   edtCustomMapURLValue.Text := serverConfig.Map.CustomMapURL;
   nmbrbxMapSize.Value := serverConfig.Map.MapSize;
   nmbrbxMapSeed.Value := serverConfig.Map.MapSeed;
@@ -656,7 +668,10 @@ begin
   edtAppPublicIPValue.Text := serverConfig.Networking.AppPublicIP;
 
   // GameMode
-  cbbServerGamemodeValue.ItemIndex := serverConfig.GameMode.Index;
+  if serverConfig.GameMode.Index <= cbbServerGamemodeValue.Count - 1 then // Prevent range index issues
+    cbbServerGamemodeValue.ItemIndex := serverConfig.GameMode.Index
+  else
+    cbbServerGamemodeValue.ItemIndex := lstGameModeVanilla.Index;
 
   // server.cfg
   mmoServerCFG.Text := serverConfig.ServerCFGText;

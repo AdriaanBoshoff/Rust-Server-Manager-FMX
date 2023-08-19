@@ -1082,6 +1082,7 @@ object frmMain: TfrmMain
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
+                OnMouseWheel = cbbServerGamemodeValueMouseWheel
                 object lstGameModeVanilla: TListBoxItem
                   IsSelected = True
                   ItemData.Detail = 'vanilla'
