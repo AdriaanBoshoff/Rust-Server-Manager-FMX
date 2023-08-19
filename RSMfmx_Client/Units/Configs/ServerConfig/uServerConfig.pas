@@ -29,7 +29,12 @@ type
       TServerConfigMisc = record // Misc Settings
         MaxPlayers: Integer;
         CensorPlayerList: Boolean;
-        GameMode: string;
+      end;
+
+    type
+      TServerConfigGameMode = record // Game Mode settings
+        Index: Integer;
+        GameModeName: string;
       end;
 
     type
@@ -66,6 +71,7 @@ type
     Map: TServerConfigMap;
     Misc: TServerConfigMisc;
     Networking: TServerConfigNetworking;
+    GameMode: TServerConfigGameMode;
     constructor Create;
     destructor Destroy; override;
     procedure SaveConfig;
@@ -104,7 +110,6 @@ begin
   // Misc
   Self.Misc.MaxPlayers := 50;
   Self.Misc.CensorPlayerList := True;
-  Self.Misc.GameMode := '';
 
   // Networking
   Self.Networking.ServerIP := '0.0.0.0';
@@ -116,6 +121,10 @@ begin
   Self.Networking.AppIP := '0.0.0.0';
   Self.Networking.AppPort := 28018; // TCP
   Self.Networking.AppPublicIP := '';
+
+  // GameMode
+  Self.GameMode.Index := 0;
+  Self.GameMode.GameModeName := 'vanilla';
 
   // Setup Methods
   Self.FConfigFile := Self.GetConfigFile;

@@ -136,7 +136,6 @@ type
     swtchCensorPlayerlist: TSwitch;
     lytServerConfigMisc2: TLayout;
     cbbServerGamemodeValue: TComboBox;
-    lblServerGamemodeDescriptionValue: TLabel;
     lblServerGameModeHead: TLabel;
     expndrServerNetworking: TExpander;
     lytServerNetworking1: TLayout;
@@ -196,7 +195,6 @@ type
     vrtscrlbxServerInfo: TVertScrollBox;
     mmoServerCFG: TMemo;
     btnEditRadioList: TButton;
-    btnEditEmojis: TButton;
     rctnglServerConfigControls: TRectangle;
     btnSaveServerConfig: TButton;
     tmrCheckServerRunningStatus: TTimer;
@@ -204,6 +202,12 @@ type
     lstMapBarren: TListBoxItem;
     lstMapCraggyIsland: TListBoxItem;
     lstMapCustom: TListBoxItem;
+    btnGameModeInfo: TSpeedButton;
+    lstGameModeVanilla: TListBoxItem;
+    lstGameModeSurvival: TListBoxItem;
+    lstGameModeSoftcore: TListBoxItem;
+    lstGameModeHardcore: TListBoxItem;
+    lstGameModeWeapontest: TListBoxItem;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
@@ -301,7 +305,7 @@ begin
   serverConfig.AppLogoURL := edtAppLogoURLValue.Text;
 
   // Map
-  serverConfig.Map.MapName := cbbServerMap.ListItems[cbbServerMap.ItemIndex].ItemData.Detail;
+  serverConfig.Map.MapName := cbbServerMap.Selected.ItemData.Detail;
   serverConfig.Map.MapIndex := cbbServerMap.ItemIndex;
   serverConfig.Map.CustomMapURL := edtCustomMapURLValue.Text;
   serverConfig.Map.MapSize := Trunc(nmbrbxMapSize.Value);
@@ -310,7 +314,6 @@ begin
   // Misc
   serverConfig.Misc.MaxPlayers := Trunc(spnbxMaxPlayers.Value);
   serverConfig.Misc.CensorPlayerList := swtchCensorPlayerlist.IsChecked;
- // serverConfig.Misc.GameMode := cbbServerGamemodeValue.Selected.Text;
 
  // Networking
   serverConfig.Networking.ServerIP := edtServerIP.Text;
@@ -322,6 +325,10 @@ begin
   serverConfig.Networking.AppIP := edtAppIPValue.Text;
   serverConfig.Networking.AppPort := Trunc(nmbrbxAppPortValue.Value);
   serverConfig.Networking.AppPublicIP := edtAppPublicIPValue.Text;
+
+  // GameMode
+  serverConfig.GameMode.Index := cbbServerGamemodeValue.ItemIndex;
+  serverConfig.GameMode.GameModeName := cbbServerGamemodeValue.Selected.ItemData.Detail;
 
   try
     // Save Server Config
@@ -647,6 +654,9 @@ begin
   edtAppIPValue.Text := serverConfig.Networking.AppIP;
   nmbrbxAppPortValue.Value := serverConfig.Networking.AppPort;
   edtAppPublicIPValue.Text := serverConfig.Networking.AppPublicIP;
+
+  // GameMode
+  cbbServerGamemodeValue.ItemIndex := serverConfig.GameMode.Index;
 
   // server.cfg
   mmoServerCFG.Text := serverConfig.ServerCFGText;
