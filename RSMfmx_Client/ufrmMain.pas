@@ -810,7 +810,7 @@ end;
 procedure TfrmMain.wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
 begin
   lblStatRconValue.Text := 'Disconnected';
-  lblStatRconValue.FontColor := TAlphaColorRec.DarkRed;
+  lblStatRconValue.FontColor := TAlphaColorRec.Red;
 end;
 
 end.
