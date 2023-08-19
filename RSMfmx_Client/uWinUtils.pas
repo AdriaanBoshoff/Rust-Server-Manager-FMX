@@ -3,11 +3,19 @@
 interface
 
 uses
-  Winapi.Windows, System.SysUtils;
+  Winapi.Windows, Winapi.ShellAPI, System.SysUtils;
+
+procedure OpenURL(const URL: string);
 
 function CreateProcess(const Exe, Params, AppTitle: string; const WaitUntilClosed: Boolean = False): Integer;
 
 implementation
+
+procedure OpenURL(const URL: string);
+begin
+  var newURL := StringReplace(URL, '"', '%22', [rfReplaceAll]);
+  ShellExecute(0, 'open', PChar(newURL), nil, nil, SW_SHOWNORMAL);
+end;
 
 function CreateProcess(const Exe, Params, AppTitle: string; const WaitUntilClosed: Boolean): Integer;
 var
