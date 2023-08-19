@@ -263,6 +263,8 @@
         <Icon_MainIcon>Assets\AppIcons\RSM.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>Assets\AppIcons\RSM.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>Assets\AppIcons\RSM.png</UWP_DelphiLogo150>
+        <DCC_Optimize>true</DCC_Optimize>
+        <DCC_XmlOutput>.\xmlDoc</DCC_XmlOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
