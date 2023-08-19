@@ -327,6 +327,9 @@ begin
     // Save Server Config
     serverConfig.SaveConfig;
 
+    // Repopulate UI
+    PopulateServerConfigUI;
+
    // ShowMessage('Config Saved!');
     ShowMessageBox('Saved Server Config!', 'Server Config', Self);
   except
@@ -644,6 +647,9 @@ begin
   edtAppIPValue.Text := serverConfig.Networking.AppIP;
   nmbrbxAppPortValue.Value := serverConfig.Networking.AppPort;
   edtAppPublicIPValue.Text := serverConfig.Networking.AppPublicIP;
+
+  // server.cfg
+  mmoServerCFG.Text := serverConfig.ServerCFGText;
 end;
 
 procedure TfrmMain.ResetServerInfoValues;
