@@ -217,6 +217,7 @@ type
     lytStatRcon: TLayout;
     lblStatRconHeader: TLabel;
     lblStatRconValue: TLabel;
+    tmrServerInfo: TTimer;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -791,6 +792,10 @@ begin
   lytServerConfigMisc2.Enabled := not isServerRunning;
 
   // Rcon Connection
+  btnStopServer.Enabled := wsClientRcon.Active;
+  btnRestartServer.Enabled := wsClientRcon.Active;
+  btnForceSave.Enabled := wsClientRcon.Active;
+
   if isServerRunning and not wsClientRcon.Active then
   begin
     wsClientRcon.Host := 'localhost';
@@ -799,6 +804,7 @@ begin
     wsClientRcon.ConnectTimeout := 1;
     wsClientRcon.Active := True;
   end;
+
 end;
 
 procedure TfrmMain.wsClientRconConnect(Connection: TsgcWSConnection);

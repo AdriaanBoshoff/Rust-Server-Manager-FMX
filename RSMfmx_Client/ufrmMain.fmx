@@ -158,7 +158,7 @@ object frmMain: TfrmMain
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.StyleExt = {00060000000000000004000000}
-        TextSettings.FontColor = claOrange
+        TextSettings.FontColor = claRed
         TextSettings.WordWrap = False
         Text = 'Disconnected'
         TabOrder = 1
@@ -2213,7 +2213,7 @@ object frmMain: TfrmMain
   end
   object tmrCheckServerRunningStatus: TTimer
     OnTimer = tmrCheckServerRunningStatusTimer
-    Left = 328
+    Left = 128
     Top = 96
   end
   object mltvwNav: TMultiView
@@ -2585,7 +2585,11 @@ object frmMain: TfrmMain
     TLSOptions.OpenSSL_Options.UnixSymLinks = oslsSymLinksDefault
     TLSOptions.SChannel_Options.CertStoreName = scsnMY
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
-    Left = 152
+    Left = 96
     Top = 176
+  end
+  object tmrServerInfo: TTimer
+    Left = 96
+    Top = 248
   end
 end
