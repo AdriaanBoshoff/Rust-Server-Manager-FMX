@@ -822,7 +822,7 @@ object frmMain: TfrmMain
                 object lstMapBarren: TListBoxItem
                   ItemData.Detail = 'Barren'
                   TabOrder = 1
-                  Text = 'Barren (No Grass Procedural)'
+                  Text = 'Barren (Barren Procedural)'
                 end
                 object lstMapCraggyIsland: TListBoxItem
                   ItemData.Detail = 'CraggyIsland'
@@ -1075,36 +1075,41 @@ object frmMain: TfrmMain
               TabOrder = 4
               object cbbServerGamemodeValue: TComboBox
                 Align = Left
+                ItemIndex = 0
                 Margins.Left = 5.000000000000000000
                 Position.X = 73.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
-              end
-              object lblServerGamemodeDescriptionValue: TLabel
-                Align = Client
-                HitTest = True
-                Margins.Left = 5.000000000000000000
-                Size.Width = 486.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TextSettings.WordWrap = False
-                Text = '- GAMEMODE DESCRIPTION'#13#10'2'
-                TabOrder = 1
-                object btnEditEmojis: TButton
-                  Align = Right
-                  StyledSettings = [Family, Size, FontColor]
-                  Hint = 'Add / Remove Custom Chat Emojis'
-                  Position.X = 386.000000000000000000
-                  Size.Width = 100.000000000000000000
-                  Size.Height = 25.000000000000000000
+                object lstGameModeVanilla: TListBoxItem
+                  IsSelected = True
+                  ItemData.Detail = 'vanilla'
+                  Size.Width = 19.000000000000000000
+                  Size.Height = 19.000000000000000000
                   Size.PlatformDefault = False
-                  StyleLookup = 'tintedbutton'
+                  TabOrder = 0
+                  Text = 'Vanilla'
+                end
+                object lstGameModeSurvival: TListBoxItem
+                  ItemData.Detail = 'survival'
+                  TabOrder = 1
+                  Text = 'Survival'
+                end
+                object lstGameModeSoftcore: TListBoxItem
+                  ItemData.Detail = 'softcore'
                   TabOrder = 2
-                  Text = 'Edit Emojis'
-                  TextSettings.Font.StyleExt = {00060000000000000004000000}
-                  TintColor = xFFBC6700
+                  Text = 'Softcore'
+                end
+                object lstGameModeHardcore: TListBoxItem
+                  ItemData.Detail = 'hardcore'
+                  TabOrder = 3
+                  Text = 'Hardcore'
+                end
+                object lstGameModeWeapontest: TListBoxItem
+                  ItemData.Detail = 'weapontest'
+                  TabOrder = 4
+                  Text = 'Weapon Test'
                 end
               end
               object lblServerGameModeHead: TLabel
@@ -1115,7 +1120,18 @@ object frmMain: TfrmMain
                 Size.PlatformDefault = False
                 TextSettings.WordWrap = False
                 Text = 'Game Mode:'
-                TabOrder = 2
+                TabOrder = 1
+              end
+              object btnGameModeInfo: TSpeedButton
+                Align = Left
+                Hint = 'Click to open https://wiki.facepunch.com/rust/server-gamemodes'
+                Margins.Left = 5.000000000000000000
+                Position.X = 178.000000000000000000
+                Size.Width = 25.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'infotoolbutton'
+                Text = 'btnGameModeInfo'
               end
             end
           end
@@ -2114,8 +2130,8 @@ object frmMain: TfrmMain
   end
   object tmrCheckServerRunningStatus: TTimer
     OnTimer = tmrCheckServerRunningStatusTimer
-    Left = 328
-    Top = 320
+    Left = 152
+    Top = 104
   end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
