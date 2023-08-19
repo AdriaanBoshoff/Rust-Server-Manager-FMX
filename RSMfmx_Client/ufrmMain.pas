@@ -94,7 +94,6 @@ type
     lblServerTagsHeader: TLabel;
     lytServerTagsValue: TLayout;
     edtServerTagsValue: TEdit;
-    btnSelectServerTags: TEllipsesEditButton;
     lytServerDescriptionHeader: TLayout;
     lblServerDescriptionHeader: TLabel;
     lytServerDescriptionValue: TLayout;
@@ -208,11 +207,14 @@ type
     lstGameModeSoftcore: TListBoxItem;
     lstGameModeHardcore: TListBoxItem;
     lstGameModeWeapontest: TListBoxItem;
+    btnServerTagsInfo: TSpeedButton;
     procedure btnCopyRconPasswordClick(Sender: TObject);
+    procedure btnGameModeInfoClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnKillServerClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
+    procedure btnServerTagsInfoClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure btnStartServerClick(Sender: TObject);
     procedure cbbServerGamemodeValueMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -284,6 +286,11 @@ begin
   end;
 end;
 
+procedure TfrmMain.btnGameModeInfoClick(Sender: TObject);
+begin
+  OpenURL('https://wiki.facepunch.com/rust/server-gamemodes');
+end;
+
 procedure TfrmMain.btnGenerateMapSeedClick(Sender: TObject);
 begin
   Randomize;
@@ -353,6 +360,11 @@ begin
       ShowMessageBox(errMessage, 'Server Config', Self);
     end;
   end;
+end;
+
+procedure TfrmMain.btnServerTagsInfoClick(Sender: TObject);
+begin
+  OpenURL('https://wiki.facepunch.com/rust/server-browser-tags');
 end;
 
 procedure TfrmMain.btnShowHideServerInfoClick(Sender: TObject);

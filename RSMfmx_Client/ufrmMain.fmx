@@ -140,7 +140,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -156,7 +156,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -448,7 +448,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -555,16 +555,15 @@ object frmMain: TfrmMain
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'Select Server Tags Eg: monthly,pve,NA'
-              object btnSelectServerTags: TEllipsesEditButton
-                CanFocus = False
-                Cursor = crArrow
-                Hint = 
-                  'Click to view https://wiki.facepunch.com/rust/server-browser-tag' +
-                  's'
-                Size.Width = 28.000000000000000000
-                Size.Height = 21.000000000000000000
+              object btnServerTagsInfo: TSpeedButton
+                Align = Right
+                Position.X = 659.000000000000000000
+                Size.Width = 25.000000000000000000
+                Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 0
+                StyleLookup = 'infotoolbutton'
+                Text = 'btnServerTagsInfo'
+                OnClick = btnServerTagsInfoClick
               end
             end
           end
@@ -1135,6 +1134,7 @@ object frmMain: TfrmMain
                 Size.PlatformDefault = False
                 StyleLookup = 'infotoolbutton'
                 Text = 'btnGameModeInfo'
+                OnClick = btnGameModeInfoClick
               end
             end
           end
