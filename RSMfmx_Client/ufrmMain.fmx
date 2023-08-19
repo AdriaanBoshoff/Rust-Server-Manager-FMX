@@ -550,15 +550,17 @@ object frmMain: TfrmMain
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Client
               TabOrder = 0
-              ReadOnly = True
               Hint = 'Tags to be shown in the server list'
               Size.Width = 684.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TextPrompt = 'Select Server Tags'
+              TextPrompt = 'Select Server Tags Eg: monthly,pve,NA'
               object btnSelectServerTags: TEllipsesEditButton
                 CanFocus = False
                 Cursor = crArrow
+                Hint = 
+                  'Click to view https://wiki.facepunch.com/rust/server-browser-tag' +
+                  's'
                 Size.Width = 28.000000000000000000
                 Size.Height = 21.000000000000000000
                 Size.PlatformDefault = False
@@ -1479,7 +1481,9 @@ object frmMain: TfrmMain
             Size.Width = 684.000000000000000000
             Size.Height = 250.000000000000000000
             Size.PlatformDefault = False
-            Text = 'Server.cfg - Add convars to the server.cfg file.'
+            Text = 
+              'Server.cfg - Add convars to the server.cfg file. (RSM overrides ' +
+              'settings not added by you)'
             TabOrder = 15
             ContentSize = '225'
             object mmoServerCFG: TMemo
