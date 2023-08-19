@@ -178,7 +178,7 @@ begin
 
       FIsInstallingServer := False;
 
-      AddLog('DONE.');
+      AddLog('DONE. If you have any issues please disable the SteamCMD auto close option and see the console window logs.');
     finally
       steamCMD.Free;
     end;
@@ -228,7 +228,7 @@ begin
 
       FIsInstallingServer := False;
 
-      AddLog('DONE.');
+      AddLog('DONE. If you have any issues please disable the SteamCMD auto close option and see the console window logs.');
     finally
       steamCMD.Free;
     end;

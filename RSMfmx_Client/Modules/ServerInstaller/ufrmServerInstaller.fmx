@@ -233,6 +233,7 @@ object frmServerInstaller: TfrmServerInstaller
       Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
       DataDetectorTypes = []
       ReadOnly = True
+      TextSettings.WordWrap = True
       Align = Client
       Margins.Top = 10.000000000000000000
       Size.Width = 562.000000000000000000
