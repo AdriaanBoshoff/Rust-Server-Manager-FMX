@@ -10,7 +10,9 @@ uses
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
   FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
   Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading,
-  FMX.Clipboard, FMX.Platform;
+  FMX.Clipboard, FMX.Platform, sgcBase_Classes, sgcSocket_Classes,
+  sgcTCP_Classes, sgcWebSocket_Classes, sgcWebSocket_Classes_Indy,
+  sgcWebSocket_Client, sgcWebSocket;
 
 type
   TfrmMain = class(TForm)
@@ -208,6 +210,13 @@ type
     lstGameModeHardcore: TListBoxItem;
     lstGameModeWeapontest: TListBoxItem;
     btnServerTagsInfo: TSpeedButton;
+    wsClientRcon: TsgcWebSocketClient;
+    lytStatServerPID: TLayout;
+    lblStatServerPIDHeader: TLabel;
+    lblStatServerPIDValue: TLabel;
+    lytStatRcon: TLayout;
+    lblStatRconHeader: TLabel;
+    lblStatRconValue: TLabel;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -226,9 +235,13 @@ type
     procedure edtRconPasswordValueExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblAppVersionValueResized(Sender: TObject);
+    procedure lblStatRconValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
+    procedure OnServerPIDResized(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
+    procedure wsClientRconConnect(Connection: TsgcWSConnection);
+    procedure wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
   private
     { Private Variables }
     // Server Info auto expand
@@ -594,6 +607,11 @@ begin
   lytAppVersion.Width := lblAppVersionHeader.Width + 5 + lblAppVersionValue.Width;
 end;
 
+procedure TfrmMain.lblStatRconValueResized(Sender: TObject);
+begin
+  lytStatRcon.Width := lblStatRconHeader.Width + 3 + lblStatRconValue.Width;
+end;
+
 procedure TfrmMain.LoadRSMUIConfig;
 begin
   // Nav - Check if nav index is within bounds before assigning
@@ -646,6 +664,12 @@ begin
   // Default Player Manager Items
   tbcPlayerManager.TabIndex := tbtmOnlinePlayers.Index;
   {$ENDIF}
+end;
+
+procedure TfrmMain.OnServerPIDResized(Sender: TObject);
+begin
+  lytServerPIDInfo.Width := lblServerPIDHeader.Width + 3 + lblServerPIDValue.Width;
+  lytStatServerPID.Width := lblStatServerPIDHeader.Width + 3 + lblStatServerPIDValue.Width;
 end;
 
 procedure TfrmMain.PopulateServerConfigUI;
@@ -742,10 +766,12 @@ begin
   if isServerRunning then
   begin
     lblServerPIDValue.Text := serverProcess.PID.ToString;
+    lblStatServerPIDValue.Text := serverProcess.PID.ToString;
   end
   else
   begin
     lblServerPIDValue.Text := '---';
+    lblStatServerPIDValue.Text := '---';
   end;
 
   // Server Controls
@@ -763,6 +789,28 @@ begin
   edtRconPasswordValue.ReadOnly := isServerRunning;
   lytServerNetworking3.Enabled := not isServerRunning;
   lytServerConfigMisc2.Enabled := not isServerRunning;
+
+  // Rcon Connection
+  if isServerRunning and not wsClientRcon.Active then
+  begin
+    wsClientRcon.Host := 'localhost';
+    wsClientRcon.Port := serverConfig.Networking.RconPort;
+    wsClientRcon.Options.Parameters := '/' + serverConfig.Networking.RconPassword;
+    wsClientRcon.ConnectTimeout := 1;
+    wsClientRcon.Active := True;
+  end;
+end;
+
+procedure TfrmMain.wsClientRconConnect(Connection: TsgcWSConnection);
+begin
+  lblStatRconValue.Text := 'Connected';
+  lblStatRconValue.FontColor := TAlphaColorRec.Lime;
+end;
+
+procedure TfrmMain.wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
+begin
+  lblStatRconValue.Text := 'Disconnected';
+  lblStatRconValue.FontColor := TAlphaColorRec.DarkRed;
 end;
 
 end.

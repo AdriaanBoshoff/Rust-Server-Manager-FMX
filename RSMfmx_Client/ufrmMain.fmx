@@ -58,7 +58,7 @@ object frmMain: TfrmMain
       Size.Width = 111.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 0
+      TabOrder = 2
       object lblAppVersionValue: TLabel
         Align = MostRight
         AutoSize = True
@@ -86,6 +86,83 @@ object frmMain: TfrmMain
         TextSettings.WordWrap = False
         Text = 'Version:'
         TabOrder = 1
+      end
+    end
+    object lytStatServerPID: TLayout
+      Align = Left
+      Position.X = 10.000000000000000000
+      Size.Width = 92.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object lblStatServerPIDHeader: TLabel
+        Align = MostLeft
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Size.Width = 60.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'Server PID:'
+        TabOrder = 0
+      end
+      object lblStatServerPIDValue: TLabel
+        Align = Left
+        AutoSize = True
+        StyledSettings = [Family, Size]
+        Hint = 'Process ID for the RustDedicated.exe process'
+        HitTest = True
+        Margins.Left = 3.000000000000000000
+        Position.X = 63.000000000000000000
+        Size.Width = 15.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claOrange
+        TextSettings.WordWrap = False
+        Text = '---'
+        TabOrder = 1
+        OnResized = OnServerPIDResized
+      end
+    end
+    object lytStatRcon: TLayout
+      Align = Left
+      Margins.Left = 10.000000000000000000
+      Position.X = 112.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object lblStatRconHeader: TLabel
+        Align = MostLeft
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Size.Width = 36.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'RCON:'
+        TabOrder = 0
+      end
+      object lblStatRconValue: TLabel
+        Align = Left
+        AutoSize = True
+        StyledSettings = [Family, Size]
+        Hint = 'Process ID for the RustDedicated.exe process'
+        HitTest = True
+        Margins.Left = 3.000000000000000000
+        Position.X = 39.000000000000000000
+        Size.Width = 74.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claOrange
+        TextSettings.WordWrap = False
+        Text = 'Disconnected'
+        TabOrder = 1
+        OnResized = lblStatRconValueResized
       end
     end
   end
@@ -216,6 +293,7 @@ object frmMain: TfrmMain
               TextSettings.WordWrap = False
               Text = '---'
               TabOrder = 1
+              OnResized = OnServerPIDResized
             end
           end
         end
@@ -2135,8 +2213,8 @@ object frmMain: TfrmMain
   end
   object tmrCheckServerRunningStatus: TTimer
     OnTimer = tmrCheckServerRunningStatusTimer
-    Left = 152
-    Top = 104
+    Left = 328
+    Top = 96
   end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
@@ -2449,5 +2527,65 @@ object frmMain: TfrmMain
       StyleLookup = 'optionstoolbutton'
       Text = 'Settings'
     end
+  end
+  object wsClientRcon: TsgcWebSocketClient
+    Port = 80
+    ConnectTimeout = 0
+    ReadTimeout = -1
+    WriteTimeout = 0
+    TLS = False
+    Proxy.Enabled = False
+    Proxy.Port = 8080
+    Proxy.ProxyType = pxyHTTP
+    HeartBeat.Enabled = False
+    HeartBeat.Interval = 300
+    HeartBeat.Timeout = 0
+    IPVersion = Id_IPv4
+    OnConnect = wsClientRconConnect
+    OnDisconnect = wsClientRconDisconnect
+    Authentication.Enabled = False
+    Authentication.URL.Enabled = True
+    Authentication.Session.Enabled = False
+    Authentication.Basic.Enabled = False
+    Authentication.Token.Enabled = False
+    Authentication.Token.AuthName = 'Bearer'
+    Extensions.DeflateFrame.Enabled = False
+    Extensions.DeflateFrame.WindowBits = 15
+    Extensions.PerMessage_Deflate.Enabled = False
+    Extensions.PerMessage_Deflate.ClientMaxWindowBits = 15
+    Extensions.PerMessage_Deflate.ClientNoContextTakeOver = False
+    Extensions.PerMessage_Deflate.MemLevel = 9
+    Extensions.PerMessage_Deflate.ServerMaxWindowBits = 15
+    Extensions.PerMessage_Deflate.ServerNoContextTakeOver = False
+    Options.CleanDisconnect = False
+    Options.FragmentedMessages = frgOnlyBuffer
+    Options.Parameters = '/'
+    Options.RaiseDisconnectExceptions = True
+    Options.ValidateUTF8 = False
+    Specifications.Drafts.Hixie76 = False
+    Specifications.RFC6455 = True
+    NotifyEvents = neAsynchronous
+    LogFile.Enabled = False
+    QueueOptions.Binary.Level = qmNone
+    QueueOptions.Ping.Level = qmNone
+    QueueOptions.Text.Level = qmNone
+    WatchDog.Attempts = 0
+    WatchDog.Enabled = False
+    WatchDog.Interval = 10
+    Throttle.BitsPerSec = 0
+    Throttle.Enabled = False
+    LoadBalancer.Enabled = False
+    LoadBalancer.Port = 0
+    TLSOptions.VerifyCertificate = False
+    TLSOptions.VerifyDepth = 0
+    TLSOptions.Version = tlsUndefined
+    TLSOptions.IOHandler = iohOpenSSL
+    TLSOptions.OpenSSL_Options.APIVersion = oslAPI_1_0
+    TLSOptions.OpenSSL_Options.LibPath = oslpNone
+    TLSOptions.OpenSSL_Options.UnixSymLinks = oslsSymLinksDefault
+    TLSOptions.SChannel_Options.CertStoreName = scsnMY
+    TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
+    Left = 152
+    Top = 176
   end
 end
