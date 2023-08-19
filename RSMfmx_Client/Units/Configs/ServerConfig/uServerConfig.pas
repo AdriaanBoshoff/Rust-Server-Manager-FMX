@@ -215,6 +215,14 @@ begin
   if Self.FServerCFG.IndexOfName('server.logoimage') <> -1 then
     self.FServerCFG.Delete(Self.FServerCFG.IndexOfName('server.logoimage'));
   Self.FServerCFG.AddPair('server.logoimage', Self.AppLogoURL.QuotedString('"'));
+  // Max Players
+  if Self.FServerCFG.IndexOfName('server.maxplayers') <> -1 then
+    self.FServerCFG.Delete(Self.FServerCFG.IndexOfName('server.maxplayers'));
+  Self.FServerCFG.AddPair('server.maxplayers', Self.Misc.MaxPlayers.ToString);
+  // Censor Player List
+  if Self.FServerCFG.IndexOfName('server.censorplayerlist') <> -1 then
+    self.FServerCFG.Delete(Self.FServerCFG.IndexOfName('server.censorplayerlist'));
+  Self.FServerCFG.AddPair('server.censorplayerlist', BoolToStr(Self.Misc.CensorPlayerList, True));
 
   // server.cfg File
   Self.FServerCFG.SaveToFile(GetServerCFGFile, TEncoding.UTF8);
