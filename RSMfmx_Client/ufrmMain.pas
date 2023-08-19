@@ -200,6 +200,10 @@ type
     rctnglServerConfigControls: TRectangle;
     btnSaveServerConfig: TButton;
     tmrCheckServerRunningStatus: TTimer;
+    lstMapProcedural: TListBoxItem;
+    lstMapBarren: TListBoxItem;
+    lstMapCraggyIsland: TListBoxItem;
+    lstMapCustom: TListBoxItem;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
@@ -297,7 +301,7 @@ begin
   serverConfig.AppLogoURL := edtAppLogoURLValue.Text;
 
   // Map
-  serverConfig.Map.MapName := cbbServerMap.Selected.Text;
+  serverConfig.Map.MapName := cbbServerMap.ListItems[cbbServerMap.ItemIndex].ItemData.Detail;
   serverConfig.Map.MapIndex := cbbServerMap.ItemIndex;
   serverConfig.Map.CustomMapURL := edtCustomMapURLValue.Text;
   serverConfig.Map.MapSize := Trunc(nmbrbxMapSize.Value);
@@ -381,8 +385,13 @@ begin
     // Server Identity
     slParams.Add('+server.identity "rsm" ^');
 
-    // TEMP
-    slParams.Add('+server.level "CraggyIsland" ^');
+    // Server Map
+    if not (serverConfig.Map.MapIndex = lstMapCustom.Index) then
+      slParams.Add('+server.level "' + serverConfig.Map.MapName + '" ^')
+    else
+      slParams.Add('+server.levelurl "' + serverConfig.Map.CustomMapURL + '" ^');
+    slParams.Add('+server.seed ' + serverConfig.Map.MapSeed.ToString + ' ^');
+    slParams.Add('+server.worldsize ' + serverConfig.Map.MapSize.ToString + ' ^');
 
     // Networking - Server
     slParams.Add('+server.ip ' + serverConfig.Networking.ServerIP + ' ^');
@@ -400,7 +409,7 @@ begin
     if not serverConfig.Networking.AppPublicIP.Trim.IsEmpty then // Dont add if empty
       slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
 
-    // Save PID
+    // Server Server and Save PID
     serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
     serverProcess.Save;
   finally

@@ -140,7 +140,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -156,7 +156,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -448,7 +448,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -803,11 +803,6 @@ object frmMain: TfrmMain
               object cbbServerMap: TComboBox
                 Align = Left
                 CanFocus = False
-                Items.Strings = (
-                  'Custom Map'
-                  'Procedural Map'
-                  'Barren'
-                  'CraggyIsland')
                 ItemIndex = 0
                 Position.X = 70.000000000000000000
                 Size.Width = 150.000000000000000000
@@ -815,6 +810,30 @@ object frmMain: TfrmMain
                 Size.PlatformDefault = False
                 TabOrder = 2
                 OnMouseWheel = cbbServerMapMouseWheel
+                object lstMapProcedural: TListBoxItem
+                  IsSelected = True
+                  ItemData.Detail = 'Procedural Map'
+                  Size.Width = 19.000000000000000000
+                  Size.Height = 19.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  Text = 'Procedural Map'
+                end
+                object lstMapBarren: TListBoxItem
+                  ItemData.Detail = 'Barren'
+                  TabOrder = 1
+                  Text = 'Barren (No Grass Procedural)'
+                end
+                object lstMapCraggyIsland: TListBoxItem
+                  ItemData.Detail = 'CraggyIsland'
+                  TabOrder = 2
+                  Text = 'CraggyIsland'
+                end
+                object lstMapCustom: TListBoxItem
+                  ItemData.Detail = 'Custom Map'
+                  TabOrder = 3
+                  Text = 'Custom Map'
+                end
               end
               object lblCustomMapURLHeader: TLabel
                 Align = Left
@@ -2093,6 +2112,11 @@ object frmMain: TfrmMain
       StopValue = 0.000000000000000000
     end
   end
+  object tmrCheckServerRunningStatus: TTimer
+    OnTimer = tmrCheckServerRunningStatusTimer
+    Left = 328
+    Top = 320
+  end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
     Mode = NavigationPane
@@ -2404,10 +2428,5 @@ object frmMain: TfrmMain
       StyleLookup = 'optionstoolbutton'
       Text = 'Settings'
     end
-  end
-  object tmrCheckServerRunningStatus: TTimer
-    OnTimer = tmrCheckServerRunningStatusTimer
-    Left = 488
-    Top = 288
   end
 end
