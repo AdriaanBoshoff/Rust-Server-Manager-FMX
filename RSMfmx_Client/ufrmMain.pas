@@ -8,7 +8,7 @@ uses
   udmStyles, udmIcons, FMX.Menus, FMX.StdCtrls, FMX.MultiView,
   FMX.Controls.Presentation, FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects,
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
-  FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Trayicon.Win, FMX.Platform.Win,
+  FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Platform.Win,
   Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading,
   FMX.Clipboard, FMX.Platform, sgcBase_Classes, sgcSocket_Classes,
   sgcTCP_Classes, sgcWebSocket_Classes, sgcWebSocket_Classes_Indy,
