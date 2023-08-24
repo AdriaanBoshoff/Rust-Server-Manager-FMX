@@ -2216,6 +2216,12 @@ object frmMain: TfrmMain
     Left = 128
     Top = 96
   end
+  object tmrServerInfo: TTimer
+    Enabled = False
+    OnTimer = tmrServerInfoTimer
+    Left = 96
+    Top = 248
+  end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
     Mode = NavigationPane
@@ -2542,6 +2548,7 @@ object frmMain: TfrmMain
     HeartBeat.Timeout = 0
     IPVersion = Id_IPv4
     OnConnect = wsClientRconConnect
+    OnMessage = wsClientRconMessage
     OnDisconnect = wsClientRconDisconnect
     Authentication.Enabled = False
     Authentication.URL.Enabled = True
@@ -2587,9 +2594,5 @@ object frmMain: TfrmMain
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
     Left = 96
     Top = 176
-  end
-  object tmrServerInfo: TTimer
-    Left = 96
-    Top = 248
   end
 end

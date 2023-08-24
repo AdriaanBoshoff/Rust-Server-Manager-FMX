@@ -15,7 +15,9 @@ uses
   ufrmServerInstaller in 'Modules\ServerInstaller\ufrmServerInstaller.pas' {frmServerInstaller},
   uSteamCMD in 'Units\uSteamCMD.pas',
   uWinUtils in 'uWinUtils.pas',
-  uServerProcess in 'Units\uServerProcess.pas';
+  uServerProcess in 'Units\uServerProcess.pas',
+  RCON.Types in 'Units\RCON\RCON.Types.pas',
+  RCON.Commands in 'Units\RCON\RCON.Commands.pas';
 
 {$R *.res}
 

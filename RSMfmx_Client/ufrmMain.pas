@@ -241,8 +241,10 @@ type
     procedure mniExitRSMClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
+    procedure tmrServerInfoTimer(Sender: TObject);
     procedure wsClientRconConnect(Connection: TsgcWSConnection);
     procedure wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
+    procedure wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
   private
     { Private Variables }
     // Server Info auto expand
@@ -275,7 +277,7 @@ implementation
 
 uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller, uWinUtils,
-  uServerProcess;
+  uServerProcess, RCON.Commands, RCON.Types;
 
 {$R *.fmx}
 
@@ -533,6 +535,10 @@ end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
+  // Disconnect Rcon if connected
+  if wsClientRcon.Active then
+    wsClientRcon.Active := False;
+
   // Dont save UI pos when maximized
   if not (Self.WindowState = TWindowState.wsMaximized) then
   begin
@@ -807,16 +813,36 @@ begin
 
 end;
 
+procedure TfrmMain.tmrServerInfoTimer(Sender: TObject);
+begin
+  if wsClientRcon.Active then
+    TRCON.SendRconCommand(RCON_CMD_SERVERINFO, RCON_ID_SERVERINFO, wsClientRcon);
+end;
+
 procedure TfrmMain.wsClientRconConnect(Connection: TsgcWSConnection);
 begin
   lblStatRconValue.Text := 'Connected';
   lblStatRconValue.FontColor := TAlphaColorRec.Lime;
+
+  tmrServerInfo.Enabled := True;
 end;
 
 procedure TfrmMain.wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
 begin
   lblStatRconValue.Text := 'Disconnected';
   lblStatRconValue.FontColor := TAlphaColorRec.Red;
+
+  tmrServerInfo.Enabled := False;
+end;
+
+procedure TfrmMain.wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
+begin
+  var rconMessage := TRCONParser.ParseRconMessage(Text);
+
+  if rconMessage.aIdentifier = RCON_ID_SERVERINFO then
+  begin
+    lblAppVersionValue.Text := 'Got Server Info';
+  end;
 end;
 
 end.
