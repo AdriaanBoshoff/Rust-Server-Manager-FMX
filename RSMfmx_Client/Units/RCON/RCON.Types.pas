@@ -13,6 +13,29 @@ type
   end;
 
 type
+  TRCONServerInfo = record
+    Hostname: string;
+    MaxPlayers: Integer;
+    Players: Integer;
+    Queued: Integer;
+    Joining: Integer;
+    EntityCount: Integer;
+    GameTime: TDateTime;
+    UpTime: Integer;
+    Map: string;
+    FPS: Integer;
+    Memory: Integer;
+    MemoryUsageSystem: Integer;
+    Collections: Integer;
+    NetworkIn: Integer;
+    NetworkOut: Integer;
+    Restarting: Boolean;
+    SaveCreatedTime: TDateTime;
+    Version: Integer;
+    Protocol: string;
+  end;
+
+type
   TRCON = class
     class procedure SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
   end;
