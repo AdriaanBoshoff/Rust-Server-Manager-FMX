@@ -8,11 +8,11 @@ uses
   udmStyles, udmIcons, FMX.Menus, FMX.StdCtrls, FMX.MultiView,
   FMX.Controls.Presentation, FMX.Layouts, FMX.TabControl, FMX.Ani, FMX.Objects,
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
-  FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Platform.Win,
-  Winapi.Windows, System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading,
-  FMX.Clipboard, FMX.Platform, sgcBase_Classes, sgcSocket_Classes,
-  sgcTCP_Classes, sgcWebSocket_Classes, sgcWebSocket_Classes_Indy,
-  sgcWebSocket_Client, sgcWebSocket;
+  FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Platform.Win, Winapi.Windows,
+  System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading, FMX.Clipboard,
+  FMX.Platform, sgcBase_Classes, sgcSocket_Classes, sgcTCP_Classes,
+  sgcWebSocket_Classes, sgcWebSocket_Classes_Indy, sgcWebSocket_Client,
+  sgcWebSocket;
 
 type
   TfrmMain = class(TForm)
@@ -277,7 +277,7 @@ implementation
 
 uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller, uWinUtils,
-  uServerProcess, RCON.Commands, RCON.Types;
+  uServerProcess, RCON.Commands, RCON.Types, RCON.Events;
 
 {$R *.fmx}
 
@@ -837,12 +837,7 @@ end;
 
 procedure TfrmMain.wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
 begin
-  var rconMessage := TRCONParser.ParseRconMessage(Text);
-
-  if rconMessage.aIdentifier = RCON_ID_SERVERINFO then
-  begin
-    lblAppVersionValue.Text := 'Got Server Info';
-  end;
+  rconEvents.OnRconMessage(TRCONParser.ParseRconMessage(Text));
 end;
 
 end.

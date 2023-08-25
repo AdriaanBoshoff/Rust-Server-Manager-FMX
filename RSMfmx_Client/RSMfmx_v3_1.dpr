@@ -17,7 +17,8 @@ uses
   uWinUtils in 'uWinUtils.pas',
   uServerProcess in 'Units\uServerProcess.pas',
   RCON.Types in 'Units\RCON\RCON.Types.pas',
-  RCON.Commands in 'Units\RCON\RCON.Commands.pas';
+  RCON.Commands in 'Units\RCON\RCON.Commands.pas',
+  RCON.Events in 'Units\RCON\RCON.Events.pas';
 
 {$R *.res}
 

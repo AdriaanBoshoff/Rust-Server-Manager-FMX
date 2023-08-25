@@ -326,6 +326,7 @@
         <DCCReference Include="Units\uServerProcess.pas"/>
         <DCCReference Include="Units\RCON\RCON.Types.pas"/>
         <DCCReference Include="Units\RCON\RCON.Commands.pas"/>
+        <DCCReference Include="Units\RCON\RCON.Events.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
