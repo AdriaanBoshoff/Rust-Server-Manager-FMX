@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.StdCtrls, FMX.ListBox, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects,
-  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, System.IOUtils;
+  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, System.IOUtils, uServerProcess;
 
 type
   TfrmServerInstaller = class(TForm)
@@ -68,6 +68,12 @@ begin
   if FIsInstallingServer then
   begin
     ShowMessageBox('Server is currently busy installing!', 'SteamCMD busy', Self.Owner as TFmxObject);
+    Exit;
+  end;
+
+  if serverProcess.isRunning then
+  begin
+    ShowMessageBox('Server is Running. Please stop the server first!', 'Server Running', Self.Owner as TFmxObject);
     Exit;
   end;
 
@@ -149,6 +155,12 @@ begin
     Exit;
   end;
 
+  if serverProcess.isRunning then
+  begin
+    ShowMessageBox('Server is Running. Please stop the server first!', 'Server Running', Self.Owner as TFmxObject);
+    Exit;
+  end;
+
   try
     FIsInstallingServer := True;
 
@@ -196,6 +208,12 @@ begin
   if FIsInstallingServer then
   begin
     ShowMessageBox('Server is currently busy installing!', 'SteamCMD busy', Self.Owner as TFmxObject);
+    Exit;
+  end;
+
+  if serverProcess.isRunning then
+  begin
+    ShowMessageBox('Server is Running. Please stop the server first!', 'Server Running', Self.Owner as TFmxObject);
     Exit;
   end;
 
