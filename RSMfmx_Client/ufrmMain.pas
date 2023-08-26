@@ -277,7 +277,7 @@ implementation
 
 uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller, uWinUtils,
-  uServerProcess, RCON.Commands, RCON.Types, RCON.Events;
+  uServerProcess, RCON.Commands, RCON.Types, RCON.Events, RCON.Parser;
 
 {$R *.fmx}
 
