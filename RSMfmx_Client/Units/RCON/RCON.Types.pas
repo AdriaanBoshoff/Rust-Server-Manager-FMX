@@ -36,6 +36,19 @@ type
   end;
 
 type
+  TRCONPlayerListPlayer = record
+    SteamID: string;
+    OwnerSteamID: string;
+    DisplayName: string;
+    Ping: Integer;
+    Address: string;
+    IP: string;
+    Port: Integer;
+    ConnectedSeconds: Integer;
+    Health: Double;
+  end;
+
+type
   TRCON = class
     class procedure SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
   end;
@@ -49,6 +62,9 @@ uses
 
 class procedure TRCON.SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
 begin
+  if not rconClient.Active then
+    Exit;
+
   var jCommand := TJSONObject.Create;
   try
     jCommand.AddPair('Message', Command);
