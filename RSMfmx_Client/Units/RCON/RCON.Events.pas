@@ -60,7 +60,7 @@ begin
   frmMain.lblServerProtocolValue.Text := serverInfo.Protocol;
 
   // Ram Usage
-  frmMain.lblServerMemoryUsageValue.Text := serverInfo.MemoryUsageSystem.ToString;
+  frmMain.lblServerMemoryUsageValue.Text := serverInfo.MemoryUsageSystem.ToString + ' MB';
 
   // Last Wipe
   frmMain.lblLastWipeValue.Text := FormatDateTime('yyyy/mm/dd hh:nn:ss', serverInfo.SaveCreatedTime);
