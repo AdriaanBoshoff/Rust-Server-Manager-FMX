@@ -20,7 +20,8 @@ uses
   RCON.Commands in 'Units\RCON\RCON.Commands.pas',
   RCON.Events in 'Units\RCON\RCON.Events.pas',
   RCON.Parser in 'Units\RCON\RCON.Parser.pas',
-  uServerInfo in 'Units\uServerInfo.pas';
+  uServerInfo in 'Units\uServerInfo.pas',
+  RSM.PlayerManager in 'Units\PlayerManager\RSM.PlayerManager.pas';
 
 {$R *.res}
 
