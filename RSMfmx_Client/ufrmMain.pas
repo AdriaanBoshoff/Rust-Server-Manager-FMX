@@ -693,6 +693,7 @@ end;
 
 procedure TfrmMain.OnServerPIDResized(Sender: TObject);
 begin
+  // Server PID in stat bar resize
   lytServerPIDInfo.Width := lblServerPIDHeader.Width + 3 + lblServerPIDValue.Width;
   lytStatServerPID.Width := lblStatServerPIDHeader.Width + 3 + lblStatServerPIDValue.Width;
 end;
@@ -820,6 +821,9 @@ begin
   btnRestartServer.Enabled := wsClientRcon.Active;
   btnForceSave.Enabled := wsClientRcon.Active;
 
+  // Check if server is running and rcon is connected.
+  // If server is running and rcon is not connected then
+  // try to connect
   if isServerRunning and not wsClientRcon.Active then
   begin
     wsClientRcon.Host := 'localhost';
