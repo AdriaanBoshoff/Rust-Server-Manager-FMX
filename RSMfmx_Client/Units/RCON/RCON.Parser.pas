@@ -11,14 +11,86 @@ type
     class function ParseRconMessage(const Data: string): TRCONMessage;
     // Parse Server Info
     class function ParseServerInfo(const Data: string): TRCONServerInfo;
+    // Parse PlayerList
+    class function ParsePlayerList(const Data: string): TArray<TRCONPlayerListPlayer>;
   end;
 
 implementation
 
 uses
-  System.JSON, System.SysUtils, System.DateUtils;
+  System.JSON, System.SysUtils, System.Classes, System.DateUtils;
 
 { TRCONParser }
+
+class function TRCONParser.ParsePlayerList(const Data: string): TArray<TRCONPlayerListPlayer>;
+begin
+  var jPlayers := TJSONObject.ParseJSONValue(Data);
+  try
+    SetLength(Result, (jPlayers as TJSONArray).Count);
+    var I := 0;
+    for var jPlayer in jPlayers as TJSONArray do
+    begin
+      // SteamID
+      if not jPlayer.TryGetValue<string>('SteamID', Result[I].SteamID) then
+        Result[I].SteamID := 'MISSING FIELD';
+
+      // OwnerSteamID
+      if not jPlayer.TryGetValue<string>('OwnerSteamID', Result[I].OwnerSteamID) then
+        Result[I].OwnerSteamID := 'MISSING FIELD';
+
+      // DisplayName
+      if not jPlayer.TryGetValue<string>('DisplayName', Result[I].DisplayName) then
+        Result[I].DisplayName := 'MISSING FIELD';
+
+      // Ping
+      if not jPlayer.TryGetValue<Integer>('Ping', Result[I].Ping) then
+        Result[I].Ping := -1;
+
+      // Address
+      if not jPlayer.TryGetValue<string>('Address', Result[I].Address) then
+        Result[I].Address := 'MISSING FIELD:-1';
+
+      // Get IP and Port from address
+      if not Result[I].Address.Trim.IsEmpty then
+      begin
+        var slAddress := TStringList.Create;
+        try
+          slAddress.StrictDelimiter := True;
+          slAddress.Delimiter := ':';
+          slAddress.DelimitedText := Result[I].Address;
+
+          // IP
+          Result[I].IP := slAddress[0];
+
+          // Port
+          Result[I].Port := slAddress[1].ToInteger;
+        finally
+          slAddress.Free;
+        end;
+      end
+      else
+      begin
+        // IP
+        Result[I].IP := 'MISSING FIELD';
+
+        // Port
+        Result[I].Port := -1;
+      end;
+
+      // Connected Seconds
+      if not jPlayer.TryGetValue<Integer>('ConnectedSeconds', Result[I].ConnectedSeconds) then
+        Result[I].ConnectedSeconds := -1;
+
+      // Health
+      if not jPlayer.TryGetValue<Double>('Health', Result[I].Health) then
+        Result[I].Health := -1;
+
+      Inc(I);
+    end;
+  finally
+    jPlayers.Free;
+  end;
+end;
 
 class function TRCONParser.ParseRconMessage(const Data: string): TRCONMessage;
 begin
