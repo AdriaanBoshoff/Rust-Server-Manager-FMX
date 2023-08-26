@@ -29,7 +29,8 @@ var
 implementation
 
 uses
-  RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo;
+  RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
+  RSM.PlayerManager;
 
 { TRCONEvents }
 
@@ -43,9 +44,13 @@ end;
 
 procedure TRCONEvents.OnPlayerList(const PlayerList: TArray<TRCONPlayerListPlayer>);
 begin
+  // Populate Player Manager
+  playerManager.LoadOnlinePlayersFromArray(PlayerList);
+
+  // Loop Through Playerlist
   for var aPlayer in PlayerList do
   begin
-    //
+   // frmMain.mmoServerCFG.Lines.Add(aPlayer.SteamID);
   end;
 end;
 
