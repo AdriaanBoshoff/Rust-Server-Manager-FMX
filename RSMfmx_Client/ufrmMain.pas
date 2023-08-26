@@ -219,14 +219,17 @@ type
     lblStatRconValue: TLabel;
     tmrServerInfo: TTimer;
     procedure btnCopyRconPasswordClick(Sender: TObject);
+    procedure btnForceSaveClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnKillServerClick(Sender: TObject);
+    procedure btnRestartServerClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnServerTagsInfoClick(Sender: TObject);
     procedure btnShowHideServerInfoClick(Sender: TObject);
     procedure btnStartServerClick(Sender: TObject);
+    procedure btnStopServerClick(Sender: TObject);
     procedure cbbServerGamemodeValueMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -302,6 +305,11 @@ begin
   end;
 end;
 
+procedure TfrmMain.btnForceSaveClick(Sender: TObject);
+begin
+  TRCON.SendRconCommand('server.save', 0, wsClientRcon);
+end;
+
 procedure TfrmMain.btnGameModeInfoClick(Sender: TObject);
 begin
   OpenURL('https://wiki.facepunch.com/rust/server-gamemodes');
@@ -316,6 +324,11 @@ end;
 procedure TfrmMain.btnKillServerClick(Sender: TObject);
 begin
   serverProcess.KillProcess;
+end;
+
+procedure TfrmMain.btnRestartServerClick(Sender: TObject);
+begin
+  TRCON.SendRconCommand('restart', 0, wsClientRcon);
 end;
 
 procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
@@ -460,6 +473,11 @@ begin
   finally
     slParams.Free;
   end;
+end;
+
+procedure TfrmMain.btnStopServerClick(Sender: TObject);
+begin
+  TRCON.SendRconCommand('quit', 0, wsClientRcon);
 end;
 
 procedure TfrmMain.cbbServerGamemodeValueMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -821,18 +839,25 @@ end;
 
 procedure TfrmMain.wsClientRconConnect(Connection: TsgcWSConnection);
 begin
+  // Stat bar
   lblStatRconValue.Text := 'Connected';
   lblStatRconValue.FontColor := TAlphaColorRec.Lime;
 
+  // Server Info Command timer
   tmrServerInfo.Enabled := True;
 end;
 
 procedure TfrmMain.wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
 begin
+  // Stat bar
   lblStatRconValue.Text := 'Disconnected';
   lblStatRconValue.FontColor := TAlphaColorRec.Red;
 
+  // Server Info Command timer
   tmrServerInfo.Enabled := False;
+
+  // Reset Server Info UI
+  ResetServerInfoValues;
 end;
 
 procedure TfrmMain.wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);

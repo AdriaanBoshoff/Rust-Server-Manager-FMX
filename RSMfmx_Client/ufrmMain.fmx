@@ -365,6 +365,7 @@ object frmMain: TfrmMain
             Text = 'Stop Server'
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TintColor = xFFCA8300
+            OnClick = btnStopServerClick
           end
           object btnRestartServer: TButton
             Align = Top
@@ -385,6 +386,7 @@ object frmMain: TfrmMain
             Text = 'Restart Server'
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TintColor = xFFB9B900
+            OnClick = btnRestartServerClick
           end
           object btnForceSave: TButton
             Align = Top
@@ -403,6 +405,7 @@ object frmMain: TfrmMain
             Text = 'Force Save'
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TintColor = xFF158EFF
+            OnClick = btnForceSaveClick
           end
           object btnKillServer: TButton
             Align = Bottom
@@ -1575,8 +1578,8 @@ object frmMain: TfrmMain
               Size.Height = 215.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 664.000000000000000000
-              Viewport.Height = 215.000000000000000000
+              Viewport.Width = 652.000000000000000000
+              Viewport.Height = 207.000000000000000000
             end
           end
         end
@@ -2364,7 +2367,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Server Config'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstServerInstaller: TListBoxItem
@@ -2453,7 +2456,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Server Installer'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstPlayerManager: TListBoxItem
@@ -2519,7 +2522,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Player Manager'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
     end
