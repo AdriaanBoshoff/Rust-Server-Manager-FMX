@@ -19,6 +19,10 @@ const
   RCON_ID_SERVERINFO = 1;
   RCON_CMD_SERVERINFO = 'serverinfo';
 
+  // playerlist
+  RCON_ID_PLAYERLIST = 2;
+  RCON_CMD_PLAYERLIST = 'playerlist';
+
 implementation
 
 end.
