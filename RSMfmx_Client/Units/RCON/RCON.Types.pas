@@ -40,29 +40,10 @@ type
     class procedure SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
   end;
 
-type
-  TRCONParser = class
-    class function ParseRconMessage(const Data: string): TRCONMessage;
-  end;
-
 implementation
 
 uses
   System.JSON;
-
-{ TRCONParser }
-
-class function TRCONParser.ParseRconMessage(const Data: string): TRCONMessage;
-begin
-  var jData := TJSONObject.ParseJSONValue(Data);
-  try
-    Result.aMessage := jData.GetValue<string>('Message');
-    Result.aIdentifier := jData.GetValue<Integer>('Identifier');
-    Result.aType := jData.GetValue<string>('Type');
-  finally
-    jData.Free;
-  end;
-end;
 
 { TRCON }
 

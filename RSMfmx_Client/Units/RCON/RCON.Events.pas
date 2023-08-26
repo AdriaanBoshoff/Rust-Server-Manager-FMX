@@ -8,7 +8,7 @@ uses
 type
   TRCONEvents = class
   { Private Methods }
- // procedure OnServerInfo(const);
+    procedure OnServerInfo(const serverInfo: TRCONServerInfo);
   { Public Methods }
   public
     procedure OnRconMessage(const rconMessage: TRCONMessage);
@@ -24,6 +24,13 @@ implementation
 procedure TRCONEvents.OnRconMessage(const rconMessage: TRCONMessage);
 begin
   // All messages received from rcon will be processed here.
+
+  // ServerInfo
+end;
+
+procedure TRCONEvents.OnServerInfo(const serverInfo: TRCONServerInfo);
+begin
+//
 end;
 
 initialization
