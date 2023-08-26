@@ -8,10 +8,14 @@ uses
 type
   TRCONEvents = class
   { Private Methods }
+    // Server Info
     procedure OnServerInfo(const serverInfo: TRCONServerInfo);
+    // Player Count Changed. Gets called in OnServerInfo()
+    procedure OnPlayerCountChanged(const OldCount, NewCount: Integer);
   { Public Methods }
   public
     procedure OnRconMessage(const rconMessage: TRCONMessage);
+
   end;
 
 var
@@ -20,9 +24,14 @@ var
 implementation
 
 uses
-  RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils;
+  RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo;
 
 { TRCONEvents }
+
+procedure TRCONEvents.OnPlayerCountChanged(const OldCount, NewCount: Integer);
+begin
+  // Player Count Changed.
+end;
 
 procedure TRCONEvents.OnRconMessage(const rconMessage: TRCONMessage);
 begin
@@ -30,7 +39,17 @@ begin
 
   // ServerInfo
   if rconMessage.aIdentifier = RCON_ID_SERVERINFO then
-    OnServerInfo(TRCONParser.ParseServerInfo(rconMessage.aMessage));
+  begin
+    var serverInfo := TRCONParser.ParseServerInfo(rconMessage.aMessage);
+    OnServerInfo(serverInfo);
+
+    // Player Change
+    if serverInfoCurrent.Players <> serverInfo.Players then
+      OnPlayerCountChanged(serverInfoCurrent.Players, serverInfo.Players);
+
+    // Assign Global Server info variable
+    serverInfoCurrent := serverInfo;
+  end;
 end;
 
 procedure TRCONEvents.OnServerInfo(const serverInfo: TRCONServerInfo);
