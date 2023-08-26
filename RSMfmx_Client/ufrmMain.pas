@@ -279,8 +279,9 @@ var
 implementation
 
 uses
-  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller, uWinUtils,
-  uServerProcess, RCON.Commands, RCON.Types, RCON.Events, RCON.Parser;
+  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
+  ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
+  RCON.Events, RCON.Parser;
 
 {$R *.fmx}
 
@@ -594,6 +595,11 @@ begin
   frmServerInstaller := TfrmServerInstaller.Create(tbtmServerInstaller);
   while frmServerInstaller.ChildrenCount > 0 do
     frmServerInstaller.Children[0].Parent := tbtmServerInstaller;
+
+  // Player Manager Module
+  frmPlayerManager := TfrmPlayerManager.Create(tbtmPlayerManager);
+  while frmPlayerManager.ChildrenCount > 0 do
+    frmPlayerManager.Children[0].Parent := tbtmPlayerManager;
 end;
 
 procedure TfrmMain.FreeClasses;

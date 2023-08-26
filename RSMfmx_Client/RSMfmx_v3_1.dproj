@@ -330,6 +330,15 @@
         <DCCReference Include="Units\RCON\RCON.Parser.pas"/>
         <DCCReference Include="Units\uServerInfo.pas"/>
         <DCCReference Include="Units\PlayerManager\RSM.PlayerManager.pas"/>
+        <DCCReference Include="Modules\PlayerManager\ufrmPlayerManager.pas">
+            <Form>frmPlayerManager</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Modules\PlayerManager\FrameItems\uframePlayerItem.pas">
+            <Form>framePlayerItem</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -21,7 +21,9 @@ uses
   RCON.Events in 'Units\RCON\RCON.Events.pas',
   RCON.Parser in 'Units\RCON\RCON.Parser.pas',
   uServerInfo in 'Units\uServerInfo.pas',
-  RSM.PlayerManager in 'Units\PlayerManager\RSM.PlayerManager.pas';
+  RSM.PlayerManager in 'Units\PlayerManager\RSM.PlayerManager.pas',
+  ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager},
+  uframePlayerItem in 'Modules\PlayerManager\FrameItems\uframePlayerItem.pas' {framePlayerItem: TFrame};
 
 {$R *.res}
 

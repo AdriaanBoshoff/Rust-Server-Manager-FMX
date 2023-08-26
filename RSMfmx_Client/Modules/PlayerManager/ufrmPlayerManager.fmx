@@ -1,0 +1,92 @@
+object frmPlayerManager: TfrmPlayerManager
+  Left = 0
+  Top = 0
+  Caption = 'Player Manager'
+  ClientHeight = 508
+  ClientWidth = 770
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object tbcMain: TTabControl
+    Align = Client
+    Size.Width = 770.000000000000000000
+    Size.Height = 508.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 0
+    TabPosition = PlatformDefault
+    Sizes = (
+      770s
+      484s)
+    object tbtmOnlinePlayers: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 96.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Online Players'
+      object vrtscrlbxOnlinePlayers: TVertScrollBox
+        Align = Client
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Size.Width = 760.000000000000000000
+        Size.Height = 434.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 760.000000000000000000
+        Viewport.Height = 434.000000000000000000
+        object flwlytOnlinePlayers: TFlowLayout
+          Align = Top
+          Size.Width = 760.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Justify = Left
+          JustifyLastLine = Left
+          FlowDirection = LeftToRight
+          VerticalGap = 5.000000000000000000
+          OnResized = flwlytOnlinePlayersResized
+        end
+      end
+      object rctnglOnlinePlayerControls: TRectangle
+        Align = Top
+        Fill.Color = xFF1F222A
+        Padding.Left = 10.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 760.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claNull
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        object btn1: TButton
+          Position.X = 88.000000000000000000
+          Position.Y = 3.000000000000000000
+          TabOrder = 0
+          Text = 'btn1'
+          OnClick = btn1Click
+        end
+        object btn2: TButton
+          Position.X = 344.000000000000000000
+          Position.Y = 8.000000000000000000
+          TabOrder = 1
+          Text = 'btn2'
+          OnClick = btn2Click
+        end
+      end
+    end
+  end
+end
