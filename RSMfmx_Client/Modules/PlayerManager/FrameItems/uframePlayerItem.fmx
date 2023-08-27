@@ -1,5 +1,5 @@
 object framePlayerItem: TframePlayerItem
-  Size.Width = 600.000000000000000000
+  Size.Width = 627.000000000000000000
   Size.Height = 50.000000000000000000
   Size.PlatformDefault = False
   object rctnglBG: TRectangle
@@ -9,7 +9,7 @@ object framePlayerItem: TframePlayerItem
     Padding.Top = 3.000000000000000000
     Padding.Right = 3.000000000000000000
     Padding.Bottom = 3.000000000000000000
-    Size.Width = 600.000000000000000000
+    Size.Width = 627.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
@@ -28,6 +28,7 @@ object framePlayerItem: TframePlayerItem
       object crclAvatar: TCircle
         Align = Client
         Fill.Color = xFF5E5E5E
+        HitTest = False
         Size.Width = 44.000000000000000000
         Size.Height = 44.000000000000000000
         Size.PlatformDefault = False
@@ -39,7 +40,7 @@ object framePlayerItem: TframePlayerItem
       Margins.Left = 5.000000000000000000
       Position.X = 52.000000000000000000
       Position.Y = 3.000000000000000000
-      Size.Width = 510.000000000000000000
+      Size.Width = 537.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
@@ -56,13 +57,35 @@ object framePlayerItem: TframePlayerItem
         Text = 'Quantum'
         TabOrder = 0
       end
+      object lytHealth: TLayout
+        Align = Right
+        Position.X = 487.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lblHealth: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Size.Width = 38.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claLime
+          TextSettings.WordWrap = False
+          Text = '100 HP'
+          TabOrder = 0
+          OnResized = lblHealthResized
+        end
+      end
     end
     object lytLine2: TLayout
       Align = Top
       Margins.Left = 5.000000000000000000
       Position.X = 52.000000000000000000
       Position.Y = 25.000000000000000000
-      Size.Width = 510.000000000000000000
+      Size.Width = 537.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
@@ -78,11 +101,147 @@ object framePlayerItem: TframePlayerItem
         Text = '76561198113034550'
         TabOrder = 0
       end
+      object lytPing: TLayout
+        Align = Right
+        Position.X = 487.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lblPing: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Size.Width = 33.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.WordWrap = False
+          Text = '50 ms'
+          TabOrder = 0
+          OnResized = lblPingResized
+        end
+      end
+      object lytIPAddress: TLayout
+        Align = Left
+        Margins.Left = 30.000000000000000000
+        Position.X = 140.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object lblIPHeader: TLabel
+          Align = MostLeft
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Size.Width = 14.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFFD0D0D0
+          TextSettings.WordWrap = False
+          Text = 'IP:'
+          TabOrder = 1
+        end
+        object lblIPValue: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Margins.Left = 3.000000000000000000
+          Position.X = 17.000000000000000000
+          Size.Width = 82.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFF8D8D8D
+          TextSettings.WordWrap = False
+          Text = '102.132.190.184'
+          TabOrder = 0
+          OnResized = lblIPValueResized
+        end
+      end
+      object lytVacBans: TLayout
+        Align = Left
+        Margins.Left = 30.000000000000000000
+        Position.X = 270.000000000000000000
+        Size.Width = 69.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object lblVacBansHeader: TLabel
+          Align = MostLeft
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Size.Width = 55.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFFD0D0D0
+          TextSettings.WordWrap = False
+          Text = 'VAC Bans:'
+          TabOrder = 1
+        end
+        object lblVacBansValue: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Margins.Left = 3.000000000000000000
+          Position.X = 58.000000000000000000
+          Size.Width = 7.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claLime
+          TextSettings.WordWrap = False
+          Text = '0'
+          TabOrder = 0
+          OnResized = lblIPValueResized
+        end
+      end
+      object lytGameBans: TLayout
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Position.X = 349.000000000000000000
+        Size.Width = 78.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object lblGameBansHeader: TLabel
+          Align = MostLeft
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Size.Width = 64.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFFD0D0D0
+          TextSettings.WordWrap = False
+          Text = 'Game Bans:'
+          TabOrder = 1
+        end
+        object lblGameBansValue: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Margins.Left = 3.000000000000000000
+          Position.X = 67.000000000000000000
+          Size.Width = 7.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claLime
+          TextSettings.WordWrap = False
+          Text = '0'
+          TabOrder = 0
+          OnResized = lblIPValueResized
+        end
+      end
     end
     object btnManage: TSpeedButton
       Align = MostRight
       Hint = 'Shows Quick Options like Ban, Kick, Kill'
-      Position.X = 562.000000000000000000
+      Position.X = 589.000000000000000000
       Position.Y = 3.000000000000000000
       Size.Width = 35.000000000000000000
       Size.Height = 44.000000000000000000

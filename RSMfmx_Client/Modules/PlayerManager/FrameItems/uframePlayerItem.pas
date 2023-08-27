@@ -17,6 +17,22 @@ type
     lblSteamID: TLabel;
     rctnglBG: TRectangle;
     btnManage: TSpeedButton;
+    lblHealth: TLabel;
+    lblPing: TLabel;
+    lytHealth: TLayout;
+    lytPing: TLayout;
+    lytIPAddress: TLayout;
+    lblIPHeader: TLabel;
+    lblIPValue: TLabel;
+    lytVacBans: TLayout;
+    lblVacBansHeader: TLabel;
+    lblVacBansValue: TLabel;
+    lytGameBans: TLayout;
+    lblGameBansHeader: TLabel;
+    lblGameBansValue: TLabel;
+    procedure lblHealthResized(Sender: TObject);
+    procedure lblIPValueResized(Sender: TObject);
+    procedure lblPingResized(Sender: TObject);
     procedure rctnglBGMouseEnter(Sender: TObject);
     procedure rctnglBGMouseLeave(Sender: TObject);
   private
@@ -28,6 +44,21 @@ type
 implementation
 
 {$R *.fmx}
+
+procedure TframePlayerItem.lblHealthResized(Sender: TObject);
+begin
+  lytHealth.Width := lblHealth.Width;
+end;
+
+procedure TframePlayerItem.lblIPValueResized(Sender: TObject);
+begin
+  lytIPAddress.Width := lblIPHeader.Width + lblIPValue.Margins.Left + lblIPValue.Width;
+end;
+
+procedure TframePlayerItem.lblPingResized(Sender: TObject);
+begin
+  lytPing.Width := lblPing.Width;
+end;
 
 procedure TframePlayerItem.rctnglBGMouseEnter(Sender: TObject);
 begin
