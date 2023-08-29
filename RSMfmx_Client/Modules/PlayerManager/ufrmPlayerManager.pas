@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.TabControl, FMX.Layouts, FMX.ListBox, FMX.Objects,
-  FMX.Controls.Presentation, FMX.StdCtrls;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit;
 
 type
   TfrmPlayerManager = class(TForm)
@@ -17,6 +17,9 @@ type
     rctnglOnlinePlayerControls: TRectangle;
     btn1: TButton;
     btn2: TButton;
+    btnRefreshOnlinePlayers: TSpeedButton;
+    lblSearchOnlinePlayersHeader: TLabel;
+    edtSearchOnlinePlayers: TEdit;
     procedure btn1Click(Sender: TObject);
     procedure btn2Click(Sender: TObject);
     procedure flwlytOnlinePlayersResized(Sender: TObject);
