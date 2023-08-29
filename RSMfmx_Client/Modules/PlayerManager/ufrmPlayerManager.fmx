@@ -76,20 +76,6 @@ object frmPlayerManager: TfrmPlayerManager
         Stroke.Color = claNull
         XRadius = 10.000000000000000000
         YRadius = 10.000000000000000000
-        object btn1: TButton
-          Position.X = 432.000000000000000000
-          Position.Y = 9.000000000000000000
-          TabOrder = 0
-          Text = 'btn1'
-          OnClick = btn1Click
-        end
-        object btn2: TButton
-          Position.X = 552.000000000000000000
-          Position.Y = 9.000000000000000000
-          TabOrder = 1
-          Text = 'btn2'
-          OnClick = btn2Click
-        end
         object btnRefreshOnlinePlayers: TSpeedButton
           Align = Right
           Position.X = 720.000000000000000000
@@ -99,6 +85,7 @@ object frmPlayerManager: TfrmPlayerManager
           Size.PlatformDefault = False
           StyleLookup = 'refreshtoolbutton'
           Text = 'Refresh'
+          OnClick = btnRefreshOnlinePlayersClick
         end
         object lblSearchOnlinePlayersHeader: TLabel
           Align = Left
@@ -112,12 +99,12 @@ object frmPlayerManager: TfrmPlayerManager
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Search:'
-          TabOrder = 3
+          TabOrder = 1
         end
         object edtSearchOnlinePlayers: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Left
-          TabOrder = 4
+          TabOrder = 2
           Position.X = 50.000000000000000000
           Position.Y = 5.000000000000000000
           Margins.Left = 5.000000000000000000
