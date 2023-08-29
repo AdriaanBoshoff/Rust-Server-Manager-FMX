@@ -15,19 +15,17 @@ type
     vrtscrlbxOnlinePlayers: TVertScrollBox;
     flwlytOnlinePlayers: TFlowLayout;
     rctnglOnlinePlayerControls: TRectangle;
-    btn1: TButton;
-    btn2: TButton;
     btnRefreshOnlinePlayers: TSpeedButton;
     lblSearchOnlinePlayersHeader: TLabel;
     edtSearchOnlinePlayers: TEdit;
-    procedure btn1Click(Sender: TObject);
-    procedure btn2Click(Sender: TObject);
+    procedure btnRefreshOnlinePlayersClick(Sender: TObject);
     procedure flwlytOnlinePlayersResized(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure ReCalcOnlinePlayersItemSizes;
+    procedure ClearOnlinePlayersUI;
   end;
 
 var
@@ -36,29 +34,21 @@ var
 implementation
 
 uses
-  uframePlayerItem;
+  uframePlayerItem, RCON.Types, RCON.Commands, ufrmMain;
 
 {$R *.fmx}
 
-procedure TfrmPlayerManager.btn1Click(Sender: TObject);
+procedure TfrmPlayerManager.btnRefreshOnlinePlayersClick(Sender: TObject);
+begin
+  TRCON.SendRconCommand(RCON_CMD_PLAYERLIST, RCON_ID_PLAYERLIST, frmMain.wsClientRcon);
+end;
+
+procedure TfrmPlayerManager.ClearOnlinePlayersUI;
 begin
   for var I := flwlytOnlinePlayers.ChildrenCount - 1 downto 0 do
   begin
     if flwlytOnlinePlayers.Children[I] is TframePlayerItem then
       flwlytOnlinePlayers.Children[I].Free;
-  end;
-
-  ReCalcOnlinePlayersItemSizes;
-end;
-
-procedure TfrmPlayerManager.btn2Click(Sender: TObject);
-begin
-  for var I := 1 to 10 do
-  begin
-    var playerItem := TframePlayerItem.Create(flwlytOnlinePlayers);
-    playerItem.Name := playerItem.Name + '_' + flwlytOnlinePlayers.ChildrenCount.ToString;
-    playerItem.Parent := flwlytOnlinePlayers;
-    playerItem.lblDisplayName.Text := playerItem.lblDisplayName.Text + ' #' + flwlytOnlinePlayers.ChildrenCount.ToString;
   end;
 
   ReCalcOnlinePlayersItemSizes;
