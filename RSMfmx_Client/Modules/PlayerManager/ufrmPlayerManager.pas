@@ -25,9 +25,9 @@ type
     procedure flwlytOnlinePlayersResized(Sender: TObject);
   private
     { Private declarations }
-    procedure ReCalcOnlinePlayersItemSizes;
   public
     { Public declarations }
+    procedure ReCalcOnlinePlayersItemSizes;
   end;
 
 var
