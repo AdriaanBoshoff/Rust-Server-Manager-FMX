@@ -38,6 +38,7 @@ type
   private
     { Private declarations }
     function GetAvatarIconFromXML(xml: string): string;
+    function LoadAvatarFromCache(const steamID: string): boolean;
   public
     { Public declarations }
     procedure LoadSteamAvatar(const steamID: string);
@@ -79,8 +80,35 @@ begin
   lytPing.Width := lblPing.Width;
 end;
 
+function TframePlayerItem.LoadAvatarFromCache(const steamID: string): boolean;
+begin
+  Result := False;
+
+  // Cache file
+  var avatarCacheFile := ExtractFilePath(ParamStr(0)) + 'rsm\cache\players\avatars\' + steamID + '.png';
+
+  if TFile.Exists(avatarCacheFile) then
+  begin
+    crclAvatar.Fill.Bitmap.WrapMode := TWrapMode.TileStretch;
+    crclAvatar.Fill.Bitmap.Bitmap.LoadFromFile(avatarCacheFile);
+
+    Result := True;
+  end
+  else
+  begin
+    Result := False;
+    ForceDirectories(ExtractFileDir(avatarCacheFile));
+  end;
+end;
+
 procedure TframePlayerItem.LoadSteamAvatar(const steamID: string);
 begin
+  // Load from cache then exit code
+  if LoadAvatarFromCache(steamID) then
+    Exit;
+
+
+  // Download Avatar if not cached
   TTask.Run(
     procedure
     begin
@@ -96,6 +124,9 @@ begin
 
         if (rest.Response.StatusCode = 200) and not rest.Response.Content.IsEmpty then
         begin
+          // Cache file
+          var avatarCacheFile := ExtractFilePath(ParamStr(0)) + 'rsm\cache\players\avatars\' + steamID + '.png';
+
           var memStream := TMemoryStream.Create;
           try
             CoInitialize(nil);
@@ -105,6 +136,10 @@ begin
             if not avatarURL.Trim.IsEmpty then
             begin
               TDownloadURL.DownloadRawBytes(avatarURL, memStream);
+
+              // Save to cache
+              ForceDirectories(ExtractFileDir(avatarCacheFile));
+              memStream.SaveToFile(avatarCacheFile);
 
               TThread.Synchronize(TThread.Current,
                 procedure
