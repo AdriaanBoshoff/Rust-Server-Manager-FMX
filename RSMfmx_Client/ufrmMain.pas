@@ -838,7 +838,6 @@ begin
     wsClientRcon.ConnectTimeout := 1;
     wsClientRcon.Active := True;
   end;
-
 end;
 
 procedure TfrmMain.tmrServerInfoTimer(Sender: TObject);
