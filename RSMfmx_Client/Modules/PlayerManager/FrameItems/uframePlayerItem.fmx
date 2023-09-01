@@ -248,7 +248,7 @@ object framePlayerItem: TframePlayerItem
       Margins.Left = 5.000000000000000000
       Position.X = 52.000000000000000000
       Position.Y = 3.000000000000000000
-      Size.Width = 537.000000000000000000
+      Size.Width = 572.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
@@ -265,35 +265,13 @@ object framePlayerItem: TframePlayerItem
         Text = 'Quantum'
         TabOrder = 0
       end
-      object lytHealth: TLayout
-        Align = Right
-        Position.X = 487.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 1
-        object lblHealth: TLabel
-          Align = Left
-          AutoSize = True
-          StyledSettings = [Family, Size]
-          Size.Width = 38.000000000000000000
-          Size.Height = 22.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.FontColor = claLime
-          TextSettings.WordWrap = False
-          Text = '100 HP'
-          TabOrder = 0
-          OnResized = lblHealthResized
-        end
-      end
     end
     object lytLine2: TLayout
       Align = Top
       Margins.Left = 5.000000000000000000
       Position.X = 52.000000000000000000
       Position.Y = 25.000000000000000000
-      Size.Width = 537.000000000000000000
+      Size.Width = 572.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
@@ -307,29 +285,7 @@ object framePlayerItem: TframePlayerItem
         TextSettings.FontColor = xFF8D8D8D
         TextSettings.WordWrap = False
         Text = '76561198113034550'
-        TabOrder = 0
-      end
-      object lytPing: TLayout
-        Align = Right
-        Position.X = 487.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
         TabOrder = 1
-        object lblPing: TLabel
-          Align = Left
-          AutoSize = True
-          StyledSettings = [Family, Size]
-          Size.Width = 33.000000000000000000
-          Size.Height = 22.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.WordWrap = False
-          Text = '50 ms'
-          TabOrder = 0
-          OnResized = lblPingResized
-        end
       end
       object lytIPAddress: TLayout
         Align = Left
@@ -338,7 +294,7 @@ object framePlayerItem: TframePlayerItem
         Size.Width = 110.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 2
+        TabOrder = 3
         object lblIPHeader: TLabel
           Align = MostLeft
           AutoSize = True
@@ -368,95 +324,43 @@ object framePlayerItem: TframePlayerItem
           TabOrder = 0
         end
       end
-      object lytVacBans: TLayout
-        Align = Left
-        Margins.Left = 30.000000000000000000
-        Position.X = 280.000000000000000000
-        Size.Width = 69.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 4
-        object lblVacBansHeader: TLabel
-          Align = MostLeft
-          AutoSize = True
-          StyledSettings = [Family, Size]
-          Size.Width = 55.000000000000000000
-          Size.Height = 22.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.FontColor = xFFD0D0D0
-          TextSettings.WordWrap = False
-          Text = 'VAC Bans:'
-          TabOrder = 1
-        end
-        object lblVacBansValue: TLabel
-          Align = Left
-          AutoSize = True
-          StyledSettings = [Family, Size]
-          Margins.Left = 3.000000000000000000
-          Position.X = 58.000000000000000000
-          Size.Width = 7.000000000000000000
-          Size.Height = 22.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.FontColor = claLime
-          TextSettings.WordWrap = False
-          Text = '0'
-          TabOrder = 0
-        end
-      end
-      object lytGameBans: TLayout
+      object lytHealth: TLayout
         Align = Left
         Margins.Left = 10.000000000000000000
-        Position.X = 359.000000000000000000
-        Size.Width = 78.000000000000000000
+        Position.X = 260.000000000000000000
+        Size.Width = 40.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 3
-        object lblGameBansHeader: TLabel
-          Align = MostLeft
-          AutoSize = True
-          StyledSettings = [Family, Size]
-          Size.Width = 64.000000000000000000
-          Size.Height = 22.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.FontColor = xFFD0D0D0
-          TextSettings.WordWrap = False
-          Text = 'Game Bans:'
-          TabOrder = 1
-        end
-        object lblGameBansValue: TLabel
+        TabOrder = 2
+        object lblHealth: TLabel
           Align = Left
           AutoSize = True
           StyledSettings = [Family, Size]
-          Margins.Left = 3.000000000000000000
-          Position.X = 67.000000000000000000
-          Size.Width = 7.000000000000000000
+          Size.Width = 38.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.FontColor = claLime
           TextSettings.WordWrap = False
-          Text = '0'
+          Text = '100 HP'
           TabOrder = 0
         end
       end
-    end
-    object btnManage: TSpeedButton
-      Align = MostRight
-      Hint = 'Shows Quick Options like Ban, Kick, Kill'
-      Position.X = 589.000000000000000000
-      Position.Y = 3.000000000000000000
-      Size.Width = 35.000000000000000000
-      Size.Height = 44.000000000000000000
-      Size.PlatformDefault = False
-      ParentShowHint = False
-      ShowHint = True
-      StyleLookup = 'ellipseseditbutton'
-      Text = 'btnManage'
-      OnMouseEnter = rctnglBGMouseEnter
-      OnMouseLeave = rctnglBGMouseLeave
+      object lblPing: TLabel
+        Align = Right
+        AutoSize = True
+        StyledSettings = [Family, Size]
+        Margins.Right = 5.000000000000000000
+        Position.X = 521.000000000000000000
+        Size.Width = 46.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claWhite
+        TextSettings.WordWrap = False
+        Text = '9999 ms'
+        TabOrder = 0
+      end
     end
   end
 end

@@ -17,22 +17,12 @@ type
     lblDisplayName: TLabel;
     lblSteamID: TLabel;
     rctnglBG: TRectangle;
-    btnManage: TSpeedButton;
     lblHealth: TLabel;
     lblPing: TLabel;
     lytHealth: TLayout;
-    lytPing: TLayout;
     lytIPAddress: TLayout;
     lblIPHeader: TLabel;
     lblIPValue: TLabel;
-    lytVacBans: TLayout;
-    lblVacBansHeader: TLabel;
-    lblVacBansValue: TLabel;
-    lytGameBans: TLayout;
-    lblGameBansHeader: TLabel;
-    lblGameBansValue: TLabel;
-    procedure lblHealthResized(Sender: TObject);
-    procedure lblPingResized(Sender: TObject);
     procedure rctnglBGMouseEnter(Sender: TObject);
     procedure rctnglBGMouseLeave(Sender: TObject);
   private
@@ -68,16 +58,6 @@ begin
   finally
     XMLDoc := nil;
   end;
-end;
-
-procedure TframePlayerItem.lblHealthResized(Sender: TObject);
-begin
-  lytHealth.Width := lblHealth.Width;
-end;
-
-procedure TframePlayerItem.lblPingResized(Sender: TObject);
-begin
-  lytPing.Width := lblPing.Width;
 end;
 
 function TframePlayerItem.LoadAvatarFromCache(const steamID: string): boolean;
