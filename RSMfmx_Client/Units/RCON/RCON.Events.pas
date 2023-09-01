@@ -3,8 +3,7 @@
 interface
 
 uses
-  RCON.Types, RCON.Commands, System.Generics.Collections, System.UITypes,
-  System.UIConsts;
+  RCON.Types, RCON.Commands, System.Generics.Collections;
 
 type
   TRCONEvents = class
@@ -48,42 +47,8 @@ begin
   // Populate Player Manager
   playerManager.LoadOnlinePlayersFromArray(PlayerList);
 
-  // Clear Online Players UI
-  frmPlayerManager.ClearOnlinePlayersUI;
-
-  // Loop Through Playerlist
-  for var aPlayer in PlayerList do
-  begin
-    // Build UI Item
-    var playerItem := TframePlayerItem.Create(frmPlayerManager.flwlytOnlinePlayers);
-    playerItem.Name := 'onlinePlayerItem_' + aPlayer.SteamID;
-    playerItem.Parent := frmPlayerManager.flwlytOnlinePlayers;
-
-    // Assign UI Values
-    playerItem.lblDisplayName.Text := aPlayer.DisplayName;
-    playerItem.lblSteamID.Text := aPlayer.SteamID;
-
-    // Health
-    playerItem.lblHealth.Text := Format('%f HP', [aPlayer.Health]);
-    // Health Color
-    // Calculate the colors based on health value
-    var redColor := Round(255 * (1 - aPlayer.Health / 100));
-    var greenColor := Round(200 + 55 * (aPlayer.Health / 100));
-    playerItem.lblHealth.FontColor := MakeColor(redColor, greenColor, 0);
-
-    // Latency (Ping)
-    playerItem.lblPing.Text := Format('%d ms', [aPlayer.Ping]);
-    // Latency Color
-    // Calculate the colors based on latency value
-    redColor := Round(255 * (aPlayer.Ping / 120));
-    greenColor := Round(200 - 150 * (aPlayer.Ping / 120));
-    playerItem.lblPing.FontColor := MakeColor(redColor, greenColor, 0);
-
-    playerItem.lblIPValue.Text := aPlayer.IP;
-  end;
-
-  // Recalc Player List UI Items
-  frmPlayerManager.ReCalcOnlinePlayersItemSizes;
+  // Populate UI
+  frmPlayerManager.SearchOnlinePlayersUI(frmPlayerManager.edtSearchOnlinePlayers.Text);
 end;
 
 procedure TRCONEvents.OnRconMessage(const rconMessage: TRCONMessage);

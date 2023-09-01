@@ -112,6 +112,7 @@ object frmPlayerManager: TfrmPlayerManager
           Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
           TextPrompt = 'Search Name, SteamID or IP Address'
+          OnTyping = edtSearchOnlinePlayersTyping
         end
       end
     end
