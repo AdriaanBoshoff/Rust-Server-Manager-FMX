@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Objects, FMX.Controls.Presentation, System.IOUtils,
-  System.Threading;
+  System.Threading, RCON.Types, ufrmPlayerManager;
 
 type
   TframePlayerItem = class(TFrame)
@@ -23,6 +23,7 @@ type
     lytIPAddress: TLayout;
     lblIPHeader: TLabel;
     lblIPValue: TLabel;
+    procedure rctnglBGClick(Sender: TObject);
     procedure rctnglBGMouseEnter(Sender: TObject);
     procedure rctnglBGMouseLeave(Sender: TObject);
   private
@@ -31,13 +32,14 @@ type
     function LoadAvatarFromCache(const steamID: string): boolean;
   public
     { Public declarations }
+    playerData: TRCONPlayerListPlayer;
     procedure LoadSteamAvatar(const steamID: string);
   end;
 
 implementation
 
 uses
-  Rest.Client, Rest.Types, Xml.XMLDoc, Xml.XMLIntf, ActiveX;
+  Rest.Client, Rest.Types, Xml.XMLDoc, Xml.XMLIntf, ActiveX, uframePlayerOptions;
 
 {$R *.fmx}
 
@@ -143,6 +145,17 @@ begin
         rest.Free;
       end;
     end);
+end;
+
+procedure TframePlayerItem.rctnglBGClick(Sender: TObject);
+begin
+  // Frame Options
+  var playerOptionsFrame := TframePlayerOptions.Create(Self);
+  playerOptionsFrame.Parent := frmPlayerManager.tbtmOnlinePlayers;
+  playerOptionsFrame.Align := TAlignLayout.Contents;
+  playerOptionsFrame.playerData := Self.playerData;
+  playerOptionsFrame.crclAvatar.Fill := Self.crclAvatar.Fill;
+  playerOptionsFrame.BringToFront;
 end;
 
 procedure TframePlayerItem.rctnglBGMouseEnter(Sender: TObject);

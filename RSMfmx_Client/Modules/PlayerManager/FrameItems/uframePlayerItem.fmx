@@ -15,6 +15,7 @@ object framePlayerItem: TframePlayerItem
     Stroke.Kind = None
     XRadius = 10.000000000000000000
     YRadius = 10.000000000000000000
+    OnClick = rctnglBGClick
     OnMouseEnter = rctnglBGMouseEnter
     OnMouseLeave = rctnglBGMouseLeave
     object lytAvatar: TLayout
