@@ -23,7 +23,8 @@ uses
   uServerInfo in 'Units\uServerInfo.pas',
   RSM.PlayerManager in 'Units\PlayerManager\RSM.PlayerManager.pas',
   ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager},
-  uframePlayerItem in 'Modules\PlayerManager\FrameItems\uframePlayerItem.pas' {framePlayerItem: TFrame};
+  uframePlayerItem in 'Modules\PlayerManager\FrameItems\uframePlayerItem.pas' {framePlayerItem: TFrame},
+  uframePlayerOptions in 'Modules\PlayerManager\FrameItems\uframePlayerOptions.pas' {framePlayerOptions: TFrame};
 
 {$R *.res}
 
