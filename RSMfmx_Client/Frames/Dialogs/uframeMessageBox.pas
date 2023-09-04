@@ -34,7 +34,7 @@ implementation
 
 procedure TframeMessageBox.btnCloseClick(Sender: TObject);
 begin
-  Self.Free;
+  Self.Release;
 end;
 
 procedure TframeMessageBox.btnCopyMessageClick(Sender: TObject);
