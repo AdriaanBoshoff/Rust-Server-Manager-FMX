@@ -51,14 +51,26 @@ type
 type
   TRCON = class
     class procedure SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
+    class procedure KickPlayer(const SteamID, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
+    class procedure BanPlayerID(const SteamID, Username, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
   end;
 
 implementation
 
 uses
-  System.JSON;
+  System.JSON, System.SysUtils;
 
 { TRCON }
+
+class procedure TRCON.BanPlayerID(const SteamID, Username, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
+begin
+  Self.SendRconCommand(Format('banid %s "%s" "%s"', [SteamID, Username, Reason]), Identifier, rconClient);
+end;
+
+class procedure TRCON.KickPlayer(const SteamID, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
+begin
+  Self.SendRconCommand(Format('kick %s "%s"', [SteamID, Reason]), Identifier, rconClient);
+end;
 
 class procedure TRCON.SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
 begin
