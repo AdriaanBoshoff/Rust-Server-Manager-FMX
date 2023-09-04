@@ -108,23 +108,46 @@ object framePlayerOptions: TframePlayerOptions
       Size.Height = 406.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      object lytLeft: TLayout
-        Align = Left
-        Margins.Left = 5.000000000000000000
-        Position.X = 5.000000000000000000
+      object rctnglMain: TRectangle
+        Align = Center
+        Fill.Color = xFF303440
+        Padding.Left = 10.000000000000000000
+        Padding.Top = 10.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Padding.Bottom = 10.000000000000000000
         Size.Width = 150.000000000000000000
-        Size.Height = 406.000000000000000000
+        Size.Height = 250.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
-      end
-      object lytRight: TLayout
-        Align = Right
-        Margins.Right = 5.000000000000000000
-        Position.X = 551.000000000000000000
-        Size.Width = 150.000000000000000000
-        Size.Height = 406.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
+        Stroke.Kind = None
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+        object btnKickPlayer: TButton
+          Align = Top
+          CanFocus = False
+          DisableFocusEffect = True
+          Position.X = 10.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 130.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Kick Player'
+          OnClick = btnKickPlayerClick
+        end
+        object btnBanPlayer: TButton
+          Align = Top
+          CanFocus = False
+          DisableFocusEffect = True
+          Margins.Top = 20.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 60.000000000000000000
+          Size.Width = 130.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Ban Player'
+          OnClick = btnBanPlayerClick
+        end
       end
     end
   end

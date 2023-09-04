@@ -20,34 +20,66 @@ type
     btnClose: TSpeedButton;
     crclAvatar: TCircle;
     lytMain: TLayout;
-    lytLeft: TLayout;
-    lytRight: TLayout;
+    rctnglMain: TRectangle;
+    btnKickPlayer: TButton;
+    btnBanPlayer: TButton;
+    procedure btnBanPlayerClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
+    procedure btnKickPlayerClick(Sender: TObject);
   private
     { Private declarations }
+    procedure SetupColors;
   public
     { Public declarations }
     playerData: TRCONPlayerListPlayer;
-    procedure Close;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 implementation
 
 uses
-  ufrmPlayerManager;
+  ufrmPlayerManager, ufrmMain;
 
 {$R *.fmx}
+
+{ TframePlayerOptions }
 
 procedure TframePlayerOptions.btnCloseClick(Sender: TObject);
 begin
   Self.Release;
 end;
 
-{ TframePlayerOptions }
-
-procedure TframePlayerOptions.Close;
+constructor TframePlayerOptions.Create(AOwner: TComponent);
 begin
+  inherited Create(AOwner);
+
+  // Setup Option Colors
+  Self.SetupColors;
+end;
+
+procedure TframePlayerOptions.btnBanPlayerClick(Sender: TObject);
+begin
+  TRCON.BanPlayerID(playerData.SteamID, playerData.DisplayName, 'Banned by admin', 0, frmMain.wsClientRcon);
+
   Self.Release;
+end;
+
+procedure TframePlayerOptions.btnKickPlayerClick(Sender: TObject);
+begin
+  TRCON.KickPlayer(Self.playerData.SteamID, 'Kicked by admin', 0, frmMain.wsClientRcon);
+
+  Self.Release;
+end;
+
+procedure TframePlayerOptions.SetupColors;
+begin
+  // Kick Button
+  Self.btnKickPlayer.StyleLookup := 'tintedbutton';
+  Self.btnKickPlayer.TintColor := $FFC44B00;
+
+  // Ban Button
+  Self.btnBanPlayer.StyleLookup := 'tintedbutton';
+  Self.btnBanPlayer.TintColor := TAlphaColorRec.Darkred;
 end;
 
 end.
