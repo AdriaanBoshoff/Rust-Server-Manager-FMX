@@ -50,7 +50,7 @@ begin
   for var I := flwlytOnlinePlayers.ChildrenCount - 1 downto 0 do
   begin
     if flwlytOnlinePlayers.Children[I] is TframePlayerItem then
-      flwlytOnlinePlayers.Children[I].Free;
+      (flwlytOnlinePlayers.Children[I] as TframePlayerItem).Free;
   end;
 
   ReCalcOnlinePlayersItemSizes;
@@ -98,6 +98,7 @@ begin
       var playerItem := TframePlayerItem.Create(flwlytOnlinePlayers);
       playerItem.Name := 'onlinePlayerItem_' + aPlayer.Value.SteamID;
       playerItem.Parent := flwlytOnlinePlayers;
+      playerItem.playerData := aPlayer.Value;
 
       // Assign UI Values
       playerItem.lblDisplayName.Text := aPlayer.Value.DisplayName;
