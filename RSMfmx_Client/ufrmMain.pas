@@ -257,7 +257,7 @@ type
     // UI
     procedure LoadRSMUIConfig;
     procedure ResetServerInfoValues;
-    procedure BringToForeground;
+
     // Server Config
     procedure PopulateServerConfigUI;
     // Startup
@@ -271,6 +271,7 @@ type
     procedure ShowServerInfo;
   public
     { Public declarations }
+    procedure BringToForeground;
   end;
 
 var
