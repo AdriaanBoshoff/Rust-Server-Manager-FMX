@@ -28,11 +28,14 @@ type
     procedure btnKickPlayerClick(Sender: TObject);
   private
     { Private declarations }
+    fplayerData: TRCONPlayerListPlayer;
     procedure SetupColors;
+    procedure SetPlayerData(const Value: TRCONPlayerListPlayer);
   public
     { Public declarations }
-    playerData: TRCONPlayerListPlayer;
     constructor Create(AOwner: TComponent); override;
+  published
+    property PlayerData: TRCONPlayerListPlayer read fplayerData write SetPlayerData;
   end;
 
 implementation
@@ -69,6 +72,14 @@ begin
   TRCON.KickPlayer(Self.playerData.SteamID, 'Kicked by admin', 0, frmMain.wsClientRcon);
 
   Self.Release;
+end;
+
+procedure TframePlayerOptions.SetPlayerData(const Value: TRCONPlayerListPlayer);
+begin
+  fplayerData := Value;
+
+  lblDisplayName.Text := fplayerData.DisplayName;
+  lblSteamID.Text := fplayerData.SteamID;
 end;
 
 procedure TframePlayerOptions.SetupColors;
