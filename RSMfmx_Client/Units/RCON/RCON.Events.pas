@@ -30,7 +30,7 @@ implementation
 
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
-  RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager;
+  RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager, uMisc;
 
 { TRCONEvents }
 
@@ -88,10 +88,10 @@ begin
   frmMain.lblJoiningValue.Text := serverInfo.Joining.ToString;
 
   // Network Out
-  frmMain.lblNetworkOutValue.Text := Format('%d b/s ↑', [serverInfo.NetworkOut]);
+  frmMain.lblNetworkOutValue.Text := Format('%s/s ↑', [ConvertBytes(serverInfo.NetworkOut)]);
 
   // Network In
-  frmMain.lblNetworkInValue.Text := Format('%d b/s ↓', [serverInfo.NetworkIn]);
+  frmMain.lblNetworkInValue.Text := Format('%s/s ↓', [ConvertBytes(serverInfo.NetworkIn)]);
 
   // FPS
   frmMain.lblServerFPSValue.Text := serverInfo.FPS.ToString;
