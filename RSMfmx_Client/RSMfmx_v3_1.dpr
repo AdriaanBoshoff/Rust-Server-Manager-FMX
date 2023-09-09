@@ -25,7 +25,8 @@ uses
   ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager},
   uframePlayerItem in 'Modules\PlayerManager\FrameItems\uframePlayerItem.pas' {framePlayerItem: TFrame},
   uframePlayerOptions in 'Modules\PlayerManager\FrameItems\uframePlayerOptions.pas' {framePlayerOptions: TFrame},
-  uMisc in 'Units\uMisc.pas';
+  uMisc in 'Units\uMisc.pas',
+  uCPUInfo in 'Units\uCPUInfo.pas';
 
 {$R *.res}
 

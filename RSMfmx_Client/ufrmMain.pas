@@ -218,6 +218,10 @@ type
     lblStatRconHeader: TLabel;
     lblStatRconValue: TLabel;
     tmrServerInfo: TTimer;
+    tbtmOxideuMod: TTabItem;
+    lstOxideMod: TListBoxItem;
+    lblOxideMod: TLabel;
+    rctnglOxideModNavImage: TRectangle;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
@@ -237,6 +241,7 @@ type
     procedure edtCustomMapURLValueExit(Sender: TObject);
     procedure edtRconPasswordValueEnter(Sender: TObject);
     procedure edtRconPasswordValueExit(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblAppVersionValueResized(Sender: TObject);
     procedure lblStatRconValueResized(Sender: TObject);
@@ -282,7 +287,7 @@ implementation
 uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
-  RCON.Events, RCON.Parser;
+  RCON.Events, RCON.Parser, uMisc, uCPUInfo;
 
 {$R *.fmx}
 
@@ -535,6 +540,9 @@ begin
 
   {$IFDEF RELEASE}
   Self.Caption := 'RSMfmx v3.1';
+
+  // Temp Disable System Info
+  rctnglSystemInfo.Visible := False;
   {$ENDIF}
 
   // Classes
@@ -601,6 +609,12 @@ begin
   frmPlayerManager := TfrmPlayerManager.Create(tbtmPlayerManager);
   while frmPlayerManager.ChildrenCount > 0 do
     frmPlayerManager.Children[0].Parent := tbtmPlayerManager;
+end;
+
+procedure TfrmMain.FormActivate(Sender: TObject);
+begin
+  // Server Size
+  lblServerSizeValue.Text := ConvertBytes(GetDirSize(ExtractFileDir(ParamStr(0)), True));
 end;
 
 procedure TfrmMain.FreeClasses;
@@ -843,6 +857,7 @@ end;
 
 procedure TfrmMain.tmrServerInfoTimer(Sender: TObject);
 begin
+  // Request Server Info
   if wsClientRcon.Active then
     TRCON.SendRconCommand(RCON_CMD_SERVERINFO, RCON_ID_SERVERINFO, wsClientRcon);
 end;
