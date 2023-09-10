@@ -33,15 +33,13 @@ end;
 function ConvertBytes(Bytes: Int64): string;
 const
   Description: array[0..8] of string = ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
-var
-  i: Int64;
 begin
-  i := 0;
+  var I: Int64 := 0;
 
-  while Bytes > Power(1024, i + 1) do
-    Inc(i);
+  while Bytes > Power(1024, I + 1) do
+    Inc(I);
 
-  Result := FormatFloat('###0.##', Bytes / IntPower(1024, i)) + ' ' + Description[i];
+  Result := FormatFloat('###0.##', Bytes / IntPower(1024, I)) + ' ' + Description[I];
 end;
 
 end.
