@@ -384,6 +384,9 @@ begin
     // Repopulate UI
     PopulateServerConfigUI;
 
+    // Tell the server to load the config file
+    TRCON.SendRconCommand('server.readcfg', 0, wsClientRcon);
+
    // ShowMessage('Config Saved!');
     ShowMessageBox('Saved Server Config!', 'Server Config', Self);
   except
@@ -883,6 +886,9 @@ begin
 
   // Reset Server Info UI
   ResetServerInfoValues;
+
+  // Clear Online Players
+  frmPlayerManager.ClearOnlinePlayersUI;
 end;
 
 procedure TfrmMain.wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
