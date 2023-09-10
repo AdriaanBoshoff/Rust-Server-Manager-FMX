@@ -220,7 +220,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 4
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -534,7 +534,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1657,13 +1657,15 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 94.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
         Text = 'Oxide / uMod'
+        ExplicitSize.cx = 94.000000000000000000
+        ExplicitSize.cy = 24.000000000000000000
       end
     end
   end
