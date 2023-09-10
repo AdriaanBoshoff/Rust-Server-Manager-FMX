@@ -7,9 +7,9 @@ uses
 
 type
   TRCONEvents = class
-  { Private Variables }
+    { Private Variables }
   private
-  { Private Methods }
+    { Private Methods }
   private
     // Server Info
     procedure OnServerInfo(const serverInfo: TRCONServerInfo);
@@ -17,7 +17,7 @@ type
     procedure OnPlayerCountChanged(const OldCount, NewCount: Integer);
     // On Playerlist
     procedure OnPlayerList(const PlayerList: TArray<TRCONPlayerListPlayer>);
-  { Public Methods }
+    { Public Methods }
   public
     procedure OnRconMessage(const rconMessage: TRCONMessage);
 
@@ -30,7 +30,8 @@ implementation
 
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
-  RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager, uMisc;
+  RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager, uMisc,
+  uframeMessageBox;
 
 { TRCONEvents }
 
@@ -39,13 +40,13 @@ begin
   // Player Count Changed. Request new playerlist
   TRCON.SendRconCommand(RCON_CMD_PLAYERLIST, RCON_ID_PLAYERLIST, frmMain.wsClientRcon);
 
-  //frmMain.lblAppVersionValue.Text := Format('OLD: %d  NEW: %d', [OldCount, NewCount]);
+  // frmMain.lblAppVersionValue.Text := Format('OLD: %d  NEW: %d', [OldCount, NewCount]);
 end;
 
 procedure TRCONEvents.OnPlayerList(const PlayerList: TArray<TRCONPlayerListPlayer>);
 begin
   // Populate Player Manager
-  playerManager.LoadOnlinePlayersFromArray(PlayerList);
+  PlayerManager.LoadOnlinePlayersFromArray(PlayerList);
 
   // Populate UI
   frmPlayerManager.SearchOnlinePlayersUI(frmPlayerManager.edtSearchOnlinePlayers.Text);
@@ -78,35 +79,43 @@ end;
 
 procedure TRCONEvents.OnServerInfo(const serverInfo: TRCONServerInfo);
 begin
-  // Players
-  frmMain.lblPlayerCountValue.Text := Format('%d / %d', [serverInfo.Players, serverInfo.MaxPlayers]);
+  try
+    // Players
+    frmMain.lblPlayerCountValue.Text := Format('%d / %d', [serverInfo.Players, serverInfo.MaxPlayers]);
 
-  // Queued
-  frmMain.lblQueuedValue.Text := serverInfo.Queued.ToString;
+    // Queued
+    frmMain.lblQueuedValue.Text := serverInfo.Queued.ToString;
 
-  // Joining
-  frmMain.lblJoiningValue.Text := serverInfo.Joining.ToString;
+    // Joining
+    frmMain.lblJoiningValue.Text := serverInfo.Joining.ToString;
 
-  // Network Out
-  frmMain.lblNetworkOutValue.Text := Format('%s/s ↑', [ConvertBytes(serverInfo.NetworkOut)]);
+    // Network Out
+    frmMain.lblNetworkOutValue.Text := Format('%s/s ↑', [ConvertBytes(serverInfo.NetworkOut)]);
 
-  // Network In
-  frmMain.lblNetworkInValue.Text := Format('%s/s ↓', [ConvertBytes(serverInfo.NetworkIn)]);
+    // Network In
+    frmMain.lblNetworkInValue.Text := Format('%s/s ↓', [ConvertBytes(serverInfo.NetworkIn)]);
 
-  // FPS
-  frmMain.lblServerFPSValue.Text := serverInfo.FPS.ToString;
+    // FPS
+    frmMain.lblServerFPSValue.Text := serverInfo.FPS.ToString;
 
-  // Entity Count
-  frmMain.lblServerEntityCountValue.Text := serverInfo.EntityCount.ToString;
+    // Entity Count
+    frmMain.lblServerEntityCountValue.Text := serverInfo.EntityCount.ToString;
 
-  // Protocol
-  frmMain.lblServerProtocolValue.Text := serverInfo.Protocol;
+    // Protocol
+    frmMain.lblServerProtocolValue.Text := serverInfo.Protocol;
 
-  // Ram Usage
-  frmMain.lblServerMemoryUsageValue.Text := serverInfo.MemoryUsageSystem.ToString + ' MB';
+    // Ram Usage
+    frmMain.lblServerMemoryUsageValue.Text := ConvertBytes(serverInfo.MemoryUsageSystem * 1000000); //serverInfo.MemoryUsageSystem.ToString + ' MB';
 
-  // Last Wipe
-  frmMain.lblLastWipeValue.Text := FormatDateTime('yyyy/mm/dd hh:nn:ss', serverInfo.SaveCreatedTime);
+    // Last Wipe
+    frmMain.lblLastWipeValue.Text := FormatDateTime('yyyy/mm/dd hh:nn:ss', serverInfo.SaveCreatedTime);
+  except
+    on E: Exception do
+    begin
+      frmMain.tmrServerInfo.Enabled := False;
+      ShowMessageBox('Error parsing server info. Disabling server info. Please report this on the discord server.' + sLineBreak + E.Message, 'Server Info Error', frmMain);
+    end;
+  end;
 end;
 
 initialization

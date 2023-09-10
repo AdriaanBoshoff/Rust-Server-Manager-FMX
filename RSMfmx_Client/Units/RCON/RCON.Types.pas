@@ -25,7 +25,7 @@ type
     Map: string;
     FPS: Integer;
     Memory: Integer;
-    MemoryUsageSystem: Integer;
+    MemoryUsageSystem: Int64;
     Collections: Integer;
     NetworkIn: Integer;
     NetworkOut: Integer;

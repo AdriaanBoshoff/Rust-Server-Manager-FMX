@@ -167,7 +167,7 @@ begin
       Result.Memory := -1;
 
     // Memory Usage System
-    if not jData.TryGetValue<Integer>('MemoryUsageSystem', Result.MemoryUsageSystem) then
+    if not jData.TryGetValue<Int64>('MemoryUsageSystem', Result.MemoryUsageSystem) then
       Result.MemoryUsageSystem := -1;
 
     // Collections
