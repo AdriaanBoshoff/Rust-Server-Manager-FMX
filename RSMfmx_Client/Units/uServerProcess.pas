@@ -44,6 +44,10 @@ var
 begin
   Result := '';
 
+  if ProcessID = -1 then
+  Exit;
+
+
   hProcess := OpenProcess(PROCESS_QUERY_INFORMATION or PROCESS_VM_READ, False, PID);
   if hProcess <> 0 then
   try
