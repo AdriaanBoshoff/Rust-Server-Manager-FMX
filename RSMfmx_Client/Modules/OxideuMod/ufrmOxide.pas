@@ -189,6 +189,8 @@ begin
   var StringWriter := TStringWriter.Create();
   var Writer := TJsonTextWriter.Create(StringWriter);
   try
+    Writer.Formatting := TJsonFormatting.Indented;
+
     Writer.WriteStartObject;
     Writer.WritePropertyName('Options');
     Writer.WriteStartObject;
