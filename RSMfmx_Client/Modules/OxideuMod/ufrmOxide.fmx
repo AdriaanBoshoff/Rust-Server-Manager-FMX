@@ -431,15 +431,19 @@ object frmOxide: TfrmOxide
         Text = 'Oxide / uMod Settings'
         TabOrder = 0
       end
-      object btnRefreshSettings: TSpeedButton
+      object btnSaveConfig: TButton
         Align = Right
-        Hint = 'Refreshes the current Oxide / uMod settings'
-        Position.X = 737.000000000000000000
-        Size.Width = 30.000000000000000000
+        StyledSettings = [Family, Size, FontColor]
+        Position.X = 680.000000000000000000
+        Size.Width = 87.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
-        StyleLookup = 'refreshtoolbutton'
-        Text = 'btnRefreshSettings'
+        StyleLookup = 'tintedbutton'
+        TabOrder = 1
+        Text = 'Save Config'
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TintColor = xFFDC7900
+        OnClick = btnSaveConfigClick
       end
     end
     object lstSettings: TListBox
@@ -484,7 +488,7 @@ object frmOxide: TfrmOxide
           Items.Strings = (
             'Community'
             'Modded')
-          ItemIndex = 1
+          ItemIndex = 0
           Margins.Top = 12.000000000000000000
           Margins.Right = 12.000000000000000000
           Margins.Bottom = 12.000000000000000000
@@ -494,6 +498,7 @@ object frmOxide: TfrmOxide
           Size.Height = 26.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 51
+          OnMouseWheel = cbbServerListCategoryMouseWheel
         end
       end
       object lstPluginWatchers: TListBoxItem
@@ -688,7 +693,7 @@ object frmOxide: TfrmOxide
           Size.Width = 40.000000000000000000
           Size.Height = 20.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 50
+          TabOrder = 51
         end
       end
     end

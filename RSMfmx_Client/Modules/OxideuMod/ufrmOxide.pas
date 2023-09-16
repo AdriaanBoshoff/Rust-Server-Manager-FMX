@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListBox,
-  FMX.Edit, System.IOUtils, System.JSON;
+  FMX.Edit, System.IOUtils, ufrmMain;
 
 type
   TOxideSettings = class
@@ -42,7 +42,6 @@ type
     lytDescription: TLayout;
     lytSettingsHeader: TLayout;
     lblSettingsHeader: TLabel;
-    btnRefreshSettings: TSpeedButton;
     lstSettings: TListBox;
     lstOptions: TListBoxGroupHeader;
     lstModded: TListBoxItem;
@@ -63,6 +62,9 @@ type
     swtchMinimalistMode: TSwitch;
     lstShowStatusBar: TListBoxItem;
     swtchShowStatusBar: TSwitch;
+    btnSaveConfig: TButton;
+    procedure btnSaveConfigClick(Sender: TObject);
+    procedure cbbServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -77,7 +79,37 @@ var
 
 implementation
 
+uses
+  System.JSON.Types, System.JSON.Writers, System.JSON, uframeMessageBox;
+
 {$R *.fmx}
+
+procedure TfrmOxide.btnSaveConfigClick(Sender: TObject);
+begin
+  case cbbServerListCategory.ItemIndex of
+    0:
+      oxideSettings.Modded := False;
+    1:
+      oxideSettings.Modded := True;
+  end;
+
+  oxideSettings.PluginWatchers := swtchPluginWatchers.IsChecked;
+  oxideSettings.DefaultPlayerGroup := edtDefaultPlayerGroup.Text;
+  oxideSettings.DefaultAdminGroup := edtAdminGroup.Text;
+  oxideSettings.WebRequestIP := edtWebRequestIP.Text;
+  oxideSettings.EnableOxideConsole := swtchEnableOxideConsole.IsChecked;
+  oxideSettings.MinimalistOxideConsole := swtchMinimalistMode.IsChecked;
+  oxideSettings.ShowStatusBar := swtchShowStatusBar.IsChecked;
+
+  oxideSettings.SaveSettings;
+
+  ShowMessageBox('Saved Oxide Config', 'Oxide Config', frmMain.tbtmOxideuMod);
+end;
+
+procedure TfrmOxide.cbbServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+begin
+  Abort;
+end;
 
 procedure TfrmOxide.FormDestroy(Sender: TObject);
 begin
@@ -154,7 +186,50 @@ end;
 
 procedure TOxideSettings.SaveSettings;
 begin
+  var StringWriter := TStringWriter.Create();
+  var Writer := TJsonTextWriter.Create(StringWriter);
+  try
+    Writer.WriteStartObject;
+    Writer.WritePropertyName('Options');
+    Writer.WriteStartObject;
 
+    Writer.WritePropertyName('Modded');
+    Writer.WriteValue(Self.Modded);
+
+    Writer.WritePropertyName('PluginWatchers');
+    Writer.WriteValue(Self.PluginWatchers);
+
+    Writer.WritePropertyName('DefaultGroups');
+    Writer.WriteStartObject;
+    Writer.WritePropertyName('Players');
+    Writer.WriteValue(Self.DefaultPlayerGroup);
+
+    Writer.WritePropertyName('Administrators');
+    Writer.WriteValue(Self.DefaultAdminGroup);
+    Writer.WriteEndObject;
+
+    Writer.WritePropertyName('WebRequestIP');
+    Writer.WriteValue(Self.WebRequestIP);
+    Writer.WriteEndObject;
+
+    Writer.WritePropertyName('OxideConsole');
+    Writer.WriteStartObject;
+    Writer.WritePropertyName('Enabled');
+    Writer.WriteValue(Self.EnableOxideConsole);
+
+    Writer.WritePropertyName('MinimalistMode');
+    Writer.WriteValue(Self.MinimalistOxideConsole);
+
+    Writer.WritePropertyName('ShowStatusBar');
+    Writer.WriteValue(Self.ShowStatusBar);
+    Writer.WriteEndObject;
+    Writer.WriteEndObject;
+
+    TFile.WriteAllText(Self.OxideConfigFile, StringWriter.ToString, TEncoding.UTF8);
+  finally
+    Writer.Free;
+    StringWriter.Free;
+  end;
 end;
 
 end.
