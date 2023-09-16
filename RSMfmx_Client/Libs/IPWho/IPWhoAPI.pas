@@ -31,6 +31,7 @@ type
   TIPWhoInfo = record
     ip: string;
     success: boolean;
+    aMessage: string;
     ipType: string;
     continent: string;
     continentCode: string;
@@ -96,6 +97,12 @@ begin
       // Success
       if not rest.Response.JSONValue.TryGetValue<boolean>('success', Result.success) then
         Result.success := False;
+
+      if not Result.success then
+      begin
+        rest.Response.JSONValue.TryGetValue<string>('message', Result.aMessage);
+        Exit;
+      end;
 
       // Type
       if not rest.Response.JSONValue.TryGetValue<string>('type', Result.ipType) then
