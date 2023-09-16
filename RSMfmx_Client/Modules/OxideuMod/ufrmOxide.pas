@@ -21,7 +21,6 @@ type
     ShowStatusBar: Boolean;
   private
     function OxideConfigFile: string;
-    procedure PopulateUIConfig;
   public
     procedure LoadSettings;
     procedure SaveSettings;
@@ -88,6 +87,22 @@ end;
 procedure TfrmOxide.FormCreate(Sender: TObject);
 begin
   oxideSettings := TOxideSettings.Create;
+
+  if oxideSettings.Modded then
+    cbbServerListCategory.ItemIndex := 1
+  else
+    cbbServerListCategory.ItemIndex := 0;
+
+  swtchPluginWatchers.IsChecked := oxideSettings.PluginWatchers;
+
+  edtDefaultPlayerGroup.Text := oxideSettings.DefaultPlayerGroup;
+  edtAdminGroup.Text := oxideSettings.DefaultAdminGroup;
+
+  edtWebRequestIP.Text := oxideSettings.WebRequestIP;
+
+  swtchEnableOxideConsole.IsChecked := oxideSettings.EnableOxideConsole;
+  swtchMinimalistMode.IsChecked := oxideSettings.MinimalistOxideConsole;
+  swtchShowStatusBar.IsChecked := oxideSettings.ShowStatusBar;
 end;
 
 { TOxideSettings }
@@ -127,8 +142,6 @@ begin
     EnableOxideConsole := jData.GetValue<Boolean>('OxideConsole.Enabled');
     MinimalistOxideConsole := jData.GetValue<Boolean>('OxideConsole.MinimalistMode');
     ShowStatusBar := jData.GetValue<Boolean>('OxideConsole.ShowStatusBar');
-
-    PopulateUIConfig;
   finally
     jData.Free;
   end;
@@ -137,28 +150,6 @@ end;
 function TOxideSettings.OxideConfigFile: string;
 begin
   Result := ExtractFilePath(ParamStr(0)) + 'oxide\oxide.config.json';
-end;
-
-procedure TOxideSettings.PopulateUIConfig;
-begin
-  with frmOxide do
-  begin
-    if Modded then
-      cbbServerListCategory.ItemIndex := 1
-    else
-      cbbServerListCategory.ItemIndex := 0;
-
-    swtchPluginWatchers.IsChecked := PluginWatchers;
-
-    edtDefaultPlayerGroup.Text := DefaultPlayerGroup;
-    edtAdminGroup.Text := DefaultAdminGroup;
-
-    edtWebRequestIP.Text := WebRequestIP;
-
-    swtchEnableOxideConsole.IsChecked := EnableOxideConsole;
-    swtchMinimalistMode.IsChecked := MinimalistOxideConsole;
-    swtchShowStatusBar.IsChecked := ShowStatusBar;
-  end;
 end;
 
 procedure TOxideSettings.SaveSettings;
