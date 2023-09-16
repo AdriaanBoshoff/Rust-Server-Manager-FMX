@@ -287,7 +287,7 @@ implementation
 uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
-  RCON.Events, RCON.Parser, uMisc, uCPUInfo;
+  RCON.Events, RCON.Parser, uMisc;
 
 {$R *.fmx}
 
@@ -479,6 +479,7 @@ begin
 
     // Server Server and Save PID
     serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
+
     serverProcess.Save;
   finally
     slParams.Free;

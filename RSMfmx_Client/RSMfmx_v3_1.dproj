@@ -345,7 +345,6 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Units\uMisc.pas"/>
-        <DCCReference Include="Units\uCPUInfo.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
