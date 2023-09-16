@@ -345,6 +345,11 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Units\uMisc.pas"/>
+        <DCCReference Include="Libs\IPWho\IPWhoAPI.pas"/>
+        <DCCReference Include="Modules\OxideuMod\ufrmOxide.pas">
+            <Form>frmOxide</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

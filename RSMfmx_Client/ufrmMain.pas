@@ -287,7 +287,7 @@ implementation
 uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
-  RCON.Events, RCON.Parser, uMisc;
+  RCON.Events, RCON.Parser, uMisc, ufrmOxide;
 
 {$R *.fmx}
 
@@ -613,6 +613,11 @@ begin
   frmPlayerManager := TfrmPlayerManager.Create(tbtmPlayerManager);
   while frmPlayerManager.ChildrenCount > 0 do
     frmPlayerManager.Children[0].Parent := tbtmPlayerManager;
+
+  // Oxide / uMod
+  var frmOxide := TfrmOxide.Create(tbtmOxideuMod);
+  while frmOxide.ChildrenCount > 0 do
+    frmOxide.Children[0].Parent := tbtmOxideuMod;
 end;
 
 procedure TfrmMain.FormActivate(Sender: TObject);

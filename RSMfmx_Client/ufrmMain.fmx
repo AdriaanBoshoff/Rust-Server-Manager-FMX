@@ -1583,8 +1583,8 @@ object frmMain: TfrmMain
               Size.Height = 215.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 652.000000000000000000
-              Viewport.Height = 207.000000000000000000
+              Viewport.Width = 664.000000000000000000
+              Viewport.Height = 215.000000000000000000
             end
           end
         end
@@ -2386,7 +2386,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Server Config'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstServerInstaller: TListBoxItem
@@ -2475,7 +2475,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Server Installer'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstPlayerManager: TListBoxItem
@@ -2541,7 +2541,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'Player Manager'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstOxideMod: TListBoxItem
@@ -2561,7 +2561,7 @@ object frmMain: TfrmMain
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.WordWrap = False
           Text = 'OxideMod / uMod'
-          TabOrder = 50
+          TabOrder = 49
         end
         object rctnglOxideModNavImage: TRectangle
           Align = MostLeft
