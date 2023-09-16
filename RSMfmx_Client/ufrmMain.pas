@@ -615,7 +615,7 @@ begin
     frmPlayerManager.Children[0].Parent := tbtmPlayerManager;
 
   // Oxide / uMod
-  var frmOxide := TfrmOxide.Create(tbtmOxideuMod);
+  frmOxide := TfrmOxide.Create(tbtmOxideuMod);
   while frmOxide.ChildrenCount > 0 do
     frmOxide.Children[0].Parent := tbtmOxideuMod;
 end;
@@ -845,6 +845,10 @@ begin
   edtRconPasswordValue.ReadOnly := isServerRunning;
   lytServerNetworking3.Enabled := not isServerRunning;
   lytServerConfigMisc2.Enabled := not isServerRunning;
+
+  // Oxide Module
+  frmOxide.rctnglHeader.Enabled := not isServerRunning;
+  frmOxide.rctnglSettings.Enabled := not isServerRunning;
 
   // Rcon Connection
   btnStopServer.Enabled := wsClientRcon.Active;
