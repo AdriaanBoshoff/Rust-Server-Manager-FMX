@@ -59,7 +59,7 @@ object frmMain: TfrmMain
       Size.Width = 111.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 3
+      TabOrder = 4
       object lblAppVersionValue: TLabel
         Align = MostRight
         AutoSize = True
@@ -95,7 +95,7 @@ object frmMain: TfrmMain
       Size.Width = 92.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
+      TabOrder = 3
       object lblStatServerPIDHeader: TLabel
         Align = MostLeft
         AutoSize = True
@@ -134,7 +134,7 @@ object frmMain: TfrmMain
       Size.Width = 121.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
+      TabOrder = 2
       object lblStatRconHeader: TLabel
         Align = MostLeft
         AutoSize = True
@@ -175,7 +175,7 @@ object frmMain: TfrmMain
       Size.Width = 54.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 0
+      TabOrder = 1
       object lblStatServerFPSHeader: TLabel
         Align = MostLeft
         AutoSize = True
@@ -202,11 +202,52 @@ object frmMain: TfrmMain
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.StyleExt = {00060000000000000004000000}
-        TextSettings.FontColor = claLime
+        TextSettings.FontColor = claLightsteelblue
         TextSettings.WordWrap = False
         Text = '---'
         TabOrder = 1
         OnResized = lblStatServerFPSValueResized
+      end
+    end
+    object lytStatPlayerCount: TLayout
+      Align = Left
+      Margins.Left = 10.000000000000000000
+      Position.X = 307.000000000000000000
+      Size.Width = 94.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object lblStatPlayerCountHeader: TLabel
+        Align = MostLeft
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Size.Width = 45.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'Players::'
+        TabOrder = 0
+      end
+      object lblStatPlayerCountValue: TLabel
+        Align = Left
+        AutoSize = True
+        StyledSettings = [Family, Size]
+        Hint = 
+          'RSM will automatically connect to the server RCON after it'#39's fin' +
+          'ished booting'
+        HitTest = True
+        Margins.Left = 3.000000000000000000
+        Position.X = 48.000000000000000000
+        Size.Width = 41.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claLightsteelblue
+        TextSettings.WordWrap = False
+        Text = '--- / ---'
+        TabOrder = 1
+        OnResized = lblStatPlayerCountValueResized
       end
     end
   end
@@ -1811,7 +1852,7 @@ object frmMain: TfrmMain
                 Size.Width = 41.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.FontColor = claGray
+                TextSettings.FontColor = claLightsteelblue
                 TextSettings.WordWrap = False
                 Text = '--- / ---'
                 TabOrder = 1
@@ -1983,7 +2024,7 @@ object frmMain: TfrmMain
                 Size.Width = 15.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.FontColor = claGray
+                TextSettings.FontColor = claLightsteelblue
                 TextSettings.WordWrap = False
                 Text = '---'
                 TabOrder = 1
@@ -2051,7 +2092,7 @@ object frmMain: TfrmMain
                 Size.Width = 15.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.FontColor = claGray
+                TextSettings.FontColor = claLightsteelblue
                 TextSettings.WordWrap = False
                 Text = '---'
                 TabOrder = 1

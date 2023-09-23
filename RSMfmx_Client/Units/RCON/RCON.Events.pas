@@ -82,6 +82,7 @@ begin
   try
     // Players
     frmMain.lblPlayerCountValue.Text := Format('%d / %d', [serverInfo.Players, serverInfo.MaxPlayers]);
+    frmMain.lblStatPlayerCountValue.Text := frmMain.lblPlayerCountValue.Text;
 
     // Queued
     frmMain.lblQueuedValue.Text := serverInfo.Queued.ToString;

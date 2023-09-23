@@ -225,6 +225,9 @@ type
     lytStatServerFPS: TLayout;
     lblStatServerFPSHeader: TLabel;
     lblStatServerFPSValue: TLabel;
+    lytStatPlayerCount: TLayout;
+    lblStatPlayerCountHeader: TLabel;
+    lblStatPlayerCountValue: TLabel;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
@@ -247,6 +250,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblAppVersionValueResized(Sender: TObject);
+    procedure lblStatPlayerCountValueResized(Sender: TObject);
     procedure lblStatRconValueResized(Sender: TObject);
     procedure lblStatServerFPSValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
@@ -666,6 +670,11 @@ begin
   lytAppVersion.Width := lblAppVersionHeader.Width + 5 + lblAppVersionValue.Width;
 end;
 
+procedure TfrmMain.lblStatPlayerCountValueResized(Sender: TObject);
+begin
+  lytStatPlayerCount.Width := lblStatPlayerCountHeader.Width + 3 + lblStatPlayerCountValue.Width;
+end;
+
 procedure TfrmMain.lblStatRconValueResized(Sender: TObject);
 begin
   lytStatRcon.Width := lblStatRconHeader.Width + 3 + lblStatRconValue.Width;
@@ -798,6 +807,7 @@ begin
 
   // Stat Bar
   lblStatServerFPSValue.Text := '---';
+  lblStatPlayerCountValue.Text := '--- / ---';
 end;
 
 procedure TfrmMain.ShowServerInfo;
