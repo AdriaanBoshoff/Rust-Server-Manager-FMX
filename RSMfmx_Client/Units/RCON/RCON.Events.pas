@@ -97,6 +97,7 @@ begin
 
     // FPS
     frmMain.lblServerFPSValue.Text := serverInfo.FPS.ToString;
+    frmMain.lblStatServerFPSValue.Text := serverInfo.FPS.ToString;
 
     // Entity Count
     frmMain.lblServerEntityCountValue.Text := serverInfo.EntityCount.ToString;

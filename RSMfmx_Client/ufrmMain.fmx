@@ -59,7 +59,7 @@ object frmMain: TfrmMain
       Size.Width = 111.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
+      TabOrder = 3
       object lblAppVersionValue: TLabel
         Align = MostRight
         AutoSize = True
@@ -95,7 +95,7 @@ object frmMain: TfrmMain
       Size.Width = 92.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
+      TabOrder = 2
       object lblStatServerPIDHeader: TLabel
         Align = MostLeft
         AutoSize = True
@@ -134,7 +134,7 @@ object frmMain: TfrmMain
       Size.Width = 121.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 0
+      TabOrder = 1
       object lblStatRconHeader: TLabel
         Align = MostLeft
         AutoSize = True
@@ -166,6 +166,47 @@ object frmMain: TfrmMain
         Text = 'Disconnected'
         TabOrder = 1
         OnResized = lblStatRconValueResized
+      end
+    end
+    object lytStatServerFPS: TLayout
+      Align = Left
+      Margins.Left = 10.000000000000000000
+      Position.X = 243.000000000000000000
+      Size.Width = 54.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object lblStatServerFPSHeader: TLabel
+        Align = MostLeft
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Size.Width = 23.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'FPS:'
+        TabOrder = 0
+      end
+      object lblStatServerFPSValue: TLabel
+        Align = Left
+        AutoSize = True
+        StyledSettings = [Family, Size]
+        Hint = 
+          'RSM will automatically connect to the server RCON after it'#39's fin' +
+          'ished booting'
+        HitTest = True
+        Margins.Left = 3.000000000000000000
+        Position.X = 26.000000000000000000
+        Size.Width = 15.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claLime
+        TextSettings.WordWrap = False
+        Text = '---'
+        TabOrder = 1
+        OnResized = lblStatServerFPSValueResized
       end
     end
   end

@@ -222,6 +222,9 @@ type
     lstOxideMod: TListBoxItem;
     lblOxideMod: TLabel;
     rctnglOxideModNavImage: TRectangle;
+    lytStatServerFPS: TLayout;
+    lblStatServerFPSHeader: TLabel;
+    lblStatServerFPSValue: TLabel;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
@@ -245,6 +248,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure lblAppVersionValueResized(Sender: TObject);
     procedure lblStatRconValueResized(Sender: TObject);
+    procedure lblStatServerFPSValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
@@ -667,6 +671,11 @@ begin
   lytStatRcon.Width := lblStatRconHeader.Width + 3 + lblStatRconValue.Width;
 end;
 
+procedure TfrmMain.lblStatServerFPSValueResized(Sender: TObject);
+begin
+  lytStatServerFPS.Width := lblStatServerFPSHeader.Width + 3 + lblStatServerFPSValue.Width;
+end;
+
 procedure TfrmMain.LoadRSMUIConfig;
 begin
   // Nav - Check if nav index is within bounds before assigning
@@ -717,7 +726,7 @@ begin
   lstNav.ItemIndex := lstServerControls.Index;
 
   // Default Player Manager Items
-  tbcPlayerManager.TabIndex := tbtmOnlinePlayers.Index;
+  frmPlayerManager.tbcMain.TabIndex := frmPlayerManager.tbtmOnlinePlayers.Index;
   {$ENDIF}
 end;
 
@@ -774,6 +783,7 @@ end;
 
 procedure TfrmMain.ResetServerInfoValues;
 begin
+  // Side Panel
   lblPlayerCountValue.Text := '--- / ---';
   lblQueuedValue.Text := '---';
   lblJoiningValue.Text := '---';
@@ -785,6 +795,9 @@ begin
   lblServerMemoryUsageValue.Text := '---';
   lblLastWipeValue.Text := '---';
   lblServerSizeValue.Text := '---';
+
+  // Stat Bar
+  lblStatServerFPSValue.Text := '---';
 end;
 
 procedure TfrmMain.ShowServerInfo;
