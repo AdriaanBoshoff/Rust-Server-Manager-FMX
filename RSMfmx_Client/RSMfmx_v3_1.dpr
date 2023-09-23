@@ -3,6 +3,7 @@ program RSMfmx_v3_1;
 uses
   System.StartUpCopy,
   FMX.Forms,
+  Skia.FMX,
   ufrmMain in 'ufrmMain.pas' {frmMain},
   udmStyles in 'DataModules\udmStyles.pas' {dmStyles: TDataModule},
   udmIcons in 'DataModules\udmIcons.pas' {dmIcons: TDataModule},
@@ -32,6 +33,7 @@ uses
 {$R *.res}
 
 begin
+  GlobalUseSkia := True;
   {$IFDEF DEBUG}
   ReportMemoryLeaksOnShutdown := True;
   Application.Title := 'RSMfmx v3.1 (DEBUG BUILD)';
