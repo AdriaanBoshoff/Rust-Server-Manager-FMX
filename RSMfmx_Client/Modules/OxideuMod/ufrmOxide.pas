@@ -68,6 +68,7 @@ type
     lblDownloadStatus: TLabel;
     procedure btnInstallUpdateClick(Sender: TObject);
     procedure btnSaveConfigClick(Sender: TObject);
+    procedure btnUninstallClick(Sender: TObject);
     procedure cbbServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -86,7 +87,8 @@ var
 implementation
 
 uses
-  System.JSON.Types, System.JSON.Writers, System.JSON, uframeMessageBox;
+  System.JSON.Types, System.JSON.Writers, System.JSON, uframeMessageBox,
+  ufrmServerInstaller;
 
 {$R *.fmx}
 
@@ -115,6 +117,12 @@ begin
   oxideSettings.SaveSettings;
 
   ShowMessageBox('Saved Oxide Config', 'Oxide Config', frmMain.tbtmOxideuMod);
+end;
+
+procedure TfrmOxide.btnUninstallClick(Sender: TObject);
+begin
+  frmMain.lstNav.ItemIndex := frmMain.lstServerInstaller.Index;
+  frmServerInstaller.btnVerifyServerFiles.OnClick(btnUninstall);
 end;
 
 procedure TfrmOxide.cbbServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);

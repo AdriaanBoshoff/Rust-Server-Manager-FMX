@@ -347,6 +347,7 @@ object frmOxide: TfrmOxide
           Text = 'Uninstall'
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TintColor = claDarkred
+          OnClick = btnUninstallClick
         end
       end
       object lytTitle: TLayout
