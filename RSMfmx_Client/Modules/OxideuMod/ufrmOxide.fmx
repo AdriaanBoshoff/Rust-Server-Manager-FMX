@@ -333,6 +333,7 @@ object frmOxide: TfrmOxide
           Text = 'Install / Update'
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TintColor = claGreen
+          OnClick = btnInstallUpdateClick
         end
         object btnUninstall: TButton
           Align = Bottom
@@ -696,6 +697,34 @@ object frmOxide: TfrmOxide
           TabOrder = 51
         end
       end
+    end
+  end
+  object lytDownloadStatus: TLayout
+    Align = Contents
+    Size.Width = 793.000000000000000000
+    Size.Height = 500.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 3
+    object rctnglDownloadStatusBG: TRectangle
+      Align = Contents
+      Fill.Color = claBlack
+      Opacity = 0.800000011920929000
+      Size.Width = 793.000000000000000000
+      Size.Height = 500.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lblDownloadStatus: TLabel
+      Align = Contents
+      StyledSettings = [Family, FontColor]
+      Size.Width = 793.000000000000000000
+      Size.Height = 500.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000100000004000000}
+      TextSettings.HorzAlign = Center
+      Text = 'DOWNLOAD STATUS'
+      TabOrder = 0
     end
   end
 end

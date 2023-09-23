@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Objects, FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListBox,
-  FMX.Edit, System.IOUtils, ufrmMain;
+  FMX.Edit, System.IOUtils, ufrmMain, System.Threading, System.Zip, Rest.Client;
 
 type
   TOxideSettings = class
@@ -63,12 +63,18 @@ type
     lstShowStatusBar: TListBoxItem;
     swtchShowStatusBar: TSwitch;
     btnSaveConfig: TButton;
+    lytDownloadStatus: TLayout;
+    rctnglDownloadStatusBG: TRectangle;
+    lblDownloadStatus: TLabel;
+    procedure btnInstallUpdateClick(Sender: TObject);
     procedure btnSaveConfigClick(Sender: TObject);
     procedure cbbServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    procedure UpdateDownloadStatus(const Text: string; UIVisible: Boolean = True);
+    procedure DownloadExtractOxideAsync;
   public
     { Public declarations }
     oxideSettings: TOxideSettings;
@@ -83,6 +89,11 @@ uses
   System.JSON.Types, System.JSON.Writers, System.JSON, uframeMessageBox;
 
 {$R *.fmx}
+
+procedure TfrmOxide.btnInstallUpdateClick(Sender: TObject);
+begin
+  DownloadExtractOxideAsync;
+end;
 
 procedure TfrmOxide.btnSaveConfigClick(Sender: TObject);
 begin
@@ -111,14 +122,84 @@ begin
   Abort;
 end;
 
+procedure TfrmOxide.DownloadExtractOxideAsync;
+begin
+  TTask.Run(
+    procedure
+    begin
+      var oxideZip := ExtractFilePath(ParamStr(0)) + 'oxide.zip';
+
+      try
+        UpdateDownloadStatus('Downloading Oxide / uMod...');
+        try
+          var memStream := TMemoryStream.Create;
+          try
+            TDownloadURL.DownloadRawBytes('https://umod.org/games/rust/download?tag=public', memStream);
+
+            memStream.SaveToFile(oxideZip);
+          finally
+            memStream.Free;
+          end;
+        except
+          on E: Exception do
+          begin
+            TThread.Synchronize(TThread.Current,
+              procedure
+              begin
+                ShowMessageBox(E.Message, 'Oxide Download Error', frmMain.tbtmOxideuMod);
+              end);
+          end;
+        end;
+
+        UpdateDownloadStatus('Extracting Oxide / uMod...');
+        try
+          TZipFile.ExtractZipFile(oxideZip, ExtractFileDir(oxideZip));
+        except
+          on E: Exception do
+          begin
+            TThread.Synchronize(TThread.Current,
+              procedure
+              begin
+                ShowMessageBox(E.Message, 'Oxide EXTRACT Error', frmMain.tbtmOxideuMod);
+              end);
+          end;
+        end;
+      finally
+        UpdateDownloadStatus('Done', False);
+      end;
+    end);
+end;
+
 procedure TfrmOxide.FormDestroy(Sender: TObject);
 begin
   oxideSettings.Free;
 end;
 
+procedure TfrmOxide.UpdateDownloadStatus(const Text: string; UIVisible: Boolean);
+begin
+  TThread.Synchronize(TThread.Current,
+    procedure
+    begin
+      lblDownloadStatus.Text := Text;
+
+      lytDownloadStatus.Visible := UIVisible;
+      if UIVisible then
+      begin
+        lytDownloadStatus.BringToFront;
+      end
+      else
+      begin
+        lytDownloadStatus.SendToBack;
+      end;
+    end);
+end;
+
 procedure TfrmOxide.FormCreate(Sender: TObject);
 begin
   oxideSettings := TOxideSettings.Create;
+
+  lytDownloadStatus.Visible := False;
+  lytDownloadStatus.SendToBack;
 
   if oxideSettings.Modded then
     cbbServerListCategory.ItemIndex := 1
