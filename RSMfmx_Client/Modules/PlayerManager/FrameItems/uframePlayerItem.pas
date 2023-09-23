@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Objects, FMX.Controls.Presentation, System.IOUtils,
-  System.Threading, RCON.Types, ufrmPlayerManager;
+  System.Threading, RCON.Types, ufrmPlayerManager, Skia, Skia.FMX;
 
 type
   TframePlayerItem = class(TFrame)
@@ -23,6 +23,10 @@ type
     lytIPAddress: TLayout;
     lblIPHeader: TLabel;
     lblIPValue: TLabel;
+    lytCountry: TLayout;
+    svgCountryFlag: TSkSvg;
+    lblCountryValue: TLabel;
+    procedure lblCountryValueResized(Sender: TObject);
     procedure rctnglBGClick(Sender: TObject);
     procedure rctnglBGMouseEnter(Sender: TObject);
     procedure rctnglBGMouseLeave(Sender: TObject);
@@ -34,12 +38,14 @@ type
     { Public declarations }
     playerData: TRCONPlayerListPlayer;
     procedure LoadSteamAvatar(const steamID: string);
+    procedure LoadIPInfo;
   end;
 
 implementation
 
 uses
-  Rest.Client, Rest.Types, Xml.XMLDoc, Xml.XMLIntf, ActiveX, uframePlayerOptions;
+  Rest.Client, Rest.Types, Xml.XMLDoc, Xml.XMLIntf, ActiveX, uframePlayerOptions,
+  IPWhoAPI;
 
 {$R *.fmx}
 
@@ -62,6 +68,11 @@ begin
   end;
 end;
 
+procedure TframePlayerItem.lblCountryValueResized(Sender: TObject);
+begin
+  lytCountry.Width := svgCountryFlag.Width + 5 + lblCountryValue.Width;
+end;
+
 function TframePlayerItem.LoadAvatarFromCache(const steamID: string): boolean;
 begin
   Result := False;
@@ -81,6 +92,59 @@ begin
     Result := False;
     ForceDirectories(ExtractFileDir(avatarCacheFile));
   end;
+end;
+
+procedure TframePlayerItem.LoadIPInfo;
+begin
+  TTask.Run(
+    procedure
+    begin
+      var ipInfo: TIPWhoInfo;
+
+      if playerData.IP = '127.0.0.1' then
+      begin
+        ipInfo := TIPWho.GetIPInfo;
+      end
+      else
+      begin
+        ipInfo := TIPWho.GetIPInfo(playerData.IP);
+      end;
+
+      if not ipInfo.success then
+      begin
+        lblCountryValue.Text := 'Country: ' + ipInfo.aMessage;
+        Exit;
+      end;
+
+      TThread.Synchronize(tthread.Current,
+        procedure
+        begin
+          lblCountryValue.Text := ipInfo.country;
+        end);
+
+      var countryFlagCache := ExtractFilePath(ParamStr(0)) + 'rsm\cache\countryFlags\' + ipInfo.countryCode + '.svg';
+
+      if not TDirectory.Exists(ExtractFileDir(countryFlagCache)) then
+        ForceDirectories(ExtractFileDir(countryFlagCache));
+
+      if not TFile.Exists(countryFlagCache) then
+      begin
+        var memStream := TMemoryStream.Create;
+        try
+          TDownloadURL.DownloadRawBytes(ipInfo.flag.imgURL, memStream);
+
+          memStream.SaveToFile(countryFlagCache);
+        finally
+          memStream.Free;
+        end;
+      end;
+
+      TThread.Synchronize(tthread.Current,
+        procedure
+        begin
+          svgCountryFlag.Svg.Source := TFile.ReadAllText(countryFlagCache);
+        end);
+    end);
 end;
 
 procedure TframePlayerItem.LoadSteamAvatar(const steamID: string);

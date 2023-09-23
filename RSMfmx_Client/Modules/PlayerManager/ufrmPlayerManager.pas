@@ -128,6 +128,7 @@ begin
       playerItem.lblIPValue.Text := aPlayer.Value.IP;
 
       playerItem.LoadSteamAvatar(aPlayer.Value.SteamID);
+      playerItem.LoadIPInfo;
     end;
   end;
 
