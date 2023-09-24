@@ -99,51 +99,55 @@ begin
   TTask.Run(
     procedure
     begin
-      var ipInfo: TIPWhoInfo;
+      try
+        var ipInfo: TIPWhoInfo;
 
-      if playerData.IP = '127.0.0.1' then
-      begin
-        ipInfo := TIPWho.GetIPInfo;
-      end
-      else
-      begin
-        ipInfo := TIPWho.GetIPInfo(playerData.IP);
-      end;
-
-      if not ipInfo.success then
-      begin
-        lblCountryValue.Text := 'Country: ' + ipInfo.aMessage;
-        Exit;
-      end;
-
-      TThread.Synchronize(tthread.Current,
-        procedure
+        if playerData.IP = '127.0.0.1' then
         begin
-          lblCountryValue.Text := ipInfo.country;
-        end);
-
-      var countryFlagCache := ExtractFilePath(ParamStr(0)) + 'rsm\cache\countryFlags\' + ipInfo.countryCode + '.svg';
-
-      if not TDirectory.Exists(ExtractFileDir(countryFlagCache)) then
-        ForceDirectories(ExtractFileDir(countryFlagCache));
-
-      if not TFile.Exists(countryFlagCache) then
-      begin
-        var memStream := TMemoryStream.Create;
-        try
-          TDownloadURL.DownloadRawBytes(ipInfo.flag.imgURL, memStream);
-
-          memStream.SaveToFile(countryFlagCache);
-        finally
-          memStream.Free;
+          ipInfo := TIPWho.GetIPInfo;
+        end
+        else
+        begin
+          ipInfo := TIPWho.GetIPInfo(playerData.IP);
         end;
-      end;
 
-      TThread.Synchronize(tthread.Current,
-        procedure
+        if not ipInfo.success then
         begin
-          svgCountryFlag.Svg.Source := TFile.ReadAllText(countryFlagCache);
-        end);
+          lblCountryValue.Text := 'Country: ' + ipInfo.aMessage;
+          Exit;
+        end;
+
+        TThread.Synchronize(tthread.Current,
+          procedure
+          begin
+            lblCountryValue.Text := ipInfo.country;
+          end);
+
+        var countryFlagCache := ExtractFilePath(ParamStr(0)) + 'rsm\cache\countryFlags\' + ipInfo.countryCode + '.svg';
+
+        if not TDirectory.Exists(ExtractFileDir(countryFlagCache)) then
+          ForceDirectories(ExtractFileDir(countryFlagCache));
+
+        if not TFile.Exists(countryFlagCache) then
+        begin
+          var memStream := TMemoryStream.Create;
+          try
+            TDownloadURL.DownloadRawBytes(ipInfo.flag.imgURL, memStream);
+
+            memStream.SaveToFile(countryFlagCache);
+          finally
+            memStream.Free;
+          end;
+        end;
+
+        TThread.Synchronize(tthread.Current,
+          procedure
+          begin
+            svgCountryFlag.Svg.Source := TFile.ReadAllText(countryFlagCache);
+          end);
+      except
+        // Do Nothing
+      end;
     end);
 end;
 
