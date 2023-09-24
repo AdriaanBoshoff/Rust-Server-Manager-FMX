@@ -2202,7 +2202,7 @@ object frmMain: TfrmMain
               end
             end
           end
-          object rctnglSystemInfo: TRectangle
+          object rctnglQuickServerControls: TRectangle
             Align = Top
             Fill.Color = xFF1F222A
             Padding.Left = 10.000000000000000000
@@ -2214,12 +2214,12 @@ object frmMain: TfrmMain
             Position.X = 5.000000000000000000
             Position.Y = 321.000000000000000000
             Size.Width = 210.000000000000000000
-            Size.Height = 90.000000000000000000
+            Size.Height = 120.000000000000000000
             Size.PlatformDefault = False
             Stroke.Color = claNull
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
-            object lblSystemInfoHeader: TLabel
+            object lblQuickServerControlsHeader: TLabel
               Align = Top
               StyledSettings = [Family, FontColor]
               Position.X = 10.000000000000000000
@@ -2230,80 +2230,51 @@ object frmMain: TfrmMain
               TextSettings.Font.Size = 14.000000000000000000
               TextSettings.Font.StyleExt = {04060000000000000004000000}
               TextSettings.HorzAlign = Center
-              Text = 'System Info'
+              Text = 'Server Controls'
               TabOrder = 0
             end
-            object lytCPUUsage: TLayout
+            object btnStartServerQuickControl: TButton
               Align = Top
-              Margins.Top = 5.000000000000000000
-              Position.X = 10.000000000000000000
-              Position.Y = 27.000000000000000000
-              Size.Width = 190.000000000000000000
-              Size.Height = 25.000000000000000000
+              CanFocus = False
+              StyledSettings = [Family, Size, FontColor]
+              Hint = 'Start the Rust Server'
+              Margins.Left = 20.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 20.000000000000000000
+              Position.X = 30.000000000000000000
+              Position.Y = 32.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 2
-              object lblCPUUsageHeader: TLabel
-                Align = Left
-                AutoSize = True
-                StyledSettings = [Family, Size, FontColor]
-                Size.Width = 63.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TextSettings.Font.StyleExt = {00060000000000000004000000}
-                TextSettings.FontColor = claLime
-                TextSettings.WordWrap = False
-                Text = 'CPU Usage:'
-                TabOrder = 0
-              end
-              object lblCPUUsageValue: TLabel
-                Align = Right
-                AutoSize = True
-                StyledSettings = [Family, Size, Style]
-                Position.X = 165.000000000000000000
-                Size.Width = 25.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TextSettings.FontColor = claGray
-                TextSettings.WordWrap = False
-                Text = '---%'
-                TabOrder = 1
-              end
+              StyleLookup = 'tintedbutton'
+              TabOrder = 5
+              Text = 'Start Server'
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TintColor = claGreen
+              OnClick = btnStartServerClick
             end
-            object lytRamUsage: TLayout
+            object btnStopServerQuickControl: TButton
               Align = Top
-              Margins.Top = 5.000000000000000000
-              Position.X = 10.000000000000000000
-              Position.Y = 57.000000000000000000
-              Size.Width = 190.000000000000000000
-              Size.Height = 25.000000000000000000
+              CanFocus = False
+              Enabled = False
+              StyledSettings = [Family, Size, FontColor]
+              Hint = 
+                'Graceful shutdown.'#13#10#13#10'RSM will send the "quit" command via rcon ' +
+                'to the server in order to perform a propper server shutdown.'
+              Margins.Left = 20.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 20.000000000000000000
+              Position.X = 30.000000000000000000
+              Position.Y = 72.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 1
-              object lblRamUsageheader: TLabel
-                Align = Left
-                AutoSize = True
-                StyledSettings = [Family, Size, FontColor]
-                Size.Width = 67.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TextSettings.Font.StyleExt = {00060000000000000004000000}
-                TextSettings.FontColor = claLime
-                TextSettings.WordWrap = False
-                Text = 'RAM Usage:'
-                TabOrder = 0
-              end
-              object lblRamUsageValue: TLabel
-                Align = Right
-                AutoSize = True
-                StyledSettings = [Family, Size, Style]
-                Position.X = 165.000000000000000000
-                Size.Width = 25.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TextSettings.FontColor = claGray
-                TextSettings.WordWrap = False
-                Text = '---%'
-                TabOrder = 1
-              end
+              StyleLookup = 'tintedbutton'
+              TabOrder = 4
+              Text = 'Stop Server'
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TintColor = xFFCA8300
+              OnClick = btnStopServerClick
             end
           end
         end

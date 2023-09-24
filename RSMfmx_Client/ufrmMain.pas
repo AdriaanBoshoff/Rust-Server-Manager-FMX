@@ -78,14 +78,8 @@ type
     lytLastWipe: TLayout;
     lblLastWipeHeader: TLabel;
     lblLastWipeValue: TLabel;
-    rctnglSystemInfo: TRectangle;
-    lblSystemInfoHeader: TLabel;
-    lytCPUUsage: TLayout;
-    lblCPUUsageHeader: TLabel;
-    lblCPUUsageValue: TLabel;
-    lytRamUsage: TLayout;
-    lblRamUsageheader: TLabel;
-    lblRamUsageValue: TLabel;
+    rctnglQuickServerControls: TRectangle;
+    lblQuickServerControlsHeader: TLabel;
     vrtscrlbxServerConfig: TVertScrollBox;
     lytHostnameHeader: TLayout;
     lblHostnameHeader: TLabel;
@@ -228,6 +222,8 @@ type
     lytStatPlayerCount: TLayout;
     lblStatPlayerCountHeader: TLabel;
     lblStatPlayerCountValue: TLabel;
+    btnStartServerQuickControl: TButton;
+    btnStopServerQuickControl: TButton;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
@@ -861,7 +857,14 @@ begin
 
   // Server Controls
   btnStartServer.Enabled := not isServerRunning;
+  btnStartServerQuickControl.Enabled := btnStartServer.Enabled;
   btnKillServer.Enabled := isServerRunning;
+
+  // Rcon Connection
+  btnStopServer.Enabled := wsClientRcon.Active;
+  btnStopServerQuickControl.Enabled := btnStopServer.Enabled;
+  btnRestartServer.Enabled := wsClientRcon.Active;
+  btnForceSave.Enabled := wsClientRcon.Active;
 
   // Server Config
   lytServerMap1.Enabled := not isServerRunning;
@@ -878,11 +881,6 @@ begin
   // Oxide Module
   frmOxide.rctnglHeader.Enabled := not isServerRunning;
   frmOxide.rctnglSettings.Enabled := not isServerRunning;
-
-  // Rcon Connection
-  btnStopServer.Enabled := wsClientRcon.Active;
-  btnRestartServer.Enabled := wsClientRcon.Active;
-  btnForceSave.Enabled := wsClientRcon.Active;
 
   // Check if server is running and rcon is connected.
   // If server is running and rcon is not connected then
