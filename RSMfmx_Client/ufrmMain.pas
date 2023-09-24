@@ -224,6 +224,7 @@ type
     lblStatPlayerCountValue: TLabel;
     btnStartServerQuickControl: TButton;
     btnStopServerQuickControl: TButton;
+    btnForceSaveQuickControl: TButton;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
@@ -865,6 +866,7 @@ begin
   btnStopServerQuickControl.Enabled := btnStopServer.Enabled;
   btnRestartServer.Enabled := wsClientRcon.Active;
   btnForceSave.Enabled := wsClientRcon.Active;
+  btnForceSaveQuickControl.Enabled := btnForceSave.Enabled;
 
   // Server Config
   lytServerMap1.Enabled := not isServerRunning;
