@@ -255,6 +255,7 @@ type
     procedure lblStatServerFPSValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
+    procedure mniOpenServerRootClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
     procedure tmrServerInfoTimer(Sender: TObject);
@@ -724,6 +725,11 @@ end;
 procedure TfrmMain.mniExitRSMClick(Sender: TObject);
 begin
   Self.Close;
+end;
+
+procedure TfrmMain.mniOpenServerRootClick(Sender: TObject);
+begin
+  OpenURL(ExtractFileDir(ParamStr(0)));
 end;
 
 procedure TfrmMain.ModifyUIForRelease;

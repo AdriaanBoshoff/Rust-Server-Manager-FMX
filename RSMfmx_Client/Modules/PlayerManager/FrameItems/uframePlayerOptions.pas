@@ -23,9 +23,15 @@ type
     rctnglMain: TRectangle;
     btnKickPlayer: TButton;
     btnBanPlayer: TButton;
+    btnSetAuthLevel2: TButton;
+    btnSetAuthLevel1: TButton;
+    btnRemoveAuthLevel: TButton;
     procedure btnBanPlayerClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure btnKickPlayerClick(Sender: TObject);
+    procedure btnRemoveAuthLevelClick(Sender: TObject);
+    procedure btnSetAuthLevel1Click(Sender: TObject);
+    procedure btnSetAuthLevel2Click(Sender: TObject);
   private
     { Private declarations }
     fplayerData: TRCONPlayerListPlayer;
@@ -41,7 +47,7 @@ type
 implementation
 
 uses
-  ufrmPlayerManager, ufrmMain;
+  ufrmPlayerManager, ufrmMain, uframeMessageBox;
 
 {$R *.fmx}
 
@@ -63,15 +69,32 @@ end;
 procedure TframePlayerOptions.btnBanPlayerClick(Sender: TObject);
 begin
   TRCON.BanPlayerID(playerData.SteamID, playerData.DisplayName, 'Banned by admin', 0, frmMain.wsClientRcon);
-
-  Self.Release;
 end;
 
 procedure TframePlayerOptions.btnKickPlayerClick(Sender: TObject);
 begin
   TRCON.KickPlayer(Self.playerData.SteamID, 'Kicked by admin', 0, frmMain.wsClientRcon);
+end;
 
-  Self.Release;
+procedure TframePlayerOptions.btnRemoveAuthLevelClick(Sender: TObject);
+begin
+  TRCON.SetAuthLevel(playerData.SteamID, playerData.DisplayName, '', 0, frmMain.wsClientRcon);
+
+  ShowMessageBox('Player needs to rejoin the server for the changes to take effect.', 'Removed Auth', frmMain.tbtmPlayerManager);
+end;
+
+procedure TframePlayerOptions.btnSetAuthLevel1Click(Sender: TObject);
+begin
+  TRCON.SetAuthLevel(playerData.SteamID, playerData.DisplayName, 'Added in RSM', 1, frmMain.wsClientRcon);
+
+  ShowMessageBox('Player needs to rejoin the server for the changes to take effect.', 'Auth Level 1', frmMain.tbtmPlayerManager);
+end;
+
+procedure TframePlayerOptions.btnSetAuthLevel2Click(Sender: TObject);
+begin
+  TRCON.SetAuthLevel(playerData.SteamID, playerData.DisplayName, 'Added in RSM', 2, frmMain.wsClientRcon);
+
+  ShowMessageBox('Player needs to rejoin the server for the changes to take effect.', 'Auth Level 2', frmMain.tbtmPlayerManager);
 end;
 
 procedure TframePlayerOptions.SetPlayerData(const Value: TRCONPlayerListPlayer);

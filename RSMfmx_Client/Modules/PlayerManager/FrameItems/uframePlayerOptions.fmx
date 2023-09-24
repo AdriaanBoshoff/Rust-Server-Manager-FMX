@@ -116,7 +116,7 @@ object framePlayerOptions: TframePlayerOptions
         Padding.Right = 10.000000000000000000
         Padding.Bottom = 10.000000000000000000
         Size.Width = 150.000000000000000000
-        Size.Height = 250.000000000000000000
+        Size.Height = 240.000000000000000000
         Size.PlatformDefault = False
         Stroke.Kind = None
         XRadius = 10.000000000000000000
@@ -147,6 +147,42 @@ object framePlayerOptions: TframePlayerOptions
           TabOrder = 0
           Text = 'Ban Player'
           OnClick = btnBanPlayerClick
+        end
+        object btnSetAuthLevel2: TButton
+          Align = Top
+          Margins.Top = 30.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 120.000000000000000000
+          Size.Width = 130.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          Text = 'Set Auth Level 2'
+          OnClick = btnSetAuthLevel2Click
+        end
+        object btnSetAuthLevel1: TButton
+          Align = Top
+          Margins.Top = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 160.000000000000000000
+          Size.Width = 130.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = 'Set Auth Level 1'
+          OnClick = btnSetAuthLevel1Click
+        end
+        object btnRemoveAuthLevel: TButton
+          Align = Top
+          Margins.Top = 10.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 200.000000000000000000
+          Size.Width = 130.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Remove Auth Level'
+          OnClick = btnRemoveAuthLevelClick
         end
       end
     end
