@@ -171,7 +171,6 @@ type
     rctnglServerOptions: TRectangle;
     vrtscrlbxServerControlsMain: TVertScrollBox;
     lytServerAffinity: TLayout;
-    swtchServerAffinity: TSwitch;
     lblServerAffinityHeader: TLabel;
     btnAdjustAffinity: TButton;
     lblServerOptionsHeader: TLabel;
