@@ -1,0 +1,62 @@
+object frameServerDescriptionEditor: TframeServerDescriptionEditor
+  Size.Width = 748.000000000000000000
+  Size.Height = 540.000000000000000000
+  Size.PlatformDefault = False
+  object rctnglBG: TRectangle
+    Align = Contents
+    Fill.Color = claBlack
+    Opacity = 0.899999976158142100
+    Size.Width = 748.000000000000000000
+    Size.Height = 540.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object pnlMain: TPanel
+    Align = Center
+    Size.Width = 600.000000000000000000
+    Size.Height = 400.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object pnlHeader: TPanel
+      Align = Top
+      Size.Width = 600.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object lblHeader: TLabel
+        Align = Contents
+        StyledSettings = [Family, FontColor]
+        Size.Width = 600.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.HorzAlign = Center
+        Text = 'Server Description'
+        TabOrder = 0
+      end
+      object btnClose: TSpeedButton
+        Align = Right
+        Position.X = 560.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'stoptoolbutton'
+        Text = 'Close'
+        OnClick = btnCloseClick
+      end
+    end
+    object mmoDescription: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      StyledSettings = [Family, Style, FontColor]
+      TextSettings.Font.Size = 14.000000000000000000
+      Align = Client
+      Size.Width = 600.000000000000000000
+      Size.Height = 360.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Viewport.Width = 596.000000000000000000
+      Viewport.Height = 356.000000000000000000
+    end
+  end
+end

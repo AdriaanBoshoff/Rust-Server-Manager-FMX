@@ -28,7 +28,8 @@ uses
   uframePlayerOptions in 'Modules\PlayerManager\FrameItems\uframePlayerOptions.pas' {framePlayerOptions: TFrame},
   uMisc in 'Units\uMisc.pas',
   IPWhoAPI in 'Libs\IPWho\IPWhoAPI.pas',
-  ufrmOxide in 'Modules\OxideuMod\ufrmOxide.pas' {frmOxide};
+  ufrmOxide in 'Modules\OxideuMod\ufrmOxide.pas' {frmOxide},
+  uframeServerDescriptionEditor in 'Frames\Dialogs\uframeServerDescriptionEditor.pas' {frameServerDescriptionEditor: TFrame};
 
 {$R *.res}
 

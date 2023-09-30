@@ -225,6 +225,7 @@ type
     btnStopServerQuickControl: TButton;
     btnForceSaveQuickControl: TButton;
     procedure btnCopyRconPasswordClick(Sender: TObject);
+    procedure btnEditServerDescriptionClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -292,7 +293,7 @@ implementation
 uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
-  RCON.Events, RCON.Parser, uMisc, ufrmOxide;
+  RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor;
 
 {$R *.fmx}
 
@@ -315,6 +316,14 @@ begin
   begin
     ShowMessageBox('Platform does not support copying.', 'Copy Failure', Self);
   end;
+end;
+
+procedure TfrmMain.btnEditServerDescriptionClick(Sender: TObject);
+begin
+  var frameEditServerDescription := TframeServerDescriptionEditor.Create(tbtmServerConfig);
+  frameEditServerDescription.Parent := tbtmServerConfig;
+  frameEditServerDescription.Align := TAlignLayout.Contents;
+  frameEditServerDescription.BringToFront;
 end;
 
 procedure TfrmMain.btnForceSaveClick(Sender: TObject);
