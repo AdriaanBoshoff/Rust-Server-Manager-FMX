@@ -254,6 +254,7 @@ type
     procedure mniExitRSMClick(Sender: TObject);
     procedure mniOpenServerRootClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
+    procedure spnbxMaxPlayersMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
     procedure tmrServerInfoTimer(Sender: TObject);
     procedure wsClientRconConnect(Connection: TsgcWSConnection);
@@ -837,6 +838,11 @@ begin
 
   //  btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
   end;
+end;
+
+procedure TfrmMain.spnbxMaxPlayersMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+begin
+  Abort;
 end;
 
 procedure TfrmMain.tmrCheckServerRunningStatusTimer(Sender: TObject);

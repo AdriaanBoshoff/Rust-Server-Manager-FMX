@@ -980,6 +980,9 @@ object frmMain: TfrmMain
                 end
                 object lstMapBarren: TListBoxItem
                   ItemData.Detail = 'Barren'
+                  Size.Width = 19.000000000000000000
+                  Size.Height = 19.000000000000000000
+                  Size.PlatformDefault = False
                   TabOrder = 1
                   Text = 'Barren (Barren Procedural)'
                 end
@@ -1176,6 +1179,7 @@ object frmMain: TfrmMain
                 Size.Width = 100.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
+                OnMouseWheel = spnbxMaxPlayersMouseWheel
               end
               object lblCensorPlayerList: TLabel
                 Align = Left
