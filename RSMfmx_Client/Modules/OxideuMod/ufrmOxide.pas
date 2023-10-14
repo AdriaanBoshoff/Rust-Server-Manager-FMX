@@ -66,6 +66,7 @@ type
     lytDownloadStatus: TLayout;
     rctnglDownloadStatusBG: TRectangle;
     lblDownloadStatus: TLabel;
+    lblCompatibilityWarning: TLabel;
     procedure btnInstallUpdateClick(Sender: TObject);
     procedure btnSaveConfigClick(Sender: TObject);
     procedure btnUninstallClick(Sender: TObject);
