@@ -224,6 +224,10 @@ type
     btnStartServerQuickControl: TButton;
     btnStopServerQuickControl: TButton;
     btnForceSaveQuickControl: TButton;
+    tbtmCarbonMod: TTabItem;
+    lstCarbonmod: TListBoxItem;
+    lblCarbonmod: TLabel;
+    rctnglCarbonmodNavImg: TRectangle;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnEditServerDescriptionClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
