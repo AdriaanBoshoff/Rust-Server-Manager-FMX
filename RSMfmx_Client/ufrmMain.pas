@@ -298,7 +298,8 @@ implementation
 uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
-  RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor;
+  RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
+  ufrmCarbonMod;
 
 {$R *.fmx}
 
@@ -637,6 +638,11 @@ begin
   frmOxide := TfrmOxide.Create(tbtmOxideuMod);
   while frmOxide.ChildrenCount > 0 do
     frmOxide.Children[0].Parent := tbtmOxideuMod;
+
+  // Carbon Mod
+  frmCarbonMod := TfrmCarbonMod.Create(tbtmCarbonMod);
+  while frmCarbonMod.ChildrenCount > 0 do
+    frmCarbonMod.Children[0].Parent := tbtmCarbonMod;
 end;
 
 procedure TfrmMain.FormActivate(Sender: TObject);

@@ -1,0 +1,18 @@
+object frmCarbonMod: TfrmCarbonMod
+  Left = 0
+  Top = 0
+  Caption = 'Carbon Mod'
+  ClientHeight = 480
+  ClientWidth = 824
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object lbl1: TLabel
+    Position.X = 224.000000000000000000
+    Position.Y = 176.000000000000000000
+    Text = 'Hello World'
+    TabOrder = 1
+  end
+end

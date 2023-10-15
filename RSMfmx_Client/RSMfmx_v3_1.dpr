@@ -29,7 +29,8 @@ uses
   uMisc in 'Units\uMisc.pas',
   IPWhoAPI in 'Libs\IPWho\IPWhoAPI.pas',
   ufrmOxide in 'Modules\OxideuMod\ufrmOxide.pas' {frmOxide},
-  uframeServerDescriptionEditor in 'Frames\Dialogs\uframeServerDescriptionEditor.pas' {frameServerDescriptionEditor: TFrame};
+  uframeServerDescriptionEditor in 'Frames\Dialogs\uframeServerDescriptionEditor.pas' {frameServerDescriptionEditor: TFrame},
+  ufrmCarbonMod in 'Modules\CarbonMod\ufrmCarbonMod.pas' {frmCarbonMod};
 
 {$R *.res}
 
