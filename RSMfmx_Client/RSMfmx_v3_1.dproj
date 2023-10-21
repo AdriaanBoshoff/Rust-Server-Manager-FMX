@@ -377,6 +377,8 @@
             <Form>frmuMod</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Libs\uMod\uModAPI.pas"/>
+        <DCCReference Include="Libs\uMod\uModAPI.Types.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
