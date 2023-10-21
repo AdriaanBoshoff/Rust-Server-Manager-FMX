@@ -67,7 +67,7 @@ object frmPluginManager: TfrmPluginManager
           Size.Width = 217.518890380859400000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           Text = 'INSTALLED PLUGINS'
@@ -90,7 +90,7 @@ object frmPluginManager: TfrmPluginManager
           Size.Width = 217.839630126953100000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           Text = 'PLUGIN INSTALLER'
@@ -113,7 +113,7 @@ object frmPluginManager: TfrmPluginManager
           Size.Width = 218.641479492187500000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           Text = 'PLUGIN UPDATER'

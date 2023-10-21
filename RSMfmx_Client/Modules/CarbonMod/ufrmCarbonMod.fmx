@@ -2,7 +2,7 @@ object frmCarbonMod: TfrmCarbonMod
   Left = 0
   Top = 0
   Caption = 'Carbon Mod'
-  ClientHeight = 484
+  ClientHeight = 480
   ClientWidth = 731
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
@@ -1055,7 +1055,7 @@ object frmCarbonMod: TfrmCarbonMod
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Size.Width = 721.000000000000000000
-    Size.Height = 369.000000000000000000
+    Size.Height = 365.000000000000000000
     Size.PlatformDefault = False
     TabIndex = 1
     TabOrder = 1
@@ -1063,9 +1063,9 @@ object frmCarbonMod: TfrmCarbonMod
     OnChange = tbcCarbonModChange
     Sizes = (
       721s
-      345s
+      341s
       721s
-      345s)
+      341s)
     object tbtmCarbonConfig: TTabItem
       CustomIcon = <
         item
@@ -1114,11 +1114,11 @@ object frmCarbonMod: TfrmCarbonMod
         Padding.Right = 5.000000000000000000
         Padding.Bottom = 5.000000000000000000
         Size.Width = 721.000000000000000000
-        Size.Height = 345.000000000000000000
+        Size.Height = 341.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         Viewport.Width = 721.000000000000000000
-        Viewport.Height = 345.000000000000000000
+        Viewport.Height = 341.000000000000000000
         object flwlytCarbonModules: TFlowLayout
           Align = Top
           Position.X = 5.000000000000000000

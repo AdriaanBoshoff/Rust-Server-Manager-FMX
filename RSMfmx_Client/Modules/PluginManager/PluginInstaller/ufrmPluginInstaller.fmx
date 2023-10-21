@@ -64,7 +64,7 @@ object frmPluginInstaller: TfrmPluginInstaller
           Size.Width = 222.507858276367200000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           Text = 'uMod.org'
@@ -84,7 +84,7 @@ object frmPluginInstaller: TfrmPluginInstaller
           Size.Width = 222.835952758789100000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           Text = 'CodeFling.com'
@@ -104,7 +104,7 @@ object frmPluginInstaller: TfrmPluginInstaller
           Size.Width = 223.656188964843800000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           Text = 'Lone.Design'
