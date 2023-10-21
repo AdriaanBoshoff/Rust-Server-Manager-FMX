@@ -228,6 +228,10 @@ type
     lstCarbonmod: TListBoxItem;
     lblCarbonmod: TLabel;
     rctnglCarbonmodNavImg: TRectangle;
+    lstPluginManager: TListBoxItem;
+    imgPluginManager: TImage;
+    lblPluginManager: TLabel;
+    tbtmPluginManager: TTabItem;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnEditServerDescriptionClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
@@ -299,7 +303,7 @@ uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
-  ufrmCarbonMod;
+  ufrmCarbonMod, ufrmPluginManager;
 
 {$R *.fmx}
 
@@ -564,9 +568,6 @@ begin
 
   {$IFDEF RELEASE}
   Self.Caption := 'RSMfmx v3.1';
-
-  // Temp Disable System Info
-  rctnglSystemInfo.Visible := False;
   {$ENDIF}
 
   // Classes
@@ -643,6 +644,11 @@ begin
   frmCarbonMod := TfrmCarbonMod.Create(tbtmCarbonMod);
   while frmCarbonMod.ChildrenCount > 0 do
     frmCarbonMod.Children[0].Parent := tbtmCarbonMod;
+
+  // Plugin Manager
+  frmPluginManager := TfrmPluginManager.Create(tbtmPluginManager);
+  while frmPluginManager.ChildrenCount > 0 do
+    frmPluginManager.Children[0].Parent := tbtmPluginManager;
 end;
 
 procedure TfrmMain.FormActivate(Sender: TObject);

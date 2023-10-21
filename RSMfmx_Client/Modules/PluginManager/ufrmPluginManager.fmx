@@ -1,0 +1,177 @@
+object frmPluginManager: TfrmPluginManager
+  Left = 0
+  Top = 0
+  ClientHeight = 423
+  ClientWidth = 654
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object lytNav: TLayout
+    Align = Top
+    Size.Width = 654.000000000000000000
+    Size.Height = 35.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object grdpnllytBottomNav: TGridPanelLayout
+      Align = Client
+      Size.Width = 654.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ColumnCollection = <
+        item
+          Value = 33.259769559508000000
+        end
+        item
+          Value = 33.308811853366180000
+        end
+        item
+          Value = 33.431418587125820000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = rctnglNavInstalledPlugins
+          Row = 0
+        end
+        item
+          Column = 1
+          Control = rctnglNavPluginInstaller
+          Row = 0
+        end
+        item
+          Column = 2
+          Control = rctnglNavPluginUpdater
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end>
+      object rctnglNavInstalledPlugins: TRectangle
+        Align = Client
+        Fill.Color = xFF1F222A
+        Size.Width = 217.518890380859400000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claNull
+        OnClick = OnNavItemClick
+        OnMouseEnter = OnNavItemMouseEnter
+        OnMouseLeave = OnNavItemMouseLeave
+        object lblNavInstallPlugins: TLabel
+          Align = Client
+          StyledSettings = [Family, FontColor]
+          Size.Width = 217.518890380859400000
+          Size.Height = 35.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Text = 'INSTALLED PLUGINS'
+          TabOrder = 2
+        end
+      end
+      object rctnglNavPluginInstaller: TRectangle
+        Align = Client
+        Fill.Color = xFF1F222A
+        Size.Width = 217.839630126953100000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claNull
+        OnClick = OnNavItemClick
+        OnMouseEnter = OnNavItemMouseEnter
+        OnMouseLeave = OnNavItemMouseLeave
+        object lblNavPluginInstallers: TLabel
+          Align = Client
+          StyledSettings = [Family, FontColor]
+          Size.Width = 217.839630126953100000
+          Size.Height = 35.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Text = 'PLUGIN INSTALLER'
+          TabOrder = 2
+        end
+      end
+      object rctnglNavPluginUpdater: TRectangle
+        Align = Client
+        Fill.Color = xFF1F222A
+        Size.Width = 218.641479492187500000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claNull
+        OnClick = OnNavItemClick
+        OnMouseEnter = OnNavItemMouseEnter
+        OnMouseLeave = OnNavItemMouseLeave
+        object lblNavPluginUpdater: TLabel
+          Align = Client
+          StyledSettings = [Family, FontColor]
+          Size.Width = 218.641479492187500000
+          Size.Height = 35.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Text = 'PLUGIN UPDATER'
+          TabOrder = 2
+        end
+      end
+    end
+  end
+  object tbcNav: TTabControl
+    Align = Client
+    Size.Width = 654.000000000000000000
+    Size.Height = 388.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 1
+    TabPosition = PlatformDefault
+    Sizes = (
+      654s
+      364s
+      654s
+      364s
+      654s
+      364s)
+    object tbtmInstalledPlugins: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 106.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Installed Plugins'
+    end
+    object tbtmPluginInstaller: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 98.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Plugin Installer'
+    end
+    object tbtmPluginUpdater: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 100.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Plugin Updater'
+    end
+  end
+end
