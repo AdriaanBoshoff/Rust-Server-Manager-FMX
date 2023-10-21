@@ -30,7 +30,8 @@ uses
   IPWhoAPI in 'Libs\IPWho\IPWhoAPI.pas',
   ufrmOxide in 'Modules\OxideuMod\ufrmOxide.pas' {frmOxide},
   uframeServerDescriptionEditor in 'Frames\Dialogs\uframeServerDescriptionEditor.pas' {frameServerDescriptionEditor: TFrame},
-  ufrmCarbonMod in 'Modules\CarbonMod\ufrmCarbonMod.pas' {frmCarbonMod};
+  ufrmCarbonMod in 'Modules\CarbonMod\ufrmCarbonMod.pas' {frmCarbonMod},
+  uframeCarbonModuleItem in 'Modules\CarbonMod\CarbonModuleItem\uframeCarbonModuleItem.pas' {frameCarbonModuleItem: TFrame};
 
 {$R *.res}
 

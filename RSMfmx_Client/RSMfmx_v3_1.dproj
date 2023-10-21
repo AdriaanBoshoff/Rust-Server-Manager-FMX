@@ -360,6 +360,11 @@
             <Form>frmCarbonMod</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Modules\CarbonMod\CarbonModuleItem\uframeCarbonModuleItem.pas">
+            <Form>frameCarbonModuleItem</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

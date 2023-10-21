@@ -1,0 +1,57 @@
+object frameCarbonModuleItem: TframeCarbonModuleItem
+  Size.Width = 505.000000000000000000
+  Size.Height = 50.000000000000000000
+  Size.PlatformDefault = False
+  object rctnglBG: TRectangle
+    Align = Contents
+    Fill.Color = xFF1F222A
+    Padding.Left = 10.000000000000000000
+    Padding.Top = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 10.000000000000000000
+    Size.Width = 505.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object swtchEnable: TSwitch
+      Align = Right
+      IsChecked = False
+      Position.X = 435.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      OnSwitch = swtchEnableSwitch
+    end
+    object lblTitle: TLabel
+      Align = Client
+      StyledSettings = [Family]
+      Margins.Right = 10.000000000000000000
+      Size.Width = 325.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = xFFE0E0E0
+      Text = 'lblTitle'
+      TabOrder = 1
+    end
+    object btnOpenConfig: TButton
+      Align = Right
+      CanFocus = False
+      DisableFocusEffect = True
+      Margins.Right = 10.000000000000000000
+      Position.X = 345.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Open Config'
+      OnClick = btnOpenConfigClick
+    end
+  end
+end

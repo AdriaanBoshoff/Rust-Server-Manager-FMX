@@ -2,12 +2,13 @@ object frmCarbonMod: TfrmCarbonMod
   Left = 0
   Top = 0
   Caption = 'Carbon Mod'
-  ClientHeight = 480
-  ClientWidth = 824
+  ClientHeight = 484
+  ClientWidth = 731
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object rctnglHeader: TRectangle
     Align = Top
@@ -21,7 +22,7 @@ object frmCarbonMod: TfrmCarbonMod
     Margins.Right = 5.000000000000000000
     Position.X = 5.000000000000000000
     Position.Y = 5.000000000000000000
-    Size.Width = 814.000000000000000000
+    Size.Width = 721.000000000000000000
     Size.Height = 100.000000000000000000
     Size.PlatformDefault = False
     Stroke.Color = claNull
@@ -933,13 +934,13 @@ object frmCarbonMod: TfrmCarbonMod
     object lytHeaderInfo: TLayout
       Align = Client
       Margins.Left = 10.000000000000000000
-      Size.Width = 704.000000000000000000
+      Size.Width = 611.000000000000000000
       Size.Height = 80.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       object lytHeaderControls: TLayout
         Align = MostRight
-        Position.X = 584.000000000000000000
+        Position.X = 491.000000000000000000
         Size.Width = 120.000000000000000000
         Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
@@ -973,7 +974,7 @@ object frmCarbonMod: TfrmCarbonMod
       object lytTitle: TLayout
         Align = Top
         Margins.Right = 10.000000000000000000
-        Size.Width = 574.000000000000000000
+        Size.Width = 481.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
@@ -1009,7 +1010,7 @@ object frmCarbonMod: TfrmCarbonMod
       object lytDescription: TLayout
         Align = Client
         Margins.Right = 10.000000000000000000
-        Size.Width = 574.000000000000000000
+        Size.Width = 481.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
@@ -1028,7 +1029,7 @@ object frmCarbonMod: TfrmCarbonMod
             ' server owners working to take the tedium out of hosting servers' +
             ' and make configuration and setup seamless with an integrated GU' +
             'I in-game to manage everything!'
-          Size.Width = 574.000000000000000000
+          Size.Width = 481.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.StyleExt = {00060000000000000004000000}
@@ -1041,6 +1042,94 @@ object frmCarbonMod: TfrmCarbonMod
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
+        end
+      end
+    end
+  end
+  object tbcCarbonMod: TTabControl
+    Align = Client
+    FullSize = True
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 721.000000000000000000
+    Size.Height = 369.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 1
+    TabOrder = 1
+    TabPosition = Top
+    Sizes = (
+      721s
+      345s
+      721s
+      345s)
+    object tbtmCarbonConfig: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 360.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Carbon Config'
+      ExplicitSize.cx = 360.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
+      object btnOpenCarbonConfig: TButton
+        Align = Center
+        CanFocus = False
+        DisableFocusEffect = True
+        StyledSettings = [Family, FontColor]
+        Size.Width = 250.000000000000000000
+        Size.Height = 80.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Open Config File'
+        TextSettings.Font.Size = 20.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        OnClick = btnOpenCarbonConfigClick
+      end
+    end
+    object tbtmCarbonModules: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 361.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Carbon Modules'
+      ExplicitSize.cx = 361.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
+      object vrtscrlbxCarbonModules: TVertScrollBox
+        Align = Client
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Size.Width = 721.000000000000000000
+        Size.Height = 345.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 721.000000000000000000
+        Viewport.Height = 345.000000000000000000
+        object flwlytCarbonModules: TFlowLayout
+          Align = Top
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 711.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Justify = Left
+          JustifyLastLine = Left
+          FlowDirection = LeftToRight
+          VerticalGap = 5.000000000000000000
+          OnResized = flwlytCarbonModulesResized
         end
       end
     end
