@@ -1,0 +1,11 @@
+object frmuMod: TfrmuMod
+  Left = 0
+  Top = 0
+  ClientHeight = 438
+  ClientWidth = 714
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+end

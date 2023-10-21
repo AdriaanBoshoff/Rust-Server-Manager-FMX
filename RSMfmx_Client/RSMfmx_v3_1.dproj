@@ -373,6 +373,10 @@
             <Form>frmPluginInstaller</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuMod.pas">
+            <Form>frmuMod</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -657,9 +661,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Debug\bin\RSMfmx_v3_1.rsm" Configuration="Debug" Class="DebugSymbols">
+                <DeployFile LocalName="Win64\Release\bin\RSMfmx_v3_1.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win64">
-                        <RemoteName>RSMfmx_v3_1.rsm</RemoteName>
+                        <RemoteName>RSMfmx_v3_1.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

@@ -22,6 +22,7 @@ type
     tbtmuMod: TTabItem;
     tbtmCodeFling: TTabItem;
     tbtmLoneDesign: TTabItem;
+    procedure FormCreate(Sender: TObject);
     procedure OnNavItemClick(Sender: TObject);
     procedure OnNavItemMouseEnter(Sender: TObject);
     procedure OnNavItemMouseLeave(Sender: TObject);
@@ -33,6 +34,7 @@ type
       UI_COLOR_SELECTED = $FF900000;
   private
     { Private declarations }
+    procedure CreateStores;
   public
     { Public declarations }
   end;
@@ -42,7 +44,27 @@ var
 
 implementation
 
+uses
+  ufrmuMod;
+
 {$R *.fmx}
+
+procedure TfrmPluginInstaller.CreateStores;
+begin
+  // uMod
+  frmuMod := TfrmuMod.Create(tbtmuMod);
+  while frmuMod.ChildrenCount > 0 do
+    frmuMod.Children[0].Parent := tbtmuMod;
+end;
+
+procedure TfrmPluginInstaller.FormCreate(Sender: TObject);
+begin
+  {$IFDEF RELEASE}
+  tbcVendors.TabPosition := TTabPosition.None;
+  {$ENDIF}
+
+  CreateStores;
+end;
 
 procedure TfrmPluginInstaller.OnNavItemClick(Sender: TObject);
 begin
