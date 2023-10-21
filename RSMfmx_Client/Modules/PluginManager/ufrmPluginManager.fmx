@@ -12,13 +12,13 @@ object frmPluginManager: TfrmPluginManager
   object lytNav: TLayout
     Align = Top
     Size.Width = 654.000000000000000000
-    Size.Height = 35.000000000000000000
+    Size.Height = 30.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object grdpnllytBottomNav: TGridPanelLayout
       Align = Client
       Size.Width = 654.000000000000000000
-      Size.Height = 35.000000000000000000
+      Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       ColumnCollection = <
@@ -55,7 +55,7 @@ object frmPluginManager: TfrmPluginManager
         Align = Client
         Fill.Color = xFF1F222A
         Size.Width = 217.518890380859400000
-        Size.Height = 35.000000000000000000
+        Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = claNull
         OnClick = OnNavItemClick
@@ -65,7 +65,7 @@ object frmPluginManager: TfrmPluginManager
           Align = Client
           StyledSettings = [Family, FontColor]
           Size.Width = 217.518890380859400000
-          Size.Height = 35.000000000000000000
+          Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
@@ -78,7 +78,7 @@ object frmPluginManager: TfrmPluginManager
         Align = Client
         Fill.Color = xFF1F222A
         Size.Width = 217.839630126953100000
-        Size.Height = 35.000000000000000000
+        Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = claNull
         OnClick = OnNavItemClick
@@ -88,7 +88,7 @@ object frmPluginManager: TfrmPluginManager
           Align = Client
           StyledSettings = [Family, FontColor]
           Size.Width = 217.839630126953100000
-          Size.Height = 35.000000000000000000
+          Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
@@ -101,7 +101,7 @@ object frmPluginManager: TfrmPluginManager
         Align = Client
         Fill.Color = xFF1F222A
         Size.Width = 218.641479492187500000
-        Size.Height = 35.000000000000000000
+        Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = claNull
         OnClick = OnNavItemClick
@@ -111,7 +111,7 @@ object frmPluginManager: TfrmPluginManager
           Align = Client
           StyledSettings = [Family, FontColor]
           Size.Width = 218.641479492187500000
-          Size.Height = 35.000000000000000000
+          Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
@@ -125,18 +125,18 @@ object frmPluginManager: TfrmPluginManager
   object tbcNav: TTabControl
     Align = Client
     Size.Width = 654.000000000000000000
-    Size.Height = 388.000000000000000000
+    Size.Height = 393.000000000000000000
     Size.PlatformDefault = False
     TabIndex = 0
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
       654s
-      364s
+      369s
       654s
-      364s
+      369s
       654s
-      364s)
+      369s)
     object tbtmInstalledPlugins: TTabItem
       CustomIcon = <
         item

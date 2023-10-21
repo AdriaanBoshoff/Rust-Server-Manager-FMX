@@ -58,6 +58,9 @@ object frmPluginInstaller: TfrmPluginInstaller
         Size.Height = 35.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = claNull
+        OnClick = OnNavItemClick
+        OnMouseEnter = OnNavItemMouseEnter
+        OnMouseLeave = OnNavItemMouseLeave
         object lblNavuMod: TLabel
           Align = Client
           StyledSettings = [Family, FontColor]
@@ -78,6 +81,9 @@ object frmPluginInstaller: TfrmPluginInstaller
         Size.Height = 35.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = claNull
+        OnClick = OnNavItemClick
+        OnMouseEnter = OnNavItemMouseEnter
+        OnMouseLeave = OnNavItemMouseLeave
         object lblNavCodeFling: TLabel
           Align = Client
           StyledSettings = [Family, FontColor]
@@ -98,6 +104,9 @@ object frmPluginInstaller: TfrmPluginInstaller
         Size.Height = 35.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = claNull
+        OnClick = OnNavItemClick
+        OnMouseEnter = OnNavItemMouseEnter
+        OnMouseLeave = OnNavItemMouseLeave
         object lblNavLoneDesign: TLabel
           Align = Client
           StyledSettings = [Family, FontColor]
@@ -111,6 +120,58 @@ object frmPluginInstaller: TfrmPluginInstaller
           TabOrder = 2
         end
       end
+    end
+  end
+  object tbcVendors: TTabControl
+    Align = Client
+    Size.Width = 669.000000000000000000
+    Size.Height = 352.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 1
+    TabPosition = PlatformDefault
+    Sizes = (
+      669s
+      328s
+      669s
+      328s
+      669s
+      328s)
+    object tbtmuMod: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 73.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'uMod.org'
+    end
+    object tbtmCodeFling: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 99.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'CodeFling.com'
+    end
+    object tbtmLoneDesign: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 85.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Lone.Design'
     end
   end
 end
