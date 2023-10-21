@@ -32,10 +32,9 @@ type
 implementation
 
 uses
-  System.JSON, System.IOUtils, uWinUtils;
+  System.JSON, System.IOUtils, uWinUtils, ufrmMain, Rcon.Types, Rcon.Commands;
 
 {$R *.fmx}
-
 { TframeCarbonModuleItem }
 
 constructor TframeCarbonModuleItem.Create(AOwner: TComponent);
@@ -87,13 +86,16 @@ begin
     if jData.TryGetValue<Boolean>('Enabled', enabled) then
     begin
       // Change enabled property
-
-      { Causes memory leak. Comment out for now }
-     // (jData as TJSONObject).RemovePair('Enabled');
-      //(jData as TJSONObject).AddPair('Enabled', swtchEnable.IsChecked);
+      TJSONObject(jData).RemovePair('Enabled').Free;
+      // .Free to avoid memory leak
+      TJSONObject(jData).AddPair('Enabled', swtchEnable.IsChecked);
 
       // Save json
       TFile.WriteAllText(Self.FmoduleConfigFile, TJSONObject(jData).Format(2), TEncoding.UTF8);
+
+      // Tell the server to reload all modules
+      if frmMain.wsClientRcon.Active then
+        TRCON.SendRconCommand(RCON_CMD_Carbon_ReloadModules, RCON_ID_Carbon_ReloadModules, frmMain.wsClientRcon);
     end
     else
       // Remove switch option if the json option does not exist
