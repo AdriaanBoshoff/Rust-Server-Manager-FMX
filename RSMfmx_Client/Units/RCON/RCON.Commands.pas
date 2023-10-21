@@ -27,6 +27,11 @@ const
   RCON_ID_Carbon_ReloadModules = 3;
   RCON_CMD_Carbon_ReloadModules = 'c.reloadmodules';
 
+  // Load Module Config
+  RCON_ID_Carbon_LoadModuleConfig = 4;
+  RCON_CMD_Carbon_LoadModuleConfig = 'c.loadmoduleconfig';
+
 implementation
 
 end.
+
