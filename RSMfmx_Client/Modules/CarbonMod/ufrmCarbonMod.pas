@@ -31,6 +31,8 @@ type
     procedure btnOpenCarbonConfigClick(Sender: TObject);
     procedure cbbCarbonConfigServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure flwlytCarbonModulesResized(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure tbcCarbonModChange(Sender: TObject);
   private
     { Private declarations }
     procedure ReCalcCarbonModulesSize;
@@ -57,6 +59,8 @@ end;
 
 procedure TfrmCarbonMod.LoadCarbonModules;
 begin
+  ClearCarbonModulesUI;
+
   var modulesDir := ExtractFilePath(ParamStr(0)) + '\carbon\modules';
 
   if not TDirectory.Exists(modulesDir) then
@@ -115,6 +119,11 @@ begin
   ReCalcCarbonModulesSize;
 end;
 
+procedure TfrmCarbonMod.FormActivate(Sender: TObject);
+begin
+  LoadCarbonModules;
+end;
+
 procedure TfrmCarbonMod.ReCalcCarbonModulesSize;
 begin
   var newSize: single := 0;
@@ -130,6 +139,11 @@ begin
   end;
 
   flwlytCarbonModules.Height := newSize;
+end;
+
+procedure TfrmCarbonMod.tbcCarbonModChange(Sender: TObject);
+begin
+  LoadCarbonModules;
 end;
 
 end.

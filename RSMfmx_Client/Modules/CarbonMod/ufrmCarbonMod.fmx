@@ -8,6 +8,7 @@ object frmCarbonMod: TfrmCarbonMod
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
   OnCreate = FormCreate
   DesignerMasterStyle = 0
   object rctnglHeader: TRectangle
@@ -1059,6 +1060,7 @@ object frmCarbonMod: TfrmCarbonMod
     TabIndex = 1
     TabOrder = 1
     TabPosition = Top
+    OnChange = tbcCarbonModChange
     Sizes = (
       721s
       345s
