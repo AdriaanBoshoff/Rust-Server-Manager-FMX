@@ -23,6 +23,10 @@ const
   RCON_ID_PLAYERLIST = 2;
   RCON_CMD_PLAYERLIST = 'playerlist';
 
+  // Reload Carbonmod Modules
+  RCON_ID_Carbon_ReloadModules = 3;
+  RCON_CMD_Carbon_ReloadModules = 'c.reloadmodules';
+
 implementation
 
 end.
