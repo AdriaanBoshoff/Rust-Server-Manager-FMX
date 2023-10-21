@@ -33,9 +33,9 @@ object frameCarbonModuleItem: TframeCarbonModuleItem
       Size.Width = 325.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.Size = 16.000000000000000000
       TextSettings.Font.StyleExt = {00070000000000000004000000}
-      TextSettings.FontColor = xFFE0E0E0
+      TextSettings.FontColor = claWhite
       Text = 'lblTitle'
       TabOrder = 1
     end
