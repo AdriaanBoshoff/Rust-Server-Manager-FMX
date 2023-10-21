@@ -317,6 +317,8 @@ begin
     Writer.WriteEndObject;
     Writer.WriteEndObject;
 
+    ForceDirectories(ExtractFilePath(Self.OxideConfigFile));
+
     TFile.WriteAllText(Self.OxideConfigFile, StringWriter.ToString, TEncoding.UTF8);
   finally
     Writer.Free;
