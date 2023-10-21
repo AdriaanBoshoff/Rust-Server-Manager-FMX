@@ -907,6 +907,8 @@ begin
   // Oxide Module
   frmOxide.rctnglHeader.Enabled := not isServerRunning;
   frmOxide.rctnglSettings.Enabled := not isServerRunning;
+  // Cabon Module
+  frmCarbonMod.rctnglHeader.Enabled := not isServerRunning;
 
   // Check if server is running and rcon is connected.
   // If server is running and rcon is not connected then
