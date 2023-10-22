@@ -32,7 +32,9 @@ begin
     rest.AddParameter('sort', 'downloads', TRESTRequestParameterKind.pkQUERY);
     rest.AddParameter('categories', 'universal,rust', TRESTRequestParameterKind.pkQUERY);
     rest.AddParameter('page', Page.ToString, TRESTRequestParameterKind.pkQUERY);
-    rest.AddParameter('query', SearchText, TRESTRequestParameterKind.pkQUERY);
+
+    if not SearchText.IsEmpty then
+      rest.AddParameter('query', SearchText, TRESTRequestParameterKind.pkQUERY);
 
     rest.Execute;
 

@@ -36,7 +36,8 @@ uses
   ufrmPluginInstaller in 'Modules\PluginManager\PluginInstaller\ufrmPluginInstaller.pas' {frmPluginInstaller},
   ufrmuMod in 'Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuMod.pas' {frmuMod},
   uModAPI in 'Libs\uMod\uModAPI.pas',
-  uModAPI.Types in 'Libs\uMod\uModAPI.Types.pas';
+  uModAPI.Types in 'Libs\uMod\uModAPI.Types.pas',
+  uframeuModPluginItem in 'Modules\PluginManager\PluginInstaller\Stores\uMod\Items\uframeuModPluginItem.pas' {frameuModPluginItem: TFrame};
 
 {$R *.res}
 

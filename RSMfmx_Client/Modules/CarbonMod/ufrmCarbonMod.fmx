@@ -1130,6 +1130,7 @@ object frmCarbonMod: TfrmCarbonMod
           Justify = Left
           JustifyLastLine = Left
           FlowDirection = LeftToRight
+          HorizontalGap = 10.000000000000000000
           VerticalGap = 5.000000000000000000
           OnResized = flwlytCarbonModulesResized
         end

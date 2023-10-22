@@ -4,7 +4,7 @@
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>2</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -379,6 +379,11 @@
         </DCCReference>
         <DCCReference Include="Libs\uMod\uModAPI.pas"/>
         <DCCReference Include="Libs\uMod\uModAPI.Types.pas"/>
+        <DCCReference Include="Modules\PluginManager\PluginInstaller\Stores\uMod\Items\uframeuModPluginItem.pas">
+            <Form>frameuModPluginItem</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
