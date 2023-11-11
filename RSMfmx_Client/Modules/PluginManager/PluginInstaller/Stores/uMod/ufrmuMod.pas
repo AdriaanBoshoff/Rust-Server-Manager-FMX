@@ -53,6 +53,13 @@ begin
     Exit;
 
   FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage + 1);
+
+  if FuModResponse.ResponseCode = 429 then
+  begin
+    ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
+    Exit;
+  end;
+
   lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
   nmbrbxCurrentPage.Max := FuModResponse.lastPage;
   nmbrbxCurrentPage.Value := FuModResponse.currentPage;
@@ -83,6 +90,13 @@ begin
     Exit;
 
   FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage - 1);
+
+  if FuModResponse.ResponseCode = 429 then
+  begin
+    ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
+    Exit;
+  end;
+
   lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
   nmbrbxCurrentPage.Max := FuModResponse.lastPage;
   nmbrbxCurrentPage.Value := FuModResponse.currentPage;
@@ -110,6 +124,13 @@ end;
 procedure TfrmuMod.btnSearchPluginClick(Sender: TObject);
 begin
   FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, 1);
+
+  if FuModResponse.ResponseCode = 429 then
+  begin
+    ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
+    Exit;
+  end;
+
   lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
   nmbrbxCurrentPage.Max := FuModResponse.lastPage;
   nmbrbxCurrentPage.Value := FuModResponse.currentPage;
