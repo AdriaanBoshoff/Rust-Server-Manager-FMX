@@ -55,6 +55,25 @@ begin
   FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage + 1);
   nmbrbxCurrentPage.Max := FuModResponse.lastPage;
   nmbrbxCurrentPage.Value := FuModResponse.currentPage;
+
+  ClearPlugins;
+
+  for var aPlugin in FuModResponse.plugins do
+  begin
+    var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
+    pluginItem.Align := TAlignLayout.Top;
+    pluginItem.Name := aPlugin.name;
+    pluginItem.lblPluginTitle.Text := aPlugin.title;
+    pluginItem.lblDescription.Text := aPlugin.description;
+    pluginItem.lblAuthor.Text := 'by ' + aPlugin.authorName;
+    pluginItem.lblVersion.Text := 'v' + aPlugin.version;
+    pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
+    pluginItem.Parent := flwlytPlugins;
+    pluginItem.FPluginInfo := aPlugin;
+    pluginItem.LoadAvatar;
+  end;
+
+  ReCalcPluginSize;
 end;
 
 procedure TfrmuMod.btnPreviousPageClick(Sender: TObject);
@@ -63,13 +82,6 @@ begin
     Exit;
 
   FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage - 1);
-  nmbrbxCurrentPage.Max := FuModResponse.lastPage;
-  nmbrbxCurrentPage.Value := FuModResponse.currentPage;
-end;
-
-procedure TfrmuMod.btnSearchPluginClick(Sender: TObject);
-begin
-  FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage);
   nmbrbxCurrentPage.Max := FuModResponse.lastPage;
   nmbrbxCurrentPage.Value := FuModResponse.currentPage;
 
@@ -93,17 +105,48 @@ begin
   ReCalcPluginSize;
 end;
 
+procedure TfrmuMod.btnSearchPluginClick(Sender: TObject);
+begin
+  FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage);
+  nmbrbxCurrentPage.Max := FuModResponse.lastPage;
+  nmbrbxCurrentPage.Value := FuModResponse.currentPage;
+
+  ClearPlugins;
+
+  for var aPlugin in FuModResponse.plugins do
+  begin
+    var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
+   // pluginItem.Align := TAlignLayout.Top;
+    pluginItem.Name := aPlugin.name;
+    pluginItem.lblPluginTitle.Text := aPlugin.title;
+    pluginItem.lblDescription.Text := aPlugin.description;
+    pluginItem.lblAuthor.Text := 'by ' + aPlugin.authorName;
+    pluginItem.lblVersion.Text := 'v' + aPlugin.version;
+    pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
+    pluginItem.Parent := flwlytPlugins;
+    pluginItem.FPluginInfo := aPlugin;
+    pluginItem.LoadAvatar;
+  end;
+
+  ReCalcPluginSize;
+end;
+
 procedure TfrmuMod.ReCalcPluginSize;
 begin
   var newSize: single := 0;
-
+  var prevYPos: single := 0;
   for var aControl in flwlytPlugins.Controls do
   begin
-    aControl.Width := flwlytPlugins.Width;
+   // aControl.Width := flwlytPlugins.Width;
 
     if aControl is TframeuModPluginItem then
     begin
-      newSize := newSize + aControl.Height + flwlytPlugins.VerticalGap;
+      if aControl.Position.Y > prevYPos then
+      begin
+        prevYPos := aControl.Position.Y;
+
+        newSize := newSize + aControl.Height + flwlytPlugins.VerticalGap;
+      end;
     end;
   end;
 
