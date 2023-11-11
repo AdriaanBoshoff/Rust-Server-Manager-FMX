@@ -1,16 +1,15 @@
 object frameuModPluginItem: TframeuModPluginItem
-  Size.Width = 614.000000000000000000
-  Size.Height = 100.000000000000000000
+  Size.Width = 320.000000000000000000
+  Size.Height = 155.000000000000000000
   Size.PlatformDefault = False
   object rctnglHeader: TRectangle
     Align = Contents
     Fill.Color = xFF1F222A
     Padding.Left = 10.000000000000000000
-    Padding.Top = 10.000000000000000000
     Padding.Right = 10.000000000000000000
-    Padding.Bottom = 10.000000000000000000
-    Size.Width = 614.000000000000000000
-    Size.Height = 100.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 155.000000000000000000
     Size.PlatformDefault = False
     Stroke.Color = claNull
     XRadius = 10.000000000000000000
@@ -227,8 +226,9 @@ object frameuModPluginItem: TframeuModPluginItem
       Fill.Bitmap.WrapMode = TileStretch
       Fill.Kind = Bitmap
       HitTest = False
+      Margins.Top = 5.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 10.000000000000000000
+      Position.Y = 35.000000000000000000
       Size.Width = 80.000000000000000000
       Size.Height = 80.000000000000000000
       Size.PlatformDefault = False
@@ -239,53 +239,43 @@ object frameuModPluginItem: TframeuModPluginItem
     object lytHeaderInfo: TLayout
       Align = Client
       Margins.Left = 10.000000000000000000
-      Size.Width = 504.000000000000000000
-      Size.Height = 80.000000000000000000
+      Size.Width = 210.000000000000000000
+      Size.Height = 85.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      object lytTitle: TLayout
-        Align = Top
-        Margins.Right = 10.000000000000000000
-        Size.Width = 394.000000000000000000
-        Size.Height = 30.000000000000000000
+      object lytDescription: TLayout
+        Align = Client
+        Size.Width = 210.000000000000000000
+        Size.Height = 55.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        object lblPluginTitle: TLabel
-          Align = Left
-          AutoSize = True
-          StyledSettings = [Family]
-          Size.Width = 119.000000000000000000
-          Size.Height = 30.000000000000000000
+        object lblDescription: TLabel
+          Align = Client
+          StyledSettings = [Family, Size]
+          Size.Width = 210.000000000000000000
+          Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.Font.Size = 16.000000000000000000
           TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.FontColor = claWhite
-          TextSettings.WordWrap = False
-          Text = 'Gather Manager'
+          TextSettings.FontColor = xFFD7D7D7
+          Text = 'Increases the amount of items gained from gathering resources '
           TabOrder = 0
         end
-        object lblAuthor: TLabel
-          Align = Left
-          AutoSize = True
-          StyledSettings = [Family, Size]
-          Margins.Left = 5.000000000000000000
-          Position.X = 124.000000000000000000
-          Size.Width = 44.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000100000004000000}
-          TextSettings.FontColor = xFFA7A7A7
-          TextSettings.WordWrap = False
-          Text = 'By Ryan'
-          TabOrder = 1
-        end
+      end
+      object lytInfo: TLayout
+        Align = Top
+        Margins.Top = 5.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 210.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
         object lytDownloads: TLayout
           Align = Right
-          Position.X = 234.000000000000000000
+          Position.X = 130.000000000000000000
           Size.Width = 80.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 2
+          TabOrder = 1
           object imgDownloadsIcon: TImage
             MultiResBitmap = <
               item
@@ -294,16 +284,16 @@ object frameuModPluginItem: TframeuModPluginItem
                 PNG = {
                   89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
                   F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                  010F49444154484BED94C14AC3401086FFD990FA04153CE813E83388D4E71024
-                  10D0071291E6E2B5E013E8A1CF500F9EF522FA04AD64D69DCDA68164BB49480F
-                  62FB4198DD9961FE992CBBD83132ADEDD703E5EC9E2DF117CF602FD04A5820E3
-                  1B3CF2A1DB359198E404D82C30E55B80EEF0A35FBC22E29398E4D85C3F9B0508
-                  33302F4CCA29567A8E7B3E7211996C8CA57EB631CD6F88E8C9451A90B37ED65D
-                  9A42E0D7C20AE5DAD89826B8525F85BF495840906ED9882875E63C05B6737581
-                  6BFA741E2FED02425DA46371A112289F8084FCA2A508210E16AFD5E97E0F12F5
-                  8D03BAC488CEBB745ED2EFA2C961060ED447F53B1EF27733FAB1DB0D23E70FA4
-                  D1892CAB0988521B188AD4905AFF04E017A1B96C8372E778900000000049454E
-                  44AE426082}
+                  011349444154484B63186160EEFFFF604C026082D2A3804A6030C6C1A8050401
+                  7E0BE6FECB6458F44F0CCAC3042039901A3C00B70573FE653130304E63F8FD6F
+                  2F564B40622039901AB05AEC00B7058C0CAB19FEFDBDCCC0C0ACC3F0EBEF4186
+                  19FF24A132209F8932FCFCB7072CF7FFCF0D0666C67550190CC008A5B103B82B
+                  810631FCBD02A14100C606D2AC4CCE0C714CAF20E29800BF05200072ED3FA025
+                  4CCCBA50110800BB9CC5912191F10554042B206C0108A05B42A4E12080B00056
+                  04243362B7146609E37F56BC86A399437C3E48667ACDC0CEE4C2C0C66C4F8CCB
+                  6180B48C068A4C3C118A0D208263E6EF470C2C2CB2501E65E0CF9FC70CE9AC72
+                  2026C2074CCC6960094A01C80C9059C3043030000003416D80D97A4CC1000000
+                  0049454E44AE426082}
                 FileName = 
                   'D:\Github\RSMfmx_v3.1\RSMfmx_Client\Assets\Icons\x24\download_24' +
                   '.png'
@@ -313,7 +303,7 @@ object frameuModPluginItem: TframeuModPluginItem
             Margins.Bottom = 3.000000000000000000
             Position.Y = 3.000000000000000000
             Size.Width = 24.000000000000000000
-            Size.Height = 24.000000000000000000
+            Size.Height = 19.000000000000000000
             Size.PlatformDefault = False
           end
           object lblDownloadsCount: TLabel
@@ -323,7 +313,7 @@ object frameuModPluginItem: TframeuModPluginItem
             Margins.Left = 3.000000000000000000
             Position.X = 27.000000000000000000
             Size.Width = 38.000000000000000000
-            Size.Height = 30.000000000000000000
+            Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TextSettings.FontColor = xFFB0B0B0
@@ -333,12 +323,11 @@ object frameuModPluginItem: TframeuModPluginItem
           end
         end
         object lytVersion: TLayout
-          Align = Right
-          Position.X = 314.000000000000000000
+          Align = Left
           Size.Width = 80.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 25.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 3
+          TabOrder = 2
           object imgVersionIcon: TImage
             MultiResBitmap = <
               item
@@ -347,18 +336,18 @@ object frameuModPluginItem: TframeuModPluginItem
                 PNG = {
                   89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
                   F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                  014B49444154484BDD943D4EC34010852D9470002A0A0EC011B80207401C8706
-                  E54FD070011057E01250D0D2478A29202D4242D8CB37BB2F6623D6C27F553E69
-                  F4EC37BB33F6C49B6CF770CEED174531275E899CFB99794AF74705B7A0D154E9
-                  FED893AB6E85794AB7664F1A3396C68CA4AD4935B893C6DC4AFBC344468C641E
-                  86E3C7738D747E835A4279E7CAB23C91D589D488B6A0C7B92E87253CBF1FD107
-                  722C7B3842F9004D5E9043A5862194F6C59FA54B7E8F53A52D3FB60F805813ED
-                  4FBC1535287A408147DD5AA307E40CBD09CE2F78CD4FBCF6385DDBFFD325F119
-                  DC34E473BFB909DAE31B6CE06D8E880B0A3D11DF5A5281B7D2D27A5867B35D84
-                  2D7E935DFF3968F8D561DC803751BA1E165D697D853551BA02DB4EFC82782356
-                  C404EFFF1F9985EFBE6A841551BA35A993FC258D49798D4835B897C6A4BC6E30
-                  11FB24A7444E349FED8E92653FB0FBCDD48EBC26F40000000049454E44AE4260
-                  82}
+                  015A49444154484BDD944D4EC3301085A3A8E500AC5870008EC0153800E2386C
+                  10850A365C00C415B8042CD8B2AF4459005B84447ECC7B9E5793AA8E8893ACFA
+                  49D6386FEC197B6C27DB3E9C733B55555D1645F186B6C4F70535B987A3806B20
+                  E14CEEE170E58A1BA0267732B96C93A96C93896C321B09F23CBF533700ED56DD
+                  E1A022131EB215C7D7FF1AA6F70E5AB1F0CED5757D28A917B1335803394ED41D
+                  175BBFBF415F300792C7C3C21B48F202B327D7385868E7CAB27CA6459205CEE3
+                  486EFAA7BC00D03FD1D25F3C831204DD4592477DF2563DC01CC3DE98F207B4EE
+                  2F5E739CFAFC3F9D61A5DFA6C6E14EFCE42E688E4FB002BBD9473BC58E9E10AC
+                  D49000B4570D6D07E358DBB94DF1DB667FE3A1410F8F7105B473B9DBC1A02B8D
+                  0F3089DC01C87CF173ACFA9D2B677068FF1F32067FF8A80D1844EE64622FF947
+                  B6494CEB44EC6F7AAF6E20A6F50615E1959CA12CCBA4DA6E2959F60B167CCD71
+                  AB1C6E250000000049454E44AE426082}
                 FileName = 
                   'D:\Github\RSMfmx_v3.1\RSMfmx_Client\Assets\Icons\x24\version_24.' +
                   'png'
@@ -368,7 +357,7 @@ object frameuModPluginItem: TframeuModPluginItem
             Margins.Bottom = 3.000000000000000000
             Position.Y = 3.000000000000000000
             Size.Width = 24.000000000000000000
-            Size.Height = 24.000000000000000000
+            Size.Height = 19.000000000000000000
             Size.PlatformDefault = False
           end
           object lblVersion: TLabel
@@ -378,7 +367,7 @@ object frameuModPluginItem: TframeuModPluginItem
             Margins.Left = 3.000000000000000000
             Position.X = 27.000000000000000000
             Size.Width = 39.000000000000000000
-            Size.Height = 30.000000000000000000
+            Size.Height = 25.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TextSettings.FontColor = xFFB0B0B0
@@ -388,49 +377,86 @@ object frameuModPluginItem: TframeuModPluginItem
           end
         end
       end
-      object lytDescription: TLayout
+    end
+    object lytTitle: TLayout
+      Align = MostTop
+      Position.X = 10.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object lblPluginTitle: TLabel
         Align = Client
-        Margins.Right = 10.000000000000000000
-        Size.Width = 394.000000000000000000
-        Size.Height = 50.000000000000000000
+        AutoSize = True
+        StyledSettings = [Family]
+        Size.Width = 300.000000000000000000
+        Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
-        object lblDescription: TLabel
-          Align = Client
-          StyledSettings = [Family, Size]
-          Size.Width = 394.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.FontColor = xFFD7D7D7
-          Text = 'Increases the amount of items gained from gathering resources '
-          TabOrder = 0
-        end
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        TextSettings.WordWrap = False
+        Text = 'Gather Manager'
+        TabOrder = 0
       end
-      object lytControls: TLayout
-        Align = MostRight
-        Position.X = 404.000000000000000000
-        Size.Width = 100.000000000000000000
-        Size.Height = 80.000000000000000000
+      object lnHeader: TLine
+        Align = MostBottom
+        LineType = Bottom
+        Position.Y = 29.000000000000000000
+        Size.Width = 300.000000000000000000
+        Size.Height = 1.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claRed
+      end
+    end
+    object lytControls: TLayout
+      Align = MostBottom
+      Position.X = 10.000000000000000000
+      Position.Y = 115.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object btnInstall: TButton
+        Align = Right
+        Margins.Top = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 220.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
-        object btnHelp: TButton
-          Align = Top
-          Size.Width = 100.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 1
-          Text = 'Help'
-        end
-        object btnDownload: TButton
-          Align = Bottom
-          Position.Y = 50.000000000000000000
-          Size.Width = 100.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          Text = 'Download'
-        end
+        Text = 'Install'
+      end
+      object btnHelp: TButton
+        Align = Right
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 25.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 115.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Help'
+      end
+      object lblAuthor: TLabel
+        Align = Left
+        AutoSize = True
+        StyledSettings = [Family, Size]
+        Margins.Left = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Size.Width = 75.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000100000004000000}
+        TextSettings.FontColor = xFFA7A7A7
+        TextSettings.HorzAlign = Center
+        Text = 'By Ryan'
+        TabOrder = 1
       end
     end
   end

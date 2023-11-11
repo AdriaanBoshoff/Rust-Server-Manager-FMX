@@ -17,7 +17,6 @@ type
     lytDescription: TLayout;
     lblDescription: TLabel;
     lblPluginTitle: TLabel;
-    lytControls: TLayout;
     lblAuthor: TLabel;
     lytDownloads: TLayout;
     imgDownloadsIcon: TImage;
@@ -25,8 +24,11 @@ type
     lytVersion: TLayout;
     imgVersionIcon: TImage;
     lblVersion: TLabel;
+    lytInfo: TLayout;
+    lytControls: TLayout;
+    btnInstall: TButton;
     btnHelp: TButton;
-    btnDownload: TButton;
+    lnHeader: TLine;
     procedure rctnglHeaderMouseEnter(Sender: TObject);
     procedure rctnglHeaderMouseLeave(Sender: TObject);
   private
