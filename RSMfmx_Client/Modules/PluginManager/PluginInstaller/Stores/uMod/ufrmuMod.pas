@@ -53,6 +53,7 @@ begin
     Exit;
 
   FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage + 1);
+  lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
   nmbrbxCurrentPage.Max := FuModResponse.lastPage;
   nmbrbxCurrentPage.Value := FuModResponse.currentPage;
 
@@ -61,7 +62,7 @@ begin
   for var aPlugin in FuModResponse.plugins do
   begin
     var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
-    pluginItem.Align := TAlignLayout.Top;
+   // pluginItem.Align := TAlignLayout.Top;
     pluginItem.Name := aPlugin.name;
     pluginItem.lblPluginTitle.Text := aPlugin.title;
     pluginItem.lblDescription.Text := aPlugin.description;
@@ -82,6 +83,7 @@ begin
     Exit;
 
   FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage - 1);
+  lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
   nmbrbxCurrentPage.Max := FuModResponse.lastPage;
   nmbrbxCurrentPage.Value := FuModResponse.currentPage;
 
@@ -90,7 +92,7 @@ begin
   for var aPlugin in FuModResponse.plugins do
   begin
     var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
-    pluginItem.Align := TAlignLayout.Top;
+   // pluginItem.Align := TAlignLayout.Top;
     pluginItem.Name := aPlugin.name;
     pluginItem.lblPluginTitle.Text := aPlugin.title;
     pluginItem.lblDescription.Text := aPlugin.description;
@@ -107,7 +109,8 @@ end;
 
 procedure TfrmuMod.btnSearchPluginClick(Sender: TObject);
 begin
-  FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage);
+  FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, 1);
+  lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
   nmbrbxCurrentPage.Max := FuModResponse.lastPage;
   nmbrbxCurrentPage.Value := FuModResponse.currentPage;
 
