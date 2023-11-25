@@ -1135,6 +1135,18 @@ object frmCarbonMod: TfrmCarbonMod
           OnResized = flwlytCarbonModulesResized
         end
       end
+      object lblNoCarbonModulesFound: TLabel
+        Align = Contents
+        StyledSettings = [Family, FontColor]
+        Size.Width = 721.000000000000000000
+        Size.Height = 341.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 20.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000100000004000000}
+        TextSettings.HorzAlign = Center
+        Text = 'No Carbon Modules Found'
+        TabOrder = 1
+      end
     end
   end
 end

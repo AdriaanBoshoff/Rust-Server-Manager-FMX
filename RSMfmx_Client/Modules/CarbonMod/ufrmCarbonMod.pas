@@ -27,6 +27,7 @@ type
     btnOpenCarbonConfig: TButton;
     vrtscrlbxCarbonModules: TVertScrollBox;
     flwlytCarbonModules: TFlowLayout;
+    lblNoCarbonModulesFound: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnOpenCarbonConfigClick(Sender: TObject);
     procedure cbbCarbonConfigServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -87,6 +88,12 @@ begin
 
     Inc(I);
   end;
+
+  // Check if there are any carbon modules loaded
+  var moduleCount := 0;
+  for var aControl in flwlytCarbonModules do
+    Inc(moduleCount);
+  lblNoCarbonModulesFound.Visible := (moduleCount = 0);
 
   ReCalcCarbonModulesSize;
 end;
