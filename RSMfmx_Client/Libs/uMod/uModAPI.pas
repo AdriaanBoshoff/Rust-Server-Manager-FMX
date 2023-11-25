@@ -64,6 +64,7 @@ begin
         Result.plugins[pluginIndex].downloadCount := jPlugin.GetValue<integer>('downloads');
         Result.plugins[pluginIndex].downloadsShortened := jPlugin.GetValue<string>('downloads_shortened');
         Result.plugins[pluginIndex].downloadURL := jPlugin.GetValue<string>('download_url');
+        Result.plugins[pluginIndex].donateURL := jPlugin.GetValue<string>('donate_url');
         Result.plugins[pluginIndex].iconURL := jPlugin.GetValue<string>('icon_url');
         Result.plugins[pluginIndex].slug := jPlugin.GetValue<string>('slug');
         Result.plugins[pluginIndex].authorName := jPlugin.GetValue<string>('author');
