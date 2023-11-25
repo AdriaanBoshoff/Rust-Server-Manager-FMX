@@ -29,8 +29,10 @@ type
     btnInstall: TButton;
     btnHelp: TButton;
     lnHeader: TLine;
+    imgDonate: TImage;
     procedure btnHelpClick(Sender: TObject);
     procedure btnInstallClick(Sender: TObject);
+    procedure imgDonateClick(Sender: TObject);
     procedure rctnglHeaderMouseEnter(Sender: TObject);
     procedure rctnglHeaderMouseLeave(Sender: TObject);
   private
@@ -79,6 +81,11 @@ begin
   end;
 end;
 
+procedure TframeuModPluginItem.imgDonateClick(Sender: TObject);
+begin
+  OpenURL(FPluginInfo.donateURL);
+end;
+
 procedure TframeuModPluginItem.LoadAvatar;
 begin
   TTask.Run(
@@ -120,8 +127,12 @@ begin
   var pluginFolder := ExtractfilePath(ParamStr(0)) + 'oxide\plugins\';
   var pluginPath := TPath.Combine(pluginFolder, FPluginInfo.name + '.cs');
 
+  // Install Button
   if TFile.Exists(pluginPath) then
     btnInstall.Text := 'Reinstall';
+
+  // Donate Button
+  imgDonate.Visible := (not FPluginInfo.donateURL.Trim.IsEmpty);
 end;
 
 end.
