@@ -509,6 +509,8 @@ object frameuModPluginItem: TframeuModPluginItem
         Size.Width = 29.000000000000000000
         Size.Height = 29.000000000000000000
         Size.PlatformDefault = False
+        OnMouseEnter = rctnglHeaderMouseEnter
+        OnMouseLeave = rctnglHeaderMouseLeave
       end
       object imgError: TImage
         MultiResBitmap.Height = 24
@@ -550,6 +552,8 @@ object frameuModPluginItem: TframeuModPluginItem
         Size.Width = 29.000000000000000000
         Size.Height = 26.000000000000000000
         Size.PlatformDefault = False
+        OnMouseEnter = rctnglHeaderMouseEnter
+        OnMouseLeave = rctnglHeaderMouseLeave
       end
     end
     object lytControls: TLayout

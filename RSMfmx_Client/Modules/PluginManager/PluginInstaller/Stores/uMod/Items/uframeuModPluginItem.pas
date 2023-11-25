@@ -132,6 +132,8 @@ begin
   // Info
   Self.lblPluginTitle.Text := FPluginInfo.title;
   Self.lblDescription.Text := FPluginInfo.description;
+  Self.lblVersion.Text := 'v' + FPluginInfo.version;
+  Self.lblDownloadsCount.Text := FPluginInfo.downloadsShortened;
 
   // Plugin is unmaintained
   if FPluginInfo.authorName.Trim.IsEmpty then
@@ -156,9 +158,6 @@ begin
   begin
     imgError.Visible := False;
   end;
-
-  Self.lblVersion.Text := 'v' + FPluginInfo.version;
-  Self.lblDownloadsCount.Text := FPluginInfo.downloadsShortened;
 
   // Install Button
   if TFile.Exists(pluginPath) then
