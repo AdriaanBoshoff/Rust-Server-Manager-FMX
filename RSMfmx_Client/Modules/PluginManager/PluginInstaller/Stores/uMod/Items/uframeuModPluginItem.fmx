@@ -299,6 +299,7 @@ object frameuModPluginItem: TframeuModPluginItem
                   '.png'
               end>
             Align = Left
+            HitTest = False
             Margins.Top = 3.000000000000000000
             Margins.Bottom = 3.000000000000000000
             Position.Y = 3.000000000000000000
@@ -353,6 +354,7 @@ object frameuModPluginItem: TframeuModPluginItem
                   'png'
               end>
             Align = Left
+            HitTest = False
             Margins.Top = 3.000000000000000000
             Margins.Bottom = 3.000000000000000000
             Position.Y = 3.000000000000000000
