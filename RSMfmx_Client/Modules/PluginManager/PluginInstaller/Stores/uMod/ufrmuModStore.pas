@@ -27,6 +27,7 @@ type
     procedure flwlytPluginsResized(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
   private
     { Private declarations }
     FuModResponse: TuModSearchPluginResponse;
@@ -212,6 +213,43 @@ procedure TfrmuMod.FormCreate(Sender: TObject);
 begin
   uModAPI := TuModAPI.Create;
   btnSearchPluginClick(btnSearchPlugin);
+end;
+
+procedure TfrmuMod.nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+begin
+  if Key = vkReturn then
+  begin
+    FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, Round(nmbrbxCurrentPage.Value));
+
+    if FuModResponse.ResponseCode = 429 then
+    begin
+      ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
+      Exit;
+    end;
+
+    lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
+    nmbrbxCurrentPage.Max := FuModResponse.lastPage;
+    nmbrbxCurrentPage.Value := FuModResponse.currentPage;
+
+    ClearPlugins;
+
+    for var aPlugin in FuModResponse.plugins do
+    begin
+      var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
+   // pluginItem.Align := TAlignLayout.Top;
+      pluginItem.Name := aPlugin.name;
+      pluginItem.lblPluginTitle.Text := aPlugin.title;
+      pluginItem.lblDescription.Text := aPlugin.description;
+      pluginItem.lblAuthor.Text := 'by ' + aPlugin.authorName;
+      pluginItem.lblVersion.Text := 'v' + aPlugin.version;
+      pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
+      pluginItem.Parent := flwlytPlugins;
+      pluginItem.PluginInfo := aPlugin;
+      pluginItem.LoadAvatar;
+    end;
+
+    ReCalcPluginSize;
+  end;
 end;
 
 end.

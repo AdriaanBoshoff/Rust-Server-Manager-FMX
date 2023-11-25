@@ -85,6 +85,7 @@ object frmuMod: TfrmuMod
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         StyledSettings = [Family, Size, FontColor]
+        OnKeyUp = nmbrbxCurrentPageKeyUp
       end
       object btnPreviousPage: TButton
         Align = Right
