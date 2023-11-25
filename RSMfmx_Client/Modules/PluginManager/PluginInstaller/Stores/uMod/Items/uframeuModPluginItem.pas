@@ -30,6 +30,8 @@ type
     btnHelp: TButton;
     lnHeader: TLine;
     imgDonate: TImage;
+    imgWarning: TImage;
+    imgError: TImage;
     procedure btnHelpClick(Sender: TObject);
     procedure btnInstallClick(Sender: TObject);
     procedure imgDonateClick(Sender: TObject);
@@ -126,6 +128,37 @@ begin
 
   var pluginFolder := ExtractfilePath(ParamStr(0)) + 'oxide\plugins\';
   var pluginPath := TPath.Combine(pluginFolder, FPluginInfo.name + '.cs');
+
+  // Info
+  Self.lblPluginTitle.Text := FPluginInfo.title;
+  Self.lblDescription.Text := FPluginInfo.description;
+
+  // Plugin is unmaintained
+  if FPluginInfo.authorName.Trim.IsEmpty then
+  begin
+    Self.lblAuthor.Text := '---';
+    imgWarning.Visible := True;
+    imgWarning.Hint := 'This plugin is unmaintained!';
+  end
+  else
+  begin
+    Self.lblAuthor.Text := 'by ' + FPluginInfo.authorName;
+    imgWarning.Visible := False;
+  end;
+
+  // Marked as broken
+  if FPluginInfo.tags.ToLower.Contains('broken') then
+  begin
+    imgError.Visible := True;
+    imgError.Hint := 'This plugin is broken!';
+  end
+  else
+  begin
+    imgError.Visible := False;
+  end;
+
+  Self.lblVersion.Text := 'v' + FPluginInfo.version;
+  Self.lblDownloadsCount.Text := FPluginInfo.downloadsShortened;
 
   // Install Button
   if TFile.Exists(pluginPath) then
