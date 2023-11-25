@@ -45,7 +45,7 @@ var
 implementation
 
 uses
-  ufrmuMod;
+  ufrmuModStore;
 
 {$R *.fmx}
 
