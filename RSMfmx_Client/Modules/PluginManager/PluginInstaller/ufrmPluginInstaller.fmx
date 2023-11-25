@@ -149,6 +149,8 @@ object frmPluginInstaller: TfrmPluginInstaller
       StyleLookup = ''
       TabOrder = 0
       Text = 'uMod.org'
+      ExplicitSize.cx = 73.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
     end
     object tbtmCodeFling: TTabItem
       CustomIcon = <
@@ -161,6 +163,8 @@ object frmPluginInstaller: TfrmPluginInstaller
       StyleLookup = ''
       TabOrder = 0
       Text = 'CodeFling.com'
+      ExplicitSize.cx = 99.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
     end
     object tbtmLoneDesign: TTabItem
       CustomIcon = <
@@ -173,6 +177,8 @@ object frmPluginInstaller: TfrmPluginInstaller
       StyleLookup = ''
       TabOrder = 0
       Text = 'Lone.Design'
+      ExplicitSize.cx = 85.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
     end
   end
 end

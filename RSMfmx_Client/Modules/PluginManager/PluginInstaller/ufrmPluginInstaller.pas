@@ -64,6 +64,9 @@ begin
   {$ENDIF}
 
   CreateStores;
+
+  // Default nav uMod
+  OnNavItemClick(rctnglNavuMod);
 end;
 
 procedure TfrmPluginInstaller.OnNavItemClick(Sender: TObject);
@@ -76,11 +79,11 @@ begin
   end;
 
   // Change Nav Tab
-  if (Sender = rctnglNavuMod) then // Installed Plugins
+  if (Sender = rctnglNavuMod) then // uMod
     tbcVendors.TabIndex := tbtmuMod.Index
-  else if (Sender = rctnglNavCodeFling) then // Plugin Installer
+  else if (Sender = rctnglNavCodeFling) then // CodeFling
     tbcVendors.TabIndex := tbtmCodeFling.Index
-  else if (Sender = rctnglNavLoneDesign) then // Plugin Updater
+  else if (Sender = rctnglNavLoneDesign) then // Lone Design
     tbcVendors.TabIndex := tbtmLoneDesign.Index;
 
   // Mark current nav Item as selected
