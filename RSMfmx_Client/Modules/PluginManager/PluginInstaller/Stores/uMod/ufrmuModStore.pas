@@ -1,4 +1,4 @@
-﻿unit ufrmuMod;
+﻿unit ufrmuModStore;
 
 interface
 
@@ -77,7 +77,7 @@ begin
     pluginItem.lblVersion.Text := 'v' + aPlugin.version;
     pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
     pluginItem.Parent := flwlytPlugins;
-    pluginItem.FPluginInfo := aPlugin;
+    pluginItem.PluginInfo := aPlugin;
     pluginItem.LoadAvatar;
   end;
 
@@ -114,7 +114,7 @@ begin
     pluginItem.lblVersion.Text := 'v' + aPlugin.version;
     pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
     pluginItem.Parent := flwlytPlugins;
-    pluginItem.FPluginInfo := aPlugin;
+    pluginItem.PluginInfo := aPlugin;
     pluginItem.LoadAvatar;
   end;
 
@@ -148,7 +148,7 @@ begin
     pluginItem.lblVersion.Text := 'v' + aPlugin.version;
     pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
     pluginItem.Parent := flwlytPlugins;
-    pluginItem.FPluginInfo := aPlugin;
+    pluginItem.PluginInfo := aPlugin;
     pluginItem.LoadAvatar;
   end;
 
@@ -174,7 +174,7 @@ begin
 
       // Disable Help button if no url availible
       var pluginItem := TframeuModPluginItem(aControl);
-      pluginItem.btnHelp.Visible := (not pluginItem.FPluginInfo.url.Trim.IsEmpty);
+      pluginItem.btnHelp.Visible := (not pluginItem.PluginInfo.url.Trim.IsEmpty);
     end;
   end;
 
