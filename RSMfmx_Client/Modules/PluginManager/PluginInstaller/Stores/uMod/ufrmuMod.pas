@@ -171,6 +171,10 @@ begin
 
         newSize := newSize + aControl.Height + flwlytPlugins.VerticalGap;
       end;
+
+      // Disable Help button if no url availible
+      var pluginItem := TframeuModPluginItem(aControl);
+      pluginItem.btnHelp.Visible := (not pluginItem.FPluginInfo.url.Trim.IsEmpty);
     end;
   end;
 
