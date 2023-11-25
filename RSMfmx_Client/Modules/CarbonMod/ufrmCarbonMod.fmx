@@ -1057,7 +1057,7 @@ object frmCarbonMod: TfrmCarbonMod
     Size.Width = 721.000000000000000000
     Size.Height = 365.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 1
     TabPosition = Top
     OnChange = tbcCarbonModChange
@@ -1070,7 +1070,7 @@ object frmCarbonMod: TfrmCarbonMod
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 360.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -1098,7 +1098,7 @@ object frmCarbonMod: TfrmCarbonMod
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 361.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False

@@ -102,7 +102,8 @@ procedure TfrmCarbonMod.btnOpenCarbonConfigClick(Sender: TObject);
 begin
   var configFile := ExtractFilePath(ParamStr(0)) + '\carbon\config.json';
 
-  OpenURL(configFile);
+  if TFile.Exists(configFile) then
+    OpenURL(configFile);
 end;
 
 procedure TfrmCarbonMod.cbbCarbonConfigServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
