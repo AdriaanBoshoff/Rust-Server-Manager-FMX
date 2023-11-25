@@ -34,7 +34,7 @@ uses
   uframeCarbonModuleItem in 'Modules\CarbonMod\CarbonModuleItem\uframeCarbonModuleItem.pas' {frameCarbonModuleItem: TFrame},
   ufrmPluginManager in 'Modules\PluginManager\ufrmPluginManager.pas' {frmPluginManager},
   ufrmPluginInstaller in 'Modules\PluginManager\PluginInstaller\ufrmPluginInstaller.pas' {frmPluginInstaller},
-  ufrmuMod in 'Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuMod.pas' {frmuMod},
+  ufrmuModStore in 'Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuModStore.pas' {frmuMod},
   uModAPI in 'Libs\uMod\uModAPI.pas',
   uModAPI.Types in 'Libs\uMod\uModAPI.Types.pas',
   uframeuModPluginItem in 'Modules\PluginManager\PluginInstaller\Stores\uMod\Items\uframeuModPluginItem.pas' {frameuModPluginItem: TFrame};

@@ -380,7 +380,7 @@
             <Form>frmPluginInstaller</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuMod.pas">
+        <DCCReference Include="Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuModStore.pas">
             <Form>frmuMod</Form>
             <FormType>fmx</FormType>
         </DCCReference>
