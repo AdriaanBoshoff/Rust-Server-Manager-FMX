@@ -283,6 +283,13 @@
         <Icon_MainIcon>Assets\AppIcons\RSM.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>Assets\AppIcons\RSM.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>Assets\AppIcons\RSM.png</UWP_DelphiLogo150>
+        <VerInfo_MajorVer>2023</VerInfo_MajorVer>
+        <VerInfo_MinorVer>11</VerInfo_MinorVer>
+        <VerInfo_Release>11</VerInfo_Release>
+        <VerInfo_PreRelease>true</VerInfo_PreRelease>
+        <VerInfo_Special>true</VerInfo_Special>
+        <VerInfo_Private>true</VerInfo_Private>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2023.11.11.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.rustservermanager.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=Private Test Build;PrivateBuild=;SpecialBuild=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">

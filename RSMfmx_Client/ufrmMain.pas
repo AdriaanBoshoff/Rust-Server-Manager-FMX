@@ -567,7 +567,7 @@ begin
   {$ENDIF}
 
   {$IFDEF RELEASE}
-  Self.Caption := 'RSMfmx v3.1';
+  Self.Caption := 'RSMfmx v3.1 (Pre-Release)';
   {$ENDIF}
 
   // Classes
