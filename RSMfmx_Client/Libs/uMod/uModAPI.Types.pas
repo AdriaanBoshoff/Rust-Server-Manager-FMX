@@ -27,6 +27,7 @@ type
     version: string;
     createdDTM: string;
     updatedDTM: string;
+    tags: string;
   end;
 
 type
