@@ -29,6 +29,8 @@ type
     btnInstall: TButton;
     btnHelp: TButton;
     lnHeader: TLine;
+    procedure btnHelpClick(Sender: TObject);
+    procedure btnInstallClick(Sender: TObject);
     procedure rctnglHeaderMouseEnter(Sender: TObject);
     procedure rctnglHeaderMouseLeave(Sender: TObject);
   private
@@ -47,7 +49,20 @@ type
 
 implementation
 
+uses
+  uWinUtils;
+
 {$R *.fmx}
+
+procedure TframeuModPluginItem.btnHelpClick(Sender: TObject);
+begin
+  OpenURL(FPluginInfo.url);
+end;
+
+procedure TframeuModPluginItem.btnInstallClick(Sender: TObject);
+begin
+
+end;
 
 { TframeuModPluginItem }
 
