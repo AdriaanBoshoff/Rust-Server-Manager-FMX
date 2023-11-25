@@ -207,10 +207,7 @@ end;
 procedure TfrmuMod.FormCreate(Sender: TObject);
 begin
   uModAPI := TuModAPI.Create;
-  FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, 1);
-  lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
-  nmbrbxCurrentPage.Max := FuModResponse.lastPage;
-  nmbrbxCurrentPage.Value := FuModResponse.currentPage;
+  btnSearchPluginClick(btnSearchPlugin);
 end;
 
 end.
