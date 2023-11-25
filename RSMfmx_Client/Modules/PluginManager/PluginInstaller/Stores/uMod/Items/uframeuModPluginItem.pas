@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.Layouts, FMX.Objects, uModAPI.Types,
-  System.Threading, Rest.Client;
+  System.Threading, Rest.Client, System.IOUtils;
 
 type
   TframeuModPluginItem = class(TFrame)
@@ -41,10 +41,13 @@ type
       UI_COLOR_SELECTED = $FF900000;
   private
     { Private declarations }
+    FPluginInfo: TuModSearchPlugin;
+    procedure SetPluginInfo(const Value: TuModSearchPlugin);
   public
     { Public declarations }
-    FPluginInfo: TuModSearchPlugin;
     procedure LoadAvatar;
+  published
+    property PluginInfo: TuModSearchPlugin read FPluginInfo write SetPluginInfo;
   end;
 
 implementation
@@ -54,6 +57,8 @@ uses
 
 {$R *.fmx}
 
+{ TframeuModPluginItem }
+
 procedure TframeuModPluginItem.btnHelpClick(Sender: TObject);
 begin
   OpenURL(FPluginInfo.url);
@@ -61,10 +66,18 @@ end;
 
 procedure TframeuModPluginItem.btnInstallClick(Sender: TObject);
 begin
+  var pluginFolder := ExtractfilePath(ParamStr(0)) + 'oxide\plugins\';
+  var memStream := TMemoryStream.Create;
+  try
+    TDownloadURL.DownloadRawBytes(FPluginInfo.downloadURL, memStream);
 
+    memStream.SaveToFile(TPath.Combine(pluginFolder, FPluginInfo.name + '.cs'));
+
+    btnInstall.Text := 'Installed';
+  finally
+    memStream.Free;
+  end;
 end;
-
-{ TframeuModPluginItem }
 
 procedure TframeuModPluginItem.LoadAvatar;
 begin
@@ -98,6 +111,17 @@ end;
 procedure TframeuModPluginItem.rctnglHeaderMouseLeave(Sender: TObject);
 begin
   rctnglHeader.Fill.Color := UI_COLOR_DEFAULT;
+end;
+
+procedure TframeuModPluginItem.SetPluginInfo(const Value: TuModSearchPlugin);
+begin
+  FPluginInfo := Value;
+
+  var pluginFolder := ExtractfilePath(ParamStr(0)) + 'oxide\plugins\';
+  var pluginPath := TPath.Combine(pluginFolder, FPluginInfo.name + '.cs');
+
+  if TFile.Exists(pluginPath) then
+    btnInstall.Text := 'Reinstall';
 end;
 
 end.
