@@ -72,11 +72,6 @@ begin
     var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
    // pluginItem.Align := TAlignLayout.Top;
     pluginItem.Name := aPlugin.name;
-    pluginItem.lblPluginTitle.Text := aPlugin.title;
-    pluginItem.lblDescription.Text := aPlugin.description;
-    pluginItem.lblAuthor.Text := 'by ' + aPlugin.authorName;
-    pluginItem.lblVersion.Text := 'v' + aPlugin.version;
-    pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
     pluginItem.Parent := flwlytPlugins;
     pluginItem.PluginInfo := aPlugin;
     pluginItem.LoadAvatar;
@@ -109,11 +104,6 @@ begin
     var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
    // pluginItem.Align := TAlignLayout.Top;
     pluginItem.Name := aPlugin.name;
-    pluginItem.lblPluginTitle.Text := aPlugin.title;
-    pluginItem.lblDescription.Text := aPlugin.description;
-    pluginItem.lblAuthor.Text := 'by ' + aPlugin.authorName;
-    pluginItem.lblVersion.Text := 'v' + aPlugin.version;
-    pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
     pluginItem.Parent := flwlytPlugins;
     pluginItem.PluginInfo := aPlugin;
     pluginItem.LoadAvatar;
@@ -143,11 +133,6 @@ begin
     var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
    // pluginItem.Align := TAlignLayout.Top;
     pluginItem.Name := aPlugin.name;
-    pluginItem.lblPluginTitle.Text := aPlugin.title;
-    pluginItem.lblDescription.Text := aPlugin.description;
-    pluginItem.lblAuthor.Text := 'by ' + aPlugin.authorName;
-    pluginItem.lblVersion.Text := 'v' + aPlugin.version;
-    pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
     pluginItem.Parent := flwlytPlugins;
     pluginItem.PluginInfo := aPlugin;
     pluginItem.LoadAvatar;
@@ -238,11 +223,6 @@ begin
       var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
    // pluginItem.Align := TAlignLayout.Top;
       pluginItem.Name := aPlugin.name;
-      pluginItem.lblPluginTitle.Text := aPlugin.title;
-      pluginItem.lblDescription.Text := aPlugin.description;
-      pluginItem.lblAuthor.Text := 'by ' + aPlugin.authorName;
-      pluginItem.lblVersion.Text := 'v' + aPlugin.version;
-      pluginItem.lblDownloadsCount.Text := aPlugin.downloadsShortened;
       pluginItem.Parent := flwlytPlugins;
       pluginItem.PluginInfo := aPlugin;
       pluginItem.LoadAvatar;
