@@ -76,6 +76,9 @@ begin
   try
     TDownloadURL.DownloadRawBytes(FPluginInfo.downloadURL, memStream);
 
+    if not TDirectory.Exists(pluginFolder) then
+      ForceDirectories(pluginFolder);
+
     memStream.SaveToFile(TPath.Combine(pluginFolder, FPluginInfo.name + '.cs'));
 
     btnInstall.Text := 'Installed';
