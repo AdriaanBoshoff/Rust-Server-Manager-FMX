@@ -163,7 +163,13 @@ begin
 
   // Install Button
   if TFile.Exists(pluginPath) then
-    btnInstall.Text := 'Reinstall';
+  begin
+    // Check if plugin is up to date
+    if FPluginInfo.latestChecksum <> CalculateMD5(pluginPath) then
+      btnInstall.Text := 'Update'
+    else
+      btnInstall.Text := 'Reinstall';
+  end;
 
   // Donate Button
   imgDonate.Visible := (not FPluginInfo.donateURL.Trim.IsEmpty);
