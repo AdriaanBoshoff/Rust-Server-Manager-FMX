@@ -28,6 +28,7 @@ type
     createdDTM: string;
     updatedDTM: string;
     tags: string;
+    latestChecksum: string;
   end;
 
 type

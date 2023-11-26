@@ -75,6 +75,7 @@ begin
         Result.plugins[pluginIndex].createdDTM := jPlugin.GetValue<string>('published_at');
         Result.plugins[pluginIndex].updatedDTM := jPlugin.GetValue<string>('latest_release_at');
         Result.plugins[pluginIndex].tags := jPlugin.GetValue<string>('tags_all');
+        Result.plugins[pluginIndex].latestChecksum := jPlugin.GetValue<string>('latest_release_version_checksum');
 
         Inc(pluginIndex);
       end;
