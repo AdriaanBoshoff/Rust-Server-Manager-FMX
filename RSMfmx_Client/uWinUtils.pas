@@ -3,13 +3,34 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.ShellAPI, System.SysUtils;
+  Winapi.Windows, Winapi.ShellAPI, System.SysUtils, IdHashMessageDigest,
+  IdGlobal, System.Classes;
+
+function CalculateMD5(const FileName: string): string;
 
 procedure OpenURL(const URL: string);
 
 function CreateProcess(const Exe, Params, AppTitle: string; const WaitUntilClosed: Boolean = False): Integer;
 
 implementation
+
+function CalculateMD5(const FileName: string): string;
+var
+  FileStream: TFileStream;
+  MD5Hash: TIdHashMessageDigest5;
+begin
+  MD5Hash := TIdHashMessageDigest5.Create;
+  try
+    FileStream := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+    try
+      Result := IdGlobal.IndyLowerCase(MD5Hash.HashStreamAsHex(FileStream));
+    finally
+      FileStream.Free;
+    end;
+  finally
+    MD5Hash.Free;
+  end;
+end;
 
 procedure OpenURL(const URL: string);
 begin
