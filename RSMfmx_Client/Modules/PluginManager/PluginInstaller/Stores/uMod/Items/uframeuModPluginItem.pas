@@ -65,6 +65,7 @@ uses
 
 procedure TframeuModPluginItem.btnHelpClick(Sender: TObject);
 begin
+  // Open plugin page
   OpenURL(FPluginInfo.url);
 end;
 
@@ -85,6 +86,7 @@ end;
 
 procedure TframeuModPluginItem.imgDonateClick(Sender: TObject);
 begin
+  // Open donate page for plugin author
   OpenURL(FPluginInfo.donateURL);
 end;
 
@@ -104,7 +106,7 @@ begin
               rctnglOxideModNavImage.Fill.Bitmap.Bitmap.LoadFromStream(memStream);
             end);
         except
-
+          // Dont show any errors when trying to load avatar
         end;
       finally
         memStream.Free;

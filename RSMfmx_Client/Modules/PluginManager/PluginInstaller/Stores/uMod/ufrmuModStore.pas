@@ -147,8 +147,6 @@ begin
   var prevYPos: single := 0;
   for var aControl in flwlytPlugins.Controls do
   begin
-   // aControl.Width := flwlytPlugins.Width;
-
     if aControl is TframeuModPluginItem then
     begin
       if aControl.Position.Y > prevYPos then
