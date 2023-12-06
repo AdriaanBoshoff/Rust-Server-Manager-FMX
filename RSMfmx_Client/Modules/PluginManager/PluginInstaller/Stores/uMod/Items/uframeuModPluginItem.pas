@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.Layouts, FMX.Objects, uModAPI.Types,
-  System.Threading, Rest.Client, System.IOUtils;
+  System.Threading, Rest.Client, System.IOUtils, System.Hash;
 
 type
   TframeuModPluginItem = class(TFrame)
@@ -47,6 +47,7 @@ type
     { Private declarations }
     FPluginInfo: TuModSearchPlugin;
     procedure SetPluginInfo(const Value: TuModSearchPlugin);
+    function GetPluginSHA1: string;
   public
     { Public declarations }
     procedure LoadAvatar;
@@ -82,8 +83,28 @@ begin
     memStream.SaveToFile(TPath.Combine(pluginFolder, FPluginInfo.name + '.cs'));
 
     btnInstall.Text := 'Installed';
+    btnInstall.StyleLookup := 'tintedbutton';
+    btnInstall.TintColor := TAlphaColorRec.Green;
   finally
     memStream.Free;
+  end;
+end;
+
+function TframeuModPluginItem.GetPluginSHA1: string;
+begin
+  Result := '';
+
+  var pluginFolder := ExtractfilePath(ParamStr(0)) + 'oxide\plugins\';
+  var pluginPath := TPath.Combine(pluginFolder, FPluginInfo.name + '.cs');
+
+  if not TFile.Exists(pluginPath) then
+    Exit;
+
+  var aFile := TFileStream.Create(pluginPath, fmOpenRead, fmShareDenyNone);
+  try
+    Result := THashSHA1.GetHashString(aFile);
+  finally
+    aFile.Free;
   end;
 end;
 
@@ -168,10 +189,18 @@ begin
   if TFile.Exists(pluginPath) then
   begin
     // Check if plugin is up to date
-    if FPluginInfo.latestChecksum <> CalculateMD5(pluginPath) then
-      btnInstall.Text := 'Update'
+    if FPluginInfo.latestChecksum <> GetPluginSHA1 then
+    begin
+      btnInstall.Text := 'Update';
+      btnInstall.StyleLookup := 'tintedbutton';
+      btnInstall.TintColor := TAlphaColorRec.Orangered;
+    end
     else
+    begin
       btnInstall.Text := 'Reinstall';
+      btnInstall.StyleLookup := 'tintedbutton';
+      btnInstall.TintColor := TAlphaColorRec.Green;
+    end;
   end;
 
   // Donate Button
