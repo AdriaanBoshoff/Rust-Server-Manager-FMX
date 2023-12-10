@@ -37,7 +37,8 @@ uses
   ufrmuModStore in 'Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuModStore.pas' {frmuMod},
   uModAPI in 'Libs\uMod\uModAPI.pas',
   uModAPI.Types in 'Libs\uMod\uModAPI.Types.pas',
-  uframeuModPluginItem in 'Modules\PluginManager\PluginInstaller\Stores\uMod\Items\uframeuModPluginItem.pas' {frameuModPluginItem: TFrame};
+  uframeuModPluginItem in 'Modules\PluginManager\PluginInstaller\Stores\uMod\Items\uframeuModPluginItem.pas' {frameuModPluginItem: TFrame},
+  RSM.Core in 'Units\RSM\RSM.Core.pas';
 
 {$R *.res}
 
