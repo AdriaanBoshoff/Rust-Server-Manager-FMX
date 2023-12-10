@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{09E30A78-7B87-452A-B5C8-0BDE7F8AF7DF}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="RSMfmx_Client\RSMfmx_v3_1.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="RSMfmx_v3_1">
+        <MSBuild Projects="RSMfmx_Client\RSMfmx_v3_1.dproj"/>
+    </Target>
+    <Target Name="RSMfmx_v3_1:Clean">
+        <MSBuild Projects="RSMfmx_Client\RSMfmx_v3_1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RSMfmx_v3_1:Make">
+        <MSBuild Projects="RSMfmx_Client\RSMfmx_v3_1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="RSMfmx_v3_1"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="RSMfmx_v3_1:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="RSMfmx_v3_1:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
