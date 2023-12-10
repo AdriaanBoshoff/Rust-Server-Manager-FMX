@@ -27,7 +27,7 @@ type
         { RSM Cache Folder }
         class function GetRSMCacheDir: string;
         class function GetRSMCachePath: string;
-        { RSM Config Folder }
+        { RSM Config Folder & File }
         class function GetRSMConfigDir: string;
         class function GetRSMConfigPath: string;
         class function GetRSMConfigFilePath: string;
@@ -39,6 +39,9 @@ type
   { TRSMCore Public Methods }
     constructor Create;
     destructor Destroy; override;
+  public
+  { TRSMCore Public Methods }
+    procedure ClearRSMCache;
   end;
 
 var
@@ -109,6 +112,12 @@ begin
 end;
 
 { TRSMCore }
+
+procedure TRSMCore.ClearRSMCache;
+begin
+  if TDirectory.Exists(Self.Paths.GetRSMCacheDir) then
+    TDirectory.Delete(Self.Paths.GetRSMCacheDir);
+end;
 
 constructor TRSMCore.Create;
 begin
