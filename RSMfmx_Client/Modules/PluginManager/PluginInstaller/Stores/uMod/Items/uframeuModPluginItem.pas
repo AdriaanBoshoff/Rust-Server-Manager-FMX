@@ -58,7 +58,7 @@ type
 implementation
 
 uses
-  uWinUtils;
+  uWinUtils, RSM.Core;
 
 {$R *.fmx}
 
@@ -67,7 +67,8 @@ uses
 procedure TframeuModPluginItem.btnHelpClick(Sender: TObject);
 begin
   // Open plugin page
-  OpenURL(FPluginInfo.url);
+ // OpenURL(FPluginInfo.url);
+  rsmCore.OpenURLInWebHelper(FPluginInfo.url);
 end;
 
 procedure TframeuModPluginItem.btnInstallClick(Sender: TObject);
