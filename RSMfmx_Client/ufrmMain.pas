@@ -12,7 +12,7 @@ uses
   System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading, FMX.Clipboard,
   FMX.Platform, sgcBase_Classes, sgcSocket_Classes, sgcTCP_Classes,
   sgcWebSocket_Classes, sgcWebSocket_Classes_Indy, sgcWebSocket_Client,
-  sgcWebSocket;
+  sgcWebSocket, RSM.Core, FMX.DialogService;
 
 type
   TfrmMain = class(TForm)
@@ -232,6 +232,8 @@ type
     imgPluginManager: TImage;
     lblPluginManager: TLabel;
     tbtmPluginManager: TTabItem;
+    mniRSM: TMenuItem;
+    mniClearRSMCache: TMenuItem;
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnEditServerDescriptionClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
@@ -259,6 +261,7 @@ type
     procedure lblStatRconValueResized(Sender: TObject);
     procedure lblStatServerFPSValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
+    procedure mniClearRSMCacheClick(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
     procedure mniOpenServerRootClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
@@ -306,7 +309,6 @@ uses
   ufrmCarbonMod, ufrmPluginManager;
 
 {$R *.fmx}
-
 { TfrmMain }
 
 procedure TfrmMain.BringToForeground;
@@ -383,7 +385,7 @@ begin
   serverConfig.Misc.MaxPlayers := Trunc(spnbxMaxPlayers.Value);
   serverConfig.Misc.CensorPlayerList := swtchCensorPlayerlist.IsChecked;
 
- // Networking
+  // Networking
   serverConfig.Networking.ServerIP := edtServerIP.Text;
   serverConfig.Networking.ServerPort := Trunc(nmbrbxServerPort.Value);
   serverConfig.Networking.ServerQueryPort := Trunc(nmbrbxQueryPort.Value);
@@ -411,7 +413,7 @@ begin
     // Tell the server to load the config file
     TRCON.SendRconCommand('server.readcfg', 0, wsClientRcon);
 
-   // ShowMessage('Config Saved!');
+    // ShowMessage('Config Saved!');
     ShowMessageBox('Saved Server Config!', 'Server Config', Self);
   except
     on E: Exception do
@@ -498,7 +500,8 @@ begin
     // Networking - Rust +
     slParams.Add('+app.listenip ' + serverConfig.Networking.AppIP + ' ^');
     slParams.Add('+app.port ' + serverConfig.Networking.AppPort.ToString + ' ^');
-    if not serverConfig.Networking.AppPublicIP.Trim.IsEmpty then // Dont add if empty
+    if not serverConfig.Networking.AppPublicIP.Trim.IsEmpty then
+    // Dont add if empty
       slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
 
     // Server Server and Save PID
@@ -532,7 +535,7 @@ end;
 
 procedure TfrmMain.edtCustomMapURLValueEnter(Sender: TObject);
 begin
-// Used in ShowServerInfo to check if the server info
+  // Used in ShowServerInfo to check if the server info
   // was visible before editing the rcon password
   FServerInfoExpandAfter := (lytServerInfo.Width = 0);
 
@@ -562,14 +565,12 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-  {$IFDEF DEBUG}
+{$IFDEF DEBUG}
   Self.Caption := 'RSMfmx v3.1 (DEBUG BUILD)';
-  {$ENDIF}
-
-  {$IFDEF RELEASE}
+{$ENDIF}
+{$IFDEF RELEASE}
   Self.Caption := 'RSMfmx v3.1';
-  {$ENDIF}
-
+{$ENDIF}
   // Classes
   CreateClasses;
 
@@ -678,7 +679,7 @@ begin
 
     fltnmtnServerInfoExpand.Start;
 
-   // btnShowHideServerInfo.StyleLookup := 'priortoolbutton';
+    // btnShowHideServerInfo.StyleLookup := 'priortoolbutton';
   end;
 end;
 
@@ -744,6 +745,21 @@ begin
   rsmConfig.SaveConfig;
 end;
 
+procedure TfrmMain.mniClearRSMCacheClick(Sender: TObject);
+begin
+  // Delete RSM Cache Folder
+  TDialogService.PreferredMode := TDialogService.TPreferredMode.Async;
+  TDialogService.MessageDialog('This will delete the RSM Cache folder.' + sLineBreak + 'Are you sure you want to Continue?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbCancel], TMsgDlgBtn.mbYes, 0,
+    procedure(const AResult: TModalResult)
+    begin
+      if AResult = mrYes then
+      begin
+        rsmCore.ClearRSMCache;
+        ShowMessageBox('RSM Cache Deleted!', 'RSM Cache', Self);
+      end;
+    end);
+end;
+
 procedure TfrmMain.mniExitRSMClick(Sender: TObject);
 begin
   Self.Close;
@@ -756,7 +772,7 @@ end;
 
 procedure TfrmMain.ModifyUIForRelease;
 begin
-  {$IFDEF RELEASE}
+{$IFDEF RELEASE}
   // Set Default Nav Items
   tbcNav.TabPosition := TTabPosition.None;
   tbcNav.TabIndex := tbtmNavServerControls.Index;
@@ -764,7 +780,7 @@ begin
 
   // Default Player Manager Items
   frmPlayerManager.tbcMain.TabIndex := frmPlayerManager.tbtmOnlinePlayers.Index;
-  {$ENDIF}
+{$ENDIF}
 end;
 
 procedure TfrmMain.OnServerPIDResized(Sender: TObject);
@@ -785,7 +801,8 @@ begin
   edtAppLogoURLValue.Text := serverConfig.AppLogoURL;
 
   // Map
-  if serverConfig.Map.MapIndex <= cbbServerMap.Count - 1 then // Prevent range index issues
+  if serverConfig.Map.MapIndex <= cbbServerMap.Count - 1 then
+  // Prevent range index issues
     cbbServerMap.ItemIndex := serverConfig.Map.MapIndex
   else
     cbbServerMap.ItemIndex := lstMapProcedural.Index;
@@ -802,14 +819,15 @@ begin
   nmbrbxServerPort.Value := serverConfig.Networking.ServerPort;
   nmbrbxQueryPort.Value := serverConfig.Networking.ServerQueryPort;
   edtRconIPValue.Text := serverConfig.Networking.RconIP;
-  nmbrbxRconPortValue.value := serverConfig.Networking.RconPort;
+  nmbrbxRconPortValue.Value := serverConfig.Networking.RconPort;
   edtRconPasswordValue.Text := serverConfig.Networking.RconPassword;
   edtAppIPValue.Text := serverConfig.Networking.AppIP;
   nmbrbxAppPortValue.Value := serverConfig.Networking.AppPort;
   edtAppPublicIPValue.Text := serverConfig.Networking.AppPublicIP;
 
   // GameMode
-  if serverConfig.GameMode.Index <= cbbServerGamemodeValue.Count - 1 then // Prevent range index issues
+  if serverConfig.GameMode.Index <= cbbServerGamemodeValue.Count - 1 then
+  // Prevent range index issues
     cbbServerGamemodeValue.ItemIndex := serverConfig.GameMode.Index
   else
     cbbServerGamemodeValue.ItemIndex := lstGameModeVanilla.Index;
@@ -852,7 +870,7 @@ begin
 
     fltnmtnServerInfoExpand.Start;
 
-  //  btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
+    // btnShowHideServerInfo.StyleLookup := 'nexttoolbutton';
   end;
 end;
 
