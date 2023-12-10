@@ -116,7 +116,7 @@ end;
 procedure TRSMCore.ClearRSMCache;
 begin
   if TDirectory.Exists(Self.Paths.GetRSMCacheDir) then
-    TDirectory.Delete(Self.Paths.GetRSMCacheDir);
+    TDirectory.Delete(Self.Paths.GetRSMCacheDir, True);
 end;
 
 constructor TRSMCore.Create;
