@@ -6,11 +6,6 @@ type
   TRSMConfig = class
   private
   { Private Types }
-    // Licensing
-    type
-      TRSMConfigLicense = record
-        licenseKey: string;
-      end;
     // UI
     type
       TRSMConfigIU = record // Saved on main form destroy event except nav, serverinfo
@@ -22,15 +17,8 @@ type
         ShowServerInfoPanel: Boolean; // Saved on btnShowHideServerInfoClick
         serverInstallerBranchIndex: Integer; // Item index for server installer branch
       end;
-  private
-      { Private Variables }
-    FConfigFile: string;
-  private
-      { Private Methods }
-    function GetConfigFile: string;
   public
     { Public Variables }
-    License: TRSMConfigLicense;
     UI: TRSMConfigIU;
   public
     { Public Methods }
@@ -45,15 +33,12 @@ var
 implementation
 
 uses
-  XSuperObject, System.SysUtils, System.IOUtils, uframeMessageBox, FMX.Forms;
+  XSuperObject, System.SysUtils, System.IOUtils, uframeMessageBox, RSM.Core;
 
 { TRSMConfig }
 
 constructor TRSMConfig.Create;
 begin
-  // Licensing
-  Self.License.LicenseKey := '';
-
   // UI
   Self.UI.navIndex := 0;
   Self.UI.windowPosX := 0;
@@ -63,29 +48,21 @@ begin
   Self.UI.ShowServerInfoPanel := True;
   Self.UI.serverInstallerBranchIndex := 0;
 
-  // Setup Methods
-  Self.FConfigFile := Self.GetConfigFile;
-
   // Load Config
   Self.LoadConfig;
-end;
-
-function TRSMConfig.GetConfigFile: string;
-begin
-  Result := ExtractFilePath(ParamStr(0)) + 'rsm\cfg\rsmConfig.json';
 end;
 
 procedure TRSMConfig.LoadConfig;
 begin
    // Check if config file exists
-  if not TFile.Exists(Self.FConfigFile) then
+  if not TFile.Exists(rsmCore.Paths.GetRSMConfigFilePath) then
   begin
     Self.SaveConfig;
     Exit;
   end;
 
   // Load Config
-  Self.AssignFromJSON(TFile.ReadAllText(Self.FConfigFile, TEncoding.UTF8));
+  Self.AssignFromJSON(TFile.ReadAllText(rsmCore.Paths.GetRSMConfigFilePath, TEncoding.UTF8));
 
   // Save Config again after loading to populate new properties in the file.
   Self.SaveConfig;
@@ -127,10 +104,10 @@ end;
 
 procedure TRSMConfig.SaveConfig;
 begin
-  if not TDirectory.Exists(ExtractFileDir(Self.FConfigFile)) then
-    ForceDirectories(ExtractFilePath(Self.FConfigFile));
+  if not TDirectory.Exists(ExtractFileDir(rsmCore.Paths.GetRSMConfigFilePath)) then
+    ForceDirectories(ExtractFilePath(rsmCore.Paths.GetRSMConfigFilePath));
 
-  TFile.WriteAllText(Self.FConfigFile, Self.AsJSON(True), TEncoding.UTF8);
+  TFile.WriteAllText(rsmCore.Paths.GetRSMConfigFilePath, Self.AsJSON(True), TEncoding.UTF8);
 end;
 
 end.
