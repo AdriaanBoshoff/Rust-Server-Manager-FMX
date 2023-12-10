@@ -12,7 +12,10 @@ type
       { TRSMCorePaths Private Const }
         const
           FOLDER_RSM = 'RSM';
-          FOLDER_Cache = 'Cache';
+          FOLDER_CACHE = 'Cache';
+          FOLDER_CONFIG = 'cfg';
+        const
+          FILE_CONFIG = 'config.json';
       public
       { TRSMCorePaths Public Class Functions }
         { Program Root }
@@ -24,6 +27,10 @@ type
         { RSM Cache Folder }
         class function GetRSMCacheDir: string;
         class function GetRSMCachePath: string;
+        { RSM Config Folder }
+        class function GetRSMConfigDir: string;
+        class function GetRSMConfigPath: string;
+        class function GetRSMConfigFilePath: string;
       end;
   public
   { TRSMCore Public Variables }
@@ -74,6 +81,21 @@ begin
     Result := Result + TPath.DirectorySeparatorChar;
 end;
 
+class function TRSMCore.TRSMCorePaths.GetRSMConfigDir: string;
+begin
+  Result := Self.GetRSMDataPath + FOLDER_CONFIG;
+end;
+
+class function TRSMCore.TRSMCorePaths.GetRSMConfigFilePath: string;
+begin
+  Result := Self.GetRSMConfigPath + FILE_CONFIG;
+end;
+
+class function TRSMCore.TRSMCorePaths.GetRSMConfigPath: string;
+begin
+  Result := Self.GetRSMDataPath + FOLDER_CONFIG + TPath.DirectorySeparatorChar;
+end;
+
 class function TRSMCore.TRSMCorePaths.GetRSMDataDir: string;
 begin
   // Get Program Data Folder dir
@@ -83,7 +105,7 @@ end;
 class function TRSMCore.TRSMCorePaths.GetRSMDataPath: string;
 begin
   // Get Program Data Folder Path
-  Result := Self.GetRootPath + FOLDER_RSM + '\';
+  Result := Self.GetRootPath + FOLDER_RSM + TPath.DirectorySeparatorChar;
 end;
 
 { TRSMCore }
