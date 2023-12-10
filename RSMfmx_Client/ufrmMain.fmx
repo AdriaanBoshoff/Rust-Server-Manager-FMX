@@ -512,10 +512,7 @@ object frmMain: TfrmMain
             CanFocus = False
             Enabled = False
             StyledSettings = [Family, Size, FontColor]
-            Hint = 
-              'RSM will kill the server process using the server PID.'#13#10#13#10'WARNIN' +
-              'G'#13#10'- Chances of data loss is high.'#13#10'- Save corruption is possibl' +
-              'e hoever the chances of this is low. Make sure you have backups.'
+            Hint = 'RSM will kill the server process using the server PID.'
             Margins.Bottom = 10.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 400.000000000000000000

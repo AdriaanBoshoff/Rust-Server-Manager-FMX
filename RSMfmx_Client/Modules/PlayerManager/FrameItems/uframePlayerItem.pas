@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Objects, FMX.Controls.Presentation, System.IOUtils,
-  System.Threading, RCON.Types, ufrmPlayerManager, Skia, Skia.FMX;
+  System.Threading, RCON.Types, ufrmPlayerManager, Skia, Skia.FMX, RSM.Core;
 
 type
   TframePlayerItem = class(TFrame)
@@ -78,7 +78,7 @@ begin
   Result := False;
 
   // Cache file
-  var avatarCacheFile := ExtractFilePath(ParamStr(0)) + 'rsm\cache\players\avatars\' + steamID + '.png';
+  var avatarCacheFile := rsmCore.Paths.GetRSMCachePath + 'players\avatars\' + steamID + '.png';
 
   if TFile.Exists(avatarCacheFile) then
   begin
@@ -123,7 +123,7 @@ begin
             lblCountryValue.Text := ipInfo.country;
           end);
 
-        var countryFlagCache := ExtractFilePath(ParamStr(0)) + 'rsm\cache\countryFlags\' + ipInfo.countryCode + '.svg';
+        var countryFlagCache := rsmCore.Paths.GetRSMCachePath + 'countryFlags\' + ipInfo.countryCode + '.svg';
 
         if not TDirectory.Exists(ExtractFileDir(countryFlagCache)) then
           ForceDirectories(ExtractFileDir(countryFlagCache));
@@ -175,7 +175,7 @@ begin
         if (rest.Response.StatusCode = 200) and not rest.Response.Content.IsEmpty then
         begin
           // Cache file
-          var avatarCacheFile := ExtractFilePath(ParamStr(0)) + 'rsm\cache\players\avatars\' + steamID + '.png';
+          var avatarCacheFile := rsmCore.Paths.GetRSMCachePath + 'players\avatars\' + steamID + '.png';
 
           var memStream := TMemoryStream.Create;
           try
