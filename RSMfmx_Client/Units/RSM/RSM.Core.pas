@@ -42,6 +42,7 @@ type
   public
   { TRSMCore Public Methods }
     procedure ClearRSMCache;
+    procedure OpenURLInWebHelper(const URL: string);
   end;
 
 var
@@ -50,7 +51,7 @@ var
 implementation
 
 uses
-  System.SysUtils, System.IOUtils;
+  System.SysUtils, System.IOUtils, uWinUtils;
 
 { TRSMCore.TRSMCorePaths }
 
@@ -133,6 +134,11 @@ begin
   Self.Paths.Free;
 
   inherited;
+end;
+
+procedure TRSMCore.OpenURLInWebHelper(const URL: string);
+begin
+  CreateProcess(ExtractFilePath(ParamStr(0)) + 'WebHelper.exe', '"' + URL + '"', '[RSM] ' + URL, False, True);
 end;
 
 initialization
