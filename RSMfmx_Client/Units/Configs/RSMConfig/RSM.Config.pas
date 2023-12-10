@@ -104,8 +104,8 @@ end;
 
 procedure TRSMConfig.SaveConfig;
 begin
-  if not TDirectory.Exists(ExtractFileDir(rsmCore.Paths.GetRSMConfigFilePath)) then
-    ForceDirectories(ExtractFilePath(rsmCore.Paths.GetRSMConfigFilePath));
+  if not TDirectory.Exists(rsmCore.Paths.GetRSMConfigDir) then
+    ForceDirectories(rsmCore.Paths.GetRSMConfigDir);
 
   TFile.WriteAllText(rsmCore.Paths.GetRSMConfigFilePath, Self.AsJSON(True), TEncoding.UTF8);
 end;
