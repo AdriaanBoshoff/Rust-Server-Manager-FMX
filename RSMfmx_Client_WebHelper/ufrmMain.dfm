@@ -1,9 +1,10 @@
 object frmMain: TfrmMain
   Left = 0
   Top = 0
+  AlphaBlendValue = 125
   Caption = 'RSM Web Helper'
-  ClientHeight = 500
-  ClientWidth = 800
+  ClientHeight = 605
+  ClientWidth = 919
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -145,17 +146,25 @@ object frmMain: TfrmMain
     0000000000000000000000000000000000000000000000000000000000000000
     0000000000000000000000000000000000000000000000000000000000000000
     000000000000000000000000000000000000000000000000000000000000}
+  Position = poScreenCenter
+  WindowState = wsMaximized
   OnCreate = FormCreate
   TextHeight = 15
   object browser: TEdgeBrowser
     Left = 0
     Top = 0
-    Width = 800
-    Height = 500
+    Width = 919
+    Height = 605
     Align = alClient
     TabOrder = 0
+    AllowSingleSignOnUsingOSPrimaryAccount = False
+    TargetCompatibleBrowserVersion = '117.0.2045.28'
     UserDataFolder = '%LOCALAPPDATA%\bds.exe.WebView2'
-    ExplicitWidth = 796
-    ExplicitHeight = 499
+    OnCreateWebViewCompleted = browserCreateWebViewCompleted
+    OnDownloadStarting = browserDownloadStarting
+    OnFrameNavigationStarting = browserFrameNavigationStarting
+    OnNavigationStarting = browserNavigationStarting
+    OnNavigationCompleted = browserNavigationCompleted
+    OnNewWindowRequested = browserNewWindowRequested
   end
 end
