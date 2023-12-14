@@ -18,6 +18,9 @@ type
           { uMod / Oxide }
           FOLDER_OXIDE = 'oxide';
           FOLDER_OXIDE_PLUGINS = 'plugins';
+          { CarbonMod }
+          FOLDER_CARBON = 'carbon';
+          FOLDER_CARBON_PLUGINS = 'plugins';
         const
           FILE_CONFIG = 'config.json';
       public
@@ -40,6 +43,11 @@ type
         class function GetOxideRootPath: string;
         class function GetOxidePluginsDir: string;
         class function GetOxidePluginsPath: string;
+        { CarbonMod Folders }
+        class function GetCarbonModRootDir: string;
+        class function GetCarbonModRootPath: string;
+        class function GetCarbonModPluginsDir: string;
+        class function GetCarbonModPluginsPath: string;
       end;
   public
   { TRSMCore Public Variables }
@@ -62,6 +70,26 @@ uses
   System.SysUtils, System.IOUtils, uWinUtils;
 
 { TRSMCore.TRSMCorePaths }
+
+class function TRSMCore.TRSMCorePaths.GetCarbonModPluginsDir: string;
+begin
+  Result := TPath.Combine([Self.GetCarbonModRootDir, Self.FOLDER_CARBON_PLUGINS]);
+end;
+
+class function TRSMCore.TRSMCorePaths.GetCarbonModPluginsPath: string;
+begin
+  Result := TPath.Combine([Self.GetCarbonModRootDir, Self.FOLDER_CARBON_PLUGINS]) + TPath.DirectorySeparatorChar;
+end;
+
+class function TRSMCore.TRSMCorePaths.GetCarbonModRootDir: string;
+begin
+  Result := TPath.Combine([Self.GetRootDir, Self.FOLDER_CARBON]);
+end;
+
+class function TRSMCore.TRSMCorePaths.GetCarbonModRootPath: string;
+begin
+  Result := TPath.Combine([Self.GetRootDir, Self.FOLDER_CARBON]) + TPath.DirectorySeparatorChar;
+end;
 
 class function TRSMCore.TRSMCorePaths.GetOxidePluginsDir: string;
 begin
