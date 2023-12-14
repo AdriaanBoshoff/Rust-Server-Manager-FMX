@@ -1,4 +1,4 @@
-object frmuMod: TfrmuMod
+object frmuModStore: TfrmuModStore
   Left = 0
   Top = 0
   ClientHeight = 438

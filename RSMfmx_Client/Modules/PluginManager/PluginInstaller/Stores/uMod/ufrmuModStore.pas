@@ -9,7 +9,7 @@ uses
   FMX.EditBox, FMX.NumberBox, uModAPI, uModAPI.Types, System.Threading;
 
 type
-  TfrmuMod = class(TForm)
+  TfrmuModStore = class(TForm)
     rctnglHeader: TRectangle;
     edtPluginSearch: TEdit;
     lytPage: TLayout;
@@ -39,7 +39,7 @@ type
   end;
 
 var
-  frmuMod: TfrmuMod;
+  frmuModStore: TfrmuModStore;
 
 implementation
 
@@ -48,7 +48,7 @@ uses
 
 {$R *.fmx}
 
-procedure TfrmuMod.btnNextPageClick(Sender: TObject);
+procedure TfrmuModStore.btnNextPageClick(Sender: TObject);
 begin
   if (FuModResponse.currentPage + 1) > FuModResponse.lastPage then
     Exit;
@@ -87,7 +87,7 @@ begin
     end);
 end;
 
-procedure TfrmuMod.btnPreviousPageClick(Sender: TObject);
+procedure TfrmuModStore.btnPreviousPageClick(Sender: TObject);
 begin
   if (FuModResponse.currentPage - 1) < 0 then
     Exit;
@@ -119,7 +119,7 @@ begin
   ReCalcPluginSize;
 end;
 
-procedure TfrmuMod.btnSearchPluginClick(Sender: TObject);
+procedure TfrmuModStore.btnSearchPluginClick(Sender: TObject);
 begin
   TTask.Run(
     procedure
@@ -155,7 +155,7 @@ begin
     end);
 end;
 
-procedure TfrmuMod.ReCalcPluginSize;
+procedure TfrmuModStore.ReCalcPluginSize;
 begin
   var newSize: single := 0;
   var prevYPos: single := 0;
@@ -179,7 +179,7 @@ begin
   flwlytPlugins.Height := newSize;
 end;
 
-procedure TfrmuMod.ClearPlugins;
+procedure TfrmuModStore.ClearPlugins;
 begin
   for var I := flwlytPlugins.ChildrenCount - 1 downto 0 do
   begin
@@ -188,7 +188,7 @@ begin
   end;
 end;
 
-procedure TfrmuMod.edtPluginSearchKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+procedure TfrmuModStore.edtPluginSearchKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
 begin
   if Key = vkReturn then
   begin
@@ -196,23 +196,23 @@ begin
   end;
 end;
 
-procedure TfrmuMod.flwlytPluginsResized(Sender: TObject);
+procedure TfrmuModStore.flwlytPluginsResized(Sender: TObject);
 begin
   ReCalcPluginSize;
 end;
 
-procedure TfrmuMod.FormDestroy(Sender: TObject);
+procedure TfrmuModStore.FormDestroy(Sender: TObject);
 begin
   uModAPI.Free;
 end;
 
-procedure TfrmuMod.FormCreate(Sender: TObject);
+procedure TfrmuModStore.FormCreate(Sender: TObject);
 begin
   uModAPI := TuModAPI.Create;
   btnSearchPluginClick(btnSearchPlugin);
 end;
 
-procedure TfrmuMod.nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+procedure TfrmuModStore.nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
 begin
   if Key = vkReturn then
   begin

@@ -34,7 +34,7 @@ uses
   uframeCarbonModuleItem in 'Modules\CarbonMod\CarbonModuleItem\uframeCarbonModuleItem.pas' {frameCarbonModuleItem: TFrame},
   ufrmPluginManager in 'Modules\PluginManager\ufrmPluginManager.pas' {frmPluginManager},
   ufrmPluginInstaller in 'Modules\PluginManager\PluginInstaller\ufrmPluginInstaller.pas' {frmPluginInstaller},
-  ufrmuModStore in 'Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuModStore.pas' {frmuMod},
+  ufrmuModStore in 'Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuModStore.pas' {frmuModStore},
   uModAPI in 'Libs\uMod\uModAPI.pas',
   uModAPI.Types in 'Libs\uMod\uModAPI.Types.pas',
   uframeuModPluginItem in 'Modules\PluginManager\PluginInstaller\Stores\uMod\Items\uframeuModPluginItem.pas' {frameuModPluginItem: TFrame},
@@ -59,6 +59,6 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TdmStyles, dmStyles);
   Application.CreateForm(TdmIcons, dmIcons);
-  Application.CreateForm(TfrmuMod, frmuMod);
+  Application.CreateForm(TfrmuModStore, frmuModStore);
   Application.Run;
 end.

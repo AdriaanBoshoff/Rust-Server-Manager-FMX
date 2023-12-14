@@ -224,7 +224,7 @@
             <Form>frmPluginInstaller</Form>
         </DCCReference>
         <DCCReference Include="Modules\PluginManager\PluginInstaller\Stores\uMod\ufrmuModStore.pas">
-            <Form>frmuMod</Form>
+            <Form>frmuModStore</Form>
         </DCCReference>
         <DCCReference Include="Libs\uMod\uModAPI.pas"/>
         <DCCReference Include="Libs\uMod\uModAPI.Types.pas"/>

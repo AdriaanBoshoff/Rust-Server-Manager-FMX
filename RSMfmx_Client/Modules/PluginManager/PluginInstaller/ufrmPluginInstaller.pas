@@ -52,9 +52,9 @@ uses
 procedure TfrmPluginInstaller.CreateStores;
 begin
   // uMod
-  frmuMod := TfrmuMod.Create(tbtmuMod);
-  while frmuMod.ChildrenCount > 0 do
-    frmuMod.Children[0].Parent := tbtmuMod;
+  frmuModStore := TfrmuModStore.Create(tbtmuMod);
+  while frmuModStore.ChildrenCount > 0 do
+    frmuModStore.Children[0].Parent := tbtmuMod;
 end;
 
 procedure TfrmPluginInstaller.FormCreate(Sender: TObject);
