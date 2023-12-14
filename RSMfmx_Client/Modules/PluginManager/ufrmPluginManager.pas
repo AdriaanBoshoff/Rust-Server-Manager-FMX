@@ -45,12 +45,17 @@ var
 implementation
 
 uses
-  ufrmPluginInstaller;
+  ufrmPluginInstaller, ufrmInstalledPlugins;
 
 {$R *.fmx}
 
 procedure TfrmPluginManager.CreateModules;
 begin
+  // Installed Plugins
+  frmInstalledPlugins := TfrmInstalledPlugins.Create(tbtmInstalledPlugins);
+  while frmInstalledPlugins.ChildrenCount > 0 do
+    frmInstalledPlugins.Children[0].Parent := tbtmInstalledPlugins;
+
   // Plugin Installer
   frmPluginInstaller := TfrmPluginInstaller.Create(tbtmPluginInstaller);
   while frmPluginInstaller.ChildrenCount > 0 do

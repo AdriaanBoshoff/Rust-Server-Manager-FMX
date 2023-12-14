@@ -38,7 +38,8 @@ uses
   uModAPI in 'Libs\uMod\uModAPI.pas',
   uModAPI.Types in 'Libs\uMod\uModAPI.Types.pas',
   uframeuModPluginItem in 'Modules\PluginManager\PluginInstaller\Stores\uMod\Items\uframeuModPluginItem.pas' {frameuModPluginItem: TFrame},
-  RSM.Core in 'Units\RSM\RSM.Core.pas';
+  RSM.Core in 'Units\RSM\RSM.Core.pas',
+  ufrmInstalledPlugins in 'Modules\PluginManager\InstalledPlugins\ufrmInstalledPlugins.pas' {frmInstalledPlugins};
 
 {$R *.res}
 
