@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Edit, FMX.Layouts,
-  FMX.EditBox, FMX.NumberBox, uModAPI, uModAPI.Types;
+  FMX.EditBox, FMX.NumberBox, uModAPI, uModAPI.Types, System.Threading;
 
 type
   TfrmuMod = class(TForm)
@@ -53,31 +53,38 @@ begin
   if (FuModResponse.currentPage + 1) > FuModResponse.lastPage then
     Exit;
 
-  FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage + 1);
+  TTask.Run(
+    procedure
+    begin
+      FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, FuModResponse.currentPage + 1);
 
-  if FuModResponse.ResponseCode = 429 then
-  begin
-    ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
-    Exit;
-  end;
+      TThread.Synchronize(TThread.Current,
+        procedure
+        begin
+          if FuModResponse.ResponseCode = 429 then
+          begin
+            ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
+            Exit;
+          end;
 
-  lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
-  nmbrbxCurrentPage.Max := FuModResponse.lastPage;
-  nmbrbxCurrentPage.Value := FuModResponse.currentPage;
+          lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
+          nmbrbxCurrentPage.Max := FuModResponse.lastPage;
+          nmbrbxCurrentPage.Value := FuModResponse.currentPage;
 
-  ClearPlugins;
+          ClearPlugins;
 
-  for var aPlugin in FuModResponse.plugins do
-  begin
-    var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
-   // pluginItem.Align := TAlignLayout.Top;
-    pluginItem.Name := aPlugin.name;
-    pluginItem.Parent := flwlytPlugins;
-    pluginItem.PluginInfo := aPlugin;
-    pluginItem.LoadAvatar;
-  end;
+          for var aPlugin in FuModResponse.plugins do
+          begin
+            var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
+            pluginItem.Name := aPlugin.name;
+            pluginItem.Parent := flwlytPlugins;
+            pluginItem.PluginInfo := aPlugin;
+            pluginItem.LoadAvatar;
+          end;
 
-  ReCalcPluginSize;
+          ReCalcPluginSize;
+        end);
+    end);
 end;
 
 procedure TfrmuMod.btnPreviousPageClick(Sender: TObject);
@@ -114,31 +121,38 @@ end;
 
 procedure TfrmuMod.btnSearchPluginClick(Sender: TObject);
 begin
-  FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, 1);
+  TTask.Run(
+    procedure
+    begin
+      FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, 1);
 
-  if FuModResponse.ResponseCode = 429 then
-  begin
-    ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
-    Exit;
-  end;
+      TThread.Synchronize(TThread.Current,
+        procedure
+        begin
+          if FuModResponse.ResponseCode = 429 then
+          begin
+            ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
+            Exit;
+          end;
 
-  lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
-  nmbrbxCurrentPage.Max := FuModResponse.lastPage;
-  nmbrbxCurrentPage.Value := FuModResponse.currentPage;
+          lblPageOf.Text := '/ ' + FuModResponse.lastPage.ToString;
+          nmbrbxCurrentPage.Max := FuModResponse.lastPage;
+          nmbrbxCurrentPage.Value := FuModResponse.currentPage;
 
-  ClearPlugins;
+          ClearPlugins;
 
-  for var aPlugin in FuModResponse.plugins do
-  begin
-    var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
-   // pluginItem.Align := TAlignLayout.Top;
-    pluginItem.Name := aPlugin.name;
-    pluginItem.Parent := flwlytPlugins;
-    pluginItem.PluginInfo := aPlugin;
-    pluginItem.LoadAvatar;
-  end;
+          for var aPlugin in FuModResponse.plugins do
+          begin
+            var pluginItem := TframeuModPluginItem.Create(flwlytPlugins);
+            pluginItem.Name := aPlugin.name;
+            pluginItem.Parent := flwlytPlugins;
+            pluginItem.PluginInfo := aPlugin;
+            pluginItem.LoadAvatar;
+          end;
 
-  ReCalcPluginSize;
+          ReCalcPluginSize;
+        end);
+    end);
 end;
 
 procedure TfrmuMod.ReCalcPluginSize;

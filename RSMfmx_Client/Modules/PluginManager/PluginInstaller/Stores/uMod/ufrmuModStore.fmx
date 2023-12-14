@@ -41,8 +41,10 @@ object frmuMod: TfrmuMod
       TextPrompt = 'Search Plugin'
       OnKeyUp = edtPluginSearchKeyUp
       object btnSearchPlugin: TEditButton
+        Touch.InteractiveGestures = [LongTap]
         CanFocus = False
         Cursor = crArrow
+        TextSettings.Trimming = None
         Size.Width = 80.000000000000000000
         Size.Height = 21.000000000000000000
         Size.PlatformDefault = False
@@ -68,6 +70,7 @@ object frmuMod: TfrmuMod
         StyleLookup = 'nexttoolbutton'
         TabOrder = 1
         Text = 'btnNextPage'
+        TextSettings.Trimming = None
         OnClick = btnNextPageClick
       end
       object nmbrbxCurrentPage: TNumberBox
@@ -97,6 +100,7 @@ object frmuMod: TfrmuMod
         StyleLookup = 'priortoolbutton'
         TabOrder = 0
         Text = 'btnNextPage'
+        TextSettings.Trimming = None
         OnClick = btnPreviousPageClick
       end
       object lblPageOf: TLabel
@@ -110,6 +114,7 @@ object frmuMod: TfrmuMod
         Size.PlatformDefault = False
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         TextSettings.WordWrap = False
+        TextSettings.Trimming = None
         Text = '/ 100'
         TabOrder = 3
       end
