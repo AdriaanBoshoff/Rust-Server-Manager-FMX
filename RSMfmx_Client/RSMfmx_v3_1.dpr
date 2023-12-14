@@ -3,7 +3,7 @@ program RSMfmx_v3_1;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  Skia.FMX,
+  FMX.Skia,
   ufrmMain in 'ufrmMain.pas' {frmMain},
   udmStyles in 'DataModules\udmStyles.pas' {dmStyles: TDataModule},
   udmIcons in 'DataModules\udmIcons.pas' {dmIcons: TDataModule},

@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Layouts, FMX.Objects, FMX.Controls.Presentation, System.IOUtils,
-  System.Threading, RCON.Types, ufrmPlayerManager, Skia, Skia.FMX, RSM.Core;
+  System.Threading, RCON.Types, ufrmPlayerManager, Skia, FMX.Skia, RSM.Core;
 
 type
   TframePlayerItem = class(TFrame)

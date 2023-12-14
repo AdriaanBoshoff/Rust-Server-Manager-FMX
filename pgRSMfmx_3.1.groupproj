@@ -6,6 +6,9 @@
         <Projects Include="RSMfmx_Client\RSMfmx_v3_1.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="RSMfmx_Client_WebHelper\WebHelper.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="RSMfmx_v3_1:Make">
         <MSBuild Projects="RSMfmx_Client\RSMfmx_v3_1.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WebHelper">
+        <MSBuild Projects="RSMfmx_Client_WebHelper\WebHelper.dproj"/>
+    </Target>
+    <Target Name="WebHelper:Clean">
+        <MSBuild Projects="RSMfmx_Client_WebHelper\WebHelper.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WebHelper:Make">
+        <MSBuild Projects="RSMfmx_Client_WebHelper\WebHelper.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="RSMfmx_v3_1"/>
+        <CallTarget Targets="RSMfmx_v3_1;WebHelper"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="RSMfmx_v3_1:Clean"/>
+        <CallTarget Targets="RSMfmx_v3_1:Clean;WebHelper:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="RSMfmx_v3_1:Make"/>
+        <CallTarget Targets="RSMfmx_v3_1:Make;WebHelper:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
