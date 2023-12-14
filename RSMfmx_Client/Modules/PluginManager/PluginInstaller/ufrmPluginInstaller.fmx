@@ -71,6 +71,7 @@ object frmPluginInstaller: TfrmPluginInstaller
           TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
+          TextSettings.Trimming = None
           Text = 'uMod.org'
           TabOrder = 2
         end
@@ -94,6 +95,7 @@ object frmPluginInstaller: TfrmPluginInstaller
           TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
+          TextSettings.Trimming = None
           Text = 'CodeFling.com'
           TabOrder = 2
         end
@@ -117,6 +119,7 @@ object frmPluginInstaller: TfrmPluginInstaller
           TextSettings.Font.Size = 14.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
+          TextSettings.Trimming = None
           Text = 'Lone.Design'
           TabOrder = 2
         end
@@ -142,6 +145,7 @@ object frmPluginInstaller: TfrmPluginInstaller
       CustomIcon = <
         item
         end>
+      TextSettings.Trimming = None
       IsSelected = True
       Size.Width = 73.000000000000000000
       Size.Height = 24.000000000000000000
@@ -156,6 +160,7 @@ object frmPluginInstaller: TfrmPluginInstaller
       CustomIcon = <
         item
         end>
+      TextSettings.Trimming = None
       IsSelected = False
       Size.Width = 99.000000000000000000
       Size.Height = 24.000000000000000000
@@ -170,6 +175,7 @@ object frmPluginInstaller: TfrmPluginInstaller
       CustomIcon = <
         item
         end>
+      TextSettings.Trimming = None
       IsSelected = False
       Size.Width = 85.000000000000000000
       Size.Height = 24.000000000000000000

@@ -67,8 +67,8 @@ uses
 procedure TframeuModPluginItem.btnHelpClick(Sender: TObject);
 begin
   // Open plugin page
- // OpenURL(FPluginInfo.url);
-  rsmCore.OpenURLInWebHelper(FPluginInfo.url);
+  OpenURL(FPluginInfo.url);
+ // rsmCore.OpenURLInWebHelper(FPluginInfo.url);
 end;
 
 procedure TframeuModPluginItem.btnInstallClick(Sender: TObject);

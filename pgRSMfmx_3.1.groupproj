@@ -9,6 +9,9 @@
         <Projects Include="RSMfmx_Client_WebHelper\WebHelper.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="uModServices\uModPluginCloner\uModPluginCloner.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="WebHelper:Make">
         <MSBuild Projects="RSMfmx_Client_WebHelper\WebHelper.dproj" Targets="Make"/>
     </Target>
+    <Target Name="uModPluginCloner">
+        <MSBuild Projects="uModServices\uModPluginCloner\uModPluginCloner.dproj"/>
+    </Target>
+    <Target Name="uModPluginCloner:Clean">
+        <MSBuild Projects="uModServices\uModPluginCloner\uModPluginCloner.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="uModPluginCloner:Make">
+        <MSBuild Projects="uModServices\uModPluginCloner\uModPluginCloner.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="RSMfmx_v3_1;WebHelper"/>
+        <CallTarget Targets="RSMfmx_v3_1;WebHelper;uModPluginCloner"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="RSMfmx_v3_1:Clean;WebHelper:Clean"/>
+        <CallTarget Targets="RSMfmx_v3_1:Clean;WebHelper:Clean;uModPluginCloner:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="RSMfmx_v3_1:Make;WebHelper:Make"/>
+        <CallTarget Targets="RSMfmx_v3_1:Make;WebHelper:Make;uModPluginCloner:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
