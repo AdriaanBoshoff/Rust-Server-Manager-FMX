@@ -10,7 +10,7 @@ uses
   FMX.Memo;
 
 type
-  TPluginFramework = (pfUnkown, pfuMod, pfCodeFling);
+  TPluginFramework = (pfUnkown, pfuMod, pfCarbonMod);
 
 type
   TInstalledPlugin = record
@@ -74,8 +74,8 @@ begin
           mmo1.Lines.Add('Framework: Unknown');
         pfuMod:
           mmo1.Lines.Add('Framework: uMod');
-        pfCodeFling:
-          mmo1.Lines.Add('Framework: CodeFling');
+        pfCarbonMod:
+          mmo1.Lines.Add('Framework: CarbonMod');
       end;
     end;
   end;
@@ -91,15 +91,33 @@ begin
   FInstalledPlugins.Clear;
 
   // Oxide / uMod
-  var oxidePlugins := TDirectory.GetFiles(rsmCore.Paths.GetOxidePluginsDir, '*.cs');
-  for var aPluginPath in oxidePlugins do
+  if TDirectory.Exists(rsmCore.Paths.GetOxidePluginsDir) then
   begin
-    var plugin: TInstalledPlugin;
-    plugin.Name := TPath.GetFileNameWithoutExtension(aPluginPath);
-    plugin.Path := aPluginPath;
-    plugin.Framework := TPluginFramework.pfuMod;
+    var oxidePlugins := TDirectory.GetFiles(rsmCore.Paths.GetOxidePluginsDir, '*.cs');
+    for var aPluginPath in oxidePlugins do
+    begin
+      var plugin: TInstalledPlugin;
+      plugin.Name := TPath.GetFileNameWithoutExtension(aPluginPath);
+      plugin.Path := aPluginPath;
+      plugin.Framework := TPluginFramework.pfuMod;
 
-    FInstalledPlugins.Add(plugin);
+      FInstalledPlugins.Add(plugin);
+    end;
+  end;
+
+  // CarbonMod
+  if TDirectory.Exists(rsmCore.Paths.GetCarbonModPluginsDir) then
+  begin
+    var carbonPlugins := TDirectory.GetFiles(rsmCore.Paths.GetCarbonModPluginsDir, '*.cs');
+    for var aPluginPath in carbonPlugins do
+    begin
+      var plugin: TInstalledPlugin;
+      plugin.Name := TPath.GetFileNameWithoutExtension(aPluginPath);
+      plugin.Path := aPluginPath;
+      plugin.Framework := TPluginFramework.pfCarbonMod;
+
+      FInstalledPlugins.Add(plugin);
+    end;
   end;
 end;
 

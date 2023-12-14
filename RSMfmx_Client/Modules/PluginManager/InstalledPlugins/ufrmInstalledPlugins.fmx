@@ -110,7 +110,7 @@ object frmInstalledPlugins: TfrmInstalledPlugins
     Size.Height = 447.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    Viewport.Width = 721.000000000000000000
-    Viewport.Height = 439.000000000000000000
+    Viewport.Width = 733.000000000000000000
+    Viewport.Height = 447.000000000000000000
   end
 end
