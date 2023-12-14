@@ -11,9 +11,13 @@ type
       private
       { TRSMCorePaths Private Const }
         const
+          { RSM }
           FOLDER_RSM = 'RSM';
           FOLDER_CACHE = 'Cache';
           FOLDER_CONFIG = 'cfg';
+          { uMod / Oxide }
+          FOLDER_OXIDE = 'oxide';
+          FOLDER_OXIDE_PLUGINS = 'plugins';
         const
           FILE_CONFIG = 'config.json';
       public
@@ -31,6 +35,9 @@ type
         class function GetRSMConfigDir: string;
         class function GetRSMConfigPath: string;
         class function GetRSMConfigFilePath: string;
+        { uMod / Oxide Folders }
+        class function GetOxideRootDir: string;
+        class function GetOxideRootPath: string;
       end;
   public
   { TRSMCore Public Variables }
@@ -53,6 +60,18 @@ uses
   System.SysUtils, System.IOUtils, uWinUtils;
 
 { TRSMCore.TRSMCorePaths }
+
+class function TRSMCore.TRSMCorePaths.GetOxideRootDir: string;
+begin
+  // Oxide Root Folder
+  Result := TPath.Combine([Self.GetRootPath, Self.FOLDER_OXIDE]);
+end;
+
+class function TRSMCore.TRSMCorePaths.GetOxideRootPath: string;
+begin
+// Oxide root Folder with separator
+  Result := TPath.Combine([Self.GetRootPath, Self.FOLDER_OXIDE]) + TPath.DirectorySeparatorChar;
+end;
 
 class function TRSMCore.TRSMCorePaths.GetRootDir: string;
 begin
