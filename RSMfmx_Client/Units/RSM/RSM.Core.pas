@@ -38,6 +38,8 @@ type
         { uMod / Oxide Folders }
         class function GetOxideRootDir: string;
         class function GetOxideRootPath: string;
+        class function GetOxidePluginsDir: string;
+        class function GetOxidePluginsPath: string;
       end;
   public
   { TRSMCore Public Variables }
@@ -60,6 +62,18 @@ uses
   System.SysUtils, System.IOUtils, uWinUtils;
 
 { TRSMCore.TRSMCorePaths }
+
+class function TRSMCore.TRSMCorePaths.GetOxidePluginsDir: string;
+begin
+  // Oxide Plugins Folder
+  Result := TPath.Combine([Self.GetOxideRootDir, Self.FOLDER_OXIDE_PLUGINS]);
+end;
+
+class function TRSMCore.TRSMCorePaths.GetOxidePluginsPath: string;
+begin
+  // Oxide Plugins Folder with separator
+  Result := TPath.Combine([Self.GetOxideRootDir, Self.FOLDER_OXIDE_PLUGINS]) + tpath.DirectorySeparatorChar;
+end;
 
 class function TRSMCore.TRSMCorePaths.GetOxideRootDir: string;
 begin
