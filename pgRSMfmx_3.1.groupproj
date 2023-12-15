@@ -6,12 +6,6 @@
         <Projects Include="RSMfmx_Client\RSMfmx_v3_1.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="RSMfmx_Client_WebHelper\WebHelper.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="uModServices\uModPluginCloner\uModPluginCloner.dproj">
-            <Dependencies/>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -29,32 +23,14 @@
     <Target Name="RSMfmx_v3_1:Make">
         <MSBuild Projects="RSMfmx_Client\RSMfmx_v3_1.dproj" Targets="Make"/>
     </Target>
-    <Target Name="WebHelper">
-        <MSBuild Projects="RSMfmx_Client_WebHelper\WebHelper.dproj"/>
-    </Target>
-    <Target Name="WebHelper:Clean">
-        <MSBuild Projects="RSMfmx_Client_WebHelper\WebHelper.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="WebHelper:Make">
-        <MSBuild Projects="RSMfmx_Client_WebHelper\WebHelper.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="uModPluginCloner">
-        <MSBuild Projects="uModServices\uModPluginCloner\uModPluginCloner.dproj"/>
-    </Target>
-    <Target Name="uModPluginCloner:Clean">
-        <MSBuild Projects="uModServices\uModPluginCloner\uModPluginCloner.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="uModPluginCloner:Make">
-        <MSBuild Projects="uModServices\uModPluginCloner\uModPluginCloner.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="RSMfmx_v3_1;WebHelper;uModPluginCloner"/>
+        <CallTarget Targets="RSMfmx_v3_1"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="RSMfmx_v3_1:Clean;WebHelper:Clean;uModPluginCloner:Clean"/>
+        <CallTarget Targets="RSMfmx_v3_1:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="RSMfmx_v3_1:Make;WebHelper:Make;uModPluginCloner:Make"/>
+        <CallTarget Targets="RSMfmx_v3_1:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
