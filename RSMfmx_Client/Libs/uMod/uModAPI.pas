@@ -17,6 +17,7 @@ type
     function SetupRest(const APIPath: string = ''): TRESTRequest;
   public
   { Public Methods }
+    SessionToken: string;
     function SearchPlugins(const SearchText: string; const Page: Integer): TuModSearchPluginResponse;
   end;
 
@@ -96,6 +97,12 @@ begin
   Result.Client.BaseURL := API_URL;
   Result.Resource := APIPath;
   Result.Client.RaiseExceptionOn500 := False;
+
+  // Cookies
+  if not SessionToken.Trim.IsEmpty then
+  begin
+    Result.Client.SetCookie('umod_session=' + SessionToken, 'https://umod.org');
+  end;
 end;
 
 end.
