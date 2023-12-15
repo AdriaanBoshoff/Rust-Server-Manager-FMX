@@ -4,7 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.ShellAPI, System.SysUtils, IdHashMessageDigest,
-  IdGlobal, System.Classes;
+  IdGlobal, System.Classes, System.Win.Registry;
+
+function isWebView2RuntimeInstalled: Boolean;
 
 function CalculateMD5(const FileName: string): string;
 
@@ -15,6 +17,32 @@ function CreateProcess(const Exe, Params, AppTitle: string; const WaitUntilClose
 function CreateProcess(const Exe, Params, AppTitle: string; const WaitUntilClosed, InheritHandle: Boolean): Integer; overload;
 
 implementation
+
+function isWebView2RuntimeInstalled: Boolean;
+begin
+  Result := False;
+
+  var reg := TRegistry.Create(KEY_READ);
+  try
+    // Installed for all users
+    reg.RootKey := HKEY_LOCAL_MACHINE;
+    if reg.KeyExists('SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}') then
+    begin
+      Result := True;
+      Exit;
+    end;
+
+    // Installed for Current User
+    reg.RootKey := HKEY_CURRENT_USER;
+    if reg.KeyExists('Software\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}') then
+    begin
+      Result := True;
+      Exit;
+    end;
+  finally
+    reg.Free;
+  end;
+end;
 
 function CalculateMD5(const FileName: string): string;
 var
