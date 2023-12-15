@@ -309,6 +309,7 @@ uses
   ufrmCarbonMod, ufrmPluginManager;
 
 {$R *.fmx}
+
 { TfrmMain }
 
 procedure TfrmMain.BringToForeground;
