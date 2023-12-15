@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Edit, FMX.Layouts,
-  FMX.EditBox, FMX.NumberBox, uModAPI, uModAPI.Types, System.Threading;
+  FMX.EditBox, FMX.NumberBox, uModAPI, uModAPI.Types, System.Threading,
+  WinAPI.Windows;
 
 type
   TfrmuModStore = class(TForm)
@@ -20,18 +21,25 @@ type
     lblPageOf: TLabel;
     vrtscrlbxPlugins: TVertScrollBox;
     flwlytPlugins: TFlowLayout;
+    rctnglLoginTouMod: TRectangle;
+    lbluModLoginHeader: TLabel;
+    btnuModLogin: TButton;
+    lblViewuModLoginSourceCode: TLabel;
     procedure btnNextPageClick(Sender: TObject);
     procedure btnPreviousPageClick(Sender: TObject);
     procedure btnSearchPluginClick(Sender: TObject);
+    procedure btnuModLoginClick(Sender: TObject);
     procedure edtPluginSearchKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
     procedure flwlytPluginsResized(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure lblViewuModLoginSourceCodeClick(Sender: TObject);
     procedure nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
   private
     { Private declarations }
     FuModResponse: TuModSearchPluginResponse;
     uModAPI: TuModAPI;
+    FuModLoginSessionToken: string;
     procedure ReCalcPluginSize;
     procedure ClearPlugins;
   public
@@ -41,10 +49,12 @@ type
 var
   frmuModStore: TfrmuModStore;
 
+function GetuModLoginSession: PWChar; stdcall; external 'uModLoginHelper.dll';
+
 implementation
 
 uses
-  uframeuModPluginItem;
+  uframeuModPluginItem, uWinUtils;
 
 {$R *.fmx}
 
@@ -129,6 +139,9 @@ begin
       TThread.Synchronize(TThread.Current,
         procedure
         begin
+          // Show uMod Login option
+          rctnglLoginTouMod.Visible := (FuModResponse.rateLimit.total <= 60);
+
           if FuModResponse.ResponseCode = 429 then
           begin
             ShowMessage('uMod Rate Limit Reached. Please try again in 1 minute.');
@@ -153,6 +166,13 @@ begin
           ReCalcPluginSize;
         end);
     end);
+end;
+
+procedure TfrmuModStore.btnuModLoginClick(Sender: TObject);
+begin
+  FuModLoginSessionToken := GetuModLoginSession;
+  uModAPI.SessionToken := FuModLoginSessionToken;
+  btnSearchPluginClick(btnSearchPlugin);
 end;
 
 procedure TfrmuModStore.ReCalcPluginSize;
@@ -210,6 +230,11 @@ procedure TfrmuModStore.FormCreate(Sender: TObject);
 begin
   uModAPI := TuModAPI.Create;
   btnSearchPluginClick(btnSearchPlugin);
+end;
+
+procedure TfrmuModStore.lblViewuModLoginSourceCodeClick(Sender: TObject);
+begin
+  OpenURL('https://github.com/RustServerManager/uMod-Login-Helper');
 end;
 
 procedure TfrmuModStore.nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);

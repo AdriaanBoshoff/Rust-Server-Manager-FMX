@@ -127,11 +127,11 @@ object frmuModStore: TfrmuModStore
     Margins.Right = 10.000000000000000000
     Margins.Bottom = 10.000000000000000000
     Size.Width = 694.000000000000000000
-    Size.Height = 378.000000000000000000
+    Size.Height = 338.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     Viewport.Width = 694.000000000000000000
-    Viewport.Height = 378.000000000000000000
+    Viewport.Height = 338.000000000000000000
     object flwlytPlugins: TFlowLayout
       Align = Top
       Margins.Right = 10.000000000000000000
@@ -145,6 +145,70 @@ object frmuModStore: TfrmuModStore
       HorizontalGap = 10.000000000000000000
       VerticalGap = 10.000000000000000000
       OnResized = flwlytPluginsResized
+    end
+  end
+  object rctnglLoginTouMod: TRectangle
+    Align = Top
+    Fill.Color = xFF1F222A
+    Padding.Left = 10.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 45.000000000000000000
+    Size.Width = 704.000000000000000000
+    Size.Height = 35.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claNull
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object lbluModLoginHeader: TLabel
+      Align = Left
+      AutoSize = True
+      Position.X = 10.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 214.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.WordWrap = False
+      TextSettings.Trimming = None
+      Text = 'Login to uMod.org to increase rate limit.'
+      TabOrder = 3
+    end
+    object btnuModLogin: TButton
+      Align = Right
+      Position.X = 614.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Login'
+      TextSettings.Trimming = None
+      OnClick = btnuModLoginClick
+    end
+    object lblViewuModLoginSourceCode: TLabel
+      Align = Left
+      AutoSize = True
+      Cursor = crHandPoint
+      StyledSettings = [Family, Size]
+      HitTest = True
+      Margins.Left = 50.000000000000000000
+      Position.X = 274.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 93.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.StyleExt = {04040000000100000004000000}
+      TextSettings.FontColor = claCadetblue
+      TextSettings.WordWrap = False
+      TextSettings.Trimming = None
+      Text = 'View Source Code'
+      TabOrder = 2
+      OnClick = lblViewuModLoginSourceCodeClick
     end
   end
 end
