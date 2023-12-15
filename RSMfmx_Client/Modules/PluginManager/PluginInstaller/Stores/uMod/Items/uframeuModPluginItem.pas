@@ -117,6 +117,9 @@ end;
 
 procedure TframeuModPluginItem.LoadAvatar;
 begin
+  if FPluginInfo.iconURL.Trim.IsEmpty then
+    Exit;
+
   TTask.Run(
     procedure
     begin
@@ -157,6 +160,14 @@ begin
   var pluginPath := TPath.Combine(pluginFolder, FPluginInfo.name + '.cs');
 
   // Info
+  ///  NOTICE: For some reason the No Give Notices plugin
+  ///  raises an exception randomly for the title or description
+  ///  when using the debugger however it still works as expected.
+  ///  There's not exception at runtime.
+  ///  Issue only showed up in Delphi 12 (First release)
+  ///  Perhaps a bug?
+  ///  EEncodingError with message 'No mapping for the Unicode character
+  ///  exists in the target multi-byte code page'.
   Self.lblPluginTitle.Text := FPluginInfo.title;
   Self.lblDescription.Text := FPluginInfo.description;
   Self.lblVersion.Text := 'v' + FPluginInfo.version;
