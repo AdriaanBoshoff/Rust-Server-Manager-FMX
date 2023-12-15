@@ -59,6 +59,5 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TdmStyles, dmStyles);
   Application.CreateForm(TdmIcons, dmIcons);
-  Application.CreateForm(TfrmuModStore, frmuModStore);
   Application.Run;
 end.
