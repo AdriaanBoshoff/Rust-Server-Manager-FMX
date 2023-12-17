@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Edit, FMX.Layouts,
   FMX.EditBox, FMX.NumberBox, uModAPI, uModAPI.Types, System.Threading,
-  WinAPI.Windows;
+  WinAPI.Windows, uframeMessageBox, Rest.Client;
 
 type
   TfrmuModStore = class(TForm)
@@ -54,7 +54,7 @@ function GetuModLoginSession: PWChar; stdcall; external 'uModLoginHelper.dll';
 implementation
 
 uses
-  uframeuModPluginItem, uWinUtils;
+  uframeuModPluginItem, uWinUtils, System.IOUtils, RSM.Core;
 
 {$R *.fmx}
 
@@ -170,9 +170,38 @@ end;
 
 procedure TfrmuModStore.btnuModLoginClick(Sender: TObject);
 begin
-  FuModLoginSessionToken := GetuModLoginSession;
-  uModAPI.SessionToken := FuModLoginSessionToken;
-  btnSearchPluginClick(btnSearchPlugin);
+  if not isWebView2RuntimeInstalled then
+  begin
+    ShowMessageBox('WebView2 is missing and will now be installed.', 'WebView2 Required', Self.Owner as TFmxObject);
+    Application.ProcessMessages;
+
+    var webViewPath := TPath.Combine([rsmCore.Paths.GetRootDir, 'webView2Installer.exe']);
+
+    var memStream := TMemoryStream.Create;
+    try
+      TDownloadURL.DownloadRawBytes('https://go.microsoft.com/fwlink/p/?LinkId=2124703', memStream);
+
+      memStream.SaveToFile(webViewPath);
+    finally
+      memStream.Free;
+    end;
+
+    Application.ProcessMessages;
+
+    CreateProcess(webViewPath, '', '', True);
+
+    TFile.Delete(webViewPath);
+
+    FuModLoginSessionToken := GetuModLoginSession;
+    uModAPI.SessionToken := FuModLoginSessionToken;
+    btnSearchPluginClick(btnSearchPlugin);
+  end
+  else
+  begin
+    FuModLoginSessionToken := GetuModLoginSession;
+    uModAPI.SessionToken := FuModLoginSessionToken;
+    btnSearchPluginClick(btnSearchPlugin);
+  end;
 end;
 
 procedure TfrmuModStore.ReCalcPluginSize;

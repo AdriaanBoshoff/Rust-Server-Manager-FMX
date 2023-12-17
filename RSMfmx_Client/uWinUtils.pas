@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.ShellAPI, System.SysUtils, IdHashMessageDigest,
-  IdGlobal, System.Classes, System.Win.Registry;
+  IdGlobal, System.Classes, System.Win.Registry, FMX.Forms;
 
 function isWebView2RuntimeInstalled: Boolean;
 
@@ -92,7 +92,10 @@ begin
   begin
     // Wait for the process to complete (optional)
     if WaitUntilClosed then
+    begin
       WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+      Application.ProcessMessages;
+    end;
 
     Result := ProcessInfo.dwProcessId;
 
