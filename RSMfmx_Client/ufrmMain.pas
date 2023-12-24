@@ -750,7 +750,12 @@ procedure TfrmMain.mniClearRSMCacheClick(Sender: TObject);
 begin
   // Delete RSM Cache Folder
   TDialogService.PreferredMode := TDialogService.TPreferredMode.Async;
-  TDialogService.MessageDialog('This will delete the RSM Cache folder.' + sLineBreak + 'Are you sure you want to Continue?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbCancel], TMsgDlgBtn.mbYes, 0,
+  var msg := '''
+  This will delete the RSM Cache folder.
+
+  Are you sure you want to Continue?
+  ''';
+  TDialogService.MessageDialog(msg, TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbCancel], TMsgDlgBtn.mbYes, 0,
     procedure(const AResult: TModalResult)
     begin
       if AResult = mrYes then
