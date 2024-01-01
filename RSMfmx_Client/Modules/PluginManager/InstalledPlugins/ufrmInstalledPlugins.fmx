@@ -67,7 +67,7 @@ object frmInstalledPlugins: TfrmInstalledPlugins
     object lytTotalPlugins: TLayout
       Align = Left
       Margins.Left = 10.000000000000000000
-      Position.X = 370.000000000000000000
+      Position.X = 480.000000000000000000
       Position.Y = 5.000000000000000000
       Size.Width = 103.000000000000000000
       Size.Height = 25.000000000000000000
@@ -101,16 +101,65 @@ object frmInstalledPlugins: TfrmInstalledPlugins
         OnResized = lblTotalPluginsValueResized
       end
     end
+    object cbbFilterMode: TComboBox
+      Align = Left
+      ItemIndex = 0
+      Margins.Left = 10.000000000000000000
+      Position.X = 370.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      OnChange = cbbFilterModeChange
+      object lstFilterAll: TListBoxItem
+        IsSelected = True
+        Size.Width = 19.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'All'
+      end
+      object lstFilteruMod: TListBoxItem
+        Size.Width = 19.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'uMod / Oxide'
+      end
+      object lstFilterCarbonMod: TListBoxItem
+        Size.Width = 19.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'CarbonMod'
+      end
+    end
   end
-  object mmo1: TMemo
-    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-    DataDetectorTypes = []
+  object vrtscrlbxInstalledPlugins: TVertScrollBox
     Align = Client
-    Size.Width = 733.000000000000000000
-    Size.Height = 447.000000000000000000
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 713.000000000000000000
+    Size.Height = 427.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    Viewport.Width = 733.000000000000000000
-    Viewport.Height = 447.000000000000000000
+    OnResized = vrtscrlbxInstalledPluginsResized
+    Viewport.Width = 713.000000000000000000
+    Viewport.Height = 427.000000000000000000
+    object flwlytInstalledPlugins: TFlowLayout
+      Align = Top
+      Margins.Right = 10.000000000000000000
+      Size.Width = 703.000000000000000000
+      Size.Height = 81.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Justify = Left
+      JustifyLastLine = Left
+      FlowDirection = LeftToRight
+      VerticalGap = 10.000000000000000000
+    end
   end
 end

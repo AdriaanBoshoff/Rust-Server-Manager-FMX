@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit, FMX.Objects, FMX.Layouts,
   System.Generics.Collections, System.IOUtils, FMX.Memo.Types, FMX.ScrollBox,
-  FMX.Memo;
+  FMX.Memo, FMX.ListBox;
 
 type
   TPluginFramework = (pfUnkown, pfuMod, pfCarbonMod);
@@ -28,16 +28,26 @@ type
     lblTotalPluginsHeader: TLabel;
     lblTotalPluginsValue: TLabel;
     btnClearSearch: TClearEditButton;
-    mmo1: TMemo;
+    vrtscrlbxInstalledPlugins: TVertScrollBox;
+    flwlytInstalledPlugins: TFlowLayout;
+    cbbFilterMode: TComboBox;
+    lstFilterAll: TListBoxItem;
+    lstFilteruMod: TListBoxItem;
+    lstFilterCarbonMod: TListBoxItem;
     procedure btnRefreshClick(Sender: TObject);
+    procedure cbbFilterModeChange(Sender: TObject);
     procedure edtPluginSearchTyping(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblTotalPluginsValueResized(Sender: TObject);
+    procedure vrtscrlbxInstalledPluginsResized(Sender: TObject);
   private
     { Private declarations }
     FInstalledPlugins: TList<TInstalledPlugin>;
     procedure GetInstalledPlugins;
+    procedure RecalcInstalledPluginsSize;
+    procedure PopulateInstalledPlugins(searchText: string = '');
+    procedure ClearPluginsUI;
   public
     { Public declarations }
   end;
@@ -48,37 +58,19 @@ var
 implementation
 
 uses
-  RSM.Core;
+  RSM.Core, uframeInstalledPlugin;
 
 {$R *.fmx}
 
 procedure TfrmInstalledPlugins.btnRefreshClick(Sender: TObject);
 begin
   GetInstalledPlugins;
+  PopulateInstalledPlugins;
 end;
 
-procedure TfrmInstalledPlugins.edtPluginSearchTyping(Sender: TObject);
+procedure TfrmInstalledPlugins.cbbFilterModeChange(Sender: TObject);
 begin
-  mmo1.Text := '';
-
-  for var aPlugin in FInstalledPlugins do
-  begin
-    if aPlugin.Name.ToLower.Contains(edtPluginSearch.Text.ToLower) or edtPluginSearch.Text.Trim.IsEmpty then
-    begin
-      mmo1.Lines.Add('==============================');
-      mmo1.Lines.Add('Name: ' + aPlugin.Name);
-      mmo1.Lines.Add('Path: ' + aPlugin.Name);
-
-      case aPlugin.Framework of
-        pfUnkown:
-          mmo1.Lines.Add('Framework: Unknown');
-        pfuMod:
-          mmo1.Lines.Add('Framework: uMod');
-        pfCarbonMod:
-          mmo1.Lines.Add('Framework: CarbonMod');
-      end;
-    end;
-  end;
+  PopulateInstalledPlugins(edtPluginSearch.Text);
 end;
 
 procedure TfrmInstalledPlugins.FormDestroy(Sender: TObject);
@@ -119,6 +111,27 @@ begin
       FInstalledPlugins.Add(plugin);
     end;
   end;
+
+  lblTotalPluginsValue.Text := FInstalledPlugins.Count.ToString;
+end;
+
+procedure TfrmInstalledPlugins.ClearPluginsUI;
+begin
+  flwlytInstalledPlugins.BeginUpdate;
+  try
+    for var I := flwlytInstalledPlugins.ChildrenCount - 1 downto 0 do
+    begin
+      if flwlytInstalledPlugins.Children[I] is TframeInstalledPlugin then
+        (flwlytInstalledPlugins.Children[I] as TframeInstalledPlugin).Free;
+    end;
+  finally
+    flwlytInstalledPlugins.EndUpdate;
+  end;
+end;
+
+procedure TfrmInstalledPlugins.edtPluginSearchTyping(Sender: TObject);
+begin
+  PopulateInstalledPlugins(edtPluginSearch.Text);
 end;
 
 procedure TfrmInstalledPlugins.FormCreate(Sender: TObject);
@@ -129,6 +142,71 @@ end;
 procedure TfrmInstalledPlugins.lblTotalPluginsValueResized(Sender: TObject);
 begin
   lytTotalPlugins.Width := lblTotalPluginsHeader.Width + lblTotalPluginsValue.Margins.Left + lblTotalPluginsValue.Width;
+end;
+
+procedure TfrmInstalledPlugins.PopulateInstalledPlugins(searchText: string);
+begin
+  searchText := searchText.ToLower.Trim;
+
+  ClearPluginsUI;
+
+  flwlytInstalledPlugins.BeginUpdate;
+  try
+    for var aPlugin in FInstalledPlugins do
+    begin
+      if searchText.IsEmpty or aPlugin.Name.ToLower.Contains(searchText) then
+      begin
+        if (cbbFilterMode.ItemIndex = lstFilteruMod.Index) and not (aPlugin.Framework = TPluginFramework.pfuMod) then
+        begin
+          Continue;
+        end;
+
+        if (cbbFilterMode.ItemIndex = lstFilterCarbonMod.Index) and not (aPlugin.Framework = TPluginFramework.pfCarbonMod) then
+        begin
+          Continue;
+        end;
+
+        var pluginItem := TframeInstalledPlugin.Create(flwlytInstalledPlugins);
+        pluginItem.Name := 'installedPlugin_' + aPlugin.Name + Ord(aPlugin.Framework).ToString;
+        pluginItem.Parent := flwlytInstalledPlugins;
+        pluginItem.Width := flwlytInstalledPlugins.Width;
+        pluginItem.PluginInfo := aPlugin;
+      end;
+    end;
+  finally
+    flwlytInstalledPlugins.EndUpdate;
+    RecalcInstalledPluginsSize;
+  end;
+end;
+
+procedure TfrmInstalledPlugins.RecalcInstalledPluginsSize;
+begin
+  var newSize: single := 0;
+  var prevYPos: single := 0;
+  for var aControl in flwlytInstalledPlugins.Controls do
+  begin
+    if aControl is TframeInstalledPlugin then
+    begin
+      if aControl.Position.Y > prevYPos then
+      begin
+        prevYPos := aControl.Position.Y;
+
+        newSize := newSize + aControl.Height + flwlytInstalledPlugins.VerticalGap;
+      end;
+
+      aControl.Width := flwlytInstalledPlugins.Width;
+      // Disable Help button if no url availible
+    //  var pluginItem := TframeInstalledPlugin(aControl);
+     // pluginItem.btnHelp.Visible := (not pluginItem.PluginInfo.url.Trim.IsEmpty);
+    end;
+  end;
+
+  flwlytInstalledPlugins.Height := newSize + 10;
+end;
+
+procedure TfrmInstalledPlugins.vrtscrlbxInstalledPluginsResized(Sender: TObject);
+begin
+  RecalcInstalledPluginsSize;
 end;
 
 end.

@@ -1,0 +1,121 @@
+object frameInstalledPlugin: TframeInstalledPlugin
+  Align = Right
+  HitTest = False
+  Size.Width = 696.000000000000000000
+  Size.Height = 63.000000000000000000
+  Size.PlatformDefault = False
+  object rctnglHeader: TRectangle
+    Align = Contents
+    Fill.Color = xFF1F222A
+    Padding.Left = 10.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Size.Width = 696.000000000000000000
+    Size.Height = 63.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claNull
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    OnMouseEnter = rctnglHeaderMouseEnter
+    OnMouseLeave = rctnglHeaderMouseLeave
+    object lytPluginInfo: TLayout
+      Align = Client
+      Size.Width = 430.000000000000000000
+      Size.Height = 53.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object lblPluginTitle: TLabel
+        Align = Top
+        AutoSize = True
+        StyledSettings = [Family]
+        Size.Width = 430.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claWhite
+        TextSettings.WordWrap = False
+        TextSettings.Trimming = None
+        Text = 'Plugin Title'
+        TabOrder = 0
+      end
+      object lytPluginInfoBottom: TLayout
+        Align = Client
+        Size.Width = 430.000000000000000000
+        Size.Height = 29.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lblFrameworkHeader: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Size.Width = 65.000000000000000000
+          Size.Height = 29.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = claLightgray
+          TextSettings.WordWrap = False
+          TextSettings.Trimming = None
+          Text = 'Framework:'
+          TabOrder = 1
+        end
+        object lblFrameworkValue: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size]
+          Margins.Left = 5.000000000000000000
+          Position.X = 70.000000000000000000
+          Size.Width = 74.000000000000000000
+          Size.Height = 29.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.FontColor = xFF949494
+          TextSettings.WordWrap = False
+          TextSettings.Trimming = None
+          Text = 'uMod / Oxide'
+          TabOrder = 0
+        end
+      end
+    end
+    object lytPluginControls: TLayout
+      Align = Right
+      Padding.Top = 10.000000000000000000
+      Padding.Bottom = 10.000000000000000000
+      Position.X = 440.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 246.000000000000000000
+      Size.Height = 53.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object btnUninstall: TButton
+        Align = Right
+        CanFocus = False
+        DisableFocusEffect = True
+        Position.X = 166.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Uninstall'
+        TextSettings.Trimming = None
+        OnClick = btnUninstallClick
+      end
+      object btnOpenConfig: TButton
+        Align = Left
+        CanFocus = False
+        DisableFocusEffect = True
+        Margins.Left = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Open Config'
+        TextSettings.Trimming = None
+        OnClick = btnOpenConfigClick
+      end
+    end
+  end
+end

@@ -237,6 +237,11 @@
             <Form>frmInstalledPlugins</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Modules\PluginManager\InstalledPlugins\Items\uframeInstalledPlugin.pas">
+            <Form>frameInstalledPlugin</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

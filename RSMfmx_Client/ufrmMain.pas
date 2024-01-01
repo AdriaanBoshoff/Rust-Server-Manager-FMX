@@ -812,6 +812,7 @@ begin
     cbbServerMap.ItemIndex := serverConfig.Map.MapIndex
   else
     cbbServerMap.ItemIndex := lstMapProcedural.Index;
+
   edtCustomMapURLValue.Text := serverConfig.Map.CustomMapURL;
   nmbrbxMapSize.Value := serverConfig.Map.MapSize;
   nmbrbxMapSeed.Value := serverConfig.Map.MapSeed;
