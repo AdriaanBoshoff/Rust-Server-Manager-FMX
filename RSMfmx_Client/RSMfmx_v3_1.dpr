@@ -40,7 +40,24 @@ uses
   uframeuModPluginItem in 'Modules\PluginManager\PluginInstaller\Stores\uMod\Items\uframeuModPluginItem.pas' {frameuModPluginItem: TFrame},
   RSM.Core in 'Units\RSM\RSM.Core.pas',
   ufrmInstalledPlugins in 'Modules\PluginManager\InstalledPlugins\ufrmInstalledPlugins.pas' {frmInstalledPlugins},
-  uframeInstalledPlugin in 'Modules\PluginManager\InstalledPlugins\Items\uframeInstalledPlugin.pas' {frameInstalledPlugin: TFrame};
+  uframeInstalledPlugin in 'Modules\PluginManager\InstalledPlugins\Items\uframeInstalledPlugin.pas' {frameInstalledPlugin: TFrame},
+  CompilerAndRTLVersions in 'Libs\DelphiBigNumbers\CompilerAndRTLVersions.pas',
+  Velthuis.BigDecimals in 'Libs\DelphiBigNumbers\Velthuis.BigDecimals.pas',
+  Velthuis.BigIntegers in 'Libs\DelphiBigNumbers\Velthuis.BigIntegers.pas',
+  Velthuis.BigIntegers.Primes in 'Libs\DelphiBigNumbers\Velthuis.BigIntegers.Primes.pas',
+  Velthuis.BigRationals in 'Libs\DelphiBigNumbers\Velthuis.BigRationals.pas',
+  Velthuis.ExactFloatStrings in 'Libs\DelphiBigNumbers\Velthuis.ExactFloatStrings.pas',
+  Velthuis.FloatUtils in 'Libs\DelphiBigNumbers\Velthuis.FloatUtils.pas',
+  Velthuis.Loggers in 'Libs\DelphiBigNumbers\Velthuis.Loggers.pas',
+  Velthuis.Numerics in 'Libs\DelphiBigNumbers\Velthuis.Numerics.pas',
+  Velthuis.RandomNumbers in 'Libs\DelphiBigNumbers\Velthuis.RandomNumbers.pas',
+  Velthuis.Sizes in 'Libs\DelphiBigNumbers\Velthuis.Sizes.pas',
+  Velthuis.StrConsts in 'Libs\DelphiBigNumbers\Velthuis.StrConsts.pas',
+  Velthuis.XorShifts in 'Libs\DelphiBigNumbers\Velthuis.XorShifts.pas',
+  IPTypesX in 'Libs\MMDBReader\IPTypesX.pas',
+  uMMDBInfo in 'Libs\MMDBReader\uMMDBInfo.pas',
+  uMMDBIPAddress in 'Libs\MMDBReader\uMMDBIPAddress.pas',
+  uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas';
 
 {$R *.res}
 
