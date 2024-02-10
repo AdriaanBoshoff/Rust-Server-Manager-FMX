@@ -86,6 +86,14 @@ begin
     pfCarbonMod:
       lblFrameworkValue.Text := 'CarbonMod';
   end;
+
+  // Open Config Button
+  if not TFile.Exists(FPluginInfo.ConfigPath) then
+  begin
+    btnOpenConfig.Enabled := False;
+    btnOpenConfig.Text := 'No Config';
+  end;
+
 end;
 
 end.
