@@ -259,6 +259,7 @@
         <DCCReference Include="Libs\MMDBReader\uMMDBInfo.pas"/>
         <DCCReference Include="Libs\MMDBReader\uMMDBIPAddress.pas"/>
         <DCCReference Include="Libs\MMDBReader\uMMDBReader.pas"/>
+        <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -528,6 +529,12 @@
                     <Platform Name="Win64">
                         <RemoteDir>Assets\</RemoteDir>
                         <RemoteName>Logo44x44.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Modules\PluginManager\Plugin_Manager.md" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
