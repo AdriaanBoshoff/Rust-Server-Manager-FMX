@@ -78,6 +78,7 @@ object frmPluginInstaller: TfrmPluginInstaller
       end
       object rctnglNavCodeFling: TRectangle
         Align = Client
+        Enabled = False
         Fill.Color = xFF1F222A
         Size.Width = 222.835952758789100000
         Size.Height = 35.000000000000000000
@@ -96,12 +97,13 @@ object frmPluginInstaller: TfrmPluginInstaller
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           TextSettings.Trimming = None
-          Text = 'CodeFling.com'
+          Text = 'CodeFling.com (TBA)'
           TabOrder = 2
         end
       end
       object rctnglNavLoneDesign: TRectangle
         Align = Client
+        Enabled = False
         Fill.Color = xFF1F222A
         Size.Width = 223.656188964843800000
         Size.Height = 35.000000000000000000
@@ -120,7 +122,7 @@ object frmPluginInstaller: TfrmPluginInstaller
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           TextSettings.Trimming = None
-          Text = 'Lone.Design'
+          Text = 'Lone.Design (TBA)'
           TabOrder = 2
         end
       end

@@ -101,6 +101,7 @@ object frmPluginManager: TfrmPluginManager
       end
       object rctnglNavPluginUpdater: TRectangle
         Align = Client
+        Enabled = False
         Fill.Color = xFF1F222A
         Size.Width = 218.641479492187500000
         Size.Height = 30.000000000000000000
@@ -119,7 +120,7 @@ object frmPluginManager: TfrmPluginManager
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.HorzAlign = Center
           TextSettings.Trimming = None
-          Text = 'PLUGIN UPDATER'
+          Text = 'PLUGIN UPDATER (TBA)'
           TabOrder = 2
         end
       end
