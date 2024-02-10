@@ -16,6 +16,7 @@ type
   TInstalledPlugin = record
     Name: string;
     Path: string;
+    ConfigPath: string;
     Framework: TPluginFramework;
   end;
 
@@ -92,6 +93,7 @@ begin
       var plugin: TInstalledPlugin;
       plugin.Name := TPath.GetFileNameWithoutExtension(aPluginPath);
       plugin.Path := aPluginPath;
+      plugin.ConfigPath := TPath.Combine([rsmCore.Paths.GetOxidePluginsConfigDir, plugin.Name + '.json']);
       plugin.Framework := TPluginFramework.pfuMod;
 
       FInstalledPlugins.Add(plugin);

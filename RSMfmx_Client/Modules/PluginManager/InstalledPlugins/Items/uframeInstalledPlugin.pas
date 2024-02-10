@@ -50,7 +50,7 @@ uses
 procedure TframeInstalledPlugin.btnOpenConfigClick(Sender: TObject);
 begin
   if TFile.Exists(FPluginInfo.Path) then
-    OpenURL(FPluginInfo.Path);
+    OpenURL(FPluginInfo.ConfigPath);
 end;
 
 procedure TframeInstalledPlugin.btnUninstallClick(Sender: TObject);
