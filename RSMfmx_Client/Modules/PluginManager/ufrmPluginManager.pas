@@ -83,11 +83,18 @@ begin
 
   // Change Nav Tab
   if (Sender = rctnglNavInstalledPlugins) then // Installed Plugins
-    tbcNav.TabIndex := tbtmInstalledPlugins.Index
+  begin
+    tbcNav.TabIndex := tbtmInstalledPlugins.Index;
+    frmInstalledPlugins.OnTabActivated(nil);
+  end
   else if (Sender = rctnglNavPluginInstaller) then // Plugin Installer
-    tbcNav.TabIndex := tbtmPluginInstaller.Index
+  begin
+    tbcNav.TabIndex := tbtmPluginInstaller.Index;
+  end
   else if (Sender = rctnglNavPluginUpdater) then // Plugin Updater
+  begin
     tbcNav.TabIndex := tbtmPluginUpdater.Index;
+  end;
 
   // Mark current nav Item as selected
   (Sender as TRectangle).Fill.Color := UI_COLOR_SELECTED;

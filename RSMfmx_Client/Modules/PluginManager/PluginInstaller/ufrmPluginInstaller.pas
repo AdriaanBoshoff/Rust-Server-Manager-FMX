@@ -80,7 +80,10 @@ begin
 
   // Change Nav Tab
   if (Sender = rctnglNavuMod) then // uMod
-    tbcVendors.TabIndex := tbtmuMod.Index
+  begin
+    tbcVendors.TabIndex := tbtmuMod.Index;
+    frmuModStore.OnTabActivated(nil);
+  end
   else if (Sender = rctnglNavCodeFling) then // CodeFling
     tbcVendors.TabIndex := tbtmCodeFling.Index
   else if (Sender = rctnglNavLoneDesign) then // Lone Design

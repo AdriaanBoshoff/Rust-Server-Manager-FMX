@@ -50,6 +50,7 @@ type
     procedure ClearPluginsUI;
   public
     { Public declarations }
+    procedure OnTabActivated(const Sender: TObject); // Executes on tab for parent form
   end;
 
 var
@@ -142,6 +143,12 @@ end;
 procedure TfrmInstalledPlugins.lblTotalPluginsValueResized(Sender: TObject);
 begin
   lytTotalPlugins.Width := lblTotalPluginsHeader.Width + lblTotalPluginsValue.Margins.Left + lblTotalPluginsValue.Width;
+end;
+
+procedure TfrmInstalledPlugins.OnTabActivated(const Sender: TObject);
+begin
+  // Refresh Plugins by pressing the refresh button
+  btnRefreshClick(btnRefresh);
 end;
 
 procedure TfrmInstalledPlugins.PopulateInstalledPlugins(searchText: string);

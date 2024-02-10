@@ -37,6 +37,7 @@ type
     procedure nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
   private
     { Private declarations }
+    FpluginsPreloaded: Boolean;
     FuModResponse: TuModSearchPluginResponse;
     uModAPI: TuModAPI;
     FuModLoginSessionToken: string;
@@ -44,6 +45,7 @@ type
     procedure ClearPlugins;
   public
     { Public declarations }
+    procedure OnTabActivated(const Sender: TObject); // Executes on tab for parent form
   end;
 
 var
@@ -258,7 +260,7 @@ end;
 procedure TfrmuModStore.FormCreate(Sender: TObject);
 begin
   uModAPI := TuModAPI.Create;
-  btnSearchPluginClick(btnSearchPlugin);
+  FpluginsPreloaded := False;
 end;
 
 procedure TfrmuModStore.lblViewuModLoginSourceCodeClick(Sender: TObject);
@@ -295,6 +297,16 @@ begin
     end;
 
     ReCalcPluginSize;
+  end;
+end;
+
+procedure TfrmuModStore.OnTabActivated(const Sender: TObject);
+begin
+  // Refresh Plugins
+  if not FpluginsPreloaded then
+  begin
+    btnSearchPluginClick(btnSearchPlugin);
+    FpluginsPreloaded := True;
   end;
 end;
 
