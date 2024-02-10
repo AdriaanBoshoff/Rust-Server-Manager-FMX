@@ -43,6 +43,8 @@ type
         class function GetOxideRootPath: string;
         class function GetOxidePluginsDir: string;
         class function GetOxidePluginsPath: string;
+        class function GetOxidePluginsConfigDir: string;
+        class function GetOxidePluginsConfigPath: string;
         { CarbonMod Folders }
         class function GetCarbonModRootDir: string;
         class function GetCarbonModRootPath: string;
@@ -89,6 +91,16 @@ end;
 class function TRSMCore.TRSMCorePaths.GetCarbonModRootPath: string;
 begin
   Result := TPath.Combine([Self.GetRootDir, Self.FOLDER_CARBON]) + TPath.DirectorySeparatorChar;
+end;
+
+class function TRSMCore.TRSMCorePaths.GetOxidePluginsConfigDir: string;
+begin
+  Result := TPath.Combine([Self.GetOxideRootDir, 'config']);
+end;
+
+class function TRSMCore.TRSMCorePaths.GetOxidePluginsConfigPath: string;
+begin
+  Result := TPath.Combine([Self.GetOxideRootDir, 'config']) + TPath.DirectorySeparatorChar;
 end;
 
 class function TRSMCore.TRSMCorePaths.GetOxidePluginsDir: string;
