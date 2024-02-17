@@ -56,6 +56,7 @@ end;
 procedure TframeInstalledPlugin.btnUninstallClick(Sender: TObject);
 begin
   TFile.Delete(FPluginInfo.Path);
+  TFile.Delete(FPluginInfo.ConfigPath);
   frmInstalledPlugins.lblTotalPluginsValue.Text := (frmInstalledPlugins.flwlytInstalledPlugins.ChildrenCount - 1).ToString;
   Self.Release;
 end;

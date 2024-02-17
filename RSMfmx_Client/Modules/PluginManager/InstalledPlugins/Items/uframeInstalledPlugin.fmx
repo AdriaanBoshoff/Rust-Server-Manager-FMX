@@ -91,6 +91,7 @@ object frameInstalledPlugin: TframeInstalledPlugin
         Align = Right
         CanFocus = False
         DisableFocusEffect = True
+        Hint = 'Deletes the plugin and config file for the plugin'
         Position.X = 166.000000000000000000
         Position.Y = 10.000000000000000000
         Size.Width = 80.000000000000000000
@@ -105,6 +106,7 @@ object frameInstalledPlugin: TframeInstalledPlugin
         Align = Left
         CanFocus = False
         DisableFocusEffect = True
+        Hint = 'Opens the plugin config file in the default editor'
         Margins.Left = 10.000000000000000000
         Position.X = 10.000000000000000000
         Position.Y = 10.000000000000000000
