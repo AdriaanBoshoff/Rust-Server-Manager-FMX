@@ -55,8 +55,29 @@ end;
 
 procedure TframeInstalledPlugin.btnUninstallClick(Sender: TObject);
 begin
-  TFile.Delete(FPluginInfo.Path);
-  TFile.Delete(FPluginInfo.ConfigPath);
+  // Delete plugin file
+  try
+    TFile.Delete(FPluginInfo.Path);
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Unable to delete plugin file.' + sLineBreak + E.ClassName + ': ' + E.Message);
+    end;
+  end;
+
+  // Delete config file
+  if TFile.Exists(FPluginInfo.ConfigPath) then
+  begin
+    try
+      TFile.Delete(FPluginInfo.ConfigPath);
+    except
+      on E: Exception do
+      begin
+        ShowMessage('Unable to delete plugin config file.' + sLineBreak + E.ClassName + ': ' + E.Message);
+      end;
+    end;
+  end;
+
   frmInstalledPlugins.lblTotalPluginsValue.Text := (frmInstalledPlugins.flwlytInstalledPlugins.ChildrenCount - 1).ToString;
   Self.Release;
 end;
