@@ -1092,6 +1092,7 @@ object frmCarbonMod: TfrmCarbonMod
     Size.Width = 731.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
+    Visible = False
     TabOrder = 2
     object rctnglLoadingBG: TRectangle
       Align = Contents

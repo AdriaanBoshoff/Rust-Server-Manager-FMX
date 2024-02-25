@@ -73,7 +73,7 @@ end;
 
 procedure TframeuModPluginItem.btnInstallClick(Sender: TObject);
 begin
-  var pluginFolder := ExtractfilePath(ParamStr(0)) + 'oxide\plugins\';
+  var pluginFolder := rsmCore.Paths.GetOxidePluginsDir;
   var memStream := TMemoryStream.Create;
   try
     TDownloadURL.DownloadRawBytes(FPluginInfo.downloadURL, memStream);

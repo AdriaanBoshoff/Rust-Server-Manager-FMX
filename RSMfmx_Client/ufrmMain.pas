@@ -12,7 +12,7 @@ uses
   System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading, FMX.Clipboard,
   FMX.Platform, sgcBase_Classes, sgcSocket_Classes, sgcTCP_Classes,
   sgcWebSocket_Classes, sgcWebSocket_Classes_Indy, sgcWebSocket_Client,
-  sgcWebSocket, RSM.Core, FMX.DialogService;
+  sgcWebSocket, RSM.Core, FMX.DialogService, System.Skia, FMX.Skia;
 
 type
   TfrmMain = class(TForm)
@@ -234,6 +234,10 @@ type
     tbtmPluginManager: TTabItem;
     mniRSM: TMenuItem;
     mniClearRSMCache: TMenuItem;
+    pnlExperimentalWarning: TPanel;
+    lblExperimentalWarning: TSkLabel;
+    mniKnownLimitations: TMenuItem;
+    procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnEditServerDescriptionClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
@@ -257,12 +261,14 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblAppVersionValueResized(Sender: TObject);
+    procedure lblExperimentalWarningWords2Click(Sender: TObject);
     procedure lblStatPlayerCountValueResized(Sender: TObject);
     procedure lblStatRconValueResized(Sender: TObject);
     procedure lblStatServerFPSValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
     procedure mniClearRSMCacheClick(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
+    procedure mniKnownLimitationsClick(Sender: TObject);
     procedure mniOpenServerRootClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
     procedure spnbxMaxPlayersMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -315,6 +321,11 @@ uses
 procedure TfrmMain.BringToForeground;
 begin
   SetForegroundWindow(ApplicationHWND);
+end;
+
+procedure TfrmMain.btnAppSettingsClick(Sender: TObject);
+begin
+  ShowMessage('There''s nothing here yet.');
 end;
 
 procedure TfrmMain.btnCopyRconPasswordClick(Sender: TObject);
@@ -695,6 +706,11 @@ begin
   lytAppVersion.Width := lblAppVersionHeader.Width + 5 + lblAppVersionValue.Width;
 end;
 
+procedure TfrmMain.lblExperimentalWarningWords2Click(Sender: TObject);
+begin
+  OpenURL('https://discord.gg/U7jsFBrgFh');
+end;
+
 procedure TfrmMain.lblStatPlayerCountValueResized(Sender: TObject);
 begin
   lytStatPlayerCount.Width := lblStatPlayerCountHeader.Width + 3 + lblStatPlayerCountValue.Width;
@@ -769,6 +785,18 @@ end;
 procedure TfrmMain.mniExitRSMClick(Sender: TObject);
 begin
   Self.Close;
+end;
+
+procedure TfrmMain.mniKnownLimitationsClick(Sender: TObject);
+begin
+  var msg := '''
+  Known Limitations:
+  - Plugin Installer only works for uMod / Oxide.
+  - CPU Affinity is not fully implemented and will do nothing.
+  - Manual Updating of RSMfmx required. Join discord to stay up to date.
+  ''';
+
+  ShowMessage(msg);
 end;
 
 procedure TfrmMain.mniOpenServerRootClick(Sender: TObject);

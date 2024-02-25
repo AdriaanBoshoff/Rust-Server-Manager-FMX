@@ -52,6 +52,10 @@ object frmMain: TfrmMain
         OnClick = mniClearRSMCacheClick
       end
     end
+    object mniKnownLimitations: TMenuItem
+      Text = 'Known Limitations'
+      OnClick = mniKnownLimitationsClick
+    end
   end
   object statMain: TStatusBar
     Padding.Left = 10.000000000000000000
@@ -80,7 +84,7 @@ object frmMain: TfrmMain
         TextSettings.FontColor = claLime
         TextSettings.WordWrap = False
         TextSettings.Trimming = None
-        Text = '2023.11.11'
+        Text = '2024.02.25'
         TabOrder = 0
         OnResized = lblAppVersionValueResized
       end
@@ -271,7 +275,7 @@ object frmMain: TfrmMain
     end
   end
   object tlbHeader: TToolBar
-    Position.Y = 24.000000000000000000
+    Position.Y = 54.000000000000000000
     Size.Width = 1000.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
@@ -316,32 +320,32 @@ object frmMain: TfrmMain
     Align = Client
     Margins.Left = 60.000000000000000000
     Size.Width = 720.000000000000000000
-    Size.Height = 514.000000000000000000
+    Size.Height = 484.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
     object tbcNav: TTabControl
       Align = Client
       Size.Width = 720.000000000000000000
-      Size.Height = 514.000000000000000000
+      Size.Height = 484.000000000000000000
       Size.PlatformDefault = False
       TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
         720s
-        490s
+        460s
         720s
-        490s
+        460s
         720s
-        490s
+        460s
         720s
-        490s
+        460s
         720s
-        490s
+        460s
         720s
-        490s
+        460s
         720s
-        490s)
+        460s)
       object tbtmNavServerControls: TTabItem
         CustomIcon = <
           item
@@ -424,7 +428,7 @@ object frmMain: TfrmMain
           Position.X = 5.000000000000000000
           Position.Y = 45.000000000000000000
           Size.Width = 148.000000000000000000
-          Size.Height = 440.000000000000000000
+          Size.Height = 410.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = claNull
           XRadius = 10.000000000000000000
@@ -536,7 +540,7 @@ object frmMain: TfrmMain
             Hint = 'RSM will kill the server process using the server PID.'
             Margins.Bottom = 10.000000000000000000
             Position.X = 10.000000000000000000
-            Position.Y = 400.000000000000000000
+            Position.Y = 370.000000000000000000
             Size.Width = 128.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -557,7 +561,7 @@ object frmMain: TfrmMain
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Size.Width = 557.000000000000000000
-          Size.Height = 440.000000000000000000
+          Size.Height = 410.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = claNull
           XRadius = 10.000000000000000000
@@ -567,11 +571,11 @@ object frmMain: TfrmMain
             Padding.Left = 10.000000000000000000
             Padding.Right = 10.000000000000000000
             Size.Width = 557.000000000000000000
-            Size.Height = 440.000000000000000000
+            Size.Height = 410.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
             Viewport.Width = 557.000000000000000000
-            Viewport.Height = 440.000000000000000000
+            Viewport.Height = 410.000000000000000000
             object lytServerAffinity: TLayout
               Align = Top
               Margins.Top = 10.000000000000000000
@@ -601,9 +605,9 @@ object frmMain: TfrmMain
                 CanFocus = False
                 Hint = 
                   'Set the CPU threads the server should run on. It'#39's recommended t' +
-                  'o only choose a 3 threads at a time.'#13#10#13#10'WARNING'#13#10'- If you run mu' +
-                  'ltiple servers then make sure none of them are running on the sa' +
-                  'me threads as this will'#13#10'  cause performance issues.'
+                  'o only choose 3 threads at a time.'#13#10#13#10'WARNING'#13#10'- If you run mult' +
+                  'iple servers then make sure none of them are running on the same' +
+                  ' threads as this will'#13#10'  cause performance issues.'
                 Margins.Left = 10.000000000000000000
                 Margins.Top = 2.000000000000000000
                 Margins.Bottom = 2.000000000000000000
@@ -656,11 +660,11 @@ object frmMain: TfrmMain
           Margins.Top = 10.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Size.Width = 720.000000000000000000
-          Size.Height = 435.000000000000000000
+          Size.Height = 405.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Viewport.Width = 704.000000000000000000
-          Viewport.Height = 435.000000000000000000
+          Viewport.Height = 405.000000000000000000
           object lytHostnameHeader: TLayout
             Align = Top
             Position.X = 10.000000000000000000
@@ -1736,8 +1740,8 @@ object frmMain: TfrmMain
               Size.Height = 215.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 664.000000000000000000
-              Viewport.Height = 215.000000000000000000
+              Viewport.Width = 652.000000000000000000
+              Viewport.Height = 207.000000000000000000
             end
           end
         end
@@ -1752,7 +1756,7 @@ object frmMain: TfrmMain
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Position.X = 5.000000000000000000
-          Position.Y = 450.000000000000000000
+          Position.Y = 420.000000000000000000
           Size.Width = 710.000000000000000000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
@@ -1859,22 +1863,22 @@ object frmMain: TfrmMain
   object lytServerInfo: TLayout
     Align = Right
     Position.X = 780.000000000000000000
-    Position.Y = 64.000000000000000000
+    Position.Y = 94.000000000000000000
     Size.Width = 220.000000000000000000
-    Size.Height = 514.000000000000000000
+    Size.Height = 484.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
     object tbcServerInfo: TTabControl
       Align = Client
       Size.Width = 220.000000000000000000
-      Size.Height = 514.000000000000000000
+      Size.Height = 484.000000000000000000
       Size.PlatformDefault = False
       TabIndex = 0
       TabOrder = 0
       TabPosition = None
       Sizes = (
         220s
-        514s)
+        484s)
       object tbtmServerInfo: TTabItem
         CustomIcon = <
           item
@@ -1892,11 +1896,11 @@ object frmMain: TfrmMain
         object vrtscrlbxServerInfo: TVertScrollBox
           Align = Client
           Size.Width = 220.000000000000000000
-          Size.Height = 514.000000000000000000
+          Size.Height = 484.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Viewport.Width = 220.000000000000000000
-          Viewport.Height = 514.000000000000000000
+          Viewport.Height = 484.000000000000000000
           object rctnglServerInfo: TRectangle
             Align = Top
             Fill.Color = xFF1F222A
@@ -2451,6 +2455,46 @@ object frmMain: TfrmMain
     Left = 96
     Top = 248
   end
+  object pnlExperimentalWarning: TPanel
+    Align = Top
+    Position.Y = 24.000000000000000000
+    Size.Width = 1000.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    object lblExperimentalWarning: TSkLabel
+      Align = Client
+      HitTest = True
+      Size.Width = 1000.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Words = <
+        item
+          Font.Weight = Semibold
+          FontColor = claOrangered
+          Name = 'Item 0'
+          StyledSettings = [Family, Size]
+          Text = 'Warning: '
+        end
+        item
+          FontColor = claWhite
+          Name = 'Item 1'
+          StyledSettings = [Family, Size]
+          Text = 'This is a early access build. Please report bugs in the '
+        end
+        item
+          Cursor = crHandPoint
+          Decorations.Decorations = [Underline]
+          Font.Weight = Semibold
+          FontColor = claLightblue
+          Name = 'Item 2'
+          StyledSettings = [Family, Size]
+          Text = 'RSMfmx Discord Server'
+          OnClick = lblExperimentalWarningWords2Click
+        end>
+    end
+  end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
     Mode = NavigationPane
@@ -2462,7 +2506,7 @@ object frmMain: TfrmMain
     object lstNav: TListBox
       Align = Client
       Size.Width = 60.000000000000000000
-      Size.Height = 464.000000000000000000
+      Size.Height = 434.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       DisableFocusEffect = True
@@ -2471,7 +2515,7 @@ object frmMain: TfrmMain
       DefaultItemStyles.GroupFooterStyle = ''
       OnChange = lstNavChange
       Viewport.Width = 56.000000000000000000
-      Viewport.Height = 460.000000000000000000
+      Viewport.Height = 430.000000000000000000
       object lstServerControls: TListBoxItem
         Size.Width = 56.000000000000000000
         Size.Height = 50.000000000000000000
@@ -2596,7 +2640,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Config'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstServerInstaller: TListBoxItem
@@ -2686,7 +2730,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Installer'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstPlayerManager: TListBoxItem
@@ -2753,7 +2797,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Player Manager'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstOxideMod: TListBoxItem
@@ -2774,7 +2818,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'OxideMod / uMod'
-          TabOrder = 49
+          TabOrder = 50
         end
         object rctnglOxideModNavImage: TRectangle
           Align = MostLeft
@@ -3078,7 +3122,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Carbon Mod'
-          TabOrder = 49
+          TabOrder = 50
         end
         object rctnglCarbonmodNavImg: TRectangle
           Align = MostLeft
@@ -3968,20 +4012,21 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Plugin Manager'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
     end
     object btnAppSettings: TSpeedButton
       Align = Bottom
       Hint = 'RSM related settings'
-      Position.Y = 464.000000000000000000
+      Position.Y = 434.000000000000000000
       Size.Width = 60.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'optionstoolbutton'
       Text = 'Settings'
       TextSettings.Trimming = None
+      OnClick = btnAppSettingsClick
     end
   end
   object wsClientRcon: TsgcWebSocketClient
