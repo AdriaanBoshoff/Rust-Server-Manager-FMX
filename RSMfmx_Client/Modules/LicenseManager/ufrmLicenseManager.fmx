@@ -93,6 +93,7 @@ object frmLicenseManager: TfrmLicenseManager
       Text = 'Join Discord'
       TextSettings.Font.StyleExt = {00060000000000000004000000}
       TextSettings.Trimming = None
+      OnClick = btnDiscordClick
     end
   end
   object lytLoading: TLayout
@@ -101,7 +102,7 @@ object frmLicenseManager: TfrmLicenseManager
     Size.Height = 161.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 4
+    TabOrder = 3
     object rctnglLoadingBG: TRectangle
       Align = Contents
       Fill.Color = claBlack

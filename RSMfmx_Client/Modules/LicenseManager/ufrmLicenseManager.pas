@@ -22,6 +22,7 @@ type
     lblLoadingText: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCheckClick(Sender: TObject);
+    procedure btnDiscordClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
@@ -37,7 +38,7 @@ implementation
 
 uses
   ufrmMain, RSM.Core, Rest.Client, Rest.Types, System.JSON.Types,
-  System.JSON.Writers;
+  System.JSON.Writers, uWinUtils;
 
 {$R *.fmx}
 
@@ -137,6 +138,11 @@ begin
           end);
       end;
     end);
+end;
+
+procedure TfrmLicenseManager.btnDiscordClick(Sender: TObject);
+begin
+  OpenURL('https://discord.gg/U7jsFBrgFh');
 end;
 
 procedure TfrmLicenseManager.FormClose(Sender: TObject; var Action: TCloseAction);
