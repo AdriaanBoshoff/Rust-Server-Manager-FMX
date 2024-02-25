@@ -1,0 +1,128 @@
+object frmLicenseManager: TfrmLicenseManager
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = ToolWindow
+  Caption = 'Rust Server Manager - License Manager'
+  ClientHeight = 144
+  ClientWidth = 411
+  Position = ScreenCenter
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  object tlbHeader: TToolBar
+    Size.Width = 411.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object lblHeader: TLabel
+      Align = Contents
+      AutoSize = True
+      StyledSettings = [Family, FontColor]
+      Size.Width = 411.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.HorzAlign = Center
+      TextSettings.Trimming = None
+      Text = 'Enter License Key'
+      TabOrder = 0
+    end
+  end
+  object lytLicenseKey: TLayout
+    Align = Top
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 50.000000000000000000
+    Size.Width = 391.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object edtLicenseKey: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Client
+      TabOrder = 0
+      Password = True
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.HorzAlign = Center
+      Size.Width = 391.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'License Key'
+      StyledSettings = [Family, Style, FontColor]
+    end
+  end
+  object lytControls: TLayout
+    Align = Top
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 100.000000000000000000
+    Size.Width = 391.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object btnCheck: TButton
+      Align = Right
+      StyledSettings = [Family, Size, FontColor]
+      Position.X = 291.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Check'
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.Trimming = None
+      OnClick = btnCheckClick
+    end
+    object btnDiscord: TButton
+      Align = Left
+      StyledSettings = [Family, Size, FontColor]
+      Size.Width = 100.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Join Discord'
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.Trimming = None
+    end
+  end
+  object lytLoading: TLayout
+    Align = Contents
+    Size.Width = 411.000000000000000000
+    Size.Height = 161.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 4
+    object rctnglLoadingBG: TRectangle
+      Align = Contents
+      Fill.Color = claBlack
+      Opacity = 0.800000011920929000
+      Size.Width = 411.000000000000000000
+      Size.Height = 161.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lblLoadingText: TLabel
+      Align = Center
+      AutoSize = True
+      StyledSettings = [Family, FontColor]
+      Size.Width = 83.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000100000004000000}
+      TextSettings.WordWrap = False
+      TextSettings.Trimming = None
+      Text = 'LOADING...'
+      TabOrder = 1
+    end
+  end
+end

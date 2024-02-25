@@ -57,7 +57,8 @@ uses
   IPTypesX in 'Libs\MMDBReader\IPTypesX.pas',
   uMMDBInfo in 'Libs\MMDBReader\uMMDBInfo.pas',
   uMMDBIPAddress in 'Libs\MMDBReader\uMMDBIPAddress.pas',
-  uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas';
+  uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas',
+  ufrmLicenseManager in 'Modules\LicenseManager\ufrmLicenseManager.pas' {frmLicenseManager};
 
 {$R *.res}
 
@@ -74,7 +75,7 @@ begin
   {$ENDIF}
 
   Application.Initialize;
-  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmLicenseManager, frmLicenseManager);
   Application.CreateForm(TdmStyles, dmStyles);
   Application.CreateForm(TdmIcons, dmIcons);
   Application.Run;
