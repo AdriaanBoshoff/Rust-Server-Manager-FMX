@@ -46,6 +46,8 @@ procedure TfrmLicenseManager.FormCreate(Sender: TObject);
 begin
   FLicenseFile := TPath.Combine([rsmCore.Paths.GetRootDir, 'rsm.lic']);
 
+  edtLicenseKey.SetFocus;
+
   if TFile.Exists(FLicenseFile) then
   begin
     edtLicenseKey.Text := TFile.ReadAllText(FLicenseFile, TEncoding.UTF8);
