@@ -617,4 +617,71 @@ object frameuModPluginItem: TframeuModPluginItem
       end
     end
   end
+  object lytFrameworkSelection: TLayout
+    Align = Contents
+    Size.Width = 320.000000000000000000
+    Size.Height = 155.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object rctnglFrameworkSelectionBG: TRectangle
+      Align = Contents
+      Fill.Color = claBlack
+      Opacity = 0.899999976158142100
+      Size.Width = 320.000000000000000000
+      Size.Height = 155.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lblFrameworkSelectionHeader: TLabel
+      Align = Top
+      AutoSize = True
+      StyledSettings = [Family]
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      TextSettings.Trimming = None
+      Text = 'Select Modding Framework'
+      TabOrder = 1
+    end
+    object lytFrameworkSelectionOptions: TLayout
+      Align = VertCenter
+      Margins.Left = 20.000000000000000000
+      Margins.Right = 20.000000000000000000
+      Position.X = 20.000000000000000000
+      Position.Y = 68.000000000000000000
+      Size.Width = 280.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object btnuModOxide: TButton
+        Align = Left
+        Size.Width = 120.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'uMod / Oxide'
+        TextSettings.Trimming = None
+        OnClick = btnuModOxideClick
+      end
+      object btnCarbonMod: TButton
+        Align = Right
+        Position.X = 160.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'CarbonMod'
+        TextSettings.Trimming = None
+        OnClick = btnCarbonModClick
+      end
+    end
+  end
 end

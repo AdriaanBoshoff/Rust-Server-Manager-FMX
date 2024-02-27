@@ -32,8 +32,16 @@ type
     imgDonate: TImage;
     imgWarning: TImage;
     imgError: TImage;
+    lytFrameworkSelection: TLayout;
+    rctnglFrameworkSelectionBG: TRectangle;
+    lblFrameworkSelectionHeader: TLabel;
+    lytFrameworkSelectionOptions: TLayout;
+    btnuModOxide: TButton;
+    btnCarbonMod: TButton;
+    procedure btnCarbonModClick(Sender: TObject);
     procedure btnHelpClick(Sender: TObject);
     procedure btnInstallClick(Sender: TObject);
+    procedure btnuModOxideClick(Sender: TObject);
     procedure imgDonateClick(Sender: TObject);
     procedure rctnglHeaderMouseEnter(Sender: TObject);
     procedure rctnglHeaderMouseLeave(Sender: TObject);
@@ -48,8 +56,10 @@ type
     FPluginInfo: TuModSearchPlugin;
     procedure SetPluginInfo(const Value: TuModSearchPlugin);
     function GetPluginSHA1: string;
+    procedure InstallPlugin(const path: string);
   public
     { Public declarations }
+    constructor Create(AOwner: TComponent); override;
     procedure LoadAvatar;
   published
     property PluginInfo: TuModSearchPlugin read FPluginInfo write SetPluginInfo;
@@ -62,6 +72,13 @@ uses
 
 {$R *.fmx}
 
+procedure TframeuModPluginItem.btnCarbonModClick(Sender: TObject);
+begin
+  InstallPlugin(rsmCore.Paths.GetCarbonModPluginsDir);
+  lytFrameworkSelection.Visible := False;
+  lytFrameworkSelection.SendToBack;
+end;
+
 { TframeuModPluginItem }
 
 procedure TframeuModPluginItem.btnHelpClick(Sender: TObject);
@@ -73,22 +90,23 @@ end;
 
 procedure TframeuModPluginItem.btnInstallClick(Sender: TObject);
 begin
-  var pluginFolder := rsmCore.Paths.GetOxidePluginsDir;
-  var memStream := TMemoryStream.Create;
-  try
-    TDownloadURL.DownloadRawBytes(FPluginInfo.downloadURL, memStream);
+  lytFrameworkSelection.Visible := True;
+  lytFrameworkSelection.BringToFront;
+end;
 
-    if not TDirectory.Exists(pluginFolder) then
-      ForceDirectories(pluginFolder);
+procedure TframeuModPluginItem.btnuModOxideClick(Sender: TObject);
+begin
+  InstallPlugin(rsmCore.Paths.GetOxidePluginsDir);
+  lytFrameworkSelection.Visible := False;
+  lytFrameworkSelection.SendToBack;
+end;
 
-    memStream.SaveToFile(TPath.Combine(pluginFolder, FPluginInfo.name + '.cs'));
+constructor TframeuModPluginItem.Create(AOwner: TComponent);
+begin
+  inherited;
 
-    btnInstall.Text := 'Installed';
-    btnInstall.StyleLookup := 'tintedbutton';
-    btnInstall.TintColor := TAlphaColorRec.Green;
-  finally
-    memStream.Free;
-  end;
+  lytFrameworkSelection.Visible := False;
+  lytFrameworkSelection.SendToBack;
 end;
 
 function TframeuModPluginItem.GetPluginSHA1: string;
@@ -113,6 +131,25 @@ procedure TframeuModPluginItem.imgDonateClick(Sender: TObject);
 begin
   // Open donate page for plugin author
   OpenURL(FPluginInfo.donateURL);
+end;
+
+procedure TframeuModPluginItem.InstallPlugin(const path: string);
+begin
+  var memStream := TMemoryStream.Create;
+  try
+    TDownloadURL.DownloadRawBytes(FPluginInfo.downloadURL, memStream);
+
+    if not TDirectory.Exists(path) then
+      ForceDirectories(path);
+
+    memStream.SaveToFile(TPath.Combine(path, FPluginInfo.name + '.cs'));
+
+    btnInstall.Text := 'Installed';
+    btnInstall.StyleLookup := 'tintedbutton';
+    btnInstall.TintColor := TAlphaColorRec.Green;
+  finally
+    memStream.Free;
+  end;
 end;
 
 procedure TframeuModPluginItem.LoadAvatar;
@@ -163,7 +200,7 @@ begin
   ///  NOTICE: For some reason the No Give Notices plugin
   ///  raises an exception randomly for the title or description
   ///  when using the debugger however it still works as expected.
-  ///  There's not exception at runtime.
+  ///  There's no exception at runtime.
   ///  Issue only showed up in Delphi 12 (First release)
   ///  Perhaps a bug?
   ///  EEncodingError with message 'No mapping for the Unicode character
