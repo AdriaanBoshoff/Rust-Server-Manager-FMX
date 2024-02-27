@@ -16,6 +16,7 @@ type
         windowWidth: Single;
         ShowServerInfoPanel: Boolean; // Saved on btnShowHideServerInfoClick
         serverInstallerBranchIndex: Integer; // Item index for server installer branch
+        quickServerControls: Boolean; // Quick Server controls under server info
       end;
   public
     { Public Variables }
@@ -47,6 +48,7 @@ begin
   Self.UI.windowWidth := 1000;
   Self.UI.ShowServerInfoPanel := True;
   Self.UI.serverInstallerBranchIndex := 0;
+  Self.UI.quickServerControls := True;
 
   // Load Config
   Self.LoadConfig;

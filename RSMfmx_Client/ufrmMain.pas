@@ -237,6 +237,10 @@ type
     pnlExperimentalWarning: TPanel;
     lblExperimentalWarning: TSkLabel;
     mniKnownLimitations: TMenuItem;
+    lblServerOptionsUIHeader: TLabel;
+    lytEnableDisableQuickServerControls: TLayout;
+    chkEnableDisableQuickServerControls: TCheckBox;
+    procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnEditServerDescriptionClick(Sender: TObject);
@@ -254,6 +258,7 @@ type
     procedure cbbServerGamemodeValueMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+    procedure chkEnableDisableQuickServerControlsChange(Sender: TObject);
     procedure edtCustomMapURLValueEnter(Sender: TObject);
     procedure edtCustomMapURLValueExit(Sender: TObject);
     procedure edtRconPasswordValueEnter(Sender: TObject);
@@ -321,6 +326,11 @@ uses
 procedure TfrmMain.BringToForeground;
 begin
   SetForegroundWindow(ApplicationHWND);
+end;
+
+procedure TfrmMain.btnAdjustAffinityClick(Sender: TObject);
+begin
+  //TODO: CPU Affinity
 end;
 
 procedure TfrmMain.btnAppSettingsClick(Sender: TObject);
@@ -545,6 +555,15 @@ begin
   Abort;
 end;
 
+procedure TfrmMain.chkEnableDisableQuickServerControlsChange(Sender: TObject);
+begin
+  rctnglQuickServerControls.Visible := chkEnableDisableQuickServerControls.IsChecked;
+
+  // Save Config
+  rsmConfig.UI.quickServerControls := chkEnableDisableQuickServerControls.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
 procedure TfrmMain.edtCustomMapURLValueEnter(Sender: TObject);
 begin
   // Used in ShowServerInfo to check if the server info
@@ -745,6 +764,9 @@ begin
     ShowServerInfo
   else
     HideServerInfo;
+
+  // Quick Server Controls
+  chkEnableDisableQuickServerControls.IsChecked := rsmConfig.UI.quickServerControls;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);
