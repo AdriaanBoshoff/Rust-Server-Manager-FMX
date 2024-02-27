@@ -57,6 +57,17 @@ end;
 
 procedure TfrmLicenseManager.btnCheckClick(Sender: TObject);
 begin
+  // Bypass License in Debug Mode
+  {$IFDEF DEBUG}
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.MainForm := frmMain;
+  frmMain.Show;
+
+  Self.Close;
+  Exit;
+  {$ENDIF}
+
+
   if edtLicenseKey.Text.Trim.IsEmpty then
     Exit;
 
