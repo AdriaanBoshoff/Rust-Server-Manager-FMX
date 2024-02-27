@@ -193,9 +193,6 @@ procedure TframeuModPluginItem.SetPluginInfo(const Value: TuModSearchPlugin);
 begin
   FPluginInfo := Value;
 
-  var pluginFolder := ExtractfilePath(ParamStr(0)) + 'oxide\plugins\';
-  var pluginPath := TPath.Combine(pluginFolder, FPluginInfo.name + '.cs');
-
   // Info
   ///  NOTICE: For some reason the No Give Notices plugin
   ///  raises an exception randomly for the title or description
@@ -235,22 +232,25 @@ begin
   end;
 
   // Install Button
-  if TFile.Exists(pluginPath) then
-  begin
-    // Check if plugin is up to date
-    if FPluginInfo.latestChecksum <> GetPluginSHA1 then
-    begin
-      btnInstall.Text := 'Update';
-      btnInstall.StyleLookup := 'tintedbutton';
-      btnInstall.TintColor := TAlphaColorRec.Orangered;
-    end
-    else
-    begin
-      btnInstall.Text := 'Reinstall';
-      btnInstall.StyleLookup := 'tintedbutton';
-      btnInstall.TintColor := TAlphaColorRec.Green;
-    end;
-  end;
+  // Removed because of carbon and uMod conflicts
+// var pluginFolder := ExtractfilePath(ParamStr(0)) + 'oxide\plugins\';
+// var pluginPath := TPath.Combine(pluginFolder, FPluginInfo.name + '.cs');
+//  if TFile.Exists(pluginPath) then
+//  begin
+//    // Check if plugin is up to date
+//    if FPluginInfo.latestChecksum <> GetPluginSHA1 then
+//    begin
+//      btnInstall.Text := 'Update';
+//      btnInstall.StyleLookup := 'tintedbutton';
+//      btnInstall.TintColor := TAlphaColorRec.Orangered;
+//    end
+//    else
+//    begin
+//      btnInstall.Text := 'Reinstall';
+//      btnInstall.StyleLookup := 'tintedbutton';
+//      btnInstall.TintColor := TAlphaColorRec.Green;
+//    end;
+//  end;
 
   // Donate Button
   imgDonate.Visible := (not FPluginInfo.donateURL.Trim.IsEmpty);
