@@ -240,8 +240,17 @@ type
     lblServerOptionsUIHeader: TLabel;
     lytEnableDisableQuickServerControls: TLayout;
     chkEnableDisableQuickServerControls: TCheckBox;
+    tmrCheckForUpdate: TTimer;
+    lytUpdateAvailable: TLayout;
+    rctnglUpdateAvailibleBG: TRectangle;
+    pnlUpdateAvailableMain: TPanel;
+    tlbUpdateAvailableHeader: TToolBar;
+    lblUpdateAvailable: TLabel;
+    btnOpenUpdater: TButton;
+    btnCloseUpdateMessage: TButton;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
+    procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnEditServerDescriptionClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
@@ -249,6 +258,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure btnGenerateMapSeedClick(Sender: TObject);
     procedure btnKillServerClick(Sender: TObject);
+    procedure btnOpenUpdaterClick(Sender: TObject);
     procedure btnRestartServerClick(Sender: TObject);
     procedure btnSaveServerConfigClick(Sender: TObject);
     procedure btnServerTagsInfoClick(Sender: TObject);
@@ -277,15 +287,22 @@ type
     procedure mniOpenServerRootClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
     procedure spnbxMaxPlayersMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+    procedure tmrCheckForUpdateTimer(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
     procedure tmrServerInfoTimer(Sender: TObject);
     procedure wsClientRconConnect(Connection: TsgcWSConnection);
     procedure wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
     procedure wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
   private
+    { Private Const }
+    const
+      VERSION = '2024.03.06';
+  private
     { Private Variables }
     // Server Info auto expand
     FServerInfoExpandAfter: Boolean;
+    // Skip Update Message
+    FSkipUpdateMessage: Boolean;
   private
     { Private declarations }
     // UI
@@ -317,7 +334,7 @@ uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
-  ufrmCarbonMod, ufrmPluginManager;
+  ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types;
 
 {$R *.fmx}
 
@@ -336,6 +353,13 @@ end;
 procedure TfrmMain.btnAppSettingsClick(Sender: TObject);
 begin
   ShowMessage('There''s nothing here yet.');
+end;
+
+procedure TfrmMain.btnCloseUpdateMessageClick(Sender: TObject);
+begin
+  FSkipUpdateMessage := True;
+  lytUpdateAvailable.Visible := False;
+  lytUpdateAvailable.SendToBack;
 end;
 
 procedure TfrmMain.btnCopyRconPasswordClick(Sender: TObject);
@@ -379,6 +403,12 @@ end;
 procedure TfrmMain.btnKillServerClick(Sender: TObject);
 begin
   serverProcess.KillProcess;
+end;
+
+procedure TfrmMain.btnOpenUpdaterClick(Sender: TObject);
+begin
+  OpenURL('.\updtr.exe');
+  Self.Close;
 end;
 
 procedure TfrmMain.btnRestartServerClick(Sender: TObject);
@@ -596,11 +626,15 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  FSkipUpdateMessage := False;
+
 {$IFDEF DEBUG}
   Self.Caption := 'RSMfmx v3.1 (DEBUG BUILD)';
+  lblAppVersionValue.Text := VERSION + '(DEBUG)';
 {$ENDIF}
 {$IFDEF RELEASE}
   Self.Caption := 'RSMfmx v3.1';
+  lblAppVersionValue.Text := VERSION;
 {$ENDIF}
   // Classes
   CreateClasses;
@@ -616,6 +650,9 @@ begin
   ResetServerInfoValues;
   PopulateServerConfigUI;
   LoadRSMUIConfig;
+
+  // Check for Update
+  tmrCheckForUpdateTimer(tmrCheckForUpdate);
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -813,7 +850,6 @@ procedure TfrmMain.mniKnownLimitationsClick(Sender: TObject);
 begin
   var msg := '''
   Known Limitations:
-  - Plugin Installer only works for uMod / Oxide.
   - CPU Affinity is not fully implemented and will do nothing.
   - Manual Updating of RSMfmx required. Join discord to stay up to date.
   ''';
@@ -934,6 +970,37 @@ end;
 procedure TfrmMain.spnbxMaxPlayersMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
 begin
   Abort;
+end;
+
+procedure TfrmMain.tmrCheckForUpdateTimer(Sender: TObject);
+begin
+  if FSkipUpdateMessage then
+    Exit;
+
+  TTask.Run(
+    procedure
+    begin
+      var rest := TRESTRequest.Create(Self);
+      try
+        rest.Client := TRESTClient.Create(rest);
+        rest.Response := TRESTResponse.Create(rest);
+
+        rest.Client.BaseURL := 'https://api.rustservermanager.com/v1/version';
+
+        rest.Execute;
+
+        if rest.Response.StatusCode = 200 then
+        begin
+          if rest.Response.JSONValue.GetValue<string>('version') <> VERSION then
+          begin
+            lytUpdateAvailable.Visible := True;
+            lytUpdateAvailable.BringToFront;
+          end;
+        end;
+      finally
+        rest.Free;
+      end;
+    end);
 end;
 
 procedure TfrmMain.tmrCheckServerRunningStatusTimer(Sender: TObject);

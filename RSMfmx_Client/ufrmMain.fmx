@@ -2532,6 +2532,89 @@ object frmMain: TfrmMain
         end>
     end
   end
+  object lytUpdateAvailable: TLayout
+    Align = Contents
+    Size.Width = 1000.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 14
+    object rctnglUpdateAvailibleBG: TRectangle
+      Align = Contents
+      Fill.Color = claBlack
+      Opacity = 0.800000011920929000
+      Size.Width = 1000.000000000000000000
+      Size.Height = 600.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object pnlUpdateAvailableMain: TPanel
+      Align = Center
+      Size.Width = 281.000000000000000000
+      Size.Height = 195.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object tlbUpdateAvailableHeader: TToolBar
+        Margins.Left = 1.000000000000000000
+        Margins.Top = 1.000000000000000000
+        Margins.Right = 1.000000000000000000
+        Position.X = 1.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 279.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object lblUpdateAvailable: TLabel
+          Align = Contents
+          StyledSettings = [Family, FontColor]
+          Size.Width = 279.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 20.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.HorzAlign = Center
+          TextSettings.Trimming = None
+          Text = 'Update Available!'
+          TabOrder = 0
+        end
+      end
+      object btnOpenUpdater: TButton
+        Align = Top
+        StyledSettings = [Family, FontColor]
+        Margins.Left = 30.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 30.000000000000000000
+        Position.X = 30.000000000000000000
+        Position.Y = 51.000000000000000000
+        Size.Width = 221.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Open Updater'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.Trimming = None
+        OnClick = btnOpenUpdaterClick
+      end
+      object btnCloseUpdateMessage: TButton
+        Align = Top
+        StyledSettings = [Family, FontColor]
+        Margins.Left = 30.000000000000000000
+        Margins.Top = 20.000000000000000000
+        Margins.Right = 30.000000000000000000
+        Position.X = 30.000000000000000000
+        Position.Y = 121.000000000000000000
+        Size.Width = 221.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Close Message'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.Trimming = None
+        OnClick = btnCloseUpdateMessageClick
+      end
+    end
+  end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
     Mode = NavigationPane
@@ -4115,6 +4198,7 @@ object frmMain: TfrmMain
     Throttle.Enabled = False
     LoadBalancer.Enabled = False
     LoadBalancer.Port = 0
+    LoadBalancer.TLS = False
     TLSOptions.VerifyCertificate = False
     TLSOptions.VerifyDepth = 0
     TLSOptions.Version = tlsUndefined
@@ -4126,5 +4210,11 @@ object frmMain: TfrmMain
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
     Left = 96
     Top = 176
+  end
+  object tmrCheckForUpdate: TTimer
+    Interval = 300000
+    OnTimer = tmrCheckForUpdateTimer
+    Left = 80
+    Top = 328
   end
 end
