@@ -334,7 +334,7 @@ uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
-  ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types;
+  ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage;
 
 {$R *.fmx}
 
@@ -466,7 +466,8 @@ begin
     TRCON.SendRconCommand('server.readcfg', 0, wsClientRcon);
 
     // ShowMessage('Config Saved!');
-    ShowMessageBox('Saved Server Config!', 'Server Config', Self);
+   // ShowMessageBox('Saved Server Config!', 'Server Config', Self);
+    ShowToast('Server Config Saved');
   except
     on E: Exception do
     begin

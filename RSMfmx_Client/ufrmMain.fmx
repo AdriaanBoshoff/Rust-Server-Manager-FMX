@@ -328,7 +328,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 484.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -351,7 +351,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -681,7 +681,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -2615,6 +2615,12 @@ object frmMain: TfrmMain
       end
     end
   end
+  object tmrCheckForUpdate: TTimer
+    Interval = 300000
+    OnTimer = tmrCheckForUpdateTimer
+    Left = 80
+    Top = 328
+  end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
     Mode = NavigationPane
@@ -4210,11 +4216,5 @@ object frmMain: TfrmMain
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
     Left = 96
     Top = 176
-  end
-  object tmrCheckForUpdate: TTimer
-    Interval = 300000
-    OnTimer = tmrCheckForUpdateTimer
-    Left = 80
-    Top = 328
   end
 end
