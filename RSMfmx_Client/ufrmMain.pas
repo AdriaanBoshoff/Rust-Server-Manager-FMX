@@ -348,6 +348,7 @@ end;
 procedure TfrmMain.btnAdjustAffinityClick(Sender: TObject);
 begin
   //TODO: CPU Affinity
+  ShowMessageBox('CPU Affinity has not been implemented yet.', 'CPU Affinity', Application.MainForm);
 end;
 
 procedure TfrmMain.btnAppSettingsClick(Sender: TObject);
@@ -852,7 +853,6 @@ begin
   var msg := '''
   Known Limitations:
   - CPU Affinity is not fully implemented and will do nothing.
-  - Manual Updating of RSMfmx required. Join discord to stay up to date.
   ''';
 
   ShowMessage(msg);
