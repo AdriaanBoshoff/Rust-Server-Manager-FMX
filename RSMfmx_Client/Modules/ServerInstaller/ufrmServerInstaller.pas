@@ -54,7 +54,7 @@ var
 implementation
 
 uses
-  System.Zip, Rest.Client, uSteamCMD, uframeMessageBox, RSM.Config;
+  System.Zip, Rest.Client, uSteamCMD, uframeMessageBox, RSM.Config, uframeToastMessage;
 
 {$R *.fmx}
 
@@ -67,7 +67,8 @@ procedure TfrmServerInstaller.btnCleanInstallServerClick(Sender: TObject);
 begin
   if FIsInstallingServer then
   begin
-    ShowMessageBox('Server is currently busy installing!', 'SteamCMD busy', Self.Owner as TFmxObject);
+    //ShowMessageBox('Server is currently busy installing!', 'SteamCMD busy', Self.Owner as TFmxObject);
+    ShowToast('SteamCMD is busy!');
     Exit;
   end;
 
