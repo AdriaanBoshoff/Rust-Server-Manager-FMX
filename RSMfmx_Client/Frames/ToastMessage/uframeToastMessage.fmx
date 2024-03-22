@@ -1,0 +1,54 @@
+object frameToastMessage: TframeToastMessage
+  HitTest = False
+  Size.Width = 792.000000000000000000
+  Size.Height = 518.000000000000000000
+  Size.PlatformDefault = False
+  object lytContainer: TLayout
+    Align = Bottom
+    Margins.Left = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 458.000000000000000000
+    Size.Width = 772.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object rctnglBG: TRectangle
+      Align = HorzCenter
+      Fill.Color = claBlack
+      HitTest = False
+      Position.X = 261.000000000000000000
+      Sides = []
+      Size.Width = 250.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      XRadius = 25.000000000000000000
+      YRadius = 25.000000000000000000
+      object floataniFade: TFloatAnimation
+        Duration = 2.000000000000000000
+        OnFinish = floataniFadeFinish
+        PropertyName = 'Opacity'
+        StartValue = 1.000000000000000000
+        StopValue = 0.000000000000000000
+      end
+      object lblMessage: TLabel
+        Align = Client
+        StyledSettings = [Family, Size]
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Size.Width = 230.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        TextSettings.Trimming = None
+        Text = 'HELLO WORLD'
+        TabOrder = 0
+      end
+    end
+  end
+end

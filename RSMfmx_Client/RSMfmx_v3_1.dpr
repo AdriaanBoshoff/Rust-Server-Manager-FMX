@@ -58,7 +58,8 @@ uses
   uMMDBInfo in 'Libs\MMDBReader\uMMDBInfo.pas',
   uMMDBIPAddress in 'Libs\MMDBReader\uMMDBIPAddress.pas',
   uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas',
-  ufrmLicenseManager in 'Modules\LicenseManager\ufrmLicenseManager.pas' {frmLicenseManager};
+  ufrmLicenseManager in 'Modules\LicenseManager\ufrmLicenseManager.pas' {frmLicenseManager},
+  uframeToastMessage in 'Frames\ToastMessage\uframeToastMessage.pas' {frameToastMessage: TFrame};
 
 {$R *.res}
 
