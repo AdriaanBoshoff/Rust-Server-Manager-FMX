@@ -20,20 +20,20 @@ type
     { Public declarations }
   end;
 
-procedure ShowToast(const Text: string);
+procedure ShowToast(const Text: string; const FadeDuration: Integer = 2);
 
 implementation
 
 {$R *.fmx}
 
-procedure ShowToast(const Text: string);
+procedure ShowToast(const Text: string; const FadeDuration: Integer = 2);
 begin
   var toastFrame := TframeToastMessage.Create(Application.MainForm);
   toastFrame.Name := 'toastMsg_' + (Application.MainForm.ComponentCount + 1).ToString;
   toastFrame.Parent := Application.MainForm;
   toastFrame.Align := TAlignLayout.Contents;
   toastFrame.BringToFront;
-
+  toastFrame.floataniFade.Duration := FadeDuration;
   toastFrame.floataniFade.Start;
 end;
 
