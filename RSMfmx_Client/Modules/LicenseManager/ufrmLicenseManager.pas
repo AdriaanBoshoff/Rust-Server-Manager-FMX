@@ -23,6 +23,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnCheckClick(Sender: TObject);
     procedure btnDiscordClick(Sender: TObject);
+    procedure edtLicenseKeyKeyUp(Sender: TObject; var Key: Word; var KeyChar: WideChar; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
@@ -156,6 +157,14 @@ end;
 procedure TfrmLicenseManager.btnDiscordClick(Sender: TObject);
 begin
   OpenURL('https://discord.gg/U7jsFBrgFh');
+end;
+
+procedure TfrmLicenseManager.edtLicenseKeyKeyUp(Sender: TObject; var Key: Word; var KeyChar: WideChar; Shift: TShiftState);
+begin
+  if Key = vkReturn then
+  begin
+    btnCheckClick(btnCheck);
+  end;
 end;
 
 procedure TfrmLicenseManager.FormClose(Sender: TObject; var Action: TCloseAction);

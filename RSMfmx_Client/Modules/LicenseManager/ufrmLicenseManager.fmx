@@ -57,6 +57,7 @@ object frmLicenseManager: TfrmLicenseManager
       Size.PlatformDefault = False
       TextPrompt = 'License Key'
       StyledSettings = [Family, Style, FontColor]
+      OnKeyUp = edtLicenseKeyKeyUp
     end
   end
   object lytControls: TLayout
