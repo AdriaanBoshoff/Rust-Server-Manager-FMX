@@ -299,7 +299,7 @@ object frmMain: TfrmMain
         Size.Width = 60.000000000000000000
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
-        StyleLookup = 'infotoolbuttonbordered'
+        StyleLookup = 'drawertoolbutton'
         Text = 'ServerInfo'
         TextSettings.Trimming = None
         OnClick = btnShowHideServerInfoClick
