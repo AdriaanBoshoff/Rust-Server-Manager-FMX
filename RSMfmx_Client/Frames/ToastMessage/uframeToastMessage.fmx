@@ -1,54 +1,71 @@
 object frameToastMessage: TframeToastMessage
   HitTest = False
-  Size.Width = 792.000000000000000000
-  Size.Height = 518.000000000000000000
+  Size.Width = 316.000000000000000000
+  Size.Height = 60.000000000000000000
   Size.PlatformDefault = False
-  object lytContainer: TLayout
-    Align = Bottom
-    Margins.Left = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 448.000000000000000000
-    Size.Width = 772.000000000000000000
-    Size.Height = 60.000000000000000000
+  object rctnglBG: TRectangle
+    Align = HorzCenter
+    Fill.Color = claBlack
+    Margins.Top = 3.000000000000000000
+    Margins.Bottom = 3.000000000000000000
+    Position.X = 8.000000000000000000
+    Position.Y = 3.000000000000000000
+    Sides = []
+    Size.Width = 300.000000000000000000
+    Size.Height = 54.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 0
-    object rctnglBG: TRectangle
-      Align = HorzCenter
-      Fill.Color = claBlack
-      HitTest = False
-      Position.X = 236.000000000000000000
-      Sides = []
-      Size.Width = 300.000000000000000000
-      Size.Height = 60.000000000000000000
+    XRadius = 25.000000000000000000
+    YRadius = 25.000000000000000000
+    OnMouseEnter = rctnglBGMouseEnter
+    OnMouseLeave = rctnglBGMouseLeave
+    object floataniFade: TFloatAnimation
+      Duration = 2.000000000000000000
+      OnFinish = floataniFadeFinish
+      PropertyName = 'Opacity'
+      StartValue = 1.000000000000000000
+      StopValue = 0.000000000000000000
+    end
+    object lblMessage: TLabel
+      Align = Client
+      StyledSettings = [Family]
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 280.000000000000000000
+      Size.Height = 44.000000000000000000
       Size.PlatformDefault = False
-      XRadius = 25.000000000000000000
-      YRadius = 25.000000000000000000
-      object floataniFade: TFloatAnimation
-        Duration = 2.000000000000000000
-        OnFinish = floataniFadeFinish
-        PropertyName = 'Opacity'
-        StartValue = 1.000000000000000000
-        StopValue = 0.000000000000000000
-      end
-      object lblMessage: TLabel
-        Align = Client
-        StyledSettings = [Family]
-        Margins.Left = 10.000000000000000000
-        Margins.Top = 5.000000000000000000
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      TextSettings.Trimming = None
+      Text = 'HELLO WORLD'
+      TabOrder = 0
+    end
+    object lytOverlayControls: TLayout
+      Align = Contents
+      Size.Width = 300.000000000000000000
+      Size.Height = 54.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object btnClear: TButton
+        Align = Right
+        Margins.Top = 10.000000000000000000
         Margins.Right = 10.000000000000000000
-        Margins.Bottom = 5.000000000000000000
-        Size.Width = 280.000000000000000000
-        Size.Height = 50.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 260.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 30.000000000000000000
+        Size.Height = 34.000000000000000000
         Size.PlatformDefault = False
-        TextSettings.Font.Size = 14.000000000000000000
-        TextSettings.Font.StyleExt = {00060000000000000004000000}
-        TextSettings.FontColor = claWhite
-        TextSettings.HorzAlign = Center
-        TextSettings.Trimming = None
-        Text = 'HELLO WORLD'
+        StyleLookup = 'stoptoolbutton'
         TabOrder = 0
+        Text = 'btnClear'
+        TextSettings.Trimming = None
+        OnClick = btnClearClick
+        OnMouseEnter = rctnglBGMouseEnter
+        OnMouseLeave = rctnglBGMouseLeave
       end
     end
   end

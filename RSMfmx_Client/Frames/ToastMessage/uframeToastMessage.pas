@@ -9,37 +9,83 @@ uses
 
 type
   TframeToastMessage = class(TFrame)
-    lytContainer: TLayout;
     rctnglBG: TRectangle;
     lblMessage: TLabel;
     floataniFade: TFloatAnimation;
+    lytOverlayControls: TLayout;
+    btnClear: TButton;
+    procedure btnClearClick(Sender: TObject);
     procedure floataniFadeFinish(Sender: TObject);
+    procedure rctnglBGMouseEnter(Sender: TObject);
+    procedure rctnglBGMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
   end;
 
-procedure ShowToast(const Text: string; const FadeDuration: Integer = 2);
+procedure ShowToast(const Text: string; const FadeDuration: Integer = 2; Container: TFmxObject = nil);
 
 implementation
 
 {$R *.fmx}
 
-procedure ShowToast(const Text: string; const FadeDuration: Integer = 2);
+procedure ShowToast(const Text: string; const FadeDuration: Integer = 2; Container: TFmxObject = nil);
 begin
-  var toastFrame := TframeToastMessage.Create(Application.MainForm);
-  toastFrame.Name := 'toastMsg_' + (Application.MainForm.ComponentCount + 1).ToString;
-  toastFrame.Parent := Application.MainForm;
-  toastFrame.Align := TAlignLayout.Contents;
+  ///  If no container is provided then use the main form
+  ///  as a container.
+  if Container = nil then
+    Container := Application.MainForm;
+
+  ///  Use a layout container to host the toast
+  ///  messages in order to have a stacked view
+  ///  if multiple toasts are shown. First check
+  ///  if it exists. If it doesn't then create it.
+  var toastContainer: TLayout;
+  toastContainer := Container.FindComponent(Container.Name + '_toastMsg_Container') as TLayout;
+  if toastContainer = nil then
+  begin
+    // Toast container doesn't exist so let's create it
+    toastContainer := TLayout.Create(Container);
+    toastContainer.Name := Container.Name + '_toastMsg_Container';
+    toastContainer.Parent := Container;
+    toastContainer.Align := TAlignLayout.Contents;
+  end;
+
+  // Create Toast Message
+  var toastFrame := TframeToastMessage.Create(toastContainer);
+  toastFrame.Name := Container.Name + '_toastMsg_' + (toastContainer.ComponentCount + 1).ToString;
+  toastFrame.Parent := toastContainer;
+  toastFrame.lblMessage.Text := Text;
+  toastFrame.Align := TAlignLayout.Bottom;
   toastFrame.BringToFront;
+
+  // Fade Animation
   toastFrame.floataniFade.Duration := FadeDuration;
   toastFrame.floataniFade.Start;
 end;
 
+procedure TframeToastMessage.btnClearClick(Sender: TObject);
+begin
+  // Stopping the animation will trigger
+  // the "floataniFadeFinish" event
+  Self.floataniFade.Stop;
+end;
+
 procedure TframeToastMessage.floataniFadeFinish(Sender: TObject);
 begin
+  // When Fade is finished then free toast message
   Self.Release;
+end;
+
+procedure TframeToastMessage.rctnglBGMouseEnter(Sender: TObject);
+begin
+  Self.floataniFade.Pause := True;
+end;
+
+procedure TframeToastMessage.rctnglBGMouseLeave(Sender: TObject);
+begin
+  Self.floataniFade.Pause := False;
 end;
 
 end.
