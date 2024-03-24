@@ -533,7 +533,7 @@ begin
   // Check if server is installed
   if not TFile.Exists(rustDedicatedExe) then
   begin
-    ShowMessageBox('Server not installed!', 'Start Failure', Self);
+    ShowMessageBox('Server not installed! Use the server installer to install the server.', 'Start Failure', Self);
     Exit;
   end;
 
