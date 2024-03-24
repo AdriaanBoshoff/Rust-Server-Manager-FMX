@@ -12,26 +12,6 @@ object frmSelectAffinity: TfrmSelectAffinity
   OnCreate = FormCreate
   OnClose = FormClose
   DesignerMasterStyle = 0
-  object lstAffinity: TListBox
-    Align = Client
-    Margins.Left = 20.000000000000000000
-    Margins.Top = 3.000000000000000000
-    Margins.Right = 20.000000000000000000
-    Margins.Bottom = 10.000000000000000000
-    Size.Width = 212.000000000000000000
-    Size.Height = 187.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'transparentlistboxstyle'
-    TabOrder = 2
-    DisableFocusEffect = True
-    ItemHeight = 30.000000000000000000
-    DefaultItemStyles.ItemStyle = ''
-    DefaultItemStyles.GroupHeaderStyle = ''
-    DefaultItemStyles.GroupFooterStyle = ''
-    ShowCheckboxes = True
-    Viewport.Width = 212.000000000000000000
-    Viewport.Height = 187.000000000000000000
-  end
   object pnlFooter: TPanel
     Align = Bottom
     Position.Y = 292.000000000000000000
@@ -109,6 +89,26 @@ object frmSelectAffinity: TfrmSelectAffinity
     Text = 
       'It'#39's recommended that CPU 0 is left alone for windows and that n' +
       'o other servers run on the same CPUs'
+    TabOrder = 3
+  end
+  object vrtscrlbxAffinity: TVertScrollBox
+    Align = Client
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 232.000000000000000000
+    Size.Height = 180.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 4
+    Viewport.Width = 232.000000000000000000
+    Viewport.Height = 180.000000000000000000
+    object lytCheckboxContainer: TLayout
+      Align = Top
+      Size.Width = 232.000000000000000000
+      Size.Height = 81.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+    end
   end
 end
