@@ -268,6 +268,11 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="Forms\Affinity Selector\ufrmAffinitySelect.pas">
+            <Form>frmSelectAffinity</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Units\uHelpers.pas"/>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

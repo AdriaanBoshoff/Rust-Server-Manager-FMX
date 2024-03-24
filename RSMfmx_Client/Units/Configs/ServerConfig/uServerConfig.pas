@@ -72,6 +72,8 @@ type
     Misc: TServerConfigMisc;
     Networking: TServerConfigNetworking;
     GameMode: TServerConfigGameMode;
+    // Server Affinity
+    ServerAffinity: TArray<Integer>;
     constructor Create;
     destructor Destroy; override;
     procedure SaveConfig;

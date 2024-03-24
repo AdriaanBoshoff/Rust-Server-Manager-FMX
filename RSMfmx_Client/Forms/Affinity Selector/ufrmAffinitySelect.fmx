@@ -1,0 +1,114 @@
+object frmSelectAffinity: TfrmSelectAffinity
+  Left = 0
+  Top = 0
+  BorderStyle = ToolWindow
+  ClientHeight = 322
+  ClientWidth = 252
+  Position = MainFormCenter
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  object lstAffinity: TListBox
+    Align = Client
+    Margins.Left = 20.000000000000000000
+    Margins.Top = 3.000000000000000000
+    Margins.Right = 20.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 212.000000000000000000
+    Size.Height = 187.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'transparentlistboxstyle'
+    TabOrder = 2
+    DisableFocusEffect = True
+    ItemHeight = 30.000000000000000000
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    ShowCheckboxes = True
+    Viewport.Width = 212.000000000000000000
+    Viewport.Height = 187.000000000000000000
+  end
+  object pnlFooter: TPanel
+    Align = Bottom
+    Position.Y = 292.000000000000000000
+    Size.Width = 252.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object btnOk: TButton
+      Align = Right
+      Margins.Top = 1.000000000000000000
+      Margins.Right = 1.000000000000000000
+      Margins.Bottom = 1.000000000000000000
+      Position.X = 171.000000000000000000
+      Position.Y = 1.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 28.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Ok'
+      TextSettings.Trimming = None
+      OnClick = btnOkClick
+    end
+    object btnCancel: TButton
+      Align = Left
+      Margins.Left = 1.000000000000000000
+      Margins.Top = 1.000000000000000000
+      Margins.Bottom = 1.000000000000000000
+      Position.X = 1.000000000000000000
+      Position.Y = 1.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 28.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Cancel'
+      TextSettings.Trimming = None
+      OnClick = btnCancelClick
+    end
+  end
+  object tlbHeader: TToolBar
+    Margins.Left = 1.000000000000000000
+    Margins.Top = 1.000000000000000000
+    Margins.Right = 1.000000000000000000
+    Position.X = 1.000000000000000000
+    Position.Y = 1.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object lblHeader: TSkLabel
+      Align = Contents
+      Size.Width = 250.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family]
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.Weight = Semibold
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Words = <
+        item
+          Text = 'CPU Affinity'
+        end>
+    end
+  end
+  object lblInfo: TLabel
+    Align = Top
+    AutoSize = True
+    Margins.Top = 3.000000000000000000
+    Position.Y = 44.000000000000000000
+    Size.Width = 252.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Center
+    TextSettings.Trimming = None
+    Text = 
+      'It'#39's recommended that CPU 0 is left alone for windows and that n' +
+      'o other servers run on the same CPUs'
+    TabOrder = 4
+  end
+end

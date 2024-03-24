@@ -334,7 +334,8 @@ uses
   uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
-  ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage;
+  ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
+  ufrmAffinitySelect, uHelpers;
 
 {$R *.fmx}
 
@@ -347,8 +348,30 @@ end;
 
 procedure TfrmMain.btnAdjustAffinityClick(Sender: TObject);
 begin
-  //TODO: CPU Affinity
-  ShowMessageBox('CPU Affinity has not been implemented yet.', 'CPU Affinity', Application.MainForm);
+  // Show affinity selection
+  var affinityDlg := TfrmSelectAffinity.Create(Self);
+ // affinityDlg.GetSavedAffinity;
+
+  // Ok button pressed
+  if affinityDlg.ShowModal = mrOk then
+  begin
+    // Apply Affinity
+    if serverProcess.isRunning then
+    begin
+      var serverHandle := OpenProcess(PROCESS_ALL_ACCESS, False, serverProcess.PID);
+      try
+        SetProcessAffinityMask(serverHandle, CombinedProcessorMask(serverConfig.ServerAffinity));
+
+        ShowToast('Applied server affinity!');
+      finally
+        CloseHandle(serverHandle);
+      end;
+    end
+    else
+    begin
+      ShowToast('Affinity will be applied when the server starts.');
+    end;
+  end;
 end;
 
 procedure TfrmMain.btnAppSettingsClick(Sender: TObject);
@@ -558,10 +581,21 @@ begin
     // Dont add if empty
       slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
 
-    // Server Server and Save PID
+    // Start Server and Save PID
     serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
 
+    // Save processs details
     serverProcess.Save;
+
+    // Apply affinity mask
+    var serverHandle := OpenProcess(PROCESS_ALL_ACCESS, False, serverProcess.PID);
+    try
+      SetProcessAffinityMask(serverHandle, CombinedProcessorMask(serverConfig.ServerAffinity));
+
+      ShowToast('Server affinity applied.');
+    finally
+      CloseHandle(serverHandle);
+    end;
   finally
     slParams.Free;
   end;

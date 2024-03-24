@@ -59,7 +59,9 @@ uses
   uMMDBIPAddress in 'Libs\MMDBReader\uMMDBIPAddress.pas',
   uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas',
   ufrmLicenseManager in 'Modules\LicenseManager\ufrmLicenseManager.pas' {frmLicenseManager},
-  uframeToastMessage in 'Frames\ToastMessage\uframeToastMessage.pas' {frameToastMessage: TFrame};
+  uframeToastMessage in 'Frames\ToastMessage\uframeToastMessage.pas' {frameToastMessage: TFrame},
+  ufrmAffinitySelect in 'Forms\Affinity Selector\ufrmAffinitySelect.pas' {frmSelectAffinity},
+  uHelpers in 'Units\uHelpers.pas';
 
 {$R *.res}
 
