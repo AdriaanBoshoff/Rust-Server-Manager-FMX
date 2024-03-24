@@ -75,12 +75,6 @@ begin
       TAppender<Integer>.Append(arrSelected, control.Tag);
   end;
 
-//  for var I := 0 to lstAffinity.Count - 1 do
-//  begin
-//    if lstAffinity.ListItems[I].IsChecked then
-//      TAppender<Integer>.Append(arrSelected, I);
-//  end;
-//
   serverConfig.ServerAffinity := arrSelected;
   serverConfig.SaveConfig;
 
