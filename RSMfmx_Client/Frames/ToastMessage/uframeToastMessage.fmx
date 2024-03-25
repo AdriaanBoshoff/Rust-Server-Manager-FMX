@@ -28,11 +28,11 @@ object frameToastMessage: TframeToastMessage
     object lblMessage: TLabel
       Align = Client
       StyledSettings = [Family]
-      Margins.Left = 10.000000000000000000
+      Margins.Left = 25.000000000000000000
       Margins.Top = 5.000000000000000000
-      Margins.Right = 10.000000000000000000
+      Margins.Right = 25.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 280.000000000000000000
+      Size.Width = 250.000000000000000000
       Size.Height = 44.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 14.000000000000000000
@@ -52,9 +52,8 @@ object frameToastMessage: TframeToastMessage
       object btnClear: TButton
         Align = Right
         Margins.Top = 10.000000000000000000
-        Margins.Right = 10.000000000000000000
         Margins.Bottom = 10.000000000000000000
-        Position.X = 260.000000000000000000
+        Position.X = 270.000000000000000000
         Position.Y = 10.000000000000000000
         Size.Width = 30.000000000000000000
         Size.Height = 34.000000000000000000
