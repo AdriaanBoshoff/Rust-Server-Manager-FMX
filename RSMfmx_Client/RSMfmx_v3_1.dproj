@@ -9,6 +9,7 @@
         <TargetedPlatforms>2</TargetedPlatforms>
         <AppType>Application</AppType>
         <MainSource>RSMfmx_v3_1.dpr</MainSource>
+        <ProjectName Condition="'$(ProjectName)'==''">RSMfmx_v3_1</ProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -235,11 +236,9 @@
         <DCCReference Include="Units\RSM\RSM.Core.pas"/>
         <DCCReference Include="Modules\PluginManager\InstalledPlugins\ufrmInstalledPlugins.pas">
             <Form>frmInstalledPlugins</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Modules\PluginManager\InstalledPlugins\Items\uframeInstalledPlugin.pas">
             <Form>frameInstalledPlugin</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Libs\DelphiBigNumbers\CompilerAndRTLVersions.pas"/>
@@ -261,16 +260,13 @@
         <DCCReference Include="Libs\MMDBReader\uMMDBReader.pas"/>
         <DCCReference Include="Modules\LicenseManager\ufrmLicenseManager.pas">
             <Form>frmLicenseManager</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Frames\ToastMessage\uframeToastMessage.pas">
             <Form>frameToastMessage</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Forms\Affinity Selector\ufrmAffinitySelect.pas">
             <Form>frmSelectAffinity</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Units\uHelpers.pas"/>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
@@ -1242,6 +1238,9 @@
                     <Platform Name="Win64">
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="Win64x">
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectiOSDeviceDebug">
                     <Platform Name="iOSDevice32">
@@ -1534,6 +1533,7 @@
                 <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win64x" Name="$(PROJECTNAME)"/>
             </Deployment>
             <Platforms>
                 <Platform value="Win32">False</Platform>

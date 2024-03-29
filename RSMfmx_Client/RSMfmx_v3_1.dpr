@@ -4,6 +4,7 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   FMX.Skia,
+  FMX.Dialogs,
   ufrmMain in 'ufrmMain.pas' {frmMain},
   udmStyles in 'DataModules\udmStyles.pas' {dmStyles: TDataModule},
   udmIcons in 'DataModules\udmIcons.pas' {dmIcons: TDataModule},
@@ -66,6 +67,13 @@ uses
 {$R *.res}
 
 begin
+  // Prevent running as admin
+  if IsElevated then
+  begin
+    ShowMessage('RSM cannot be run as admin!');
+    Exit;
+  end;
+
   GlobalUseSkia := True;
   {$IFDEF DEBUG}
   ReportMemoryLeaksOnShutdown := True;
@@ -83,3 +91,4 @@ begin
   Application.CreateForm(TdmIcons, dmIcons);
   Application.Run;
 end.
+
