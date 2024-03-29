@@ -16,7 +16,38 @@ function CreateProcess(const Exe, Params, AppTitle: string; const WaitUntilClose
 
 function CreateProcess(const Exe, Params, AppTitle: string; const WaitUntilClosed, InheritHandle: Boolean): Integer; overload;
 
+function IsElevated: Boolean;
+
 implementation
+
+function IsElevated: Boolean;
+const
+  TokenElevation = TTokenInformationClass(20);
+var
+  LTokenHandle: THandle;
+  LLen: Cardinal;
+  LTokenElevation: TOKEN_ELEVATION;
+  LGotToken: Boolean;
+begin
+  Result := False;
+  if CheckWin32Version(6, 0) then
+  begin
+    LTokenHandle := 0;
+    LGotToken := OpenThreadToken(GetCurrentThread, TOKEN_QUERY, True, LTokenHandle);
+    if not LGotToken and (GetLastError = ERROR_NO_TOKEN) then
+      LGotToken := OpenProcessToken(GetCurrentProcess, TOKEN_QUERY, LTokenHandle);
+    if LGotToken then
+    try
+      LLen := 0;
+      if GetTokenInformation(LTokenHandle, TokenElevation, @LTokenElevation, SizeOf(LTokenElevation), LLen) then
+        Result := LTokenElevation.TokenIsElevated <> 0
+    finally
+      CloseHandle(LTokenHandle);
+    end
+  end
+  else
+    Result := True
+end;
 
 function isWebView2RuntimeInstalled: Boolean;
 begin
