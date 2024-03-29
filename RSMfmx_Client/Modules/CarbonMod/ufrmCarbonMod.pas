@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Objects,
   FMX.TabControl, FMX.ListBox, FMX.Edit, System.IOUtils, System.Threading,
-  Rest.Client, Rest.Types, System.Zip;
+  Rest.Client, Rest.Types, System.Zip, ufrmMain, ufrmServerInstaller;
 
 type
   TfrmCarbonMod = class(TForm)
@@ -171,9 +171,10 @@ begin
   if TFile.Exists(TPath.Combine([rsmCore.Paths.GetRootPath, 'doorstop_config.ini'])) then
   begin
     TFile.Delete(TPath.Combine([rsmCore.Paths.GetRootPath, 'doorstop_config.ini']));
-
-    ShowMessage('Carbonmod Uninstalled! Your carbon data has been preserved in the "carbon" folder.');
   end;
+
+  frmMain.lstNav.ItemIndex := frmMain.lstServerInstaller.Index;
+  frmServerInstaller.btnVerifyServerFiles.OnClick(btnUninstall);
 end;
 
 procedure TfrmCarbonMod.cbbCarbonConfigServerListCategoryMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
