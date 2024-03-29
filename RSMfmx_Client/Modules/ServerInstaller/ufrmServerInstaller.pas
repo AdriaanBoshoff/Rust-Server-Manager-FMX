@@ -28,6 +28,9 @@ type
     rctnglServerInstallerLogBG: TRectangle;
     lblServerInstallerLogHeader: TLabel;
     mmoServerInstallerLog: TMemo;
+    lytLimitProcessThreads: TLayout;
+    swtchLimitCPU: TSwitch;
+    lblLimitProcessThreads: TLabel;
     procedure btnCleanInstallServerClick(Sender: TObject);
     procedure btnInstallServerClick(Sender: TObject);
     procedure btnVerifyServerFilesClick(Sender: TObject);
@@ -175,19 +178,19 @@ begin
 
       // Main Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchMain.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'none');
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'none', swtchLimitCPU.IsChecked);
 
       // Staging Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchStaging.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'staging');
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'staging', swtchLimitCPU.IsChecked);
 
       // aux01 Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux01.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'aux01');
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'aux01', swtchLimitCPU.IsChecked);
 
       // aux02 Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux02.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'aux02');
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'aux02', swtchLimitCPU.IsChecked);
 
       FIsInstallingServer := False;
 
@@ -231,19 +234,19 @@ begin
 
       // Main Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchMain.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'none');
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'none', swtchLimitCPU.IsChecked);
 
       // Staging Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchStaging.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'staging');
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'staging', swtchLimitCPU.IsChecked);
 
       // aux01 Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux01.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'aux01');
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'aux01', swtchLimitCPU.IsChecked);
 
       // aux02 Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux02.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'aux02');
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'aux02', swtchLimitCPU.IsChecked);
 
       FIsInstallingServer := False;
 

@@ -109,12 +109,13 @@ object frmServerInstaller: TfrmServerInstaller
       Size.Width = 180.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
+      TabOrder = 3
       object swtchAutoQuitSteamCMD: TSwitch
         Align = Left
         Hint = 
           'Automatically close the SteamCMD window after steamcmd finished ' +
-          'running commands'
+          'running commands.'#13#10#13#10'Disable this if you are having issues with ' +
+          'SteamCMD. This will allow you to see the log output.'
         IsChecked = True
         Position.Y = 2.000000000000000000
         Size.Width = 40.000000000000000000
@@ -145,12 +146,12 @@ object frmServerInstaller: TfrmServerInstaller
         'after updating your server.'
       Margins.Top = 50.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 142.000000000000000000
+      Position.Y = 177.000000000000000000
       Size.Width = 180.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'tintedbutton'
-      TabOrder = 5
+      TabOrder = 6
       Text = 'Install / Update Server'
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
@@ -166,12 +167,12 @@ object frmServerInstaller: TfrmServerInstaller
         'Oxide needs to be reinstalled after verifying your server files.'
       Margins.Top = 25.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 217.000000000000000000
+      Position.Y = 252.000000000000000000
       Size.Width = 180.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'tintedbutton'
-      TabOrder = 4
+      TabOrder = 5
       Text = 'Verify Server Files'
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
@@ -195,13 +196,46 @@ object frmServerInstaller: TfrmServerInstaller
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'tintedbutton'
-      TabOrder = 3
+      TabOrder = 4
       Text = 'Perform Clean Install'
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
       TextSettings.Trimming = None
       TintColor = xFFAA0000
       OnClick = btnCleanInstallServerClick
+    end
+    object lytLimitProcessThreads: TLayout
+      Align = Top
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 102.000000000000000000
+      Size.Width = 180.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object swtchLimitCPU: TSwitch
+        Align = Left
+        Hint = 'Limits the CPU usage of steamCMD.'
+        IsChecked = True
+        Position.Y = 2.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+      object lblLimitProcessThreads: TLabel
+        Align = Left
+        AutoSize = True
+        Margins.Left = 5.000000000000000000
+        Position.X = 45.000000000000000000
+        Size.Width = 115.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.WordWrap = False
+        TextSettings.Trimming = None
+        Text = 'Limit Process Threads'
+        TabOrder = 1
+      end
     end
   end
   object rctnglServerInstallerLogBG: TRectangle

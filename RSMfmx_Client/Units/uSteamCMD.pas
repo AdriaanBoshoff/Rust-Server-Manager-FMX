@@ -14,7 +14,7 @@ type
   { Public Methods }
     constructor Create(const SteamCMDPath: string);
     procedure DownloadSteamCMD;
-    procedure InstallApp(const AppID: Integer; const InstallDir: string; const QuitSteamCMDAfterComplete: Boolean; const VerifyFiles: Boolean = False; const Beta: string = 'none');
+    procedure InstallApp(const AppID: Integer; const InstallDir: string; const QuitSteamCMDAfterComplete: Boolean; const VerifyFiles: Boolean = False; const Beta: string = 'none'; const LimitCPU: Boolean = True);
   end;
 
 var
@@ -24,7 +24,7 @@ implementation
 
 uses
   Rest.Client, System.Classes, System.SysUtils, System.IOUtils, System.Zip,
-  Winapi.Windows;
+  Winapi.Windows, uHelpers;
 
 { TSteamCMD }
 
@@ -55,7 +55,7 @@ begin
   end;
 end;
 
-procedure TSteamCMD.InstallApp(const AppID: Integer; const InstallDir: string; const QuitSteamCMDAfterComplete: Boolean; const VerifyFiles: Boolean; const Beta: string);
+procedure TSteamCMD.InstallApp(const AppID: Integer; const InstallDir: string; const QuitSteamCMDAfterComplete: Boolean; const VerifyFiles: Boolean; const Beta: string; const LimitCPU: Boolean);
 var
   StartupInfo: TStartupInfo;
   ProcessInfo: TProcessInformation;
@@ -88,6 +88,9 @@ begin
   end
   else
   begin
+    if LimitCPU then
+      SetProcessAffinityMask(ProcessInfo.hProcess, CombinedProcessorMask([0]));
+
     while WaitForSingleObject(ProcessInfo.hProcess, 10) > 0 do
     begin
       Application.ProcessMessages;
