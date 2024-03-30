@@ -70,11 +70,11 @@ uses
 
 begin
   // Prevent running as admin
-  if IsElevated then
-  begin
-    ShowMessage('RSM cannot be run as admin!');
-    Exit;
-  end;
+//  if IsElevated then
+//  begin
+//    ShowMessage('RSM cannot be run as admin!');
+//    Exit;
+//  end;
 
   GlobalUseSkia := True;
   {$IFDEF DEBUG}
