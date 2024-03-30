@@ -51,10 +51,20 @@ object frmMain: TfrmMain
         Text = 'Clear RSM Cache'
         OnClick = mniClearRSMCacheClick
       end
-    end
-    object mniKnownLimitations: TMenuItem
-      Text = 'Known Limitations'
-      OnClick = mniKnownLimitationsClick
+      object mniTrayIconOptions: TMenuItem
+        Locked = True
+        Text = 'Tray Icon'
+        object mniTrayIconEnabled: TMenuItem
+          Locked = True
+          Text = 'Enabled'
+          OnClick = mniTrayIconEnabledClick
+        end
+        object mniSetTrayIconTitle: TMenuItem
+          Locked = True
+          Text = 'Set Title'
+          OnClick = mniSetTrayIconTitleClick
+        end
+      end
     end
   end
   object statMain: TStatusBar
@@ -4216,5 +4226,37 @@ object frmMain: TfrmMain
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
     Left = 96
     Top = 176
+  end
+  object pmTrayIcon: TPopupMenu
+    Images = dmIcons.ilTrayIcon
+    Left = 320
+    Top = 320
+    object mniTrayIconServerStatus: TMenuItem
+      Enabled = False
+      Locked = True
+      Text = 'STATUS'
+    end
+    object mniTrayIconSep2: TMenuItem
+      Text = '-'
+    end
+    object mniTrayIconStartServer: TMenuItem
+      Text = 'Start Server'
+      ImageIndex = 1
+      OnClick = mniTrayIconStartServerClick
+    end
+    object mniTrayIconStopServer: TMenuItem
+      Text = 'Stop Server'
+      ImageIndex = 2
+      OnClick = mniTrayIconStopServerClick
+    end
+    object mniTrayIconSep1: TMenuItem
+      Locked = True
+      Text = '-'
+    end
+    object mniTrayIconExitRSM: TMenuItem
+      Text = 'Exit'
+      ImageIndex = 0
+      OnClick = mniTrayIconExitRSMClick
+    end
   end
 end

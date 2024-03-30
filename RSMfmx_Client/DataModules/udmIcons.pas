@@ -8,6 +8,7 @@ uses
 type
   TdmIcons = class(TDataModule)
     ilMenuIcons_24: TImageList;
+    ilTrayIcon: TImageList;
   private
     { Private declarations }
   public

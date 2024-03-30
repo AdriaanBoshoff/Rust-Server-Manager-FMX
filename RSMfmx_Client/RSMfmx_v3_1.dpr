@@ -62,7 +62,9 @@ uses
   ufrmLicenseManager in 'Modules\LicenseManager\ufrmLicenseManager.pas' {frmLicenseManager},
   uframeToastMessage in 'Frames\ToastMessage\uframeToastMessage.pas' {frameToastMessage: TFrame},
   ufrmAffinitySelect in 'Forms\Affinity Selector\ufrmAffinitySelect.pas' {frmSelectAffinity},
-  uHelpers in 'Units\uHelpers.pas';
+  uHelpers in 'Units\uHelpers.pas',
+  udmTrayIcon in 'Modules\TrayIcon\udmTrayIcon.pas' {dmTrayIcon: TDataModule},
+  FMX.Trayicon.Win in 'Modules\TrayIcon\FMX.Trayicon.Win.pas';
 
 {$R *.res}
 

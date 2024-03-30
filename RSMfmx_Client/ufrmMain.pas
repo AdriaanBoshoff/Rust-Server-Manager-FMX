@@ -236,7 +236,6 @@ type
     mniClearRSMCache: TMenuItem;
     pnlExperimentalWarning: TPanel;
     lblExperimentalWarning: TSkLabel;
-    mniKnownLimitations: TMenuItem;
     lblServerOptionsUIHeader: TLabel;
     lytEnableDisableQuickServerControls: TLayout;
     chkEnableDisableQuickServerControls: TCheckBox;
@@ -248,6 +247,16 @@ type
     lblUpdateAvailable: TLabel;
     btnOpenUpdater: TButton;
     btnCloseUpdateMessage: TButton;
+    mniTrayIconOptions: TMenuItem;
+    mniTrayIconEnabled: TMenuItem;
+    mniSetTrayIconTitle: TMenuItem;
+    pmTrayIcon: TPopupMenu;
+    mniTrayIconExitRSM: TMenuItem;
+    mniTrayIconStartServer: TMenuItem;
+    mniTrayIconStopServer: TMenuItem;
+    mniTrayIconSep1: TMenuItem;
+    mniTrayIconSep2: TMenuItem;
+    mniTrayIconServerStatus: TMenuItem;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -283,8 +292,12 @@ type
     procedure lstNavChange(Sender: TObject);
     procedure mniClearRSMCacheClick(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
-    procedure mniKnownLimitationsClick(Sender: TObject);
     procedure mniOpenServerRootClick(Sender: TObject);
+    procedure mniSetTrayIconTitleClick(Sender: TObject);
+    procedure mniTrayIconEnabledClick(Sender: TObject);
+    procedure mniTrayIconExitRSMClick(Sender: TObject);
+    procedure mniTrayIconStartServerClick(Sender: TObject);
+    procedure mniTrayIconStopServerClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
     procedure spnbxMaxPlayersMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure tmrCheckForUpdateTimer(Sender: TObject);
@@ -335,7 +348,7 @@ uses
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
-  ufrmAffinitySelect, uHelpers;
+  ufrmAffinitySelect, uHelpers, udmTrayIcon;
 
 {$R *.fmx}
 
@@ -754,6 +767,9 @@ begin
   frmPluginManager := TfrmPluginManager.Create(tbtmPluginManager);
   while frmPluginManager.ChildrenCount > 0 do
     frmPluginManager.Children[0].Parent := tbtmPluginManager;
+
+  // Tray Icon
+  dmTrayIcon := TdmTrayIcon.Create(Self);
 end;
 
 procedure TfrmMain.FormActivate(Sender: TObject);
@@ -840,6 +856,9 @@ begin
 
   // Quick Server Controls
   chkEnableDisableQuickServerControls.IsChecked := rsmConfig.UI.quickServerControls;
+
+  // Tray Icon (RSM > Tray Icon)
+  mniTrayIconEnabled.IsChecked := rsmConfig.TrayIcon.Enabled;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);
@@ -882,19 +901,49 @@ begin
   Self.Close;
 end;
 
-procedure TfrmMain.mniKnownLimitationsClick(Sender: TObject);
-begin
-  var msg := '''
-  Known Limitations:
-  - CPU Affinity is not fully implemented and will do nothing.
-  ''';
-
-  ShowMessage(msg);
-end;
-
 procedure TfrmMain.mniOpenServerRootClick(Sender: TObject);
 begin
   OpenURL(ExtractFileDir(ParamStr(0)));
+end;
+
+procedure TfrmMain.mniSetTrayIconTitleClick(Sender: TObject);
+begin
+  InputBox('Set Tray Icon Title', 'Change Tray Icon hover text: ', rsmConfig.TrayIcon.Title,
+    procedure(const AResult: TModalResult; const AValue: string)
+    begin
+      if AResult = mrOk then
+      begin
+        rsmConfig.TrayIcon.Title := AValue;
+        rsmConfig.SaveConfig;
+
+        dmTrayIcon.UpdateConfig;
+      end;
+    end);
+end;
+
+procedure TfrmMain.mniTrayIconEnabledClick(Sender: TObject);
+begin
+  rsmConfig.TrayIcon.Enabled := not rsmConfig.TrayIcon.Enabled;
+  rsmConfig.SaveConfig;
+
+  mniTrayIconEnabled.IsChecked := rsmConfig.TrayIcon.Enabled;
+
+  dmTrayIcon.UpdateConfig;
+end;
+
+procedure TfrmMain.mniTrayIconExitRSMClick(Sender: TObject);
+begin
+  Self.Close;
+end;
+
+procedure TfrmMain.mniTrayIconStartServerClick(Sender: TObject);
+begin
+  btnStartServerClick(btnStartServer);
+end;
+
+procedure TfrmMain.mniTrayIconStopServerClick(Sender: TObject);
+begin
+  btnStopServerClick(btnStopServer);
 end;
 
 procedure TfrmMain.ModifyUIForRelease;
@@ -1044,9 +1093,9 @@ begin
   if not Assigned(serverProcess) then
     Exit;
 
-  // Check if PID is default value
-  if serverProcess.PID = -1 then
-    Exit;
+//  // Check if PID is default value
+//  if serverProcess.PID = -1 then
+//    Exit;
 
   { Set Running state }
 
@@ -1092,6 +1141,18 @@ begin
   frmOxide.rctnglSettings.Enabled := not isServerRunning;
   // Cabon Module
   frmCarbonMod.rctnglHeader.Enabled := not isServerRunning;
+
+  // Tray Icon
+  mniTrayIconStartServer.Enabled := not isServerRunning;
+  mniTrayIconStopServer.Enabled := wsClientRcon.Active;
+  if isServerRunning then
+  begin
+    mniTrayIconServerStatus.Text := 'Server Running';
+  end
+  else
+  begin
+    mniTrayIconServerStatus.Text := 'Server Stopped';
+  end;
 
   // Check if server is running and rcon is connected.
   // If server is running and rcon is not connected then

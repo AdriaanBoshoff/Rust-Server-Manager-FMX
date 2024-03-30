@@ -18,9 +18,16 @@ type
         serverInstallerBranchIndex: Integer; // Item index for server installer branch
         quickServerControls: Boolean; // Quick Server controls under server info
       end;
+    // Tray Icon
+    type
+      TRSMConfigTrayIcon = record
+        Enabled: Boolean;
+        Title: string;
+      end;
   public
     { Public Variables }
     UI: TRSMConfigIU;
+    TrayIcon: TRSMConfigTrayIcon;
   public
     { Public Methods }
     constructor Create;
@@ -49,6 +56,10 @@ begin
   Self.UI.ShowServerInfoPanel := True;
   Self.UI.serverInstallerBranchIndex := 0;
   Self.UI.quickServerControls := True;
+
+  // Tray Icon
+  Self.TrayIcon.Enabled := True;
+  Self.TrayIcon.Title := 'RSMfmx v3';
 
   // Load Config
   Self.LoadConfig;

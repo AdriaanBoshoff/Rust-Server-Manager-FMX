@@ -4,7 +4,7 @@
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>2</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -269,6 +269,12 @@
             <Form>frmSelectAffinity</Form>
         </DCCReference>
         <DCCReference Include="Units\uHelpers.pas"/>
+        <DCCReference Include="Modules\TrayIcon\udmTrayIcon.pas">
+            <Form>dmTrayIcon</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Modules\TrayIcon\FMX.Trayicon.Win.pas"/>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
