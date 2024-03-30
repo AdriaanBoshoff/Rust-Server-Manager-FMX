@@ -594,7 +594,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 2
+              TabOrder = 3
               object lblServerAffinityHeader: TLabel
                 Align = Left
                 AutoSize = True
@@ -645,7 +645,7 @@ object frmMain: TfrmMain
               TextSettings.Font.StyleExt = {04060000000000000004000000}
               TextSettings.Trimming = None
               Text = 'Server Options'
-              TabOrder = 1
+              TabOrder = 2
             end
             object lblServerOptionsUIHeader: TLabel
               Align = MostTop
@@ -670,7 +670,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 3
+              TabOrder = 4
               object chkEnableDisableQuickServerControls: TCheckBox
                 Align = Left
                 Hint = 'Show Start / Stop Server options under Server Info.'
@@ -681,6 +681,278 @@ object frmMain: TfrmMain
                 TabOrder = 0
                 Text = 'Quick Server Controls'
                 OnChange = chkEnableDisableQuickServerControlsChange
+              end
+            end
+            object lblAutoRestartHeader: TLabel
+              Align = Top
+              StyledSettings = [Family, FontColor]
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 119.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 14.000000000000000000
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.Trimming = None
+              Text = 'Auto Restart'
+              TabOrder = 1
+            end
+            object lytAutoRestart1: TLayout
+              Align = Top
+              Margins.Top = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 146.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 7
+              object swtchAutoRestart1: TSwitch
+                Align = Left
+                IsChecked = False
+                Position.Y = 2.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                OnSwitch = swtchAutoRestart1Switch
+              end
+              object lblAutoRestart1Header: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 77.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Auto Restart 1'
+                TabOrder = 1
+              end
+              object tmedtAutoRestart1: TTimeEdit
+                Format = 'hh:nn'
+                Time = 0.208333333333333300
+                OnChange = tmedtAutoRestart1Change
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Position.X = 127.000000000000000000
+                Size.Width = 68.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 2
+              end
+              object lblAutoRestartWarningHeader: TLabel
+                Align = Left
+                AutoSize = True
+                Margins.Left = 10.000000000000000000
+                Position.X = 205.000000000000000000
+                Size.Width = 81.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = False
+                Text = 'Warning Timer:'
+                TabOrder = 3
+              end
+              object spnedtAutoRestartTimer1: TSpinBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 4
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 999999999.000000000000000000
+                Value = 300.000000000000000000
+                Position.X = 291.000000000000000000
+                Margins.Left = 5.000000000000000000
+                Size.Width = 125.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                OnChange = spnedtAutoRestartTimer1Change
+              end
+              object lblAutoRestartWarningSecs1: TLabel
+                Align = Left
+                AutoSize = True
+                Margins.Left = 5.000000000000000000
+                Position.X = 421.000000000000000000
+                Size.Width = 45.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = False
+                Text = 'Seconds'
+                TabOrder = 5
+              end
+            end
+            object lytAutoRestart2: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 176.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 6
+              object swtchAutoRestart2: TSwitch
+                Align = Left
+                IsChecked = False
+                Position.Y = 2.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                OnSwitch = swtchAutoRestart2Switch
+              end
+              object lblAutoRestart2Header: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 79.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Auto Restart 2'
+                TabOrder = 1
+              end
+              object tmedtAutoRestart2: TTimeEdit
+                Format = 'hh:nn'
+                Time = 0.500000000000000000
+                OnChange = tmedtAutoRestart2Change
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Position.X = 129.000000000000000000
+                Size.Width = 66.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 2
+              end
+              object lblAutoRestartWarningHeader2: TLabel
+                Align = Left
+                AutoSize = True
+                Margins.Left = 10.000000000000000000
+                Position.X = 205.000000000000000000
+                Size.Width = 81.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = False
+                Text = 'Warning Timer:'
+                TabOrder = 3
+              end
+              object spnedtAutoRestartTimer2: TSpinBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 4
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 999999999.000000000000000000
+                Value = 300.000000000000000000
+                Position.X = 291.000000000000000000
+                Margins.Left = 5.000000000000000000
+                Size.Width = 125.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                OnChange = spnedtAutoRestartTimer2Change
+              end
+              object lblAutoRestartWarningSecs2: TLabel
+                Align = Left
+                AutoSize = True
+                Margins.Left = 5.000000000000000000
+                Position.X = 421.000000000000000000
+                Size.Width = 45.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = False
+                Text = 'Seconds'
+                TabOrder = 5
+              end
+            end
+            object lytAutoRestart3: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 206.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 5
+              object swtchAutoRestart3: TSwitch
+                Align = Left
+                IsChecked = False
+                Position.Y = 2.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                OnSwitch = swtchAutoRestart3Switch
+              end
+              object lblAutoRestart3Header: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 79.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Auto Restart 3'
+                TabOrder = 1
+              end
+              object tmedtAutoRestart3: TTimeEdit
+                Format = 'hh:nn'
+                Time = 0.708333333333333400
+                OnChange = tmedtAutoRestart3Change
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Position.X = 129.000000000000000000
+                Size.Width = 66.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 2
+                ParentShowHint = False
+                ShowHint = False
+              end
+              object lblAutoRestartWarningHeader3: TLabel
+                Align = Left
+                AutoSize = True
+                Margins.Left = 10.000000000000000000
+                Position.X = 205.000000000000000000
+                Size.Width = 81.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = False
+                Text = 'Warning Timer:'
+                TabOrder = 3
+              end
+              object spnedtAutoRestartTimer3: TSpinBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 4
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 999999999.000000000000000000
+                Value = 300.000000000000000000
+                Position.X = 291.000000000000000000
+                Margins.Left = 5.000000000000000000
+                Size.Width = 125.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                OnChange = spnedtAutoRestartTimer3Change
+              end
+              object lblAutoRestartWarningSecs3: TLabel
+                Align = Left
+                AutoSize = True
+                Margins.Left = 5.000000000000000000
+                Position.X = 421.000000000000000000
+                Size.Width = 45.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = False
+                Text = 'Seconds'
+                TabOrder = 5
               end
             end
           end
@@ -2633,8 +2905,8 @@ object frmMain: TfrmMain
   end
   object pmTrayIcon: TPopupMenu
     Images = dmIcons.ilTrayIcon
-    Left = 320
-    Top = 320
+    Left = 80
+    Top = 448
     object mniTrayIconServerStatus: TMenuItem
       Enabled = False
       Locked = True
@@ -2661,6 +2933,34 @@ object frmMain: TfrmMain
       Text = 'Exit'
       ImageIndex = 0
       OnClick = mniTrayIconExitRSMClick
+    end
+  end
+  object lytAutoRestartOverlay: TLayout
+    Align = Contents
+    Size.Width = 1000.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 21
+    object rctnglBGAutoRestartOverlay: TRectangle
+      Align = Contents
+      Fill.Color = claBlack
+      Opacity = 0.899999976158142100
+      Size.Width = 1000.000000000000000000
+      Size.Height = 600.000000000000000000
+      Size.PlatformDefault = False
+      object lblAutoRestartOverlayMsg: TLabel
+        Align = Contents
+        StyledSettings = [Family, FontColor]
+        Size.Width = 1000.000000000000000000
+        Size.Height = 600.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 26.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000100000004000000}
+        TextSettings.HorzAlign = Center
+        Text = 'Auto Restarting in 10 seconds...'
+        TabOrder = 0
+      end
     end
   end
   object mltvwNav: TMultiView
@@ -4258,5 +4558,10 @@ object frmMain: TfrmMain
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
     Left = 96
     Top = 176
+  end
+  object tmrAutoRestart: TTimer
+    Interval = 10000
+    Left = 280
+    Top = 432
   end
 end

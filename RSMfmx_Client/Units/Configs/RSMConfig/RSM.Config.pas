@@ -24,10 +24,24 @@ type
         Enabled: Boolean;
         Title: string;
       end;
+      // Auto Restart Server
+    type
+      TRSMConfigAutoRestartItem = record
+        Enabled: Boolean;
+        Time: TTime;
+        WarningTimeSecs: Integer;
+      end;
+    type
+      TRSMConfigAutoRestart = record
+        AutoRestart1: TRSMConfigAutoRestartItem;
+        AutoRestart2: TRSMConfigAutoRestartItem;
+        AutoRestart3: TRSMConfigAutoRestartItem;
+      end;
   public
     { Public Variables }
     UI: TRSMConfigIU;
     TrayIcon: TRSMConfigTrayIcon;
+    AutoRestart: TRSMConfigAutoRestart;
   public
     { Public Methods }
     constructor Create;
@@ -60,6 +74,17 @@ begin
   // Tray Icon
   Self.TrayIcon.Enabled := True;
   Self.TrayIcon.Title := 'RSMfmx v3';
+
+  // Auto Restart
+  Self.AutoRestart.AutoRestart1.Enabled := False;
+  Self.AutoRestart.AutoRestart1.Time := EncodeTime(5, 0, 0, 0);
+  Self.AutoRestart.AutoRestart1.WarningTimeSecs := 300;
+  Self.AutoRestart.AutoRestart2.Enabled := False;
+  Self.AutoRestart.AutoRestart2.Time := EncodeTime(12, 0, 0, 0);
+  Self.AutoRestart.AutoRestart2.WarningTimeSecs := 300;
+  Self.AutoRestart.AutoRestart3.Enabled := False;
+  Self.AutoRestart.AutoRestart3.Time := EncodeTime(17, 0, 0, 0);
+  Self.AutoRestart.AutoRestart3.WarningTimeSecs := 300;
 
   // Load Config
   Self.LoadConfig;

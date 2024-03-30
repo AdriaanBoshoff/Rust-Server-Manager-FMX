@@ -12,7 +12,8 @@ uses
   System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading, FMX.Clipboard,
   FMX.Platform, sgcBase_Classes, sgcSocket_Classes, sgcTCP_Classes,
   sgcWebSocket_Classes, sgcWebSocket_Classes_Indy, sgcWebSocket_Client,
-  sgcWebSocket, RSM.Core, FMX.DialogService, System.Skia, FMX.Skia;
+  sgcWebSocket, RSM.Core, FMX.DialogService, System.Skia, FMX.Skia,
+  FMX.DateTimeCtrls;
 
 type
   TfrmMain = class(TForm)
@@ -257,6 +258,32 @@ type
     mniTrayIconSep1: TMenuItem;
     mniTrayIconSep2: TMenuItem;
     mniTrayIconServerStatus: TMenuItem;
+    lblAutoRestartHeader: TLabel;
+    lytAutoRestart1: TLayout;
+    lytAutoRestart2: TLayout;
+    lytAutoRestart3: TLayout;
+    swtchAutoRestart1: TSwitch;
+    swtchAutoRestart2: TSwitch;
+    swtchAutoRestart3: TSwitch;
+    lblAutoRestart1Header: TLabel;
+    lblAutoRestart2Header: TLabel;
+    lblAutoRestart3Header: TLabel;
+    tmedtAutoRestart1: TTimeEdit;
+    tmedtAutoRestart2: TTimeEdit;
+    tmedtAutoRestart3: TTimeEdit;
+    tmrAutoRestart: TTimer;
+    lblAutoRestartWarningHeader: TLabel;
+    lblAutoRestartWarningHeader2: TLabel;
+    lblAutoRestartWarningHeader3: TLabel;
+    spnedtAutoRestartTimer1: TSpinBox;
+    spnedtAutoRestartTimer2: TSpinBox;
+    spnedtAutoRestartTimer3: TSpinBox;
+    lblAutoRestartWarningSecs1: TLabel;
+    lblAutoRestartWarningSecs2: TLabel;
+    lblAutoRestartWarningSecs3: TLabel;
+    lytAutoRestartOverlay: TLayout;
+    rctnglBGAutoRestartOverlay: TRectangle;
+    lblAutoRestartOverlayMsg: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -300,6 +327,15 @@ type
     procedure mniTrayIconStopServerClick(Sender: TObject);
     procedure OnServerPIDResized(Sender: TObject);
     procedure spnbxMaxPlayersMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
+    procedure spnedtAutoRestartTimer1Change(Sender: TObject);
+    procedure spnedtAutoRestartTimer2Change(Sender: TObject);
+    procedure spnedtAutoRestartTimer3Change(Sender: TObject);
+    procedure swtchAutoRestart1Switch(Sender: TObject);
+    procedure swtchAutoRestart2Switch(Sender: TObject);
+    procedure swtchAutoRestart3Switch(Sender: TObject);
+    procedure tmedtAutoRestart1Change(Sender: TObject);
+    procedure tmedtAutoRestart2Change(Sender: TObject);
+    procedure tmedtAutoRestart3Change(Sender: TObject);
     procedure tmrCheckForUpdateTimer(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
     procedure tmrServerInfoTimer(Sender: TObject);
@@ -859,6 +895,17 @@ begin
 
   // Tray Icon (RSM > Tray Icon)
   mniTrayIconEnabled.IsChecked := rsmConfig.TrayIcon.Enabled;
+
+  // Auto Restart
+  swtchAutoRestart1.IsChecked := rsmConfig.AutoRestart.AutoRestart1.Enabled;
+  swtchAutoRestart2.IsChecked := rsmConfig.AutoRestart.AutoRestart2.Enabled;
+  swtchAutoRestart3.IsChecked := rsmConfig.AutoRestart.AutoRestart3.Enabled;
+  tmedtAutoRestart1.Time := rsmConfig.AutoRestart.AutoRestart1.Time;
+  tmedtAutoRestart2.Time := rsmConfig.AutoRestart.AutoRestart2.Time;
+  tmedtAutoRestart3.Time := rsmConfig.AutoRestart.AutoRestart3.Time;
+  spnedtAutoRestartTimer1.Value := rsmConfig.AutoRestart.AutoRestart1.WarningTimeSecs;
+  spnedtAutoRestartTimer2.Value := rsmConfig.AutoRestart.AutoRestart2.WarningTimeSecs;
+  spnedtAutoRestartTimer3.Value := rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);
@@ -1054,6 +1101,60 @@ end;
 procedure TfrmMain.spnbxMaxPlayersMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
 begin
   Abort;
+end;
+
+procedure TfrmMain.spnedtAutoRestartTimer1Change(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart1.WarningTimeSecs := Trunc(spnedtAutoRestartTimer1.Value);
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.spnedtAutoRestartTimer2Change(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart2.WarningTimeSecs := Trunc(spnedtAutoRestartTimer2.Value);
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.spnedtAutoRestartTimer3Change(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs := Trunc(spnedtAutoRestartTimer3.Value);
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.swtchAutoRestart1Switch(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart1.Enabled := swtchAutoRestart1.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.swtchAutoRestart2Switch(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart2.Enabled := swtchAutoRestart2.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.swtchAutoRestart3Switch(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart3.Enabled := swtchAutoRestart3.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.tmedtAutoRestart1Change(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart1.Time := tmedtAutoRestart1.Time;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.tmedtAutoRestart2Change(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart2.Time := tmedtAutoRestart2.Time;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.tmedtAutoRestart3Change(Sender: TObject);
+begin
+  rsmConfig.AutoRestart.AutoRestart3.Time := tmedtAutoRestart3.Time;
+  rsmConfig.SaveConfig;
 end;
 
 procedure TfrmMain.tmrCheckForUpdateTimer(Sender: TObject);
