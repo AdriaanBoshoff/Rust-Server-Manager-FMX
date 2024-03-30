@@ -8,10 +8,11 @@ uses
 type
   TdmTrayIcon = class(TDataModule)
     procedure DataModuleCreate(Sender: TObject);
+    procedure OnTrayIconDblClick(Sender: TObject);
   private
     { Private declarations }
   public
-  trayIcon: TFMXTrayIcon;
+    trayIcon: TFMXTrayIcon;
     procedure UpdateConfig;
   end;
 
@@ -30,7 +31,13 @@ uses
 procedure TdmTrayIcon.DataModuleCreate(Sender: TObject);
 begin
   trayIcon := TFMXTrayIcon.Create(frmMain);
+  trayIcon.OnDblClick := OnTrayIconDblClick;
   Self.UpdateConfig;
+end;
+
+procedure TdmTrayIcon.OnTrayIconDblClick(Sender: TObject);
+begin
+  frmMain.BringToForeground;
 end;
 
 procedure TdmTrayIcon.UpdateConfig;

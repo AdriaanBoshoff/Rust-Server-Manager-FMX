@@ -2631,6 +2631,38 @@ object frmMain: TfrmMain
     Left = 80
     Top = 328
   end
+  object pmTrayIcon: TPopupMenu
+    Images = dmIcons.ilTrayIcon
+    Left = 320
+    Top = 320
+    object mniTrayIconServerStatus: TMenuItem
+      Enabled = False
+      Locked = True
+      Text = 'STATUS'
+    end
+    object mniTrayIconSep2: TMenuItem
+      Text = '-'
+    end
+    object mniTrayIconStartServer: TMenuItem
+      Text = 'Start Server'
+      ImageIndex = 1
+      OnClick = mniTrayIconStartServerClick
+    end
+    object mniTrayIconStopServer: TMenuItem
+      Text = 'Stop Server'
+      ImageIndex = 2
+      OnClick = mniTrayIconStopServerClick
+    end
+    object mniTrayIconSep1: TMenuItem
+      Locked = True
+      Text = '-'
+    end
+    object mniTrayIconExitRSM: TMenuItem
+      Text = 'Exit'
+      ImageIndex = 0
+      OnClick = mniTrayIconExitRSMClick
+    end
+  end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
     Mode = NavigationPane
@@ -4226,37 +4258,5 @@ object frmMain: TfrmMain
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
     Left = 96
     Top = 176
-  end
-  object pmTrayIcon: TPopupMenu
-    Images = dmIcons.ilTrayIcon
-    Left = 320
-    Top = 320
-    object mniTrayIconServerStatus: TMenuItem
-      Enabled = False
-      Locked = True
-      Text = 'STATUS'
-    end
-    object mniTrayIconSep2: TMenuItem
-      Text = '-'
-    end
-    object mniTrayIconStartServer: TMenuItem
-      Text = 'Start Server'
-      ImageIndex = 1
-      OnClick = mniTrayIconStartServerClick
-    end
-    object mniTrayIconStopServer: TMenuItem
-      Text = 'Stop Server'
-      ImageIndex = 2
-      OnClick = mniTrayIconStopServerClick
-    end
-    object mniTrayIconSep1: TMenuItem
-      Locked = True
-      Text = '-'
-    end
-    object mniTrayIconExitRSM: TMenuItem
-      Text = 'Exit'
-      ImageIndex = 0
-      OnClick = mniTrayIconExitRSMClick
-    end
   end
 end
