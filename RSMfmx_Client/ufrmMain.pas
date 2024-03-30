@@ -281,9 +281,6 @@ type
     lblAutoRestartWarningSecs1: TLabel;
     lblAutoRestartWarningSecs2: TLabel;
     lblAutoRestartWarningSecs3: TLabel;
-    lytAutoRestartOverlay: TLayout;
-    rctnglBGAutoRestartOverlay: TRectangle;
-    lblAutoRestartOverlayMsg: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -336,6 +333,7 @@ type
     procedure tmedtAutoRestart1Change(Sender: TObject);
     procedure tmedtAutoRestart2Change(Sender: TObject);
     procedure tmedtAutoRestart3Change(Sender: TObject);
+    procedure tmrAutoRestartTimer(Sender: TObject);
     procedure tmrCheckForUpdateTimer(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
     procedure tmrServerInfoTimer(Sender: TObject);
@@ -352,6 +350,8 @@ type
     FServerInfoExpandAfter: Boolean;
     // Skip Update Message
     FSkipUpdateMessage: Boolean;
+    // Do Auto Restart
+    FDoAutoRestart: boolean;
   private
     { Private declarations }
     // UI
@@ -711,6 +711,7 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  FDoAutoRestart := False;
   FSkipUpdateMessage := False;
 
 {$IFDEF DEBUG}
@@ -1157,6 +1158,37 @@ begin
   rsmConfig.SaveConfig;
 end;
 
+procedure TfrmMain.tmrAutoRestartTimer(Sender: TObject);
+begin
+  if FDoAutoRestart then
+    Exit;
+
+  if rsmConfig.AutoRestart.AutoRestart1.Enabled then
+  begin
+    if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart1.Time)) then
+      Exit;
+
+    wsClientRcon.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart1.WarningTimeSecs.ToString);
+    FDoAutoRestart := True;
+  end
+  else if rsmConfig.AutoRestart.AutoRestart2.Enabled then
+  begin
+    if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart2.Time)) then
+      Exit;
+
+    wsClientRcon.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart2.WarningTimeSecs.ToString);
+    FDoAutoRestart := True;
+  end
+  else if rsmConfig.AutoRestart.AutoRestart3.Enabled then
+  begin
+    if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart3.Time)) then
+      Exit;
+
+    wsClientRcon.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs.ToString);
+    FDoAutoRestart := True;
+  end;
+end;
+
 procedure TfrmMain.tmrCheckForUpdateTimer(Sender: TObject);
 begin
   if FSkipUpdateMessage then
@@ -1266,6 +1298,13 @@ begin
     wsClientRcon.ConnectTimeout := 1;
     wsClientRcon.Active := True;
   end;
+
+  // Auto Restart
+  if not serverProcess.isRunning then
+  begin
+    if FDoAutoRestart then
+      btnStartServerClick(btnStartServer);
+  end;
 end;
 
 procedure TfrmMain.tmrServerInfoTimer(Sender: TObject);
@@ -1283,6 +1322,10 @@ begin
 
   // Server Info Command timer
   tmrServerInfo.Enabled := True;
+
+  // Auto Restart Timer
+  FDoAutoRestart := False;
+  tmrAutoRestart.Enabled := True;
 end;
 
 procedure TfrmMain.wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
@@ -1293,6 +1336,9 @@ begin
 
   // Server Info Command timer
   tmrServerInfo.Enabled := False;
+
+  // Auto Restart Timer
+  tmrAutoRestart.Enabled := False;
 
   // Reset Server Info UI
   ResetServerInfoValues;

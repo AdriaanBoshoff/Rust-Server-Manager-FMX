@@ -2935,33 +2935,12 @@ object frmMain: TfrmMain
       OnClick = mniTrayIconExitRSMClick
     end
   end
-  object lytAutoRestartOverlay: TLayout
-    Align = Contents
-    Size.Width = 1000.000000000000000000
-    Size.Height = 600.000000000000000000
-    Size.PlatformDefault = False
-    Visible = False
-    TabOrder = 21
-    object rctnglBGAutoRestartOverlay: TRectangle
-      Align = Contents
-      Fill.Color = claBlack
-      Opacity = 0.899999976158142100
-      Size.Width = 1000.000000000000000000
-      Size.Height = 600.000000000000000000
-      Size.PlatformDefault = False
-      object lblAutoRestartOverlayMsg: TLabel
-        Align = Contents
-        StyledSettings = [Family, FontColor]
-        Size.Width = 1000.000000000000000000
-        Size.Height = 600.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.Size = 26.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000100000004000000}
-        TextSettings.HorzAlign = Center
-        Text = 'Auto Restarting in 10 seconds...'
-        TabOrder = 0
-      end
-    end
+  object tmrAutoRestart: TTimer
+    Enabled = False
+    Interval = 10000
+    OnTimer = tmrAutoRestartTimer
+    Left = 280
+    Top = 432
   end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
@@ -4558,10 +4537,5 @@ object frmMain: TfrmMain
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
     Left = 96
     Top = 176
-  end
-  object tmrAutoRestart: TTimer
-    Interval = 10000
-    Left = 280
-    Top = 432
   end
 end
