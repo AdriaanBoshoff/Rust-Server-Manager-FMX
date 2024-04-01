@@ -3,7 +3,8 @@
 interface
 
 uses
-  System.JSON;
+  System.JSON, System.Threading, Rest.Client, Rest.Types, System.SysUtils,
+  ufrmMain, uframeMessageBox, System.Classes;
 
 type
   TRustManifest = class
@@ -18,6 +19,7 @@ type
     Administrators: TArray<TAdministrator>;
     BlockedServers: TArray<string>;
     procedure ParseManifest(const Data: string);
+    procedure CheckIfServerIsBlocked;
   end;
 
 var
@@ -26,6 +28,87 @@ var
 implementation
 
 { TRustManifest }
+
+procedure TRustManifest.CheckIfServerIsBlocked;
+begin
+  TTask.Run(
+    procedure
+    begin
+      var myIP: string;
+      var serverBanned := False;
+      var serverBlocked := False;
+      var bannedValue: string;
+      var blockedValue: string;
+
+      var rest := TRESTRequest.Create(nil);
+      try
+        rest.Client := TRESTClient.Create(rest);
+        rest.Response := TRESTResponse.Create(rest);
+        rest.Client.RaiseExceptionOn500 := False;
+
+        rest.Client.BaseURL := 'http://myip.expert/api/';
+
+        rest.Execute;
+
+        if not (rest.Response.StatusCode = 200) then
+          Exit;
+
+        myIP := rest.Response.JSONValue.GetValue<string>('userIp');
+      finally
+        rest.Free;
+      end;
+
+      // Check BannedIPs
+      for var banned in BannedIPs do
+      begin
+        if banned.Contains(myIP) then
+        begin
+          serverBanned := True;
+          bannedValue := banned;
+          Break;
+        end;
+      end;
+
+      // Checked Blocked Servers
+      for var blocked in BlockedServers do
+      begin
+        if blocked.Contains(myIP) then
+        begin
+          serverBlocked := True;
+          blockedValue := blocked;
+          Break;
+        end;
+      end;
+
+      TThread.Synchronize(TThread.Current,
+        procedure
+        begin
+          // Server Is banned
+          if serverBanned then
+          begin
+            ShowMessageBox(Format('''
+              Your IP has been found in the Banned section in the Rust Manifest.
+
+              Your server will most likely not show in the server list and players might be prevented from joining your server.
+
+              Banned Value: %s
+              ''', [bannedValue]), 'Server Banned', frmMain);
+          end;
+
+          // Server Is Blocked
+          if serverBlocked then
+          begin
+            ShowMessageBox(Format('''
+              Your IP has been found in the BlockedServers section in the Rust Manifest.
+
+              Your server will most likely not show in the server list and players might be prevented from joinging your server.
+
+              BlockedServer Value: %s
+              ''', [blockedValue]), 'Server Banned', frmMain);
+          end;
+        end);
+    end);
+end;
 
 procedure TRustManifest.ParseManifest(const Data: string);
 begin
@@ -61,6 +144,8 @@ begin
   finally
     jdata.Free;
   end;
+
+  Self.CheckIfServerIsBlocked;
 end;
 
 initialization
