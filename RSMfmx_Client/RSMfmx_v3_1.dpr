@@ -65,7 +65,7 @@ uses
   uHelpers in 'Units\uHelpers.pas',
   udmTrayIcon in 'Modules\TrayIcon\udmTrayIcon.pas' {dmTrayIcon: TDataModule},
   FMX.Trayicon.Win in 'Modules\TrayIcon\FMX.Trayicon.Win.pas',
-  Rust in 'Units\RustManifest\Rust.Manifest';
+  Rust.Manifest in 'Units\RustManifest\Rust.Manifest.pas';
 
 {$R *.res}
 
