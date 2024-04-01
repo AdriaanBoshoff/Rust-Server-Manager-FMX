@@ -2939,8 +2939,8 @@ object frmMain: TfrmMain
     Enabled = False
     Interval = 10000
     OnTimer = tmrAutoRestartTimer
-    Left = 280
-    Top = 432
+    Left = 408
+    Top = 216
   end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger

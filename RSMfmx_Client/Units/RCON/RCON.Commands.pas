@@ -31,6 +31,10 @@ const
   RCON_ID_Carbon_LoadModuleConfig = 4;
   RCON_CMD_Carbon_LoadModuleConfig = 'c.loadmoduleconfig';
 
+  // Server Manifest
+  RCON_ID_MANIFEST = 5;
+  RCON_CMD_PRINTMANIFEST = 'manifest.printmanifestraw';
+
 implementation
 
 end.

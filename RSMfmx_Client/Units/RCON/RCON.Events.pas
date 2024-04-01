@@ -17,6 +17,8 @@ type
     procedure OnPlayerCountChanged(const OldCount, NewCount: Integer);
     // On Playerlist
     procedure OnPlayerList(const PlayerList: TArray<TRCONPlayerListPlayer>);
+    // On Server Manifest
+    procedure OnServerManifest(const Data: string);
     { Public Methods }
   public
     procedure OnRconMessage(const rconMessage: TRCONMessage);
@@ -31,7 +33,7 @@ implementation
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
   RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager, uMisc,
-  uframeMessageBox;
+  uframeMessageBox, Rust.Manifest;
 
 { TRCONEvents }
 
@@ -74,6 +76,12 @@ begin
   if rconMessage.aIdentifier = RCON_ID_PLAYERLIST then
   begin
     OnPlayerList(TRCONParser.ParsePlayerList(rconMessage.aMessage));
+  end;
+
+  // Server Manifest
+  if rconMessage.aIdentifier = RCON_ID_MANIFEST then
+  begin
+    OnServerManifest(rconMessage.aMessage);
   end;
 end;
 
@@ -118,6 +126,11 @@ begin
       ShowMessageBox('Error parsing server info. Disabling server info. Please report this on the discord server.' + sLineBreak + E.Message, 'Server Info Error', frmMain);
     end;
   end;
+end;
+
+procedure TRCONEvents.OnServerManifest(const Data: string);
+begin
+  rustManifest.ParseManifest(Data);
 end;
 
 initialization

@@ -1326,6 +1326,9 @@ begin
   // Auto Restart Timer
   FDoAutoRestart := False;
   tmrAutoRestart.Enabled := True;
+
+  // Get Manifest
+  wsClientRcon.SendRconCommand(RCON_CMD_PRINTMANIFEST, RCON_ID_MANIFEST);
 end;
 
 procedure TfrmMain.wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
