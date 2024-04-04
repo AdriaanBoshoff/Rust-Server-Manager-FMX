@@ -343,7 +343,7 @@ type
   private
     { Private Const }
     const
-      VERSION = '2024.03.30';
+      VERSION = '2024.04.04';
   private
     { Private Variables }
     // Server Info auto expand
