@@ -194,6 +194,7 @@ object frmMain: TfrmMain
         TextSettings.Trimming = None
         Text = 'Disconnected'
         TabOrder = 1
+        OnClick = lblStatRconValueClick
         OnResized = lblStatRconValueResized
       end
     end
@@ -4492,6 +4493,8 @@ object frmMain: TfrmMain
     OnConnect = wsClientRconConnect
     OnMessage = wsClientRconMessage
     OnDisconnect = wsClientRconDisconnect
+    OnError = wsClientRconError
+    OnException = wsClientRconException
     Authentication.Enabled = False
     Authentication.URL.Enabled = True
     Authentication.Session.Enabled = False

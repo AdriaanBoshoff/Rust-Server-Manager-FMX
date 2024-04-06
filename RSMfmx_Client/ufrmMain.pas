@@ -13,7 +13,7 @@ uses
   FMX.Platform, sgcBase_Classes, sgcSocket_Classes, sgcTCP_Classes,
   sgcWebSocket_Classes, sgcWebSocket_Classes_Indy, sgcWebSocket_Client,
   sgcWebSocket, RSM.Core, FMX.DialogService, System.Skia, FMX.Skia,
-  FMX.DateTimeCtrls;
+  FMX.DateTimeCtrls, System.NetEncoding;
 
 type
   TfrmMain = class(TForm)
@@ -311,6 +311,7 @@ type
     procedure lblAppVersionValueResized(Sender: TObject);
     procedure lblExperimentalWarningWords2Click(Sender: TObject);
     procedure lblStatPlayerCountValueResized(Sender: TObject);
+    procedure lblStatRconValueClick(Sender: TObject);
     procedure lblStatRconValueResized(Sender: TObject);
     procedure lblStatServerFPSValueResized(Sender: TObject);
     procedure lstNavChange(Sender: TObject);
@@ -339,6 +340,8 @@ type
     procedure tmrServerInfoTimer(Sender: TObject);
     procedure wsClientRconConnect(Connection: TsgcWSConnection);
     procedure wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
+    procedure wsClientRconError(Connection: TsgcWSConnection; const Error: string);
+    procedure wsClientRconException(Connection: TsgcWSConnection; E: Exception);
     procedure wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
   private
     { Private Const }
@@ -486,7 +489,8 @@ end;
 
 procedure TfrmMain.btnRestartServerClick(Sender: TObject);
 begin
-  TRCON.SendRconCommand('restart', 0, wsClientRcon);
+  TRCON.SendRconCommand('restart 5', 0, wsClientRcon);
+  FDoAutoRestart := True;
 end;
 
 procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
@@ -859,6 +863,11 @@ end;
 procedure TfrmMain.lblStatPlayerCountValueResized(Sender: TObject);
 begin
   lytStatPlayerCount.Width := lblStatPlayerCountHeader.Width + 3 + lblStatPlayerCountValue.Width;
+end;
+
+procedure TfrmMain.lblStatRconValueClick(Sender: TObject);
+begin
+  ShowMessageBox(lblStatRconValue.Text, 'Rcon Status Value', Self);
 end;
 
 procedure TfrmMain.lblStatRconValueResized(Sender: TObject);
@@ -1292,10 +1301,14 @@ begin
   // try to connect
   if isServerRunning and not wsClientRcon.Active then
   begin
-    wsClientRcon.Host := 'localhost';
+    if serverConfig.Networking.RconIP = '0.0.0.0' then
+      wsClientRcon.Host := 'localhost'
+    else
+      wsClientRcon.Host := serverConfig.Networking.RconIP;
+
     wsClientRcon.Port := serverConfig.Networking.RconPort;
-    wsClientRcon.Options.Parameters := '/' + serverConfig.Networking.RconPassword;
-    wsClientRcon.ConnectTimeout := 1;
+    wsClientRcon.Options.Parameters := '/' + TNetEncoding.URL.Encode(serverConfig.Networking.RconPassword);
+    wsClientRcon.ConnectTimeout := 5;
     wsClientRcon.Active := True;
   end;
 
@@ -1348,6 +1361,21 @@ begin
 
   // Clear Online Players
   frmPlayerManager.ClearOnlinePlayersUI;
+end;
+
+procedure TfrmMain.wsClientRconError(Connection: TsgcWSConnection; const Error: string);
+begin
+  lblStatRconValue.Text := 'Err: ' + Error;
+end;
+
+procedure TfrmMain.wsClientRconException(Connection: TsgcWSConnection; E: Exception);
+begin
+  if E.Message.ToLower.Contains('closed gracefully') then
+    lblStatRconValue.Text := 'Invalid rcon Password. Only use A-z and 0-9 chars!'
+  else if E.Message.ToLower.Contains('timed out') then
+    lblStatRconValue.Text := 'Waiting rcon server to start...'
+  else
+    lblStatRconValue.Text := 'Connection Failure: ' + E.ClassName + ': ' + E.Message;
 end;
 
 procedure TfrmMain.wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
