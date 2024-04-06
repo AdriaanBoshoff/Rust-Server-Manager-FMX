@@ -281,11 +281,16 @@ type
     lblAutoRestartWarningSecs1: TLabel;
     lblAutoRestartWarningSecs2: TLabel;
     lblAutoRestartWarningSecs3: TLabel;
+    lytServerNetworking4: TLayout;
+    lblFavouritesListURLHeader: TLabel;
+    edtFavouritesListEndpoint: TEdit;
+    btnFavouritesListEndpointHelp: TEditButton;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnEditServerDescriptionClick(Sender: TObject);
+    procedure btnFavouritesListEndpointHelpClick(Sender: TObject);
     procedure btnForceSaveClick(Sender: TObject);
     procedure btnGameModeInfoClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -460,6 +465,11 @@ begin
   frameEditServerDescription.BringToFront;
 end;
 
+procedure TfrmMain.btnFavouritesListEndpointHelpClick(Sender: TObject);
+begin
+  OpenURL('https://wiki.facepunch.com/rust/dns-records#favoriteslist');
+end;
+
 procedure TfrmMain.btnForceSaveClick(Sender: TObject);
 begin
   TRCON.SendRconCommand('server.save', 0, wsClientRcon);
@@ -524,6 +534,7 @@ begin
   serverConfig.Networking.AppIP := edtAppIPValue.Text;
   serverConfig.Networking.AppPort := Trunc(nmbrbxAppPortValue.Value);
   serverConfig.Networking.AppPublicIP := edtAppPublicIPValue.Text;
+  serverConfig.Networking.FavouritesListEndpoint := edtFavouritesListEndpoint.Text;
 
   // GameMode
   serverConfig.GameMode.Index := cbbServerGamemodeValue.ItemIndex;
@@ -633,6 +644,9 @@ begin
     if not serverConfig.Networking.AppPublicIP.Trim.IsEmpty then
     // Dont add if empty
       slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
+
+    // Networking - Misc
+   slParams.Add('+server.favoritesEndpoint "' + serverConfig.Networking.FavouritesListEndpoint + '" ^');
 
     // Start Server and Save PID
     serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
@@ -1058,6 +1072,7 @@ begin
   edtAppIPValue.Text := serverConfig.Networking.AppIP;
   nmbrbxAppPortValue.Value := serverConfig.Networking.AppPort;
   edtAppPublicIPValue.Text := serverConfig.Networking.AppPublicIP;
+  edtFavouritesListEndpoint.Text := serverConfig.Networking.FavouritesListEndpoint;
 
   // GameMode
   if serverConfig.GameMode.Index <= cbbServerGamemodeValue.Count - 1 then

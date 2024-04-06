@@ -48,6 +48,7 @@ type
         AppIP: string;
         AppPort: Integer;
         AppPublicIP: string;
+        FavouritesListEndpoint: string;
       end;
   private
       { Private Variables }
@@ -123,6 +124,7 @@ begin
   Self.Networking.AppIP := '0.0.0.0';
   Self.Networking.AppPort := 28018; // TCP
   Self.Networking.AppPublicIP := '';
+  Self.Networking.FavouritesListEndpoint := '';
 
   // GameMode
   Self.GameMode.Index := 0;
@@ -225,6 +227,10 @@ begin
   if Self.FServerCFG.IndexOfName('server.censorplayerlist') <> -1 then
     self.FServerCFG.Delete(Self.FServerCFG.IndexOfName('server.censorplayerlist'));
   Self.FServerCFG.AddPair('server.censorplayerlist', BoolToStr(Self.Misc.CensorPlayerList, True));
+  // Favourites List Endpoint
+  if Self.FServerCFG.IndexOfName('server.favoritesendpoint') <> -1 then
+    self.FServerCFG.Delete(Self.FServerCFG.IndexOfName('server.favoritesendpoint'));
+  Self.FServerCFG.AddPair('server.favoritesendpoint', Self.Networking.FavouritesListEndpoint.QuotedString('"'));
 
   // server.cfg File
   Self.FServerCFG.SaveToFile(GetServerCFGFile, TEncoding.UTF8);

@@ -339,7 +339,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 484.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -362,7 +362,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -964,7 +964,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1697,11 +1697,11 @@ object frmMain: TfrmMain
             Position.Y = 550.000000000000000000
             ShowCheck = False
             Size.Width = 684.000000000000000000
-            Size.Height = 121.000000000000000000
+            Size.Height = 146.000000000000000000
             Size.PlatformDefault = False
             Text = 'Server Networking'
             TabOrder = 14
-            ContentSize = '96'
+            ContentSize = '121'
             object lytServerNetworking1: TLayout
               Align = Top
               Margins.Left = 10.000000000000000000
@@ -2034,12 +2034,60 @@ object frmMain: TfrmMain
                 TextPrompt = 'Public IP'
               end
             end
+            object lytServerNetworking4: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 90.000000000000000000
+              Size.Width = 664.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              object lblFavouritesListURLHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 133.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Favourites List Endpoint:'
+                TabOrder = 2
+              end
+              object edtFavouritesListEndpoint: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Left
+                TabOrder = 3
+                Position.X = 138.000000000000000000
+                Margins.Left = 5.000000000000000000
+                Size.Width = 317.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'rust.mydomain.com'
+                object btnFavouritesListEndpointHelp: TEditButton
+                  Touch.InteractiveGestures = [LongTap]
+                  CanFocus = False
+                  Cursor = crArrow
+                  TextSettings.Trimming = None
+                  Size.Width = 80.000000000000000000
+                  Size.Height = 21.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  Text = 'What'#39's this?'
+                  OnClick = btnFavouritesListEndpointHelpClick
+                end
+              end
+            end
           end
           object expndrServerConfigServerCFG: TExpander
             Align = Top
             Margins.Top = 10.000000000000000000
             Position.X = 10.000000000000000000
-            Position.Y = 681.000000000000000000
+            Position.Y = 706.000000000000000000
             ShowCheck = False
             Size.Width = 684.000000000000000000
             Size.Height = 250.000000000000000000
@@ -2906,8 +2954,8 @@ object frmMain: TfrmMain
   end
   object pmTrayIcon: TPopupMenu
     Images = dmIcons.ilTrayIcon
-    Left = 80
-    Top = 448
+    Left = 88
+    Top = 384
     object mniTrayIconServerStatus: TMenuItem
       Enabled = False
       Locked = True
