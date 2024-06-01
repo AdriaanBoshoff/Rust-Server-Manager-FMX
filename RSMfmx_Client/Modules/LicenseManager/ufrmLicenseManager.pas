@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit, FMX.Layouts, FMX.Objects,
-  System.IOUtils, System.Threading;
+  System.IOUtils, System.Threading, System.Net.URLClient;
 
 type
   TfrmLicenseManager = class(TForm)
@@ -28,6 +28,7 @@ type
   private
     { Private declarations }
     FLicenseFile: string;
+    procedure ValidateCert(const Sender: TObject; const ARequest: TURLRequest; const Certificate: TCertificate; var Accepted: Boolean);
   public
     { Public declarations }
   end;
@@ -59,6 +60,17 @@ begin
     edtLicenseKey.Text := TFile.ReadAllText(FLicenseFile, TEncoding.UTF8);
     btnCheckClick(btnCheck);
   end;
+end;
+
+procedure TfrmLicenseManager.ValidateCert(const Sender: TObject; const ARequest: TURLRequest; const Certificate: TCertificate; var Accepted: Boolean);
+begin
+//  TThread.Synchronize(TThread.Current,
+//    procedure
+//    begin
+//      ShowMessage(Certificate.PublicKey);
+//    end);
+
+  Accepted := True;
 end;
 
 procedure TfrmLicenseManager.btnCheckClick(Sender: TObject);
@@ -101,46 +113,60 @@ begin
         var strWriter := TStringWriter.Create;
         var writer := TJsonTextWriter.Create(strWriter);
         try
-          writer.WriteStartObject;
-          writer.WritePropertyName('licenseKey');
-          writer.WriteValue(edtLicenseKey.Text);
-          writer.WriteEndObject;
+          try
+            writer.WriteStartObject;
+            writer.WritePropertyName('licenseKey');
+            writer.WriteValue(edtLicenseKey.Text);
+            writer.WriteEndObject;
 
-          rest.Body.Add(strWriter.ToString, TRestContentType.ctAPPLICATION_JSON);
+            rest.Body.Add(strWriter.ToString, TRestContentType.ctAPPLICATION_JSON);
 
-          rest.Method := TRESTRequestMethod.rmGET;
+            rest.Method := TRESTRequestMethod.rmGET;
 
-          rest.Execute;
+            rest.Client.OnValidateCertificate := ValidateCert;
+            rest.SynchronizedEvents := False;
 
-          if rest.Response.JSONValue.GetValue<Boolean>('Valid') then
-          begin
-            TThread.Synchronize(TThread.Current,
-              procedure
-              begin
-                TFile.WriteAllText(FLicenseFile, edtLicenseKey.Text, TEncoding.UTF8);
+            rest.Execute;
 
-                Application.CreateForm(TfrmMain, frmMain);
-                Application.MainForm := frmMain;
-                frmMain.Show;
+            if rest.Response.JSONValue.GetValue<Boolean>('Valid') then
+            begin
+              TThread.Synchronize(TThread.Current,
+                procedure
+                begin
+                  TFile.WriteAllText(FLicenseFile, edtLicenseKey.Text, TEncoding.UTF8);
 
-                Self.Close;
-              end);
-          end
-          else if not rest.Response.JSONValue.GetValue<string>('Message').Trim.IsEmpty then
-          begin
-            TThread.Synchronize(TThread.Current,
-              procedure
-              begin
-                ShowMessage(rest.Response.JSONValue.GetValue<string>('Message'));
-              end);
-          end
-          else
-          begin
-            TThread.Synchronize(TThread.Current,
-              procedure
-              begin
-                ShowMessage('Invalid License');
-              end);
+                  Application.CreateForm(TfrmMain, frmMain);
+                  Application.MainForm := frmMain;
+                  frmMain.Show;
+
+                  Self.Close;
+                end);
+            end
+            else if not rest.Response.JSONValue.GetValue<string>('Message').Trim.IsEmpty then
+            begin
+              TThread.Synchronize(TThread.Current,
+                procedure
+                begin
+                  ShowMessage(rest.Response.JSONValue.GetValue<string>('Message'));
+                end);
+            end
+            else
+            begin
+              TThread.Synchronize(TThread.Current,
+                procedure
+                begin
+                  ShowMessage('Invalid License');
+                end);
+            end;
+          except
+            on E: Exception do
+            begin
+              TThread.Synchronize(TThread.Current,
+                procedure
+                begin
+                  ShowMessage('[TfrmLicenseManager.btnCheckClick] ' + E.ClassName + ': ' + E.Message);
+                end);
+            end;
           end;
         finally
           writer.Free;
