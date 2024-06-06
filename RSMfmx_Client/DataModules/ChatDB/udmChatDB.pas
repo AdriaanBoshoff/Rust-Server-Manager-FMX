@@ -9,7 +9,18 @@ uses
   FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
   FireDAC.Stan.Async, FireDAC.FMXUI.Wait, Data.DB, FireDAC.Comp.Client,
   FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
-  FireDAC.DApt, FireDAC.Comp.DataSet, Rcon.Types;
+  FireDAC.DApt, FireDAC.Comp.DataSet, Rcon.Types, System.DateUtils;
+
+type
+  TDBChat = record
+    ID: Integer;
+    Username: string;
+    UserID: string;
+    BetterChatUsername: string;
+    CreatedDTM: TDateTime;
+    ChannelID: Integer;
+    Message: string;
+  end;
 
 type
   TdmChatDB = class(TDataModule)
@@ -23,6 +34,7 @@ type
   public
     { Public declarations }
     procedure InsertChat(const Chat: TRconChat);
+    function GetChats(const fromDTM, toDTM: TDateTime; const SteamID: string = ''; const DescendingOrder: Boolean = True): TArray<TDBChat>;
   end;
 
 var
@@ -40,6 +52,57 @@ uses
 procedure TdmChatDB.DataModuleDestroy(Sender: TObject);
 begin
   conChat.Connected := False;
+end;
+
+function TdmChatDB.GetChats(const fromDTM, toDTM: TDateTime; const SteamID: string; const DescendingOrder: Boolean): TArray<TDBChat>;
+begin
+  SetLength(Result, 0);
+
+  var qry := TFDQuery.Create(Self);
+  try
+    qry.Connection := conChat;
+
+    qry.SQL.Add('SELECT * FROM Chats');
+
+    // Filter DTM
+    qry.SQL.Add('WHERE DATE(CreatedDTM) BETWEEN DATE(:fromDTM) AND DATE(:toDTM)');
+
+    // Filter SteamID
+    if not SteamID.Trim.IsEmpty then
+      qry.SQL.Add('AND UserID = :steamID');
+
+    // Order
+    if DescendingOrder then
+      qry.SQL.Add('ORDER BY CreatedDTM DESC')
+    else
+      qry.SQL.Add('ORDER BY CreatedDTM ASC');
+
+    // Provide Params
+    qry.ParamByName('fromDTM').Value := fromDTM;
+    qry.ParamByName('toDTM').Value := IncDay(toDTM);
+    if not SteamID.Trim.IsEmpty then
+      qry.ParamByName('steamID').Value := SteamID;
+
+    qry.Open;
+
+    SetLength(Result, qry.RecordCount);
+    var I := 0;
+    while not qry.Eof do
+    begin
+      Result[I].ID := qry.FieldByName('ID').Value;
+      Result[I].Username := qry.FieldByName('Username').Value;
+      Result[I].UserID := qry.FieldByName('UserID').Value;
+      Result[I].BetterChatUsername := qry.FieldByName('BetterChatUsername').Value;
+      Result[I].CreatedDTM := qry.FieldByName('CreatedDTM').Value;
+      Result[I].ChannelID := qry.FieldByName('ChannelID').Value;
+      Result[I].Message := qry.FieldByName('Message').Value;
+
+      qry.Next;
+      Inc(I);
+    end;
+  finally
+    qry.Free;
+  end;
 end;
 
 procedure TdmChatDB.InsertChat(const Chat: TRconChat);
@@ -105,6 +168,7 @@ begin
 
   conChat.Params.Database := rsmCore.Paths.GetRSM_DB_Chats_Path;
   conChat.Connected := True;
+  conChat.Connected := False;
 
   CreateChatsTable;
 end;
