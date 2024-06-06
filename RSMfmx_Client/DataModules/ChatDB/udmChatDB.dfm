@@ -16,4 +16,9 @@ object dmChatDB: TdmChatDB
     Left = 104
     Top = 48
   end
+  object sqliteValidateChats: TFDSQLiteValidate
+    DriverLink = driverSQLITE
+    Left = 304
+    Top = 48
+  end
 end
