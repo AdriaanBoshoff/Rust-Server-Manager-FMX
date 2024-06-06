@@ -19,6 +19,8 @@ type
     procedure OnPlayerList(const PlayerList: TArray<TRCONPlayerListPlayer>);
     // On Server Manifest
     procedure OnServerManifest(const Data: string);
+    // On Chat
+    procedure OnChat(const Chat: TRconChat);
     { Public Methods }
   public
     procedure OnRconMessage(const rconMessage: TRCONMessage);
@@ -36,6 +38,11 @@ uses
   uframeMessageBox, Rust.Manifest;
 
 { TRCONEvents }
+
+procedure TRCONEvents.OnChat(const Chat: TRconChat);
+begin
+  // On Chat. Fires when Identity is "-1" and Type is "Chat"
+end;
 
 procedure TRCONEvents.OnPlayerCountChanged(const OldCount, NewCount: Integer);
 begin
@@ -57,6 +64,16 @@ end;
 procedure TRCONEvents.OnRconMessage(const rconMessage: TRCONMessage);
 begin
   // All messages received from rcon will be processed here.
+
+  // Identifier = -1
+  if rconMessage.aIdentifier = -1 then
+  begin
+    // Type is "Chat"
+    if rconMessage.aType = 'Chat' then
+    begin
+      OnChat(TRCONParser.ParseChat(rconMessage.aMessage));
+    end;
+  end;
 
   // ServerInfo
   if rconMessage.aIdentifier = RCON_ID_SERVERINFO then

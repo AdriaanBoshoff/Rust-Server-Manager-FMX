@@ -49,6 +49,16 @@ type
   end;
 
 type
+  TRconChat = record
+    Channel: Integer;
+    Message: string;
+    UserID: string;
+    Username: string;
+    Color: string;
+    DTM: TDateTime;
+  end;
+
+type
   TRCON = class
     class procedure SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
     class procedure KickPlayer(const SteamID, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);

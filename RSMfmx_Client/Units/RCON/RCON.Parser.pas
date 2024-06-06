@@ -13,6 +13,8 @@ type
     class function ParseServerInfo(const Data: string): TRCONServerInfo;
     // Parse PlayerList
     class function ParsePlayerList(const Data: string): TArray<TRCONPlayerListPlayer>;
+    // Parse Chat
+    class function ParseChat(const Data: string): TRconChat;
   end;
 
 implementation
@@ -21,6 +23,22 @@ uses
   System.JSON, System.SysUtils, System.Classes, System.DateUtils;
 
 { TRCONParser }
+
+class function TRCONParser.ParseChat(const Data: string): TRconChat;
+begin
+  var jChat := TJSONObject.ParseJSONValue(Data);
+  try
+    Result.Channel := jChat.GetValue<Integer>('Channel');
+    Result.Message := jChat.GetValue<string>('Message');
+    Result.UserID := jChat.GetValue<string>('UserId');
+    Result.Username := jChat.GetValue<string>('Username');
+    Result.Color := jChat.GetValue<string>('Color');
+    // Convert epoch to UTC and then convert to local DTM
+    Result.DTM := TTimeZone.local.ToLocalTime(UnixToDateTime(jChat.GetValue<Int64>('Time'), True));
+  finally
+    jChat.Free;
+  end;
+end;
 
 class function TRCONParser.ParsePlayerList(const Data: string): TArray<TRCONPlayerListPlayer>;
 begin
