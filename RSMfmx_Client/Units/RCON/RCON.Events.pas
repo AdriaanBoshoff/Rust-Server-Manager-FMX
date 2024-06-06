@@ -74,7 +74,18 @@ begin
     begin
       OnChat(TRCONParser.ParseChat(rconMessage.aMessage));
     end;
+
+    Exit;
   end;
+
+  // Identifier = 0
+  if rconMessage.aIdentifier = 0 then
+  begin
+
+
+    Exit;
+  end;
+
 
   // ServerInfo
   if rconMessage.aIdentifier = RCON_ID_SERVERINFO then
@@ -88,18 +99,24 @@ begin
 
     // Assign Global Server info variable
     serverInfoCurrent := serverInfo;
+
+    Exit;
   end;
 
   // PlayerList
   if rconMessage.aIdentifier = RCON_ID_PLAYERLIST then
   begin
     OnPlayerList(TRCONParser.ParsePlayerList(rconMessage.aMessage));
+
+    Exit;
   end;
 
   // Server Manifest
   if rconMessage.aIdentifier = RCON_ID_MANIFEST then
   begin
     OnServerManifest(rconMessage.aMessage);
+
+    Exit;
   end;
 end;
 
