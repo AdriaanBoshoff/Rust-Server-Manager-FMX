@@ -27,6 +27,7 @@ type
     driverSQLITE: TFDPhysSQLiteDriverLink;
     conChat: TFDConnection;
     sqliteValidateChats: TFDSQLiteValidate;
+    sqliteBackupChats: TFDSQLiteBackup;
     procedure DataModuleDestroy(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private
@@ -34,6 +35,7 @@ type
     procedure CreateChatsTable;
   public
     { Public declarations }
+    procedure Backup;
     procedure OptimizeDB;
     procedure InsertChat(const Chat: TRconChat);
     function GetChats(const fromDTM, toDTM: TDateTime; const SteamID: string = ''; const DescendingOrder: Boolean = True): TArray<TDBChat>;
@@ -134,6 +136,14 @@ begin
   conChat.Connected := False;
   sqliteValidateChats.Sweep;
   sqliteValidateChats.Analyze;
+end;
+
+procedure TdmChatDB.Backup;
+begin
+  sqliteBackupChats.Database := rsmCore.Paths.GetRSM_DB_Chats_Path;
+  sqliteBackupChats.Database := rsmCore.Paths.GetRSM_DB_Chats_Path + '.' + FormatDateTime('yyyy_mm_dd', Now);
+  conChat.Connected := False;
+  sqliteBackupChats.Backup;
 end;
 
 procedure TdmChatDB.CreateChatsTable;

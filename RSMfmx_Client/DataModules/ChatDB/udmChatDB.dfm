@@ -21,4 +21,11 @@ object dmChatDB: TdmChatDB
     Left = 304
     Top = 48
   end
+  object sqliteBackupChats: TFDSQLiteBackup
+    DriverLink = driverSQLITE
+    Catalog = 'MAIN'
+    DestCatalog = 'MAIN'
+    Left = 304
+    Top = 224
+  end
 end
