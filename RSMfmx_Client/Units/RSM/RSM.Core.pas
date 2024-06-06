@@ -23,6 +23,7 @@ type
           FOLDER_CARBON_PLUGINS = 'plugins';
         const
           FILE_CONFIG = 'config.json';
+          FILE_CHAT_DB = 'chats.db';
       public
       { TRSMCorePaths Public Class Functions }
         { Program Root }
@@ -31,6 +32,10 @@ type
         { RSM Data Folder }
         class function GetRSMDataDir: string;
         class function GetRSMDataPath: string;
+        { RSM DB Folder }
+        class function GetRSM_DB_Dir: string;
+        { RSM DB Files }
+        class function GetRSM_DB_Chats_Path: string;
         { RSM Cache Folder }
         class function GetRSMCacheDir: string;
         class function GetRSMCachePath: string;
@@ -182,6 +187,16 @@ class function TRSMCore.TRSMCorePaths.GetRSMDataPath: string;
 begin
   // Get Program Data Folder Path
   Result := Self.GetRootPath + FOLDER_RSM + TPath.DirectorySeparatorChar;
+end;
+
+class function TRSMCore.TRSMCorePaths.GetRSM_DB_Chats_Path: string;
+begin
+  Result := TPath.Combine(self.GetRSM_DB_Dir, self.FILE_CHAT_DB);
+end;
+
+class function TRSMCore.TRSMCorePaths.GetRSM_DB_Dir: string;
+begin
+  Result := TPath.Combine([Self.GetRSMDataDir, 'DB']);
 end;
 
 { TRSMCore }
