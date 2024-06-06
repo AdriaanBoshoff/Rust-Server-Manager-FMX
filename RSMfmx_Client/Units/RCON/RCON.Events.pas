@@ -42,6 +42,7 @@ uses
 procedure TRCONEvents.OnChat(const Chat: TRconChat);
 begin
   // On Chat. Fires when Identity is "-1" and Type is "Chat"
+  ShowMessageBox(chat.Message + sLineBreak + BoolToStr(chat.isBetterChat, True) + sLineBreak + chat.BetterChatUsername, chat.Username, frmMain);
 end;
 
 procedure TRCONEvents.OnPlayerCountChanged(const OldCount, NewCount: Integer);

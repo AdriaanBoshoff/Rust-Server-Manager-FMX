@@ -56,6 +56,8 @@ type
     Username: string;
     Color: string;
     DTM: TDateTime;
+    isBetterChat: Boolean;
+    BetterChatUsername: string;
   end;
 
 type

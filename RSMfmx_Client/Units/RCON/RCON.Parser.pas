@@ -26,6 +26,8 @@ uses
 
 class function TRCONParser.ParseChat(const Data: string): TRconChat;
 begin
+  Result.isBetterChat := False;
+
   var jChat := TJSONObject.ParseJSONValue(Data);
   try
     Result.Channel := jChat.GetValue<Integer>('Channel');
@@ -35,6 +37,20 @@ begin
     Result.Color := jChat.GetValue<string>('Color');
     // Convert epoch to UTC and then convert to local DTM
     Result.DTM := TTimeZone.local.ToLocalTime(UnixToDateTime(jChat.GetValue<Int64>('Time'), True));
+
+    // Detect and handle BetterChat
+    var betterChatMatch := Result.Username + ': ';
+    if Result.Message.Contains(betterChatMatch) then
+    begin
+      Result.isBetterChat := True;
+
+      // Get Betterchat username and tags
+      Result.BetterChatUsername := Copy(Result.Message, 1, AnsiPos(betterChatMatch, Result.Message) + Length(betterChatMatch) - 3);
+
+      // Delete Betterchat stuff from the message
+      Delete(Result.Message, 1, AnsiPos(betterChatMatch, Result.Message) + Length(betterChatMatch) - 1);
+      Result.Message := Result.Message.Trim;
+    end;
   finally
     jChat.Free;
   end;
