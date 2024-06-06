@@ -48,7 +48,8 @@ uses
   uHelpers in 'Units\uHelpers.pas',
   udmTrayIcon in 'Modules\TrayIcon\udmTrayIcon.pas' {dmTrayIcon: TDataModule},
   FMX.Trayicon.Win in 'Modules\TrayIcon\FMX.Trayicon.Win.pas',
-  Rust.Manifest in 'Units\RustManifest\Rust.Manifest.pas';
+  Rust.Manifest in 'Units\RustManifest\Rust.Manifest.pas',
+  udmChatDB in 'DataModules\ChatDB\udmChatDB.pas' {dmChatDB: TDataModule};
 
 {$R *.res}
 
@@ -75,6 +76,7 @@ begin
   Application.CreateForm(TfrmLicenseManager, frmLicenseManager);
   Application.CreateForm(TdmStyles, dmStyles);
   Application.CreateForm(TdmIcons, dmIcons);
+  Application.CreateForm(TdmChatDB, dmChatDB);
   Application.Run;
 end.
 

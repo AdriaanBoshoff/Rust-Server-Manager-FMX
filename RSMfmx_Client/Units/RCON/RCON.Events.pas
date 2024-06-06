@@ -35,13 +35,14 @@ implementation
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
   RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager, uMisc,
-  uframeMessageBox, Rust.Manifest;
+  uframeMessageBox, Rust.Manifest, udmChatDB;
 
 { TRCONEvents }
 
 procedure TRCONEvents.OnChat(const Chat: TRconChat);
 begin
-  // On Chat. Fires when Identity is "-1" and Type is "Chat" ShowMessageBox(chat.Message + sLineBreak + BoolToStr(chat.isBetterChat, True) + sLineBreak + chat.BetterChatUsername, chat.Username, frmMain);
+  // On Chat. Fires when Identity is "-1" and Type is "Chat"
+  dmChatDB.InsertChat(Chat);
 end;
 
 procedure TRCONEvents.OnPlayerCountChanged(const OldCount, NewCount: Integer);

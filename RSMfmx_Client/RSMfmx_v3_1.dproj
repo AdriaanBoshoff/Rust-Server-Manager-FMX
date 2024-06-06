@@ -259,6 +259,11 @@
         </DCCReference>
         <DCCReference Include="Modules\TrayIcon\FMX.Trayicon.Win.pas"/>
         <DCCReference Include="Units\RustManifest\Rust.Manifest.pas"/>
+        <DCCReference Include="DataModules\ChatDB\udmChatDB.pas">
+            <Form>dmChatDB</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
@@ -553,6 +558,12 @@
                 <DeployFile LocalName="Win64\Debug\bin\RSMfmx_v3_1.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>RSMfmx_v3_1.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win64\Debug\bin\RSMfmx_v3_1.rsm" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win64">
+                        <RemoteName>RSMfmx_v3_1.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
