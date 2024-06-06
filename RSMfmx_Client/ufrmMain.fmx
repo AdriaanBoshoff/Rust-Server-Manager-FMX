@@ -4535,6 +4535,7 @@ object frmMain: TfrmMain
     Proxy.Port = 8080
     Proxy.ProxyType = pxyHTTP
     HeartBeat.Enabled = False
+    HeartBeat.HearBeatType = hbtAlways
     HeartBeat.Interval = 300
     HeartBeat.Timeout = 0
     IPVersion = Id_IPv4

@@ -646,7 +646,7 @@ begin
       slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
 
     // Networking - Misc
-   slParams.Add('+server.favoritesEndpoint "' + serverConfig.Networking.FavouritesListEndpoint + '" ^');
+    slParams.Add('+server.favoritesEndpoint "' + serverConfig.Networking.FavouritesListEndpoint + '" ^');
 
     // Start Server and Save PID
     serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
