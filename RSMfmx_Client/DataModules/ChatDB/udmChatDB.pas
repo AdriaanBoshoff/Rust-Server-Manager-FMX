@@ -83,7 +83,7 @@ begin
 
     // Provide Params
     qry.ParamByName('fromDTM').Value := fromDTM;
-    qry.ParamByName('toDTM').Value := IncDay(toDTM);
+    qry.ParamByName('toDTM').Value := toDTM;
     if not SteamID.Trim.IsEmpty then
       qry.ParamByName('steamID').Value := SteamID;
 
