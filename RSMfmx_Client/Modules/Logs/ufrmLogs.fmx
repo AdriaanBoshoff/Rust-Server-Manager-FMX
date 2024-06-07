@@ -117,7 +117,7 @@ object frmLogs: TfrmLogs
           Position.X = 332.000000000000000000
           Position.Y = 5.000000000000000000
           Margins.Left = 5.000000000000000000
-          Size.Width = 154.000000000000000000
+          Size.Width = 141.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TextPrompt = 'SteamID (Optional)'
