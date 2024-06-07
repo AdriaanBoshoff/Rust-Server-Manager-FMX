@@ -1,0 +1,186 @@
+object frmLogs: TfrmLogs
+  Left = 0
+  Top = 0
+  Caption = 'Logs'
+  ClientHeight = 537
+  ClientWidth = 797
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object tbcLogs: TTabControl
+    Align = Client
+    Size.Width = 797.000000000000000000
+    Size.Height = 537.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 0
+    TabPosition = PlatformDefault
+    Sizes = (
+      797s
+      513s)
+    object tbtmChatLogs: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = True
+      Size.Width = 73.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Chat Logs'
+      ExplicitSize.cx = 73.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
+      object tlbChatLogsHeader: TToolBar
+        Padding.Left = 5.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 5.000000000000000000
+        Padding.Bottom = 5.000000000000000000
+        Size.Width = 797.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object lblChatLogsFromDTM: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 32.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'From:'
+          TabOrder = 2
+        end
+        object edtDateChatLogsFrom: TDateEdit
+          Date = 45450.000000000000000000
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Position.X = 42.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+        end
+        object lblChatLogsToDTM: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Margins.Left = 5.000000000000000000
+          Position.X = 147.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 16.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'To:'
+          TabOrder = 0
+        end
+        object edtDateChatLogsTo: TDateEdit
+          Date = 45450.000000000000000000
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Position.X = 168.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+        end
+        object lblChatLogsSteamID: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Margins.Left = 10.000000000000000000
+          Position.X = 278.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 49.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'SteamID:'
+          TabOrder = 1
+        end
+        object edtChatLogsSteamID: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Left
+          TabOrder = 5
+          Position.X = 332.000000000000000000
+          Position.Y = 5.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Size.Width = 154.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'SteamID (Optional)'
+          object btnClearChatLogsSteamID: TClearEditButton
+            Touch.InteractiveGestures = [LongTap]
+            CanFocus = False
+            Cursor = crArrow
+            TextSettings.Trimming = None
+            Size.Width = 28.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
+        end
+        object btnApply: TButton
+          Align = Right
+          Position.X = 712.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          Text = 'Apply'
+          TextSettings.Trimming = None
+          OnClick = btnApplyClick
+        end
+      end
+      object strngrdChatLogs: TStringGrid
+        Align = Client
+        CanFocus = True
+        ClipChildren = True
+        Size.Width = 797.000000000000000000
+        Size.Height = 473.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Options = [AlternatingRowBackground, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, AutoDisplacement]
+        Viewport.Width = 777.000000000000000000
+        Viewport.Height = 448.000000000000000000
+        object strngclmnChatLogsUserID: TStringColumn
+          Header = 'SteamID'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 121.000000000000000000
+        end
+        object strngclmnChatLogsUsername: TStringColumn
+          Header = 'Username'
+          HeaderSettings.TextSettings.WordWrap = False
+        end
+        object strngclmnChatLogsChannel: TStringColumn
+          Header = 'Channel'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 66.000000000000000000
+        end
+        object strngclmnChatLogsCreatedDTM: TStringColumn
+          Header = 'Created DTM'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 119.000000000000000000
+        end
+        object strngclmnChatLogsMessage: TStringColumn
+          Header = 'Message'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 367.000000000000000000
+        end
+      end
+    end
+  end
+end

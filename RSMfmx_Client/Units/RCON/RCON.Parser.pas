@@ -15,14 +15,25 @@ type
     class function ParsePlayerList(const Data: string): TArray<TRCONPlayerListPlayer>;
     // Parse Chat
     class function ParseChat(const Data: string): TRconChat;
+    // ==============================================================
+    // Regex Matching
+    class function MatchesRegex: Boolean;
   end;
 
 implementation
 
 uses
-  System.JSON, System.SysUtils, System.Classes, System.DateUtils;
+  System.JSON, System.SysUtils, System.Classes, System.DateUtils,
+  System.RegularExpressions;
 
 { TRCONParser }
+
+class function TRCONParser.MatchesRegex: Boolean;
+begin
+  Result := False;
+
+  // Join Regex
+end;
 
 class function TRCONParser.ParseChat(const Data: string): TRconChat;
 begin

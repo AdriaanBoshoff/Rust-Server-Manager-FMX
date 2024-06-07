@@ -2,10 +2,10 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'RSMfmx v3.1'
-  ClientHeight = 600
+  ClientHeight = 630
   ClientWidth = 1000
   StyleBook = dmStyles.styleRedRock
-  Constraints.MinHeight = 600.000000000000000000
+  Constraints.MinHeight = 630.000000000000000000
   Constraints.MinWidth = 1000.000000000000000000
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -70,7 +70,7 @@ object frmMain: TfrmMain
   object statMain: TStatusBar
     Padding.Left = 10.000000000000000000
     Padding.Right = 25.000000000000000000
-    Position.Y = 578.000000000000000000
+    Position.Y = 608.000000000000000000
     ShowSizeGrip = True
     Size.Width = 1000.000000000000000000
     Size.Height = 22.000000000000000000
@@ -331,32 +331,34 @@ object frmMain: TfrmMain
     Align = Client
     Margins.Left = 60.000000000000000000
     Size.Width = 720.000000000000000000
-    Size.Height = 484.000000000000000000
+    Size.Height = 514.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
     object tbcNav: TTabControl
       Align = Client
       Size.Width = 720.000000000000000000
-      Size.Height = 484.000000000000000000
+      Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 7
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
         720s
-        460s
+        490s
         720s
-        460s
+        490s
         720s
-        460s
+        490s
         720s
-        460s
+        490s
         720s
-        460s
+        490s
         720s
-        460s
+        490s
         720s
-        460s)
+        490s
+        720s
+        490s)
       object tbtmNavServerControls: TTabItem
         CustomIcon = <
           item
@@ -439,7 +441,7 @@ object frmMain: TfrmMain
           Position.X = 5.000000000000000000
           Position.Y = 45.000000000000000000
           Size.Width = 148.000000000000000000
-          Size.Height = 410.000000000000000000
+          Size.Height = 440.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = claNull
           XRadius = 10.000000000000000000
@@ -551,7 +553,7 @@ object frmMain: TfrmMain
             Hint = 'RSM will kill the server process using the server PID.'
             Margins.Bottom = 10.000000000000000000
             Position.X = 10.000000000000000000
-            Position.Y = 370.000000000000000000
+            Position.Y = 400.000000000000000000
             Size.Width = 128.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -572,7 +574,7 @@ object frmMain: TfrmMain
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Size.Width = 557.000000000000000000
-          Size.Height = 410.000000000000000000
+          Size.Height = 440.000000000000000000
           Size.PlatformDefault = False
           Stroke.Color = claNull
           XRadius = 10.000000000000000000
@@ -582,11 +584,11 @@ object frmMain: TfrmMain
             Padding.Left = 10.000000000000000000
             Padding.Right = 10.000000000000000000
             Size.Width = 557.000000000000000000
-            Size.Height = 410.000000000000000000
+            Size.Height = 440.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
             Viewport.Width = 557.000000000000000000
-            Viewport.Height = 410.000000000000000000
+            Viewport.Height = 440.000000000000000000
             object lytServerAffinity: TLayout
               Align = Top
               Margins.Top = 10.000000000000000000
@@ -964,7 +966,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -980,11 +982,11 @@ object frmMain: TfrmMain
           Margins.Top = 10.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Size.Width = 720.000000000000000000
-          Size.Height = 405.000000000000000000
+          Size.Height = 435.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Viewport.Width = 704.000000000000000000
-          Viewport.Height = 405.000000000000000000
+          Viewport.Height = 435.000000000000000000
           object lytHostnameHeader: TLayout
             Align = Top
             Position.X = 10.000000000000000000
@@ -2108,8 +2110,8 @@ object frmMain: TfrmMain
               Size.Height = 215.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 652.000000000000000000
-              Viewport.Height = 207.000000000000000000
+              Viewport.Width = 664.000000000000000000
+              Viewport.Height = 215.000000000000000000
             end
           end
         end
@@ -2124,7 +2126,7 @@ object frmMain: TfrmMain
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Position.X = 5.000000000000000000
-          Position.Y = 420.000000000000000000
+          Position.Y = 450.000000000000000000
           Size.Width = 710.000000000000000000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
@@ -2226,6 +2228,19 @@ object frmMain: TfrmMain
         ExplicitSize.cx = 104.000000000000000000
         ExplicitSize.cy = 24.000000000000000000
       end
+      object tbtmLogs: TTabItem
+        CustomIcon = <
+          item
+          end>
+        TextSettings.Trimming = None
+        IsSelected = True
+        Size.Width = 45.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Logs'
+      end
     end
   end
   object lytServerInfo: TLayout
@@ -2233,20 +2248,20 @@ object frmMain: TfrmMain
     Position.X = 780.000000000000000000
     Position.Y = 94.000000000000000000
     Size.Width = 220.000000000000000000
-    Size.Height = 484.000000000000000000
+    Size.Height = 514.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
     object tbcServerInfo: TTabControl
       Align = Client
       Size.Width = 220.000000000000000000
-      Size.Height = 484.000000000000000000
+      Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
       TabIndex = 0
       TabOrder = 0
       TabPosition = None
       Sizes = (
         220s
-        484s)
+        514s)
       object tbtmServerInfo: TTabItem
         CustomIcon = <
           item
@@ -2264,11 +2279,11 @@ object frmMain: TfrmMain
         object vrtscrlbxServerInfo: TVertScrollBox
           Align = Client
           Size.Width = 220.000000000000000000
-          Size.Height = 484.000000000000000000
+          Size.Height = 514.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Viewport.Width = 220.000000000000000000
-          Viewport.Height = 484.000000000000000000
+          Viewport.Height = 514.000000000000000000
           object rctnglServerInfo: TRectangle
             Align = Top
             Fill.Color = xFF1F222A
@@ -2954,8 +2969,8 @@ object frmMain: TfrmMain
   end
   object pmTrayIcon: TPopupMenu
     Images = dmIcons.ilTrayIcon
-    Left = 88
-    Top = 384
+    Left = 168
+    Top = 320
     object mniTrayIconServerStatus: TMenuItem
       Enabled = False
       Locked = True
@@ -3002,7 +3017,7 @@ object frmMain: TfrmMain
     object lstNav: TListBox
       Align = Client
       Size.Width = 60.000000000000000000
-      Size.Height = 434.000000000000000000
+      Size.Height = 464.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       DisableFocusEffect = True
@@ -3011,7 +3026,7 @@ object frmMain: TfrmMain
       DefaultItemStyles.GroupFooterStyle = ''
       OnChange = lstNavChange
       Viewport.Width = 56.000000000000000000
-      Viewport.Height = 430.000000000000000000
+      Viewport.Height = 460.000000000000000000
       object lstServerControls: TListBoxItem
         Size.Width = 56.000000000000000000
         Size.Height = 50.000000000000000000
@@ -3136,7 +3151,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Config'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstServerInstaller: TListBoxItem
@@ -3144,7 +3159,7 @@ object frmMain: TfrmMain
         Size.Width = 56.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 6
+        TabOrder = 7
         object imgServerInstaller: TImage
           MultiResBitmap.Height = 48
           MultiResBitmap.Width = 48
@@ -3226,7 +3241,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Installer'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstPlayerManager: TListBoxItem
@@ -3234,7 +3249,7 @@ object frmMain: TfrmMain
         Size.Width = 56.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 5
+        TabOrder = 6
         object imgPlayerManager: TImage
           MultiResBitmap.Height = 48
           MultiResBitmap.Width = 48
@@ -3293,7 +3308,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Player Manager'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstOxideMod: TListBoxItem
@@ -3314,7 +3329,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'OxideMod / uMod'
-          TabOrder = 50
+          TabOrder = 49
         end
         object rctnglOxideModNavImage: TRectangle
           Align = MostLeft
@@ -3618,7 +3633,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Carbon Mod'
-          TabOrder = 50
+          TabOrder = 49
         end
         object rctnglCarbonmodNavImg: TRectangle
           Align = MostLeft
@@ -4459,7 +4474,7 @@ object frmMain: TfrmMain
         Size.Width = 56.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 4
+        TabOrder = 5
         object imgPluginManager: TImage
           MultiResBitmap.Height = 48
           MultiResBitmap.Width = 48
@@ -4508,14 +4523,83 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Plugin Manager'
-          TabOrder = 50
+          TabOrder = 49
+        end
+      end
+      object lstLogs: TListBoxItem
+        Position.Y = 350.000000000000000000
+        Size.Width = 56.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object imgLogsIcon: TImage
+          MultiResBitmap.Height = 48
+          MultiResBitmap.Width = 48
+          MultiResBitmap = <
+            item
+              Width = 48
+              Height = 48
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+                870000000473424954080808087C086488000002DD494441546881ED993D6814
+                511485BF2BFEA0484022180B35A28288D1226A8CA060B4D4465B416C5259442C
+                840434101425A28D8DA5451A4B9B20A8A52204C51F3462121262A12611F10FD4
+                D563313BFAF232BB9BB79BEC8CB05FB3ECB973937366DEBCB9C3428D1A356AA4
+                89F982A4E5C071600BB0B0EA8E92C9012F801B66F6C52D4C0B20A91E78086CA8
+                9EB72086801633FB100B0BBC03BAC8AE79808D40A72BF8017656CF4BD9B4B85F
+                FC004BAB68A45CA679F403FC77D402A44D2D40A69034A07FB4A7ED274652BBE3
+                6BC0ADFDF757A016206D82A74D49EB812933FBE4E97544B3CA8C097716E48041
+                33FB1EDA181440D269E0323025A9D9CCC6F27A233000D4871A707826698799FD
+                08690A5D4287F29FF540ABA3B75299798026605D68536880ABC014701FE877F4
+                7EE001A050037972401FD1BC1F44D01232B35BC0CA04FD23B027F49FCF055979
+                659C0DC3C023E055C12332FC24AE9394B8BB85EE42DB815EA2B370CACC72797D
+                11D1FDB1BB4C8F39E0A6995D492AFA5B76318345AF80A4DB4EFD88A31FD5DCD0
+                58C2DF6A490DAE16BA0BBDCE7FFE02461C7D24AF55C224D10E9788A44E601C78
+                23E94CAC87DEC41DC03D60D8CC9EC4A2993D96D40CECA2FC27F11D33FB9C5494
+                741238EF4817252D36B31EFFC0ACDEC40D925E262CB98E4C0F738AE62ECCEC2D
+                B01F18F40E399BD90092BA81E792DAA0608831BF29134B4852B7E3E36B1C225F
+                8B97D384A426BF31F5009EF96221B62635A71AA0807937C481527F20B50025CC
+                C78C495AE2F6157B0E1C53B4B7CF35C340AF99FD1DBD15DDB0E74AF44D02878B
+                BEB57957603E1895372E687667FEBDA46D499EABB98D0E037BCD6C341624AD00
+                5601C5DE8527808366F634A9E8FF42D305ACADD8EA4C7E0317CC6C3CA928E92E
+                D096509A615ED23233FB360F1ECB47D2A502CBA6A97477065034269F90744DD2
+                CF626B3E1348DA54C8A0A4BE4C9B0790D453E82C4BCAEC7C0680249334E4ACF3
+                CD697B0A42D21A49EF245D97B4AFD233FE0781362FEE037F145F000000004945
+                4E44AE426082}
+              FileName = 
+                'D:\adria\Documents\Github\RSMfmx_v3.1\RSMfmx_Client\Assets\Icons' +
+                '\Nav\logging-48.png'
+            end>
+          Align = MostLeft
+          HitTest = False
+          MarginWrapMode = Center
+          Margins.Top = 8.000000000000000000
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 55.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblLogsHeader: TLabel
+          Align = Client
+          StyledSettings = [Family, FontColor]
+          Margins.Left = 8.000000000000000000
+          Size.Width = 0.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          TextSettings.Trimming = None
+          Text = 'Logs'
+          TabOrder = 49
         end
       end
     end
     object btnAppSettings: TSpeedButton
       Align = Bottom
       Hint = 'RSM related settings'
-      Position.Y = 434.000000000000000000
+      Position.Y = 464.000000000000000000
       Size.Width = 60.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False

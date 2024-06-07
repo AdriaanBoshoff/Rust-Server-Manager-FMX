@@ -264,6 +264,10 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="Modules\Logs\ufrmLogs.pas">
+            <Form>frmLogs</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

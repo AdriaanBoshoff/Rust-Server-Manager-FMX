@@ -285,6 +285,10 @@ type
     lblFavouritesListURLHeader: TLabel;
     edtFavouritesListEndpoint: TEdit;
     btnFavouritesListEndpointHelp: TEditButton;
+    tbtmLogs: TTabItem;
+    lstLogs: TListBoxItem;
+    imgLogsIcon: TImage;
+    lblLogsHeader: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -392,7 +396,7 @@ uses
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
-  ufrmAffinitySelect, uHelpers, udmTrayIcon;
+  ufrmAffinitySelect, uHelpers, udmTrayIcon, ufrmLogs;
 
 {$R *.fmx}
 
@@ -822,6 +826,11 @@ begin
   frmPluginManager := TfrmPluginManager.Create(tbtmPluginManager);
   while frmPluginManager.ChildrenCount > 0 do
     frmPluginManager.Children[0].Parent := tbtmPluginManager;
+
+  // Logs
+  frmLogs := TfrmLogs.Create(tbtmLogs);
+  while frmLogs.ChildrenCount > 0 do
+    frmLogs.Children[0].Parent := tbtmLogs;
 
   // Tray Icon
   dmTrayIcon := TdmTrayIcon.Create(Self);
