@@ -289,6 +289,7 @@ type
     lstLogs: TListBoxItem;
     imgLogsIcon: TImage;
     lblLogsHeader: TLabel;
+    mniServerConsole: TMenuItem;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -327,6 +328,7 @@ type
     procedure mniClearRSMCacheClick(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
     procedure mniOpenServerRootClick(Sender: TObject);
+    procedure mniServerConsoleClick(Sender: TObject);
     procedure mniSetTrayIconTitleClick(Sender: TObject);
     procedure mniTrayIconEnabledClick(Sender: TObject);
     procedure mniTrayIconExitRSMClick(Sender: TObject);
@@ -396,7 +398,7 @@ uses
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
-  ufrmAffinitySelect, uHelpers, udmTrayIcon, ufrmLogs;
+  ufrmAffinitySelect, uHelpers, udmTrayIcon, ufrmLogs, ufrmServerConsole;
 
 {$R *.fmx}
 
@@ -984,6 +986,11 @@ end;
 procedure TfrmMain.mniOpenServerRootClick(Sender: TObject);
 begin
   OpenURL(ExtractFileDir(ParamStr(0)));
+end;
+
+procedure TfrmMain.mniServerConsoleClick(Sender: TObject);
+begin
+  frmServerConsole.Show;
 end;
 
 procedure TfrmMain.mniSetTrayIconTitleClick(Sender: TObject);

@@ -66,6 +66,10 @@ object frmMain: TfrmMain
         end
       end
     end
+    object mniServerConsole: TMenuItem
+      Text = 'Server Console'
+      OnClick = mniServerConsoleClick
+    end
   end
   object statMain: TStatusBar
     Padding.Left = 10.000000000000000000
@@ -339,7 +343,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 7
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -364,7 +368,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -2110,8 +2114,8 @@ object frmMain: TfrmMain
               Size.Height = 215.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 664.000000000000000000
-              Viewport.Height = 215.000000000000000000
+              Viewport.Width = 652.000000000000000000
+              Viewport.Height = 207.000000000000000000
             end
           end
         end
@@ -2233,13 +2237,15 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 45.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
         Text = 'Logs'
+        ExplicitSize.cx = 45.000000000000000000
+        ExplicitSize.cy = 24.000000000000000000
       end
     end
   end
@@ -2964,13 +2970,13 @@ object frmMain: TfrmMain
   object tmrCheckForUpdate: TTimer
     Interval = 300000
     OnTimer = tmrCheckForUpdateTimer
-    Left = 80
+    Left = 112
     Top = 328
   end
   object pmTrayIcon: TPopupMenu
     Images = dmIcons.ilTrayIcon
-    Left = 168
-    Top = 320
+    Left = 224
+    Top = 304
     object mniTrayIconServerStatus: TMenuItem
       Enabled = False
       Locked = True
@@ -3151,7 +3157,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Config'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstServerInstaller: TListBoxItem
@@ -3241,7 +3247,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Installer'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstPlayerManager: TListBoxItem
@@ -3308,7 +3314,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Player Manager'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstOxideMod: TListBoxItem
@@ -3329,7 +3335,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'OxideMod / uMod'
-          TabOrder = 49
+          TabOrder = 50
         end
         object rctnglOxideModNavImage: TRectangle
           Align = MostLeft
@@ -3633,7 +3639,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Carbon Mod'
-          TabOrder = 49
+          TabOrder = 50
         end
         object rctnglCarbonmodNavImg: TRectangle
           Align = MostLeft
@@ -4523,7 +4529,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Plugin Manager'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstLogs: TListBoxItem
@@ -4592,7 +4598,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Logs'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
     end

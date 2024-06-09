@@ -268,6 +268,10 @@
             <Form>frmLogs</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Forms\Server Console\ufrmServerConsole.pas">
+            <Form>frmServerConsole</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

@@ -1,0 +1,56 @@
+object frmServerConsole: TfrmServerConsole
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMaximize]
+  Caption = 'Server Console'
+  ClientHeight = 528
+  ClientWidth = 742
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object statFooter: TStatusBar
+    Position.Y = 506.000000000000000000
+    ShowSizeGrip = True
+    Size.Width = 742.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+  end
+  object mmoServerConsole: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    ReadOnly = True
+    Align = Client
+    Size.Width = 742.000000000000000000
+    Size.Height = 466.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 730.000000000000000000
+    Viewport.Height = 458.000000000000000000
+  end
+  object tlbHeader: TToolBar
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Size.Width = 742.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object chkAutoScroll: TCheckBox
+      Align = Left
+      StyledSettings = [Family, Size, FontColor]
+      IsChecked = True
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 92.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Auto Scroll'
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+    end
+  end
+end

@@ -35,7 +35,7 @@ implementation
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
   RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager, uMisc,
-  uframeMessageBox, Rust.Manifest, udmChatDB;
+  uframeMessageBox, Rust.Manifest, udmChatDB, ufrmServerConsole;
 
 { TRCONEvents }
 
@@ -66,6 +66,10 @@ procedure TRCONEvents.OnRconMessage(const rconMessage: TRCONMessage);
 begin
   // All messages received from rcon will be processed here.
 
+  if not (rconMessage.aIdentifier > 0) then
+    ServerConsoleLog(rconMessage.aMessage);
+
+
   // Identifier = -1
   if rconMessage.aIdentifier = -1 then
   begin
@@ -81,7 +85,6 @@ begin
   // Identifier = 0
   if rconMessage.aIdentifier = 0 then
   begin
-
 
     Exit;
   end;

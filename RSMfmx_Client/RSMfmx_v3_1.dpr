@@ -50,7 +50,8 @@ uses
   FMX.Trayicon.Win in 'Modules\TrayIcon\FMX.Trayicon.Win.pas',
   Rust.Manifest in 'Units\RustManifest\Rust.Manifest.pas',
   udmChatDB in 'DataModules\ChatDB\udmChatDB.pas' {dmChatDB: TDataModule},
-  ufrmLogs in 'Modules\Logs\ufrmLogs.pas' {frmLogs};
+  ufrmLogs in 'Modules\Logs\ufrmLogs.pas' {frmLogs},
+  ufrmServerConsole in 'Forms\Server Console\ufrmServerConsole.pas' {frmServerConsole};
 
 {$R *.res}
 
@@ -78,6 +79,7 @@ begin
   Application.CreateForm(TdmStyles, dmStyles);
   Application.CreateForm(TdmIcons, dmIcons);
   Application.CreateForm(TdmChatDB, dmChatDB);
+  Application.CreateForm(TfrmServerConsole, frmServerConsole);
   Application.Run;
 end.
 
