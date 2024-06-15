@@ -2264,6 +2264,154 @@ object frmMain: TfrmMain
             Margins.Top = 5.000000000000000000
             Margins.Right = 5.000000000000000000
             Position.X = 5.000000000000000000
+            Position.Y = 321.000000000000000000
+            Size.Width = 210.000000000000000000
+            Size.Height = 128.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = claNull
+            Visible = False
+            XRadius = 10.000000000000000000
+            YRadius = 10.000000000000000000
+            object lblVersionInfoHeader: TLabel
+              Align = Top
+              StyledSettings = [Family, FontColor]
+              Position.X = 10.000000000000000000
+              Position.Y = 5.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 14.000000000000000000
+              TextSettings.Font.StyleExt = {04060000000000000004000000}
+              TextSettings.HorzAlign = Center
+              TextSettings.Trimming = None
+              Text = 'Versions'
+              TabOrder = 0
+            end
+            object lytVersions: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 27.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              object lblRustServerVersionHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 27.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claLime
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Rust:'
+                TabOrder = 0
+              end
+              object lblRustVersionValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 149.000000000000000000
+                Size.Width = 41.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claLightsteelblue
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = '--- / ---'
+                TabOrder = 1
+              end
+            end
+            object lytOxideVersionHeader: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 57.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              object lblOxideVersionHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 35.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claLime
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Oxide:'
+                TabOrder = 0
+              end
+              object lblOxideVersionValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 149.000000000000000000
+                Size.Width = 41.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claLightsteelblue
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = '--- / ---'
+                TabOrder = 1
+              end
+            end
+            object lytCarbonVersion: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 87.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object lblCarbonVersionHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 43.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claLime
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Carbon:'
+                TabOrder = 0
+              end
+              object lblCarbonVersionValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Position.X = 149.000000000000000000
+                Size.Width = 41.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claLightsteelblue
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = '--- / ---'
+                TabOrder = 1
+              end
+            end
+          end
+          object rctnglVersionInfo: TRectangle
+            Align = Top
+            Fill.Color = xFF1F222A
+            Padding.Left = 10.000000000000000000
+            Padding.Top = 5.000000000000000000
+            Padding.Right = 10.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
             Position.Y = 5.000000000000000000
             Size.Width = 210.000000000000000000
             Size.Height = 311.000000000000000000
@@ -2271,7 +2419,7 @@ object frmMain: TfrmMain
             Stroke.Color = claNull
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
-            object lblServerInfoHeader: TLabel
+            object lblServerInfoHeader1: TLabel
               Align = Top
               StyledSettings = [Family, FontColor]
               Position.X = 10.000000000000000000
@@ -2286,7 +2434,7 @@ object frmMain: TfrmMain
               Text = 'Server Info'
               TabOrder = 0
             end
-            object lytPlayerCount: TLayout
+            object lyt: TLayout
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
@@ -2324,7 +2472,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytQueued: TLayout
+            object lyt1: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 52.000000000000000000
@@ -2361,7 +2509,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytJoining: TLayout
+            object lyt2: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 77.000000000000000000
@@ -2398,7 +2546,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytNetworkIn: TLayout
+            object lyt3: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 127.000000000000000000
@@ -2434,7 +2582,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytNetworkOut: TLayout
+            object lyt4: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 102.000000000000000000
@@ -2470,7 +2618,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytServerFPS: TLayout
+            object lyt5: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 152.000000000000000000
@@ -2506,7 +2654,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytServerVersion: TLayout
+            object lyt6: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 202.000000000000000000
@@ -2542,7 +2690,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytServerEntityCount: TLayout
+            object lyt7: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 177.000000000000000000
@@ -2578,7 +2726,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytServerMemoryUsage: TLayout
+            object lyt8: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 227.000000000000000000
@@ -2614,7 +2762,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytServerSize: TLayout
+            object lyt9: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 277.000000000000000000
@@ -2650,7 +2798,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
               end
             end
-            object lytLastWipe: TLayout
+            object lyt10: TLayout
               Align = Top
               Position.X = 10.000000000000000000
               Position.Y = 252.000000000000000000
