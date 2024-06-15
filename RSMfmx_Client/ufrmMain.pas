@@ -79,8 +79,6 @@ type
     lytLastWipe: TLayout;
     lblLastWipeHeader: TLabel;
     lblLastWipeValue: TLabel;
-    rctnglQuickServerControls: TRectangle;
-    lblQuickServerControlsHeader: TLabel;
     vrtscrlbxServerConfig: TVertScrollBox;
     lytHostnameHeader: TLayout;
     lblHostnameHeader: TLabel;
@@ -222,9 +220,6 @@ type
     lytStatPlayerCount: TLayout;
     lblStatPlayerCountHeader: TLabel;
     lblStatPlayerCountValue: TLabel;
-    btnStartServerQuickControl: TButton;
-    btnStopServerQuickControl: TButton;
-    btnForceSaveQuickControl: TButton;
     tbtmCarbonMod: TTabItem;
     lstCarbonmod: TListBoxItem;
     lblCarbonmod: TLabel;
@@ -237,9 +232,6 @@ type
     mniClearRSMCache: TMenuItem;
     pnlExperimentalWarning: TPanel;
     lblExperimentalWarning: TSkLabel;
-    lblServerOptionsUIHeader: TLabel;
-    lytEnableDisableQuickServerControls: TLayout;
-    chkEnableDisableQuickServerControls: TCheckBox;
     tmrCheckForUpdate: TTimer;
     lytUpdateAvailable: TLayout;
     rctnglUpdateAvailibleBG: TRectangle;
@@ -311,7 +303,6 @@ type
     procedure cbbServerGamemodeValueMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerInstallerBranchMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
     procedure cbbServerMapMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
-    procedure chkEnableDisableQuickServerControlsChange(Sender: TObject);
     procedure edtCustomMapURLValueEnter(Sender: TObject);
     procedure edtCustomMapURLValueExit(Sender: TObject);
     procedure edtRconPasswordValueEnter(Sender: TObject);
@@ -694,15 +685,6 @@ begin
   Abort;
 end;
 
-procedure TfrmMain.chkEnableDisableQuickServerControlsChange(Sender: TObject);
-begin
-  rctnglQuickServerControls.Visible := chkEnableDisableQuickServerControls.IsChecked;
-
-  // Save Config
-  rsmConfig.UI.quickServerControls := chkEnableDisableQuickServerControls.IsChecked;
-  rsmConfig.SaveConfig;
-end;
-
 procedure TfrmMain.edtCustomMapURLValueEnter(Sender: TObject);
 begin
   // Used in ShowServerInfo to check if the server info
@@ -924,9 +906,6 @@ begin
     ShowServerInfo
   else
     HideServerInfo;
-
-  // Quick Server Controls
-  chkEnableDisableQuickServerControls.IsChecked := rsmConfig.UI.quickServerControls;
 
   // Tray Icon (RSM > Tray Icon)
   mniTrayIconEnabled.IsChecked := rsmConfig.TrayIcon.Enabled;
@@ -1287,15 +1266,12 @@ begin
 
   // Server Controls
   btnStartServer.Enabled := not isServerRunning;
-  btnStartServerQuickControl.Enabled := btnStartServer.Enabled;
   btnKillServer.Enabled := isServerRunning;
 
   // Rcon Connection
   btnStopServer.Enabled := wsClientRcon.Active;
-  btnStopServerQuickControl.Enabled := btnStopServer.Enabled;
   btnRestartServer.Enabled := wsClientRcon.Active;
   btnForceSave.Enabled := wsClientRcon.Active;
-  btnForceSaveQuickControl.Enabled := btnForceSave.Enabled;
 
   // Server Config
   lytServerMap1.Enabled := not isServerRunning;

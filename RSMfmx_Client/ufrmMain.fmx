@@ -597,11 +597,11 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 89.000000000000000000
+              Position.Y = 32.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 3
+              TabOrder = 2
               object lblServerAffinityHeader: TLabel
                 Align = Left
                 AutoSize = True
@@ -644,21 +644,6 @@ object frmMain: TfrmMain
               StyledSettings = [Family, FontColor]
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 62.000000000000000000
-              Size.Width = 537.000000000000000000
-              Size.Height = 17.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Size = 14.000000000000000000
-              TextSettings.Font.StyleExt = {04060000000000000004000000}
-              TextSettings.Trimming = None
-              Text = 'Server Options'
-              TabOrder = 2
-            end
-            object lblServerOptionsUIHeader: TLabel
-              Align = MostTop
-              StyledSettings = [Family, FontColor]
-              Margins.Top = 5.000000000000000000
-              Position.X = 10.000000000000000000
               Position.Y = 5.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 17.000000000000000000
@@ -666,36 +651,15 @@ object frmMain: TfrmMain
               TextSettings.Font.Size = 14.000000000000000000
               TextSettings.Font.StyleExt = {04060000000000000004000000}
               TextSettings.Trimming = None
-              Text = 'Server Options UI'
-              TabOrder = 0
-            end
-            object lytEnableDisableQuickServerControls: TLayout
-              Align = Top
-              Margins.Top = 10.000000000000000000
-              Position.X = 10.000000000000000000
-              Position.Y = 32.000000000000000000
-              Size.Width = 537.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 4
-              object chkEnableDisableQuickServerControls: TCheckBox
-                Align = Left
-                Hint = 'Show Start / Stop Server options under Server Info.'
-                IsChecked = True
-                Size.Width = 145.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TabOrder = 0
-                Text = 'Quick Server Controls'
-                OnChange = chkEnableDisableQuickServerControlsChange
-              end
+              Text = 'Server Options'
+              TabOrder = 1
             end
             object lblAutoRestartHeader: TLabel
               Align = Top
               StyledSettings = [Family, FontColor]
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 119.000000000000000000
+              Position.Y = 62.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 17.000000000000000000
               Size.PlatformDefault = False
@@ -703,17 +667,17 @@ object frmMain: TfrmMain
               TextSettings.Font.StyleExt = {04060000000000000004000000}
               TextSettings.Trimming = None
               Text = 'Auto Restart'
-              TabOrder = 1
+              TabOrder = 0
             end
             object lytAutoRestart1: TLayout
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 146.000000000000000000
+              Position.Y = 89.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 7
+              TabOrder = 5
               object swtchAutoRestart1: TSwitch
                 Align = Left
                 IsChecked = False
@@ -794,11 +758,11 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 176.000000000000000000
+              Position.Y = 119.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 6
+              TabOrder = 4
               object swtchAutoRestart2: TSwitch
                 Align = Left
                 IsChecked = False
@@ -879,11 +843,11 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 206.000000000000000000
+              Position.Y = 149.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 5
+              TabOrder = 3
               object swtchAutoRestart3: TSwitch
                 Align = Left
                 IsChecked = False
@@ -2721,106 +2685,6 @@ object frmMain: TfrmMain
                 Text = '---'
                 TabOrder = 1
               end
-            end
-          end
-          object rctnglQuickServerControls: TRectangle
-            Align = Top
-            Fill.Color = xFF1F222A
-            Padding.Left = 10.000000000000000000
-            Padding.Top = 5.000000000000000000
-            Padding.Right = 10.000000000000000000
-            Margins.Left = 5.000000000000000000
-            Margins.Top = 5.000000000000000000
-            Margins.Right = 5.000000000000000000
-            Position.X = 5.000000000000000000
-            Position.Y = 321.000000000000000000
-            Size.Width = 210.000000000000000000
-            Size.Height = 150.000000000000000000
-            Size.PlatformDefault = False
-            Stroke.Color = claNull
-            XRadius = 10.000000000000000000
-            YRadius = 10.000000000000000000
-            object lblQuickServerControlsHeader: TLabel
-              Align = Top
-              StyledSettings = [Family, FontColor]
-              Position.X = 10.000000000000000000
-              Position.Y = 5.000000000000000000
-              Size.Width = 190.000000000000000000
-              Size.Height = 17.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Size = 14.000000000000000000
-              TextSettings.Font.StyleExt = {04060000000000000004000000}
-              TextSettings.HorzAlign = Center
-              TextSettings.Trimming = None
-              Text = 'Quick Server Controls'
-              TabOrder = 0
-            end
-            object btnStartServerQuickControl: TButton
-              Align = Top
-              CanFocus = False
-              StyledSettings = [Family, Size, FontColor]
-              Hint = 'Start the Rust Server'
-              Margins.Left = 30.000000000000000000
-              Margins.Top = 10.000000000000000000
-              Margins.Right = 30.000000000000000000
-              Position.X = 40.000000000000000000
-              Position.Y = 32.000000000000000000
-              Size.Width = 130.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              StyleLookup = 'tintedbutton'
-              TabOrder = 5
-              Text = 'Start Server'
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.Trimming = None
-              TintColor = claGreen
-              OnClick = btnStartServerClick
-            end
-            object btnStopServerQuickControl: TButton
-              Align = Top
-              CanFocus = False
-              Enabled = False
-              StyledSettings = [Family, Size, FontColor]
-              Hint = 
-                'Graceful shutdown.'#13#10#13#10'RSM will send the "quit" command via rcon ' +
-                'to the server in order to perform a propper server shutdown.'
-              Margins.Left = 30.000000000000000000
-              Margins.Top = 10.000000000000000000
-              Margins.Right = 30.000000000000000000
-              Position.X = 40.000000000000000000
-              Position.Y = 67.000000000000000000
-              Size.Width = 130.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              StyleLookup = 'tintedbutton'
-              TabOrder = 4
-              Text = 'Stop Server'
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.Trimming = None
-              TintColor = xFFCA8300
-              OnClick = btnStopServerClick
-            end
-            object btnForceSaveQuickControl: TButton
-              Align = Top
-              CanFocus = False
-              Enabled = False
-              StyledSettings = [Family, Size, FontColor]
-              Hint = 'RSM sends the "save" command to the server over rcon.'
-              Margins.Left = 30.000000000000000000
-              Margins.Top = 20.000000000000000000
-              Margins.Right = 30.000000000000000000
-              Position.X = 40.000000000000000000
-              Position.Y = 112.000000000000000000
-              Size.Width = 130.000000000000000000
-              Size.Height = 25.000000000000000000
-              Size.PlatformDefault = False
-              StyleLookup = 'tintedbutton'
-              TabOrder = 2
-              Text = 'Force Save'
-              TextSettings.Font.StyleExt = {00060000000000000004000000}
-              TextSettings.Trimming = None
-              TintColor = xFF158EFF
-              OnClick = btnForceSaveClick
             end
           end
         end
