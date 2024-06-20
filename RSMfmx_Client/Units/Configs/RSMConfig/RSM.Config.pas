@@ -16,7 +16,7 @@ type
         windowWidth: Single;
         ShowServerInfoPanel: Boolean; // Saved on btnShowHideServerInfoClick
         serverInstallerBranchIndex: Integer; // Item index for server installer branch
-        quickServerControls: Boolean; // Quick Server controls under server info
+       // quickServerControls: Boolean; // Quick Server controls under server info
       end;
     // Tray Icon
     type
@@ -37,11 +37,16 @@ type
         AutoRestart2: TRSMConfigAutoRestartItem;
         AutoRestart3: TRSMConfigAutoRestartItem;
       end;
+    type
+      TRSMConfigMisc = record
+        StartServerOnRSMBoot: Boolean;
+      end;
   public
     { Public Variables }
     UI: TRSMConfigIU;
     TrayIcon: TRSMConfigTrayIcon;
     AutoRestart: TRSMConfigAutoRestart;
+    Misc: TRSMConfigMisc;
   public
     { Public Methods }
     constructor Create;
@@ -69,7 +74,7 @@ begin
   Self.UI.windowWidth := 1000;
   Self.UI.ShowServerInfoPanel := True;
   Self.UI.serverInstallerBranchIndex := 0;
-  Self.UI.quickServerControls := True;
+ // Self.UI.quickServerControls := True;
 
   // Tray Icon
   Self.TrayIcon.Enabled := True;
@@ -85,6 +90,9 @@ begin
   Self.AutoRestart.AutoRestart3.Enabled := False;
   Self.AutoRestart.AutoRestart3.Time := EncodeTime(17, 0, 0, 0);
   Self.AutoRestart.AutoRestart3.WarningTimeSecs := 300;
+
+  // Misc
+  Self.Misc.StartServerOnRSMBoot := False;
 
   // Load Config
   Self.LoadConfig;

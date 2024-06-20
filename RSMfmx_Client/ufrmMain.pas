@@ -386,6 +386,9 @@ type
     procedure HideServerInfo;
     procedure ShowServerInfo;
   public
+    { Public Variables }
+    MainFormCreated: Boolean;
+  public
     { Public declarations }
     procedure BringToForeground;
   end;
@@ -728,6 +731,7 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  Self.MainFormCreated := False;
   FDoAutoRestart := False;
   FSkipUpdateMessage := False;
 
@@ -756,6 +760,30 @@ begin
 
   // Check for Update
   tmrCheckForUpdateTimer(tmrCheckForUpdate);
+
+  // Auto Start Server when RSM starts
+  if rsmConfig.Misc.StartServerOnRSMBoot then
+  begin
+    // Check if server is running
+    if not serverProcess.isRunning then
+    begin
+      TTask.Run(
+        procedure
+        begin
+          while not frmMain.MainFormCreated do
+            Sleep(1000);
+
+          TThread.Synchronize(TThread.Current,
+            procedure
+            begin
+              frmMain.btnStartServerClick(btnStartServer);
+            end);
+        end);
+    end;
+  end;
+
+  // Should Always be last
+  Self.MainFormCreated := True;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);

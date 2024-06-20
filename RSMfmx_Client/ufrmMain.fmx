@@ -98,7 +98,7 @@ object frmMain: TfrmMain
         TextSettings.FontColor = claLime
         TextSettings.WordWrap = False
         TextSettings.Trimming = None
-        Text = '2024.06.09'
+        Text = '2024.06.15'
         TabOrder = 0
         OnResized = lblAppVersionValueResized
       end
