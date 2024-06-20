@@ -293,6 +293,9 @@ type
     lytCarbonVersion: TLayout;
     lblCarbonVersionHeader: TLabel;
     lblCarbonVersionValue: TLabel;
+    lytStartServerWithRSM: TLayout;
+    swtchStartServerWithRSM: TSwitch;
+    lblStartServerWithRSM: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -344,6 +347,7 @@ type
     procedure swtchAutoRestart1Switch(Sender: TObject);
     procedure swtchAutoRestart2Switch(Sender: TObject);
     procedure swtchAutoRestart3Switch(Sender: TObject);
+    procedure swtchStartServerWithRSMSwitch(Sender: TObject);
     procedure tmedtAutoRestart1Change(Sender: TObject);
     procedure tmedtAutoRestart2Change(Sender: TObject);
     procedure tmedtAutoRestart3Change(Sender: TObject);
@@ -359,7 +363,7 @@ type
   private
     { Private Const }
     const
-      VERSION = '2024.06.15';
+      VERSION = '2024.06.20';
   private
     { Private Variables }
     // Server Info auto expand
@@ -959,6 +963,9 @@ begin
   spnedtAutoRestartTimer1.Value := rsmConfig.AutoRestart.AutoRestart1.WarningTimeSecs;
   spnedtAutoRestartTimer2.Value := rsmConfig.AutoRestart.AutoRestart2.WarningTimeSecs;
   spnedtAutoRestartTimer3.Value := rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs;
+
+  // Server Options (Server Controls)
+  swtchStartServerWithRSM.IsChecked := rsmConfig.Misc.StartServerOnRSMBoot;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);
@@ -1195,6 +1202,12 @@ end;
 procedure TfrmMain.swtchAutoRestart3Switch(Sender: TObject);
 begin
   rsmConfig.AutoRestart.AutoRestart3.Enabled := swtchAutoRestart3.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.swtchStartServerWithRSMSwitch(Sender: TObject);
+begin
+  rsmConfig.Misc.StartServerOnRSMBoot := swtchStartServerWithRSM.IsChecked;
   rsmConfig.SaveConfig;
 end;
 

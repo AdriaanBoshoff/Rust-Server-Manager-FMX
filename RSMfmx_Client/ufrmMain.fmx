@@ -659,7 +659,7 @@ object frmMain: TfrmMain
               StyledSettings = [Family, FontColor]
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 62.000000000000000000
+              Position.Y = 97.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 17.000000000000000000
               Size.PlatformDefault = False
@@ -673,7 +673,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 89.000000000000000000
+              Position.Y = 124.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -758,7 +758,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 119.000000000000000000
+              Position.Y = 154.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -843,7 +843,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 149.000000000000000000
+              Position.Y = 184.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -924,6 +924,47 @@ object frmMain: TfrmMain
                 TextSettings.WordWrap = False
                 Text = 'Seconds'
                 TabOrder = 5
+              end
+            end
+            object lytStartServerWithRSM: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 62.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 6
+              object swtchStartServerWithRSM: TSwitch
+                Align = Left
+                Hint = 
+                  'This option will start the server if the server is stopped when ' +
+                  'RSM opens'
+                IsChecked = False
+                Position.Y = 5.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                OnSwitch = swtchStartServerWithRSMSwitch
+              end
+              object lblStartServerWithRSM: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Hint = 
+                  'This option will start the server if the server is stopped when ' +
+                  'RSM opens'
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 177.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Start Server when RSM boots up'
+                TabOrder = 0
               end
             end
           end
@@ -3021,8 +3062,8 @@ object frmMain: TfrmMain
     Enabled = False
     Interval = 10000
     OnTimer = tmrAutoRestartTimer
-    Left = 408
-    Top = 216
+    Left = 584
+    Top = 488
   end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
