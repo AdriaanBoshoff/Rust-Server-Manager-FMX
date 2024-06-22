@@ -43,12 +43,12 @@ type
     var
       FSteamCMDFilePath: string;
       FSteamCMDZipPath: string;
-      FIsInstallingServer: Boolean;
       FServerInstallPath: string;
     procedure InstallSteamCMD;
     procedure AddLog(const Text: string);
   public
     { Public declarations }
+    FIsInstallingServer: Boolean;
   end;
 
 var
@@ -57,7 +57,8 @@ var
 implementation
 
 uses
-  System.Zip, Rest.Client, uSteamCMD, uframeMessageBox, RSM.Config, uframeToastMessage;
+  System.Zip, Rest.Client, uSteamCMD, uframeMessageBox, RSM.Config,
+  uframeToastMessage;
 
 {$R *.fmx}
 
