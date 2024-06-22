@@ -285,6 +285,12 @@ type
     lytStartServerWithRSM: TLayout;
     swtchStartServerWithRSM: TSwitch;
     lblStartServerWithRSM: TLabel;
+    lytCheckServerUpdateBeforeStartingServer: TLayout;
+    swtchUpdateServerBeforeStartingServer: TSwitch;
+    lblCheckServerUpdateBeforeStartingServer: TLabel;
+    lytInstallLatestOxideBeforeStartingServer: TLayout;
+    swtchInstallOxideBeforeServerStart: TSwitch;
+    lblCheckServerUpdateBeforeStartingServer1: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -337,6 +343,7 @@ type
     procedure swtchAutoRestart2Switch(Sender: TObject);
     procedure swtchAutoRestart3Switch(Sender: TObject);
     procedure swtchStartServerWithRSMSwitch(Sender: TObject);
+    procedure swtchUpdateServerBeforeStartingServerSwitch(Sender: TObject);
     procedure tmedtAutoRestart1Change(Sender: TObject);
     procedure tmedtAutoRestart2Change(Sender: TObject);
     procedure tmedtAutoRestart3Change(Sender: TObject);
@@ -610,6 +617,19 @@ begin
   begin
     ShowMessageBox('Server is already running with PID: ' + serverProcess.PID.ToString, 'Start Failure', Self);
     Exit;
+  end;
+
+  // Check if server is being installed
+  if frmServerInstaller.FIsInstallingServer then
+  begin
+    ShowToast('ERROR: Server is being installed');
+    Exit;
+  end;
+
+  // Update Server
+  if rsmConfig.Misc.UpdateServerBeforeServerStart then
+  begin
+    frmServerInstaller.btnInstallServerClick(frmServerInstaller.btnInstallServer);
   end;
 
   // Build Params
@@ -955,6 +975,8 @@ begin
 
   // Server Options (Server Controls)
   swtchStartServerWithRSM.IsChecked := rsmConfig.Misc.StartServerOnRSMBoot;
+  swtchUpdateServerBeforeStartingServer.IsChecked := rsmConfig.Misc.UpdateServerBeforeServerStart;
+  swtchInstallOxideBeforeServerStart.IsChecked := rsmConfig.Misc.InstallOxideBeforeServerStart;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);
@@ -1197,6 +1219,12 @@ end;
 procedure TfrmMain.swtchStartServerWithRSMSwitch(Sender: TObject);
 begin
   rsmConfig.Misc.StartServerOnRSMBoot := swtchStartServerWithRSM.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.swtchUpdateServerBeforeStartingServerSwitch(Sender: TObject);
+begin
+  rsmConfig.Misc.UpdateServerBeforeServerStart := swtchUpdateServerBeforeStartingServer.IsChecked;
   rsmConfig.SaveConfig;
 end;
 

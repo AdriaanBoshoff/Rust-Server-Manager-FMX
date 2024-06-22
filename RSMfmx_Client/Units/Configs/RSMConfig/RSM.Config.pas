@@ -40,6 +40,8 @@ type
     type
       TRSMConfigMisc = record
         StartServerOnRSMBoot: Boolean;
+        UpdateServerBeforeServerStart: Boolean;
+        InstallOxideBeforeServerStart: Boolean;
       end;
   public
     { Public Variables }
@@ -93,6 +95,8 @@ begin
 
   // Misc
   Self.Misc.StartServerOnRSMBoot := False;
+  Self.Misc.UpdateServerBeforeServerStart := False;
+  Self.Misc.InstallOxideBeforeServerStart := False;
 
   // Load Config
   Self.LoadConfig;

@@ -659,7 +659,7 @@ object frmMain: TfrmMain
               StyledSettings = [Family, FontColor]
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 97.000000000000000000
+              Position.Y = 167.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 17.000000000000000000
               Size.PlatformDefault = False
@@ -673,7 +673,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 124.000000000000000000
+              Position.Y = 194.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -758,7 +758,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 154.000000000000000000
+              Position.Y = 224.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -843,7 +843,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 184.000000000000000000
+              Position.Y = 254.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -934,7 +934,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 6
+              TabOrder = 8
               object swtchStartServerWithRSM: TSwitch
                 Align = Left
                 Hint = 
@@ -946,6 +946,8 @@ object frmMain: TfrmMain
                 Size.Height = 20.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 1
+                ParentShowHint = False
+                ShowHint = True
                 OnSwitch = swtchStartServerWithRSMSwitch
               end
               object lblStartServerWithRSM: TLabel
@@ -955,6 +957,7 @@ object frmMain: TfrmMain
                 Hint = 
                   'This option will start the server if the server is stopped when ' +
                   'RSM opens'
+                HitTest = True
                 Margins.Left = 5.000000000000000000
                 Position.X = 45.000000000000000000
                 Size.Width = 177.000000000000000000
@@ -964,6 +967,99 @@ object frmMain: TfrmMain
                 TextSettings.WordWrap = False
                 TextSettings.Trimming = None
                 Text = 'Start Server when RSM boots up'
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 0
+              end
+            end
+            object lytCheckServerUpdateBeforeStartingServer: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 97.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 7
+              object swtchUpdateServerBeforeStartingServer: TSwitch
+                Align = Left
+                Hint = 
+                  'This option will make RSM update the server before starting it. ' +
+                  'It will use the last selected version branch.'
+                IsChecked = False
+                Position.Y = 5.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                ParentShowHint = False
+                ShowHint = True
+                OnSwitch = swtchUpdateServerBeforeStartingServerSwitch
+              end
+              object lblCheckServerUpdateBeforeStartingServer: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Hint = 
+                  'This option will make RSM update the server before starting it. ' +
+                  'It will use the last selected version branch.'
+                HitTest = True
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 199.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Update Server before starting server'
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 0
+              end
+            end
+            object lytInstallLatestOxideBeforeStartingServer: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 132.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 6
+              object swtchInstallOxideBeforeServerStart: TSwitch
+                Align = Left
+                Hint = 
+                  'This option will make RSM update the server before starting it. ' +
+                  'It will use the last selected version branch.'
+                IsChecked = False
+                Position.Y = 5.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                ParentShowHint = False
+                ShowHint = True
+              end
+              object lblCheckServerUpdateBeforeStartingServer1: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Hint = 
+                  'This option will make RSM update the server before starting it. ' +
+                  'It will use the last selected version branch.'
+                HitTest = True
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 269.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Install Latest Oxide / uMod before starting server'
+                ParentShowHint = False
+                ShowHint = True
                 TabOrder = 0
               end
             end
@@ -2880,8 +2976,8 @@ object frmMain: TfrmMain
   end
   object pmTrayIcon: TPopupMenu
     Images = dmIcons.ilTrayIcon
-    Left = 224
-    Top = 304
+    Left = 448
+    Top = 480
     object mniTrayIconServerStatus: TMenuItem
       Enabled = False
       Locked = True
