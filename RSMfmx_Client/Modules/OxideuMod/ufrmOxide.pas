@@ -80,6 +80,7 @@ type
   public
     { Public declarations }
     oxideSettings: TOxideSettings;
+    FIsInstallingOxide: Boolean;
   end;
 
 var
@@ -137,7 +138,7 @@ begin
     procedure
     begin
       var oxideZip := ExtractFilePath(ParamStr(0)) + 'oxide.zip';
-
+      FIsInstallingOxide := True;
       try
         UpdateDownloadStatus('Downloading Oxide / uMod...');
         try
@@ -174,6 +175,7 @@ begin
           end;
         end;
       finally
+        FIsInstallingOxide := False;
         UpdateDownloadStatus('Done', False);
       end;
     end);
@@ -205,6 +207,8 @@ end;
 
 procedure TfrmOxide.FormCreate(Sender: TObject);
 begin
+  FIsInstallingOxide := False;
+
   oxideSettings := TOxideSettings.Create;
 
   lytDownloadStatus.Visible := False;

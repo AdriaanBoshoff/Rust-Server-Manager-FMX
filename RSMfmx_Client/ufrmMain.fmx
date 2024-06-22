@@ -1040,6 +1040,7 @@ object frmMain: TfrmMain
                 TabOrder = 1
                 ParentShowHint = False
                 ShowHint = True
+                OnSwitch = swtchInstallOxideBeforeServerStartSwitch
               end
               object lblCheckServerUpdateBeforeStartingServer1: TLabel
                 Align = Left

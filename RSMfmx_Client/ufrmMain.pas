@@ -342,6 +342,7 @@ type
     procedure swtchAutoRestart1Switch(Sender: TObject);
     procedure swtchAutoRestart2Switch(Sender: TObject);
     procedure swtchAutoRestart3Switch(Sender: TObject);
+    procedure swtchInstallOxideBeforeServerStartSwitch(Sender: TObject);
     procedure swtchStartServerWithRSMSwitch(Sender: TObject);
     procedure swtchUpdateServerBeforeStartingServerSwitch(Sender: TObject);
     procedure tmedtAutoRestart1Change(Sender: TObject);
@@ -630,6 +631,15 @@ begin
   if rsmConfig.Misc.UpdateServerBeforeServerStart then
   begin
     frmServerInstaller.btnInstallServerClick(frmServerInstaller.btnInstallServer);
+  end;
+
+  // Install Oxide / uMod
+  if rsmConfig.Misc.InstallOxideBeforeServerStart then
+  begin
+    frmOxide.btnInstallUpdateClick(frmOxide.btnInstallUpdate);
+    Sleep(500);
+    while frmOxide.FIsInstallingOxide do
+      Application.ProcessMessages;
   end;
 
   // Build Params
@@ -1213,6 +1223,12 @@ end;
 procedure TfrmMain.swtchAutoRestart3Switch(Sender: TObject);
 begin
   rsmConfig.AutoRestart.AutoRestart3.Enabled := swtchAutoRestart3.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.swtchInstallOxideBeforeServerStartSwitch(Sender: TObject);
+begin
+  rsmConfig.Misc.InstallOxideBeforeServerStart := swtchInstallOxideBeforeServerStart.IsChecked;
   rsmConfig.SaveConfig;
 end;
 
