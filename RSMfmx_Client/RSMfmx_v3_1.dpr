@@ -51,7 +51,8 @@ uses
   Rust.Manifest in 'Units\RustManifest\Rust.Manifest.pas',
   udmChatDB in 'DataModules\ChatDB\udmChatDB.pas' {dmChatDB: TDataModule},
   ufrmLogs in 'Modules\Logs\ufrmLogs.pas' {frmLogs},
-  ufrmServerConsole in 'Forms\Server Console\ufrmServerConsole.pas' {frmServerConsole};
+  ufrmServerConsole in 'Forms\Server Console\ufrmServerConsole.pas' {frmServerConsole},
+  ufrmAutoServerStartDlg in 'Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas' {frmAutoServerStartDlg};
 
 {$R *.res}
 

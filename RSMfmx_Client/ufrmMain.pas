@@ -290,7 +290,10 @@ type
     lblCheckServerUpdateBeforeStartingServer: TLabel;
     lytInstallLatestOxideBeforeStartingServer: TLayout;
     swtchInstallOxideBeforeServerStart: TSwitch;
-    lblCheckServerUpdateBeforeStartingServer1: TLabel;
+    lblInstallOxideBeforeStartingServer: TLabel;
+    lytAutoStartServerAfterShutdown: TLayout;
+    swtchAutoStartServerAfterShutdown: TSwitch;
+    lblAutoStartServerAfterShutdown: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -342,6 +345,7 @@ type
     procedure swtchAutoRestart1Switch(Sender: TObject);
     procedure swtchAutoRestart2Switch(Sender: TObject);
     procedure swtchAutoRestart3Switch(Sender: TObject);
+    procedure swtchAutoStartServerAfterShutdownSwitch(Sender: TObject);
     procedure swtchInstallOxideBeforeServerStartSwitch(Sender: TObject);
     procedure swtchStartServerWithRSMSwitch(Sender: TObject);
     procedure swtchUpdateServerBeforeStartingServerSwitch(Sender: TObject);
@@ -389,6 +393,7 @@ type
   public
     { Public Variables }
     MainFormCreated: Boolean;
+    FServerIsStarting: Boolean;
   public
     { Public declarations }
     procedure BringToForeground;
@@ -404,7 +409,8 @@ uses
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
-  ufrmAffinitySelect, uHelpers, udmTrayIcon, ufrmLogs, ufrmServerConsole;
+  ufrmAffinitySelect, uHelpers, udmTrayIcon, ufrmLogs, ufrmServerConsole,
+  ufrmAutoServerStartDlg;
 
 {$R *.fmx}
 
@@ -604,7 +610,12 @@ end;
 
 procedure TfrmMain.btnStartServerClick(Sender: TObject);
 begin
+  FServerIsStarting := True;
   var rustDedicatedExe := ExtractFilePath(ParamStr(0)) + 'RustDedicated.exe';
+
+  // Set this again because auto restart function changes the config value
+  // when cancelled. Do not save it again.
+  rsmConfig.Misc.StartServerAfterShutdown := swtchAutoStartServerAfterShutdown.IsChecked;
 
   // Check if server is installed
   if not TFile.Exists(rustDedicatedExe) then
@@ -636,6 +647,7 @@ begin
   // Install Oxide / uMod
   if rsmConfig.Misc.InstallOxideBeforeServerStart then
   begin
+    ShowToast('Installing the latest Oxide', 5);
     frmOxide.btnInstallUpdateClick(frmOxide.btnInstallUpdate);
     Sleep(500);
     while frmOxide.FIsInstallingOxide do
@@ -699,6 +711,7 @@ begin
     end;
   finally
     slParams.Free;
+    FServerIsStarting := False;
   end;
 end;
 
@@ -757,6 +770,7 @@ begin
   Self.MainFormCreated := False;
   FDoAutoRestart := False;
   FSkipUpdateMessage := False;
+  FServerIsStarting := False;
 
 {$IFDEF DEBUG}
   Self.Caption := 'RSMfmx v3.1 (DEBUG BUILD)';
@@ -799,7 +813,13 @@ begin
           TThread.Synchronize(TThread.Current,
             procedure
             begin
-              frmMain.btnStartServerClick(btnStartServer);
+              var autoStartDlg := TfrmAutoServerStartDlg.Create(Self);
+
+              case autoStartDlg.ShowModal of
+                mrOk:
+                  frmMain.btnStartServerClick(btnStartServer);
+              end;
+
             end);
         end);
     end;
@@ -987,6 +1007,7 @@ begin
   swtchStartServerWithRSM.IsChecked := rsmConfig.Misc.StartServerOnRSMBoot;
   swtchUpdateServerBeforeStartingServer.IsChecked := rsmConfig.Misc.UpdateServerBeforeServerStart;
   swtchInstallOxideBeforeServerStart.IsChecked := rsmConfig.Misc.InstallOxideBeforeServerStart;
+  swtchAutoStartServerAfterShutdown.IsChecked := rsmConfig.Misc.StartServerAfterShutdown;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);
@@ -1226,6 +1247,12 @@ begin
   rsmConfig.SaveConfig;
 end;
 
+procedure TfrmMain.swtchAutoStartServerAfterShutdownSwitch(Sender: TObject);
+begin
+  rsmConfig.Misc.StartServerAfterShutdown := swtchAutoStartServerAfterShutdown.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
 procedure TfrmMain.swtchInstallOxideBeforeServerStartSwitch(Sender: TObject);
 begin
   rsmConfig.Misc.InstallOxideBeforeServerStart := swtchInstallOxideBeforeServerStart.IsChecked;
@@ -1326,9 +1353,11 @@ end;
 
 procedure TfrmMain.tmrCheckServerRunningStatusTimer(Sender: TObject);
 begin
-  // Check if serverProcess is assigned
-  if not Assigned(serverProcess) then
-    Exit;
+  tmrCheckServerRunningStatus.Enabled := False;
+  try
+    // Check if serverProcess is assigned
+    if not Assigned(serverProcess) then
+      Exit;
 
 //  // Check if PID is default value
 //  if serverProcess.PID = -1 then
@@ -1337,78 +1366,95 @@ begin
   { Set Running state }
 
   // Labels
-  var isServerRunning := serverProcess.isRunning;
-  if isServerRunning then
-  begin
-    lblServerPIDValue.Text := serverProcess.PID.ToString;
-    lblStatServerPIDValue.Text := serverProcess.PID.ToString;
-  end
-  else
-  begin
-    lblServerPIDValue.Text := '---';
-    lblStatServerPIDValue.Text := '---';
-  end;
+    var isServerRunning := serverProcess.isRunning;
+    if isServerRunning then
+    begin
+      lblServerPIDValue.Text := serverProcess.PID.ToString;
+      lblStatServerPIDValue.Text := serverProcess.PID.ToString;
+    end
+    else
+    begin
+      lblServerPIDValue.Text := '---';
+      lblStatServerPIDValue.Text := '---';
+    end;
 
   // Server Controls
-  btnStartServer.Enabled := not isServerRunning;
-  btnKillServer.Enabled := isServerRunning;
+    btnStartServer.Enabled := not isServerRunning;
+    btnKillServer.Enabled := isServerRunning;
 
   // Rcon Connection
-  btnStopServer.Enabled := wsClientRcon.Active;
-  btnRestartServer.Enabled := wsClientRcon.Active;
-  btnForceSave.Enabled := wsClientRcon.Active;
+    btnStopServer.Enabled := wsClientRcon.Active;
+    btnRestartServer.Enabled := wsClientRcon.Active;
+    btnForceSave.Enabled := wsClientRcon.Active;
 
   // Server Config
-  lytServerMap1.Enabled := not isServerRunning;
-  lytServerMap2.Enabled := not isServerRunning;
-  lytServerNetworking1.Enabled := not isServerRunning;
-  lblRconIPHeader.Enabled := not isServerRunning;
-  edtRconIPValue.Enabled := not isServerRunning;
-  lblRconPortHeader.Enabled := not isServerRunning;
-  nmbrbxRconPortValue.Enabled := not isServerRunning;
-  edtRconPasswordValue.ReadOnly := isServerRunning;
-  lytServerNetworking3.Enabled := not isServerRunning;
-  lytServerConfigMisc2.Enabled := not isServerRunning;
+    lytServerMap1.Enabled := not isServerRunning;
+    lytServerMap2.Enabled := not isServerRunning;
+    lytServerNetworking1.Enabled := not isServerRunning;
+    lblRconIPHeader.Enabled := not isServerRunning;
+    edtRconIPValue.Enabled := not isServerRunning;
+    lblRconPortHeader.Enabled := not isServerRunning;
+    nmbrbxRconPortValue.Enabled := not isServerRunning;
+    edtRconPasswordValue.ReadOnly := isServerRunning;
+    lytServerNetworking3.Enabled := not isServerRunning;
+    lytServerConfigMisc2.Enabled := not isServerRunning;
 
   // Oxide Module
-  frmOxide.rctnglHeader.Enabled := not isServerRunning;
-  frmOxide.rctnglSettings.Enabled := not isServerRunning;
+    frmOxide.rctnglHeader.Enabled := not isServerRunning;
+    frmOxide.rctnglSettings.Enabled := not isServerRunning;
   // Cabon Module
-  frmCarbonMod.rctnglHeader.Enabled := not isServerRunning;
+    frmCarbonMod.rctnglHeader.Enabled := not isServerRunning;
 
   // Tray Icon
-  mniTrayIconStartServer.Enabled := not isServerRunning;
-  mniTrayIconStopServer.Enabled := wsClientRcon.Active;
-  if isServerRunning then
-  begin
-    mniTrayIconServerStatus.Text := 'Server Running';
-  end
-  else
-  begin
-    mniTrayIconServerStatus.Text := 'Server Stopped';
-  end;
+    mniTrayIconStartServer.Enabled := not isServerRunning;
+    mniTrayIconStopServer.Enabled := wsClientRcon.Active;
+    if isServerRunning then
+    begin
+      mniTrayIconServerStatus.Text := 'Server Running';
+    end
+    else
+    begin
+      mniTrayIconServerStatus.Text := 'Server Stopped';
+    end;
 
   // Check if server is running and rcon is connected.
   // If server is running and rcon is not connected then
   // try to connect
-  if isServerRunning and not wsClientRcon.Active then
-  begin
-    if serverConfig.Networking.RconIP = '0.0.0.0' then
-      wsClientRcon.Host := 'localhost'
-    else
-      wsClientRcon.Host := serverConfig.Networking.RconIP;
+    if isServerRunning and not wsClientRcon.Active then
+    begin
+      if serverConfig.Networking.RconIP = '0.0.0.0' then
+        wsClientRcon.Host := 'localhost'
+      else
+        wsClientRcon.Host := serverConfig.Networking.RconIP;
 
-    wsClientRcon.Port := serverConfig.Networking.RconPort;
-    wsClientRcon.Options.Parameters := '/' + TNetEncoding.URL.Encode(serverConfig.Networking.RconPassword);
-    wsClientRcon.ConnectTimeout := 5;
-    wsClientRcon.Active := True;
-  end;
+      wsClientRcon.Port := serverConfig.Networking.RconPort;
+      wsClientRcon.Options.Parameters := '/' + TNetEncoding.URL.Encode(serverConfig.Networking.RconPassword);
+      wsClientRcon.ConnectTimeout := 5;
+      wsClientRcon.Active := True;
+    end;
 
   // Auto Restart
-  if not serverProcess.isRunning then
-  begin
-    if FDoAutoRestart then
-      btnStartServerClick(btnStartServer);
+    if not serverProcess.isRunning and not FServerIsStarting then
+    begin
+      if FDoAutoRestart or rsmConfig.Misc.StartServerAfterShutdown then
+      begin
+        var autoStartDlg := TfrmAutoServerStartDlg.Create(Self);
+        case autoStartDlg.ShowModal of
+          mrOk:
+            begin
+              btnStartServerClick(btnStartServer);
+            end;
+          mrCancel:
+            begin
+              FDoAutoRestart := False;
+              rsmConfig.Misc.StartServerAfterShutdown := False;
+            end;
+        end;
+
+      end;
+    end;
+  finally
+    tmrCheckServerRunningStatus.Enabled := True;
   end;
 end;
 

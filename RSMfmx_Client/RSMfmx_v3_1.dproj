@@ -272,6 +272,10 @@
             <Form>frmServerConsole</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas">
+            <Form>frmAutoServerStartDlg</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

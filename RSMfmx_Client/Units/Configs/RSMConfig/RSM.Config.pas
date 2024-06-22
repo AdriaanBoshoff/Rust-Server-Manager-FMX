@@ -42,6 +42,7 @@ type
         StartServerOnRSMBoot: Boolean;
         UpdateServerBeforeServerStart: Boolean;
         InstallOxideBeforeServerStart: Boolean;
+        StartServerAfterShutdown: Boolean;
       end;
   public
     { Public Variables }
@@ -97,6 +98,7 @@ begin
   Self.Misc.StartServerOnRSMBoot := False;
   Self.Misc.UpdateServerBeforeServerStart := False;
   Self.Misc.InstallOxideBeforeServerStart := False;
+  Self.Misc.StartServerAfterShutdown := False;
 
   // Load Config
   Self.LoadConfig;
