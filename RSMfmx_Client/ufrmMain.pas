@@ -44,8 +44,6 @@ type
     lblServerInstaller: TLabel;
     tbtmServerConfig: TTabItem;
     tbtmServerInstaller: TTabItem;
-    rctnglServerInfo: TRectangle;
-    lblVersionInfoHeader: TLabel;
     vrtscrlbxServerConfig: TVertScrollBox;
     lytHostnameHeader: TLayout;
     lblHostnameHeader: TLabel;
@@ -284,15 +282,6 @@ type
     lyt10: TLayout;
     lblLastWipeHeader: TLabel;
     lblLastWipeValue: TLabel;
-    lytVersions: TLayout;
-    lblRustServerVersionHeader: TLabel;
-    lblRustVersionValue: TLabel;
-    lytOxideVersionHeader: TLayout;
-    lblOxideVersionHeader: TLabel;
-    lblOxideVersionValue: TLabel;
-    lytCarbonVersion: TLayout;
-    lblCarbonVersionHeader: TLabel;
-    lblCarbonVersionValue: TLabel;
     lytStartServerWithRSM: TLayout;
     swtchStartServerWithRSM: TSwitch;
     lblStartServerWithRSM: TLabel;
