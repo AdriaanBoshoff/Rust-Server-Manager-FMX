@@ -1,0 +1,111 @@
+object frmAutoServerStartDlg: TfrmAutoServerStartDlg
+  Left = 0
+  Top = 0
+  BorderStyle = None
+  ClientHeight = 143
+  ClientWidth = 362
+  Position = MainFormCenter
+  StyleBook = dmStyles.styleRedRock
+  Transparency = True
+  FormStyle = StayOnTop
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object rctnglBG: TRectangle
+    Align = Contents
+    Fill.Color = claBlack
+    Opacity = 0.899999976158142100
+    Size.Width = 362.000000000000000000
+    Size.Height = 143.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object tlbHeader: TToolBar
+    Size.Width = 362.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object lblHeader: TLabel
+      Align = Contents
+      StyledSettings = [Family, FontColor]
+      Size.Width = 362.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.HorzAlign = Center
+      Text = 'Server Start Countdown'
+      TabOrder = 0
+    end
+  end
+  object lblCountdown: TLabel
+    Align = Top
+    AutoSize = True
+    StyledSettings = [Family]
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 50.000000000000000000
+    Size.Width = 342.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00040000000100000004000000}
+    TextSettings.FontColor = claOrange
+    TextSettings.HorzAlign = Center
+    Text = 'Starting Server in 10 Seconds...'
+    TabOrder = 1
+  end
+  object lytButtons: TLayout
+    Align = Top
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 20.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 92.000000000000000000
+    Size.Width = 342.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object btnStartNow: TButton
+      Align = Right
+      StyledSettings = [Family, FontColor]
+      Position.X = 232.000000000000000000
+      Size.Width = 110.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tintedbutton'
+      TabOrder = 1
+      Text = 'Start Now'
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.Trimming = None
+      TintColor = claGreen
+      OnClick = btnStartNowClick
+    end
+    object btnCancel: TButton
+      Align = Left
+      StyledSettings = [Family]
+      Size.Width = 110.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tintedbutton'
+      TabOrder = 0
+      Text = 'Cancel'
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.Trimming = None
+      TintColor = claDarkred
+      OnClick = btnCancelClick
+    end
+  end
+  object tmrCountdown: TTimer
+    Enabled = False
+    OnTimer = tmrCountdownTimer
+    Left = 168
+    Top = 56
+  end
+end
