@@ -33,6 +33,9 @@ type
     { Public declarations }
   end;
 
+type
+  TProtectedURLRequest = class(TURLRequest);
+
 var
   frmLicenseManager: TfrmLicenseManager;
 
@@ -64,13 +67,7 @@ end;
 
 procedure TfrmLicenseManager.ValidateCert(const Sender: TObject; const ARequest: TURLRequest; const Certificate: TCertificate; var Accepted: Boolean);
 begin
-//  TThread.Synchronize(TThread.Current,
-//    procedure
-//    begin
-//      ShowMessage(Certificate.PublicKey);
-//    end);
-
-  Accepted := True;
+  Accepted := (TProtectedURLRequest(ARequest).FURL.Host = 'api.rustservermanager.com');
 end;
 
 procedure TfrmLicenseManager.btnCheckClick(Sender: TObject);
