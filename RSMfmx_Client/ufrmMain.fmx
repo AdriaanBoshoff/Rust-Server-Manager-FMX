@@ -2451,7 +2451,7 @@ object frmMain: TfrmMain
             Stroke.Color = claNull
             XRadius = 10.000000000000000000
             YRadius = 10.000000000000000000
-            object lblServerInfoHeader1: TLabel
+            object lblServerInfoHeader: TLabel
               Align = Top
               StyledSettings = [Family, FontColor]
               Position.X = 10.000000000000000000

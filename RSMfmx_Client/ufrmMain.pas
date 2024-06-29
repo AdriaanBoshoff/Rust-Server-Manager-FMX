@@ -248,7 +248,7 @@ type
     lblLogsHeader: TLabel;
     mniServerConsole: TMenuItem;
     rctnglVersionInfo: TRectangle;
-    lblServerInfoHeader1: TLabel;
+    lblServerInfoHeader: TLabel;
     lyt: TLayout;
     lblPlayerCountHeader: TLabel;
     lblPlayerCountValue: TLabel;
