@@ -4,7 +4,7 @@
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>2</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -276,6 +276,7 @@
             <Form>frmAutoServerStartDlg</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Units\RSM\uEndpointTypes.pas"/>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
@@ -570,12 +571,6 @@
                 <DeployFile LocalName="Win64\Debug\bin\RSMfmx_v3_1.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>RSMfmx_v3_1.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win64\Debug\bin\RSMfmx_v3_1.rsm" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win64">
-                        <RemoteName>RSMfmx_v3_1.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1543,7 +1538,6 @@
                 <ProjectRoot Platform="Win64x" Name="$(PROJECTNAME)"/>
             </Deployment>
             <Platforms>
-                <Platform value="Linux64">False</Platform>
                 <Platform value="Win32">False</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>

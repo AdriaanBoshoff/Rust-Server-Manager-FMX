@@ -52,7 +52,8 @@ uses
   udmChatDB in 'DataModules\ChatDB\udmChatDB.pas' {dmChatDB: TDataModule},
   ufrmLogs in 'Modules\Logs\ufrmLogs.pas' {frmLogs},
   ufrmServerConsole in 'Forms\Server Console\ufrmServerConsole.pas' {frmServerConsole},
-  ufrmAutoServerStartDlg in 'Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas' {frmAutoServerStartDlg};
+  ufrmAutoServerStartDlg in 'Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas' {frmAutoServerStartDlg},
+  uEndpointTypes in 'Units\RSM\uEndpointTypes.pas';
 
 {$R *.res}
 

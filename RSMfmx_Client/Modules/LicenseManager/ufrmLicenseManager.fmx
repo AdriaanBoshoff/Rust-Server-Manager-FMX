@@ -97,34 +97,4 @@ object frmLicenseManager: TfrmLicenseManager
       OnClick = btnDiscordClick
     end
   end
-  object lytLoading: TLayout
-    Align = Contents
-    Size.Width = 411.000000000000000000
-    Size.Height = 161.000000000000000000
-    Size.PlatformDefault = False
-    Visible = False
-    TabOrder = 3
-    object rctnglLoadingBG: TRectangle
-      Align = Contents
-      Fill.Color = claBlack
-      Opacity = 0.800000011920929000
-      Size.Width = 411.000000000000000000
-      Size.Height = 161.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object lblLoadingText: TLabel
-      Align = Center
-      AutoSize = True
-      StyledSettings = [Family, FontColor]
-      Size.Width = 83.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 16.000000000000000000
-      TextSettings.Font.StyleExt = {00060000000100000004000000}
-      TextSettings.WordWrap = False
-      TextSettings.Trimming = None
-      Text = 'LOADING...'
-      TabOrder = 1
-    end
-  end
 end

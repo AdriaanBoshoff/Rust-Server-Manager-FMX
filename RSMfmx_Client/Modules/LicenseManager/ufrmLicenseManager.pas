@@ -17,9 +17,6 @@ type
     lytControls: TLayout;
     btnCheck: TButton;
     btnDiscord: TButton;
-    lytLoading: TLayout;
-    rctnglLoadingBG: TRectangle;
-    lblLoadingText: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCheckClick(Sender: TObject);
     procedure btnDiscordClick(Sender: TObject);
@@ -28,7 +25,6 @@ type
   private
     { Private declarations }
     FLicenseFile: string;
-    procedure ValidateCert(const Sender: TObject; const ARequest: TURLRequest; const Certificate: TCertificate; var Accepted: Boolean);
   public
     { Public declarations }
   end;
@@ -43,7 +39,7 @@ implementation
 
 uses
   ufrmMain, RSM.Core, Rest.Client, Rest.Types, System.JSON.Types,
-  System.JSON.Writers, uWinUtils;
+  System.JSON.Writers, uWinUtils, uEndpointTypes, XSuperObject;
 
 {$R *.fmx}
 
@@ -65,119 +61,109 @@ begin
   end;
 end;
 
-procedure TfrmLicenseManager.ValidateCert(const Sender: TObject; const ARequest: TURLRequest; const Certificate: TCertificate; var Accepted: Boolean);
-begin
-  Accepted := (TProtectedURLRequest(ARequest).FURL.Host = 'api.rustservermanager.com');
-end;
-
 procedure TfrmLicenseManager.btnCheckClick(Sender: TObject);
 begin
   // Bypass License in Debug Mode
-  {$IFDEF DEBUG}
-  Application.CreateForm(TfrmMain, frmMain);
-  Application.MainForm := frmMain;
-  frmMain.Show;
-
-  Self.Close;
-  Exit;
-  {$ENDIF}
+//  {$IFDEF DEBUG}
+//  Application.CreateForm(TfrmMain, frmMain);
+//  Application.MainForm := frmMain;
+//  frmMain.Show;
+//
+//  Self.Close;
+//  Exit;
+//  {$ENDIF}
 
 
   if edtLicenseKey.Text.Trim.IsEmpty then
     Exit;
 
+
+  // Check License Key
   TTask.Run(
     procedure
     begin
-      var rest := TRESTRequest.Create(Self);
-      try
-        TThread.Synchronize(TThread.Current,
-          procedure
-          begin
-            lytLoading.Visible := True;
-            lytLoading.BringToFront;
-            lblLoadingText.Text := 'Checking License...';
-          end);
+      TThread.Synchronize(TThread.Current,
+        procedure
+        begin
+          edtLicenseKey.Enabled := False;
+          btnCheck.Enabled := False;
+        end);
 
+      var rest := TRESTRequest.Create(Self);
+      var licenseResp := Tv1CheckLicenseResp.Create;
+      var licenseReq := Tv1CheckLicenseReq.Create;
+      try
         rest.Client := TRESTClient.Create(rest);
         rest.Response := TRESTResponse.Create(rest);
 
-        rest.Timeout := 10000;
-
         rest.Client.BaseURL := 'https://api.rustservermanager.com';
-        rest.Resource := '/v1/auth';
+        rest.Resource := '/v1/checkLicense';
+        rest.Method := TRESTRequestMethod.rmGET;
+        rest.Client.RaiseExceptionOn500 := False;
 
-        var strWriter := TStringWriter.Create;
-        var writer := TJsonTextWriter.Create(strWriter);
+        licenseReq.LicenseKey := edtLicenseKey.Text.Trim;
+
+        rest.Body.Add(licenseReq.AsJSON(True), TRestContentType.ctAPPLICATION_JSON);
+
         try
-          try
-            writer.WriteStartObject;
-            writer.WritePropertyName('licenseKey');
-            writer.WriteValue(edtLicenseKey.Text);
-            writer.WriteEndObject;
+          rest.Execute;
+        except
+          on E: Exception do
+          begin
+            TThread.Synchronize(TThread.Current,
+              procedure
+              begin
+                ShowMessage('EXCEPTION: ' + sLineBreak + e.ClassName + ': ' + E.Message);
+                edtLicenseKey.Enabled := True;
+                btnCheck.Enabled := True;
+              end);
 
-            rest.Body.Add(strWriter.ToString, TRestContentType.ctAPPLICATION_JSON);
-
-            rest.Method := TRESTRequestMethod.rmGET;
-
-            rest.Client.OnValidateCertificate := ValidateCert;
-            rest.SynchronizedEvents := False;
-
-            rest.Execute;
-
-            if rest.Response.JSONValue.GetValue<Boolean>('Valid') then
-            begin
-              TThread.Synchronize(TThread.Current,
-                procedure
-                begin
-                  TFile.WriteAllText(FLicenseFile, edtLicenseKey.Text, TEncoding.UTF8);
-
-                  Application.CreateForm(TfrmMain, frmMain);
-                  Application.MainForm := frmMain;
-                  frmMain.Show;
-
-                  Self.Close;
-                end);
-            end
-            else if not rest.Response.JSONValue.GetValue<string>('Message').Trim.IsEmpty then
-            begin
-              TThread.Synchronize(TThread.Current,
-                procedure
-                begin
-                  ShowMessage(rest.Response.JSONValue.GetValue<string>('Message'));
-                end);
-            end
-            else
-            begin
-              TThread.Synchronize(TThread.Current,
-                procedure
-                begin
-                  ShowMessage('Invalid License');
-                end);
-            end;
-          except
-            on E: Exception do
-            begin
-              TThread.Synchronize(TThread.Current,
-                procedure
-                begin
-                  ShowMessage('[TfrmLicenseManager.btnCheckClick] ' + E.ClassName + ': ' + E.Message);
-                end);
-            end;
+            Exit;
           end;
-        finally
-          writer.Free;
-          strWriter.Free;
         end;
-      finally
-        rest.Free;
+
+        if not rest.Response.StatusCode = 200 then
+        begin
+          TThread.Synchronize(TThread.Current,
+            procedure
+            begin
+              ShowMessage('Unable to verify License Key' + sLineBreak + rest.Response.StatusCode.ToString + ' - ' + rest.Response.StatusText);
+              edtLicenseKey.Enabled := True;
+              btnCheck.Enabled := True;
+            end);
+          Exit;
+        end;
+
+        licenseResp.FromJSON(rest.Response.Content);
+
+        if not licenseResp.Valid then
+        begin
+          TThread.Synchronize(TThread.Current,
+            procedure
+            begin
+              ShowMessage(licenseResp.Message);
+              edtLicenseKey.Enabled := True;
+              btnCheck.Enabled := True;
+            end);
+
+          Exit;
+        end;
 
         TThread.Synchronize(TThread.Current,
           procedure
           begin
-            lytLoading.Visible := False;
-            lytLoading.SendToBack;
+            TFile.WriteAllText(FLicenseFile, edtLicenseKey.Text.Trim);
+
+            Application.CreateForm(TfrmMain, frmMain);
+            Application.MainForm := frmMain;
+            frmMain.Show;
+
+            Self.Close;
           end);
+      finally
+        licenseReq.Free;
+        licenseResp.Free;
+        rest.Free;
       end;
     end);
 end;
