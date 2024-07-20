@@ -53,7 +53,8 @@ uses
   ufrmLogs in 'Modules\Logs\ufrmLogs.pas' {frmLogs},
   ufrmServerConsole in 'Forms\Server Console\ufrmServerConsole.pas' {frmServerConsole},
   ufrmAutoServerStartDlg in 'Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas' {frmAutoServerStartDlg},
-  uEndpointTypes in 'Units\RSM\uEndpointTypes.pas';
+  uEndpointTypes in 'Units\RSM\uEndpointTypes.pas',
+  uGlobalConst in 'uGlobalConst.pas';
 
 {$R *.res}
 

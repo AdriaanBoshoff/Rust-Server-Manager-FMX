@@ -1,18 +1,21 @@
 object frmMain: TfrmMain
-  Left = 0
-  Top = 0
+  Left = 172
+  Top = 135
   Caption = 'RSMfmx v3.1'
   ClientHeight = 630
   ClientWidth = 1000
+  Position = Designed
   StyleBook = dmStyles.styleRedRock
   Constraints.MinHeight = 630.000000000000000000
   Constraints.MinWidth = 1000.000000000000000000
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnActivate = FormActivate
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
+  Left = 172
+  Top = 135
   DesignerMasterStyle = 0
   object mnbrMain: TMenuBar
     Images = dmIcons.ilMenuIcons_24
@@ -69,6 +72,9 @@ object frmMain: TfrmMain
     object mniServerConsole: TMenuItem
       Text = 'Server Console'
       OnClick = mniServerConsoleClick
+    end
+    object mnitest: TMenuItem
+      Text = 'mnitest'
     end
   end
   object statMain: TStatusBar
@@ -3022,7 +3028,6 @@ object frmMain: TfrmMain
     Left = 448
     Top = 480
     object mniTrayIconServerStatus: TMenuItem
-      Enabled = False
       Locked = True
       Text = 'STATUS'
     end

@@ -294,6 +294,7 @@ type
     lytAutoStartServerAfterShutdown: TLayout;
     swtchAutoStartServerAfterShutdown: TSwitch;
     lblAutoStartServerAfterShutdown: TLabel;
+    mnitest: TMenuItem;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
@@ -319,7 +320,6 @@ type
     procedure edtCustomMapURLValueExit(Sender: TObject);
     procedure edtRconPasswordValueEnter(Sender: TObject);
     procedure edtRconPasswordValueExit(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblAppVersionValueResized(Sender: TObject);
     procedure lblExperimentalWarningWords2Click(Sender: TObject);
@@ -361,10 +361,9 @@ type
     procedure wsClientRconError(Connection: TsgcWSConnection; const Error: string);
     procedure wsClientRconException(Connection: TsgcWSConnection; E: Exception);
     procedure wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
+    procedure FormShow(Sender: TObject);
   private
     { Private Const }
-    const
-      VERSION = '2024.06.22';
   private
     { Private Variables }
     // Server Info auto expand
@@ -410,7 +409,7 @@ uses
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
   ufrmAffinitySelect, uHelpers, udmTrayIcon, ufrmLogs, ufrmServerConsole,
-  ufrmAutoServerStartDlg;
+  ufrmAutoServerStartDlg, uGlobalConst;
 
 {$R *.fmx}
 
@@ -778,7 +777,7 @@ begin
 {$ENDIF}
 {$IFDEF RELEASE}
   Self.Caption := 'RSMfmx v3.1';
-  lblAppVersionValue.Text := VERSION;
+  lblAppVersionValue.Text := APP_VERSION;
 {$ENDIF}
   // Classes
   CreateClasses;
@@ -854,6 +853,12 @@ begin
   FreeClasses;
 end;
 
+procedure TfrmMain.FormShow(Sender: TObject);
+begin
+// Server Size
+  lblServerSizeValue.Text := ConvertBytes(GetDirSize(ExtractFileDir(ParamStr(0)), True));
+end;
+
 procedure TfrmMain.CreateClasses;
 begin
   // Server Config
@@ -868,6 +873,9 @@ end;
 
 procedure TfrmMain.CreateModules;
 begin
+  // Tray Icon
+  dmTrayIcon := TdmTrayIcon.Create(Self);
+
   // Server Installer Module
   frmServerInstaller := TfrmServerInstaller.Create(tbtmServerInstaller);
   while frmServerInstaller.ChildrenCount > 0 do
@@ -897,15 +905,6 @@ begin
   frmLogs := TfrmLogs.Create(tbtmLogs);
   while frmLogs.ChildrenCount > 0 do
     frmLogs.Children[0].Parent := tbtmLogs;
-
-  // Tray Icon
-  dmTrayIcon := TdmTrayIcon.Create(Self);
-end;
-
-procedure TfrmMain.FormActivate(Sender: TObject);
-begin
-  // Server Size
-  lblServerSizeValue.Text := ConvertBytes(GetDirSize(ExtractFileDir(ParamStr(0)), True));
 end;
 
 procedure TfrmMain.FreeClasses;
@@ -1325,30 +1324,30 @@ begin
   if FSkipUpdateMessage then
     Exit;
 
-  TTask.Run(
-    procedure
-    begin
-      var rest := TRESTRequest.Create(Self);
-      try
-        rest.Client := TRESTClient.Create(rest);
-        rest.Response := TRESTResponse.Create(rest);
-
-        rest.Client.BaseURL := 'https://api.rustservermanager.com/v1/version';
-
-        rest.Execute;
-
-        if rest.Response.StatusCode = 200 then
-        begin
-          if rest.Response.JSONValue.GetValue<string>('version') <> VERSION then
-          begin
-            lytUpdateAvailable.Visible := True;
-            lytUpdateAvailable.BringToFront;
-          end;
-        end;
-      finally
-        rest.Free;
-      end;
-    end);
+//  TTask.Run(
+//    procedure
+//    begin
+//      var rest := TRESTRequest.Create(Self);
+//      try
+//        rest.Client := TRESTClient.Create(rest);
+//        rest.Response := TRESTResponse.Create(rest);
+//
+//        rest.Client.BaseURL := 'https://api.rustservermanager.com/v1/version';
+//
+//        rest.Execute;
+//
+//        if rest.Response.StatusCode = 200 then
+//        begin
+//          if rest.Response.JSONValue.GetValue<string>('version') <> APP_VERSION then
+//          begin
+//            lytUpdateAvailable.Visible := True;
+//            lytUpdateAvailable.BringToFront;
+//          end;
+//        end;
+//      finally
+//        rest.Free;
+//      end;
+//    end);
 end;
 
 procedure TfrmMain.tmrCheckServerRunningStatusTimer(Sender: TObject);
