@@ -137,7 +137,11 @@ begin
         procedure
         begin
           // Show uMod Login option
-          rctnglLoginTouMod.Visible := (FuModResponse.rateLimit.total <= 60);
+//          if (FuModResponse.rateLimit.total <= 60) then
+//          begin
+//            rsmConfig.LoginTokens.uModToken := '';
+//            rsmConfig.SaveConfig;
+//          end;
 
           if FuModResponse.ResponseCode = 429 then
           begin
