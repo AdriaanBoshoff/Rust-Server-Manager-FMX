@@ -21,19 +21,13 @@ type
     lblPageOf: TLabel;
     vrtscrlbxPlugins: TVertScrollBox;
     flwlytPlugins: TFlowLayout;
-    rctnglLoginTouMod: TRectangle;
-    lbluModLoginHeader: TLabel;
-    btnuModLogin: TButton;
-    lblViewuModLoginSourceCode: TLabel;
     procedure btnNextPageClick(Sender: TObject);
     procedure btnPreviousPageClick(Sender: TObject);
     procedure btnSearchPluginClick(Sender: TObject);
-    procedure btnuModLoginClick(Sender: TObject);
     procedure edtPluginSearchKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
     procedure flwlytPluginsResized(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure lblViewuModLoginSourceCodeClick(Sender: TObject);
     procedure nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
   private
     { Private declarations }
@@ -56,7 +50,7 @@ function GetuModLoginSession: PWChar; stdcall; external 'uModLoginHelper.dll';
 implementation
 
 uses
-  uframeuModPluginItem, uWinUtils, System.IOUtils, RSM.Core;
+  uframeuModPluginItem, uWinUtils, System.IOUtils, RSM.Core, RSM.Config;
 
 {$R *.fmx}
 
@@ -136,6 +130,7 @@ begin
   TTask.Run(
     procedure
     begin
+      uModAPI.SessionToken := rsmConfig.LoginTokens.uModToken;
       FuModResponse := uModAPI.SearchPlugins(edtPluginSearch.Text, 1);
 
       TThread.Synchronize(TThread.Current,
@@ -168,42 +163,6 @@ begin
           ReCalcPluginSize;
         end);
     end);
-end;
-
-procedure TfrmuModStore.btnuModLoginClick(Sender: TObject);
-begin
-  if not isWebView2RuntimeInstalled then
-  begin
-    ShowMessageBox('WebView2 is missing and will now be installed.', 'WebView2 Required', Self.Owner as TFmxObject);
-    Application.ProcessMessages;
-
-    var webViewPath := TPath.Combine([rsmCore.Paths.GetRootDir, 'webView2Installer.exe']);
-
-    var memStream := TMemoryStream.Create;
-    try
-      TDownloadURL.DownloadRawBytes('https://go.microsoft.com/fwlink/p/?LinkId=2124703', memStream);
-
-      memStream.SaveToFile(webViewPath);
-    finally
-      memStream.Free;
-    end;
-
-    Application.ProcessMessages;
-
-    CreateProcess(webViewPath, '', '', True);
-
-    TFile.Delete(webViewPath);
-
-    FuModLoginSessionToken := GetuModLoginSession;
-    uModAPI.SessionToken := FuModLoginSessionToken;
-    btnSearchPluginClick(btnSearchPlugin);
-  end
-  else
-  begin
-    FuModLoginSessionToken := GetuModLoginSession;
-    uModAPI.SessionToken := FuModLoginSessionToken;
-    btnSearchPluginClick(btnSearchPlugin);
-  end;
 end;
 
 procedure TfrmuModStore.ReCalcPluginSize;
@@ -261,11 +220,6 @@ procedure TfrmuModStore.FormCreate(Sender: TObject);
 begin
   uModAPI := TuModAPI.Create;
   FpluginsPreloaded := False;
-end;
-
-procedure TfrmuModStore.lblViewuModLoginSourceCodeClick(Sender: TObject);
-begin
-  OpenURL('https://github.com/RustServerManager/uMod-Login-Helper');
 end;
 
 procedure TfrmuModStore.nmbrbxCurrentPageKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);

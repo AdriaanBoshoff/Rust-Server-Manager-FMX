@@ -37,12 +37,17 @@ type
     lytuModLogin: TLayout;
     lbluModAPIDescription2: TLabel;
     btnuModLogin: TButton;
+    lblViewuModLoginSourceCode: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure tvNavChange(Sender: TObject);
+    procedure btnuModLoginClick(Sender: TObject);
+    procedure lblViewuModLoginSourceCodeClick(Sender: TObject);
   private
     { Private declarations }
+    FuModSessionToken: string;
+    procedure PopulateConfig;
   public
     { Public declarations }
   end;
@@ -52,16 +57,59 @@ var
 
 implementation
 
+uses
+  RSM.Config, uWinUtils, System.IOUtils, RSM.Core, Rest.Client, WinAPI.Windows;
+
 {$R *.fmx}
+
+function GetuModLoginSession: PWChar; stdcall; external 'uModLoginHelper.dll';
 
 procedure TfrmSettings.btnCancelClick(Sender: TObject);
 begin
+  rsmConfig.LoadConfig;
   Self.ModalResult := mrCancel;
 end;
 
 procedure TfrmSettings.btnSaveClick(Sender: TObject);
 begin
+  rsmConfig.APIKeys.SteamAPIKey := edtSteamAPIKeyValue.Text;
+  rsmConfig.APIKeys.RustMapsAPIKey := edtRustMapsAPIKeyValue.Text;
+  rsmConfig.LoginTokens.uModToken := FuModSessionToken;
+  rsmConfig.SaveConfig;
+
   Self.ModalResult := mrOk;
+end;
+
+procedure TfrmSettings.btnuModLoginClick(Sender: TObject);
+begin
+  if not isWebView2RuntimeInstalled then
+  begin
+    ShowMessage('WebView2 is missing and will now be installed.');
+    Application.ProcessMessages;
+
+    var webViewPath := TPath.Combine([rsmCore.Paths.GetRootDir, 'webView2Installer.exe']);
+
+    var memStream := TMemoryStream.Create;
+    try
+      TDownloadURL.DownloadRawBytes('https://go.microsoft.com/fwlink/p/?LinkId=2124703', memStream);
+
+      memStream.SaveToFile(webViewPath);
+    finally
+      memStream.Free;
+    end;
+
+    Application.ProcessMessages;
+
+    uWinUtils.CreateProcess(webViewPath, '', '', True);
+
+    TFile.Delete(webViewPath);
+
+    FuModSessionToken := GetuModLoginSession;
+  end
+  else
+  begin
+    FuModSessionToken := GetuModLoginSession;
+  end;
 end;
 
 procedure TfrmSettings.FormCreate(Sender: TObject);
@@ -69,8 +117,21 @@ begin
   { Main Nav }
   //tbcNav.TabPosition := TTabPosition.None;
 
-  { API Settings }
- // tbcAPISettings.TabPosition := TTabPosition.None;
+  tbcNav.TabIndex := 0;
+
+  PopulateConfig;
+end;
+
+procedure TfrmSettings.lblViewuModLoginSourceCodeClick(Sender: TObject);
+begin
+  OpenURL('https://github.com/RustServerManager/uMod-Login-Helper');
+end;
+
+procedure TfrmSettings.PopulateConfig;
+begin
+  // API Settings
+  edtSteamAPIKeyValue.Text := rsmConfig.APIKeys.SteamAPIKey;
+  edtRustMapsAPIKeyValue.Text := rsmConfig.APIKeys.RustMapsAPIKey;
 end;
 
 procedure TfrmSettings.tvNavChange(Sender: TObject);

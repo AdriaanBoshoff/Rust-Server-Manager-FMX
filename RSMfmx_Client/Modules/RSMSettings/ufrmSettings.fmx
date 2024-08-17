@@ -275,7 +275,7 @@ object frmSettings: TfrmSettings
         Size.Width = 530.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 2
+        TabOrder = 3
         object btnuModLogin: TButton
           Align = HorzCenter
           CanFocus = False
@@ -288,6 +288,7 @@ object frmSettings: TfrmSettings
           Text = 'uMod.org Login'
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.Trimming = None
+          OnClick = btnuModLoginClick
         end
       end
       object lbluModAPIDescription2: TLabel
@@ -308,6 +309,26 @@ object frmSettings: TfrmSettings
           's grabbed using Webview 2 and is saved locall. The token wil not' +
           ' sent anywhere else.'
         TabOrder = 0
+      end
+      object lblViewuModLoginSourceCode: TLabel
+        Align = Top
+        AutoSize = True
+        Cursor = crHandPoint
+        StyledSettings = [Family, Size]
+        HitTest = True
+        Margins.Top = 10.000000000000000000
+        Position.Y = 140.000000000000000000
+        Size.Width = 530.000000000000000000
+        Size.Height = 16.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {04040000000100000004000000}
+        TextSettings.FontColor = claCadetblue
+        TextSettings.HorzAlign = Center
+        TextSettings.WordWrap = False
+        TextSettings.Trimming = None
+        Text = 'View Source Code'
+        TabOrder = 2
+        OnClick = lblViewuModLoginSourceCodeClick
       end
     end
   end
