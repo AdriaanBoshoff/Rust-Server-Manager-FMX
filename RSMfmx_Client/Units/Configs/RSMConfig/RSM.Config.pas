@@ -37,6 +37,7 @@ type
         AutoRestart2: TRSMConfigAutoRestartItem;
         AutoRestart3: TRSMConfigAutoRestartItem;
       end;
+      // Misc Start Settings
     type
       TRSMConfigMisc = record
         StartServerOnRSMBoot: Boolean;
