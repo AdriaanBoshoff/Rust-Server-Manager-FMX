@@ -1,10 +1,10 @@
 object frmMain: TfrmMain
-  Left = 465
-  Top = 210
+  Left = 577
+  Top = 202
   Caption = 'RSMfmx v3.1'
   ClientHeight = 630
   ClientWidth = 1000
-  Position = Default
+  Position = ScreenCenter
   StyleBook = dmStyles.styleRedRock
   Constraints.MinHeight = 630.000000000000000000
   Constraints.MinWidth = 1000.000000000000000000
@@ -14,8 +14,8 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  Left = 465
-  Top = 210
+  Left = 577
+  Top = 202
   DesignerMasterStyle = 0
   object mnbrMain: TMenuBar
     Images = dmIcons.ilMenuIcons_24
@@ -347,7 +347,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -372,7 +372,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1118,7 +1118,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1663,6 +1663,18 @@ object frmMain: TfrmMain
                 Text = 'btnGenerateMapSeed'
                 TextSettings.Trimming = None
                 OnClick = btnGenerateMapSeedClick
+              end
+              object btnPreviewMap: TButton
+                Align = Left
+                Margins.Left = 10.000000000000000000
+                Position.X = 493.000000000000000000
+                Size.Width = 80.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 4
+                Text = 'Preview Map'
+                TextSettings.Trimming = None
+                OnClick = btnPreviewMapClick
               end
             end
           end

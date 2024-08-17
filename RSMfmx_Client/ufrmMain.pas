@@ -294,6 +294,7 @@ type
     lytAutoStartServerAfterShutdown: TLayout;
     swtchAutoStartServerAfterShutdown: TSwitch;
     lblAutoStartServerAfterShutdown: TLabel;
+    btnPreviewMap: TButton;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -361,6 +362,7 @@ type
     procedure wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
     procedure FormShow(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
+    procedure btnPreviewMapClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -517,6 +519,11 @@ procedure TfrmMain.btnOpenUpdaterClick(Sender: TObject);
 begin
   OpenURL('.\updtr.exe');
   Self.Close;
+end;
+
+procedure TfrmMain.btnPreviewMapClick(Sender: TObject);
+begin
+  OpenURL('https://rustmaps.com/map/' + nmbrbxMapSize.Value.ToString + '_' + nmbrbxMapSeed.Value.ToString);
 end;
 
 procedure TfrmMain.btnRestartServerClick(Sender: TObject);
@@ -778,7 +785,7 @@ begin
 
 {$IFDEF DEBUG}
   Self.Caption := 'RSMfmx v3.1 (DEBUG BUILD)';
-  lblAppVersionValue.Text := VERSION + '(DEBUG)';
+  lblAppVersionValue.Text := uGlobalConst.APP_VERSION + '(DEBUG)';
 {$ENDIF}
 {$IFDEF RELEASE}
   Self.Caption := 'RSMfmx v3.1';
