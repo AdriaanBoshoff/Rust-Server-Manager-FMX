@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.TreeView, FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.TabControl;
+  FMX.TabControl, FMX.Edit;
 
 type
   TfrmSettings = class(TForm)
@@ -26,6 +26,13 @@ type
     tbtmuModAPI: TTabItem;
     tbtmRSMLicense: TTabItem;
     lblSteamAPIDescription: TLabel;
+    lytSteamAPIKey: TLayout;
+    lblSteamAPIKeyHeader: TLabel;
+    edtSteamAPIKeyValue: TEdit;
+    btnGetSteamAPIKey: TButton;
+    lytSteamAPICallCount: TLayout;
+    lblSteamAPICallCountHeader: TLabel;
+    lblSteamAPICallCountValue: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);

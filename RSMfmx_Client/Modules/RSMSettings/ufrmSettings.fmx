@@ -127,6 +127,85 @@ object frmSettings: TfrmSettings
           'er such as bans, hours and rust statistics.'
         TabOrder = 0
       end
+      object lytSteamAPIKey: TLayout
+        Align = Top
+        Margins.Top = 10.000000000000000000
+        Position.Y = 42.000000000000000000
+        Size.Width = 530.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lblSteamAPIKeyHeader: TLabel
+          Align = MostLeft
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Size.Width = 79.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'SteamAPI Key:'
+          TabOrder = 0
+        end
+        object edtSteamAPIKeyValue: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Left
+          TabOrder = 1
+          TextSettings.HorzAlign = Center
+          Position.X = 84.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Size.Width = 322.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'SteamAPI Key'
+        end
+        object btnGetSteamAPIKey: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Position.X = 411.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Get Key'
+          TextSettings.Trimming = None
+        end
+      end
+      object lytSteamAPICallCount: TLayout
+        Align = Top
+        Margins.Top = 10.000000000000000000
+        Position.Y = 82.000000000000000000
+        Size.Width = 530.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object lblSteamAPICallCountHeader: TLabel
+          Align = MostLeft
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Size.Width = 82.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'API Call Count:'
+          TabOrder = 0
+        end
+        object lblSteamAPICallCountValue: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size, Style]
+          Margins.Left = 5.000000000000000000
+          Position.X = 87.000000000000000000
+          Size.Width = 7.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.FontColor = xFFC9C9C9
+          TextSettings.WordWrap = False
+          Text = '0'
+          TabOrder = 1
+        end
+      end
     end
     object tbtmRustMapsAPI: TTabItem
       Tag = 2

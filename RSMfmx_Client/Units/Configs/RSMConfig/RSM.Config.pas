@@ -45,12 +45,18 @@ type
         InstallOxideBeforeServerStart: Boolean;
         StartServerAfterShutdown: Boolean;
       end;
+      // API Settings
+    type
+      TRSMConfigAPIKeys = record
+        SteamAPIKey: string;
+      end;
   public
     { Public Variables }
     UI: TRSMConfigIU;
     TrayIcon: TRSMConfigTrayIcon;
     AutoRestart: TRSMConfigAutoRestart;
     Misc: TRSMConfigMisc;
+    APIKeys: TRSMConfigAPIKeys;
   public
     { Public Methods }
     constructor Create;
@@ -100,6 +106,9 @@ begin
   Self.Misc.UpdateServerBeforeServerStart := False;
   Self.Misc.InstallOxideBeforeServerStart := False;
   Self.Misc.StartServerAfterShutdown := False;
+
+  // API Keys
+  Self.APIKeys.SteamAPIKey := '';
 
   // Load Config
   Self.LoadConfig;
