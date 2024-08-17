@@ -278,6 +278,10 @@
         </DCCReference>
         <DCCReference Include="Units\RSM\uEndpointTypes.pas"/>
         <DCCReference Include="uGlobalConst.pas"/>
+        <DCCReference Include="Modules\RSMSettings\ufrmSettings.pas">
+            <Form>frmSettings</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

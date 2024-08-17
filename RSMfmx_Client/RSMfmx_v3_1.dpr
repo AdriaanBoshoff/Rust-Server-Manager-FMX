@@ -54,7 +54,8 @@ uses
   ufrmServerConsole in 'Forms\Server Console\ufrmServerConsole.pas' {frmServerConsole},
   ufrmAutoServerStartDlg in 'Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas' {frmAutoServerStartDlg},
   uEndpointTypes in 'Units\RSM\uEndpointTypes.pas',
-  uGlobalConst in 'uGlobalConst.pas';
+  uGlobalConst in 'uGlobalConst.pas',
+  ufrmSettings in 'Modules\RSMSettings\ufrmSettings.pas' {frmSettings};
 
 {$R *.res}
 

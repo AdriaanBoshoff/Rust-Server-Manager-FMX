@@ -1,0 +1,219 @@
+object frmSettings: TfrmSettings
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = SizeToolWin
+  Caption = 'Settings'
+  ClientHeight = 469
+  ClientWidth = 746
+  Position = MainFormCenter
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object tvNav: TTreeView
+    Align = Left
+    Size.Width = 200.000000000000000000
+    Size.Height = 424.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    AlternatingRowBackground = True
+    ItemHeight = 25.000000000000000000
+    OnChange = tvNavChange
+    Viewport.Width = 196.000000000000000000
+    Viewport.Height = 420.000000000000000000
+    object tviAPISettings: TTreeViewItem
+      IsChecked = False
+      IsExpanded = True
+      IsSelected = False
+      TabOrder = 0
+      Text = 'APIs && API Keys'
+      object tviSteamAPI: TTreeViewItem
+        IsChecked = False
+        IsExpanded = False
+        IsSelected = False
+        TabOrder = 0
+        Text = 'Steam API'
+      end
+      object tviRustMapsAPI: TTreeViewItem
+        IsChecked = False
+        IsExpanded = False
+        IsSelected = False
+        TabOrder = 1
+        Text = 'Rust Maps API'
+      end
+      object tviModAPI: TTreeViewItem
+        IsChecked = False
+        IsExpanded = False
+        IsSelected = False
+        TabOrder = 2
+        Text = 'uMod API'
+      end
+    end
+    object tviRSMLicense: TTreeViewItem
+      IsChecked = False
+      IsExpanded = False
+      IsSelected = False
+      TabOrder = 1
+      Text = 'RSM License'
+    end
+  end
+  object tbcNav: TTabControl
+    Align = Client
+    Padding.Left = 8.000000000000000000
+    Padding.Top = 8.000000000000000000
+    Padding.Right = 8.000000000000000000
+    Padding.Bottom = 8.000000000000000000
+    Size.Width = 546.000000000000000000
+    Size.Height = 424.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 1
+    TabOrder = 1
+    TabPosition = PlatformDefault
+    Sizes = (
+      530s
+      384s
+      530s
+      384s
+      530s
+      384s
+      530s
+      384s
+      530s
+      384s)
+    object tbtmAPISettings: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = False
+      Size.Width = 84.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'API Settings'
+      ExplicitSize.cx = 84.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
+    end
+    object tbtmSteamAPI: TTabItem
+      Tag = 1
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = True
+      Size.Width = 74.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Steam API'
+      ExplicitSize.cx = 74.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
+      object lblSteamAPIDescription: TLabel
+        Align = Top
+        AutoSize = True
+        StyledSettings = [Family, Size, Style]
+        Size.Width = 530.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = xFFCDCDCD
+        TextSettings.HorzAlign = Center
+        Text = 
+          'The SteamAPI is used to pull information of players on your serv' +
+          'er such as bans, hours and rust statistics.'
+        TabOrder = 0
+      end
+    end
+    object tbtmRustMapsAPI: TTabItem
+      Tag = 2
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = False
+      Size.Width = 97.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Rust Maps API'
+      ExplicitSize.cx = 97.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
+    end
+    object tbtmuModAPI: TTabItem
+      Tag = 3
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = False
+      Size.Width = 73.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'uMod API'
+      ExplicitSize.cx = 73.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
+    end
+    object tbtmRSMLicense: TTabItem
+      Tag = 4
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = False
+      Size.Width = 87.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'RSM License'
+      ExplicitSize.cx = 87.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
+    end
+  end
+  object pnlFooter: TPanel
+    Align = MostBottom
+    Padding.Left = 8.000000000000000000
+    Padding.Top = 8.000000000000000000
+    Padding.Right = 8.000000000000000000
+    Padding.Bottom = 8.000000000000000000
+    Position.Y = 424.000000000000000000
+    Size.Width = 746.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object btnSave: TButton
+      Align = Right
+      CanFocus = False
+      Margins.Right = 8.000000000000000000
+      Position.X = 570.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 29.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Save'
+      TextSettings.Trimming = None
+      OnClick = btnSaveClick
+    end
+    object btnCancel: TButton
+      Align = Right
+      CanFocus = False
+      Position.X = 658.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 29.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Cancel'
+      TextSettings.Trimming = None
+      OnClick = btnCancelClick
+    end
+  end
+end

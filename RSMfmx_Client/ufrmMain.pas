@@ -295,7 +295,6 @@ type
     swtchAutoStartServerAfterShutdown: TSwitch;
     lblAutoStartServerAfterShutdown: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
-    procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
     procedure btnEditServerDescriptionClick(Sender: TObject);
@@ -361,6 +360,7 @@ type
     procedure wsClientRconException(Connection: TsgcWSConnection; E: Exception);
     procedure wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
     procedure FormShow(Sender: TObject);
+    procedure btnAppSettingsClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -408,7 +408,7 @@ uses
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
   ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
-  ufrmAutoServerStartDlg, uGlobalConst;      {udmTrayIcon}
+  ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings;      {udmTrayIcon}
 
 {$R *.fmx}
 
@@ -449,7 +449,13 @@ end;
 
 procedure TfrmMain.btnAppSettingsClick(Sender: TObject);
 begin
-  ShowMessage('There''s nothing here yet.');
+  frmSettings := TfrmSettings.Create(Self);
+  try
+    frmSettings.ShowModal;
+  finally
+    frmSettings.Free;
+    frmSettings := nil;
+  end;
 end;
 
 procedure TfrmMain.btnCloseUpdateMessageClick(Sender: TObject);
