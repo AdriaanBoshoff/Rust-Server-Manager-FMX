@@ -44,6 +44,8 @@ type
     procedure tvNavChange(Sender: TObject);
     procedure btnuModLoginClick(Sender: TObject);
     procedure lblViewuModLoginSourceCodeClick(Sender: TObject);
+    procedure btnGetRustMapsAPIClick(Sender: TObject);
+    procedure btnGetSteamAPIKeyClick(Sender: TObject);
   private
     { Private declarations }
     FuModSessionToken: string;
@@ -68,6 +70,16 @@ procedure TfrmSettings.btnCancelClick(Sender: TObject);
 begin
   rsmConfig.LoadConfig;
   Self.ModalResult := mrCancel;
+end;
+
+procedure TfrmSettings.btnGetRustMapsAPIClick(Sender: TObject);
+begin
+  OpenURL('https://rustmaps.com/dashboard');
+end;
+
+procedure TfrmSettings.btnGetSteamAPIKeyClick(Sender: TObject);
+begin
+  OpenURL('https://steamcommunity.com/dev/apikey');
 end;
 
 procedure TfrmSettings.btnSaveClick(Sender: TObject);

@@ -62,7 +62,7 @@ object frmSettings: TfrmSettings
     Size.Width = 546.000000000000000000
     Size.Height = 424.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 3
+    TabIndex = 1
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
@@ -95,7 +95,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 74.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -160,6 +160,7 @@ object frmSettings: TfrmSettings
           TabOrder = 2
           Text = 'Get Key'
           TextSettings.Trimming = None
+          OnClick = btnGetSteamAPIKeyClick
         end
       end
     end
@@ -235,6 +236,7 @@ object frmSettings: TfrmSettings
           TabOrder = 2
           Text = 'Get Key'
           TextSettings.Trimming = None
+          OnClick = btnGetRustMapsAPIClick
         end
       end
     end
@@ -244,7 +246,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 73.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
