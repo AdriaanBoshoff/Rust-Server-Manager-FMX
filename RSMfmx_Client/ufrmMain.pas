@@ -294,7 +294,6 @@ type
     lytAutoStartServerAfterShutdown: TLayout;
     swtchAutoStartServerAfterShutdown: TSwitch;
     lblAutoStartServerAfterShutdown: TLabel;
-    mnitest: TMenuItem;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
