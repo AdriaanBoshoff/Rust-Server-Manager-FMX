@@ -82,6 +82,14 @@ end;
 
 procedure TfrmSettings.btnuModLoginClick(Sender: TObject);
 begin
+  // uMod login
+  if not rsmConfig.LoginTokens.uModToken.Trim.IsEmpty then
+  begin
+    btnuModLogin.Text := 'uMod.org Login';
+    rsmConfig.LoginTokens.uModToken := '';
+    Exit;
+  end;
+
   if not isWebView2RuntimeInstalled then
   begin
     ShowMessage('WebView2 is missing and will now be installed.');
@@ -110,6 +118,12 @@ begin
   begin
     FuModSessionToken := GetuModLoginSession;
   end;
+
+  // uMod login
+  if rsmConfig.LoginTokens.uModToken.Trim.IsEmpty then
+    btnuModLogin.Text := 'uMod.org Login'
+  else
+    btnuModLogin.Text := 'Logout uMod.org';
 end;
 
 procedure TfrmSettings.FormCreate(Sender: TObject);
@@ -132,6 +146,12 @@ begin
   // API Settings
   edtSteamAPIKeyValue.Text := rsmConfig.APIKeys.SteamAPIKey;
   edtRustMapsAPIKeyValue.Text := rsmConfig.APIKeys.RustMapsAPIKey;
+
+  // uMod login
+  if rsmConfig.LoginTokens.uModToken.Trim.IsEmpty then
+    btnuModLogin.Text := 'uMod.org Login'
+  else
+    btnuModLogin.Text := 'Logout uMod.org';
 end;
 
 procedure TfrmSettings.tvNavChange(Sender: TObject);
