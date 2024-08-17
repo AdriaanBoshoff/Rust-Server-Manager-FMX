@@ -49,6 +49,13 @@ type
     type
       TRSMConfigAPIKeys = record
         SteamAPIKey: string;
+        RustMapsAPIKey: string;
+      end;
+      // Login Tokens
+    type
+      TRSMConfigLoginTokens = record
+        uModToken: string;
+        CodeFlingToken: string;
       end;
   public
     { Public Variables }
@@ -57,6 +64,7 @@ type
     AutoRestart: TRSMConfigAutoRestart;
     Misc: TRSMConfigMisc;
     APIKeys: TRSMConfigAPIKeys;
+    LoginTokens: TRSMConfigLoginTokens;
   public
     { Public Methods }
     constructor Create;
@@ -109,6 +117,11 @@ begin
 
   // API Keys
   Self.APIKeys.SteamAPIKey := '';
+  Self.APIKeys.RustMapsAPIKey := '';
+
+  // Login Tokens
+  Self.LoginTokens.uModToken := '';
+  Self.LoginTokens.CodeFlingToken := '';
 
   // Load Config
   Self.LoadConfig;

@@ -52,13 +52,6 @@ object frmSettings: TfrmSettings
         Text = 'uMod API'
       end
     end
-    object tviRSMLicense: TTreeViewItem
-      IsChecked = False
-      IsExpanded = False
-      IsSelected = False
-      TabOrder = 1
-      Text = 'RSM License'
-    end
   end
   object tbcNav: TTabControl
     Align = Client
@@ -69,12 +62,10 @@ object frmSettings: TfrmSettings
     Size.Width = 546.000000000000000000
     Size.Height = 424.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
+    TabIndex = 3
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
-      530s
-      384s
       530s
       384s
       530s
@@ -104,7 +95,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 74.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -171,41 +162,6 @@ object frmSettings: TfrmSettings
           TextSettings.Trimming = None
         end
       end
-      object lytSteamAPICallCount: TLayout
-        Align = Top
-        Margins.Top = 10.000000000000000000
-        Position.Y = 82.000000000000000000
-        Size.Width = 530.000000000000000000
-        Size.Height = 30.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-        object lblSteamAPICallCountHeader: TLabel
-          Align = MostLeft
-          AutoSize = True
-          StyledSettings = [Family, Size, FontColor]
-          Size.Width = 82.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.WordWrap = False
-          Text = 'API Call Count:'
-          TabOrder = 0
-        end
-        object lblSteamAPICallCountValue: TLabel
-          Align = Left
-          AutoSize = True
-          StyledSettings = [Family, Size, Style]
-          Margins.Left = 5.000000000000000000
-          Position.X = 87.000000000000000000
-          Size.Width = 7.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.FontColor = xFFC9C9C9
-          TextSettings.WordWrap = False
-          Text = '0'
-          TabOrder = 1
-        end
-      end
     end
     object tbtmRustMapsAPI: TTabItem
       Tag = 2
@@ -222,6 +178,65 @@ object frmSettings: TfrmSettings
       Text = 'Rust Maps API'
       ExplicitSize.cx = 97.000000000000000000
       ExplicitSize.cy = 24.000000000000000000
+      object lblRustMapsAPIDescription: TLabel
+        Align = Top
+        AutoSize = True
+        StyledSettings = [Family, Size, Style]
+        Size.Width = 530.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = xFFCDCDCD
+        TextSettings.HorzAlign = Center
+        Text = 
+          'The Rust Maps API is used to generate and view map previews. The' +
+          're might be some other features added in the future that make us' +
+          'e of this API key.'
+        TabOrder = 0
+      end
+      object lytRustMapsAPIKey: TLayout
+        Align = Top
+        Margins.Top = 10.000000000000000000
+        Position.Y = 42.000000000000000000
+        Size.Width = 530.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lblRustMapsAPIKeyHeader: TLabel
+          Align = MostLeft
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Size.Width = 102.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'RustMaps API Key:'
+          TabOrder = 0
+        end
+        object edtRustMapsAPIKeyValue: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Left
+          TabOrder = 1
+          TextSettings.HorzAlign = Center
+          Position.X = 107.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Size.Width = 322.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Rust Maps API Key'
+        end
+        object btnGetRustMapsAPI: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Position.X = 434.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Get Key'
+          TextSettings.Trimming = None
+        end
+      end
     end
     object tbtmuModAPI: TTabItem
       Tag = 3
@@ -229,7 +244,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 73.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -238,22 +253,62 @@ object frmSettings: TfrmSettings
       Text = 'uMod API'
       ExplicitSize.cx = 73.000000000000000000
       ExplicitSize.cy = 24.000000000000000000
-    end
-    object tbtmRSMLicense: TTabItem
-      Tag = 4
-      CustomIcon = <
-        item
-        end>
-      TextSettings.Trimming = None
-      IsSelected = False
-      Size.Width = 87.000000000000000000
-      Size.Height = 24.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = ''
-      TabOrder = 0
-      Text = 'RSM License'
-      ExplicitSize.cx = 87.000000000000000000
-      ExplicitSize.cy = 24.000000000000000000
+      object lbluModAPIDescription: TLabel
+        Align = Top
+        AutoSize = True
+        StyledSettings = [Family, Size, Style]
+        Size.Width = 530.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = xFFCDCDCD
+        TextSettings.HorzAlign = Center
+        Text = 
+          'The uMod API is used to Install and update plugins from uMod.org' +
+          '. It also allows RSM to check for uMod / Oxide framework updates' +
+          '.'
+        TabOrder = 1
+      end
+      object lytuModLogin: TLayout
+        Align = Top
+        Margins.Top = 10.000000000000000000
+        Position.Y = 42.000000000000000000
+        Size.Width = 530.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object btnuModLogin: TButton
+          Align = HorzCenter
+          CanFocus = False
+          StyledSettings = [Family, Size, FontColor]
+          Position.X = 190.000000000000000000
+          Size.Width = 150.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'uMod.org Login'
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.Trimming = None
+        end
+      end
+      object lbluModAPIDescription2: TLabel
+        Align = Top
+        AutoSize = True
+        StyledSettings = [Family, Size, Style]
+        Margins.Top = 10.000000000000000000
+        Position.Y = 82.000000000000000000
+        Size.Width = 530.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = xFFE6E6E6
+        TextSettings.HorzAlign = Center
+        Text = 
+          'uMod.org does not require an API key but has a rate limit which ' +
+          'gets exceeded really fast when checking for plugin updates. RSM ' +
+          'can bypass this by using your uMod.org login token. This token i' +
+          's grabbed using Webview 2 and is saved locall. The token wil not' +
+          ' sent anywhere else.'
+        TabOrder = 0
+      end
     end
   end
   object pnlFooter: TPanel
