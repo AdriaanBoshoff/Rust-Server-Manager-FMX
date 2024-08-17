@@ -45,11 +45,6 @@ uses
 
 procedure TfrmLicenseManager.FormCreate(Sender: TObject);
 begin
-  {$IFDEF DEBUG}
-  btnCheckClick(btnCheck);
-  Exit;
-  {$ENDIF}
-
   FLicenseFile := TPath.Combine([rsmCore.Paths.GetRootDir, 'rsm.lic']);
 
   edtLicenseKey.SetFocus;
