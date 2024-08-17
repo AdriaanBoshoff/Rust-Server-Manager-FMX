@@ -2,7 +2,7 @@ object frmPluginInstaller: TfrmPluginInstaller
   Left = 0
   Top = 0
   ClientHeight = 387
-  ClientWidth = 669
+  ClientWidth = 667
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -12,25 +12,22 @@ object frmPluginInstaller: TfrmPluginInstaller
   object lytNav: TLayout
     Align = Bottom
     Position.Y = 352.000000000000000000
-    Size.Width = 669.000000000000000000
+    Size.Width = 667.000000000000000000
     Size.Height = 35.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object grdpnllytBottomNav: TGridPanelLayout
       Align = Client
-      Size.Width = 669.000000000000000000
+      Size.Width = 667.000000000000000000
       Size.Height = 35.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       ColumnCollection = <
         item
-          Value = 33.259769559508000000
+          Value = 49.963164673211320000
         end
         item
-          Value = 33.308811853366180000
-        end
-        item
-          Value = 33.431418587125820000
+          Value = 50.036836506673790000
         end>
       ControlCollection = <
         item
@@ -42,11 +39,6 @@ object frmPluginInstaller: TfrmPluginInstaller
           Column = 1
           Control = rctnglNavCodeFling
           Row = 0
-        end
-        item
-          Column = 2
-          Control = rctnglNavLoneDesign
-          Row = 0
         end>
       RowCollection = <
         item
@@ -55,7 +47,7 @@ object frmPluginInstaller: TfrmPluginInstaller
       object rctnglNavuMod: TRectangle
         Align = Client
         Fill.Color = xFF1F222A
-        Size.Width = 222.507858276367200000
+        Size.Width = 333.254302978515600000
         Size.Height = 35.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = claNull
@@ -65,7 +57,7 @@ object frmPluginInstaller: TfrmPluginInstaller
         object lblNavuMod: TLabel
           Align = Client
           StyledSettings = [Family, FontColor]
-          Size.Width = 222.507858276367200000
+          Size.Width = 333.254302978515600000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 14.000000000000000000
@@ -80,7 +72,7 @@ object frmPluginInstaller: TfrmPluginInstaller
         Align = Client
         Enabled = False
         Fill.Color = xFF1F222A
-        Size.Width = 222.835952758789100000
+        Size.Width = 333.745697021484400000
         Size.Height = 35.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = claNull
@@ -90,7 +82,7 @@ object frmPluginInstaller: TfrmPluginInstaller
         object lblNavCodeFling: TLabel
           Align = Client
           StyledSettings = [Family, FontColor]
-          Size.Width = 222.835952758789100000
+          Size.Width = 333.745697021484400000
           Size.Height = 35.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 14.000000000000000000
@@ -101,47 +93,20 @@ object frmPluginInstaller: TfrmPluginInstaller
           TabOrder = 2
         end
       end
-      object rctnglNavLoneDesign: TRectangle
-        Align = Client
-        Enabled = False
-        Fill.Color = xFF1F222A
-        Size.Width = 223.656188964843800000
-        Size.Height = 35.000000000000000000
-        Size.PlatformDefault = False
-        Stroke.Color = claNull
-        OnClick = OnNavItemClick
-        OnMouseEnter = OnNavItemMouseEnter
-        OnMouseLeave = OnNavItemMouseLeave
-        object lblNavLoneDesign: TLabel
-          Align = Client
-          StyledSettings = [Family, FontColor]
-          Size.Width = 223.656188964843800000
-          Size.Height = 35.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 14.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
-          TextSettings.HorzAlign = Center
-          TextSettings.Trimming = None
-          Text = 'Lone.Design (TBA)'
-          TabOrder = 2
-        end
-      end
     end
   end
   object tbcVendors: TTabControl
     Align = Client
-    Size.Width = 669.000000000000000000
+    Size.Width = 667.000000000000000000
     Size.Height = 352.000000000000000000
     Size.PlatformDefault = False
     TabIndex = 0
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
-      669s
+      667s
       328s
-      669s
-      328s
-      669s
+      667s
       328s)
     object tbtmuMod: TTabItem
       CustomIcon = <
@@ -171,21 +136,6 @@ object frmPluginInstaller: TfrmPluginInstaller
       TabOrder = 0
       Text = 'CodeFling.com'
       ExplicitSize.cx = 99.000000000000000000
-      ExplicitSize.cy = 24.000000000000000000
-    end
-    object tbtmLoneDesign: TTabItem
-      CustomIcon = <
-        item
-        end>
-      TextSettings.Trimming = None
-      IsSelected = False
-      Size.Width = 85.000000000000000000
-      Size.Height = 24.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = ''
-      TabOrder = 0
-      Text = 'Lone.Design'
-      ExplicitSize.cx = 85.000000000000000000
       ExplicitSize.cy = 24.000000000000000000
     end
   end

@@ -16,12 +16,9 @@ type
     lblNavuMod: TLabel;
     rctnglNavCodeFling: TRectangle;
     lblNavCodeFling: TLabel;
-    rctnglNavLoneDesign: TRectangle;
-    lblNavLoneDesign: TLabel;
     tbcVendors: TTabControl;
     tbtmuMod: TTabItem;
     tbtmCodeFling: TTabItem;
-    tbtmLoneDesign: TTabItem;
     procedure FormCreate(Sender: TObject);
     procedure OnNavItemClick(Sender: TObject);
     procedure OnNavItemMouseEnter(Sender: TObject);
@@ -85,9 +82,7 @@ begin
     frmuModStore.OnTabActivated(nil);
   end
   else if (Sender = rctnglNavCodeFling) then // CodeFling
-    tbcVendors.TabIndex := tbtmCodeFling.Index
-  else if (Sender = rctnglNavLoneDesign) then // Lone Design
-    tbcVendors.TabIndex := tbtmLoneDesign.Index;
+    tbcVendors.TabIndex := tbtmCodeFling.Index;
 
   // Mark current nav Item as selected
   (Sender as TRectangle).Fill.Color := UI_COLOR_SELECTED;
