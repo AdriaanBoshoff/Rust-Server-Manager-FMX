@@ -39,6 +39,9 @@ begin
       logText := Format('[%s] %s', [FormatDateTime('yyyy-mm-dd', Now), logText]);
 
     frmServerConsole.mmoServerConsole.Lines.Add(logText);
+
+    if frmServerConsole.mmoServerConsole.Lines.Count > 200 then
+      frmServerConsole.mmoServerConsole.Lines.Delete(0);
   finally
     frmServerConsole.mmoServerConsole.EndUpdate;
   end;
