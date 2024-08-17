@@ -408,8 +408,8 @@ uses
   ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
-  ufrmAffinitySelect, uHelpers, udmTrayIcon, ufrmLogs, ufrmServerConsole,
-  ufrmAutoServerStartDlg, uGlobalConst;
+  ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
+  ufrmAutoServerStartDlg, uGlobalConst;      {udmTrayIcon}
 
 {$R *.fmx}
 
@@ -874,7 +874,7 @@ end;
 procedure TfrmMain.CreateModules;
 begin
   // Tray Icon
-  dmTrayIcon := TdmTrayIcon.Create(Self);
+//  dmTrayIcon := TdmTrayIcon.Create(Self);
 
   // Server Installer Module
   frmServerInstaller := TfrmServerInstaller.Create(tbtmServerInstaller);
@@ -1061,17 +1061,17 @@ end;
 
 procedure TfrmMain.mniSetTrayIconTitleClick(Sender: TObject);
 begin
-  InputBox('Set Tray Icon Title', 'Change Tray Icon hover text: ', rsmConfig.TrayIcon.Title,
-    procedure(const AResult: TModalResult; const AValue: string)
-    begin
-      if AResult = mrOk then
-      begin
-        rsmConfig.TrayIcon.Title := AValue;
-        rsmConfig.SaveConfig;
-
-        dmTrayIcon.UpdateConfig;
-      end;
-    end);
+//  InputBox('Set Tray Icon Title', 'Change Tray Icon hover text: ', rsmConfig.TrayIcon.Title,
+//    procedure(const AResult: TModalResult; const AValue: string)
+//    begin
+//      if AResult = mrOk then
+//      begin
+//        rsmConfig.TrayIcon.Title := AValue;
+//        rsmConfig.SaveConfig;
+//
+//        dmTrayIcon.UpdateConfig;
+//      end;
+//    end);
 end;
 
 procedure TfrmMain.mniTrayIconEnabledClick(Sender: TObject);
@@ -1081,7 +1081,7 @@ begin
 
   mniTrayIconEnabled.IsChecked := rsmConfig.TrayIcon.Enabled;
 
-  dmTrayIcon.UpdateConfig;
+ // dmTrayIcon.UpdateConfig;
 end;
 
 procedure TfrmMain.mniTrayIconExitRSMClick(Sender: TObject);

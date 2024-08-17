@@ -1,10 +1,10 @@
 object frmMain: TfrmMain
-  Left = 172
-  Top = 135
+  Left = 465
+  Top = 210
   Caption = 'RSMfmx v3.1'
   ClientHeight = 630
   ClientWidth = 1000
-  Position = Designed
+  Position = Default
   StyleBook = dmStyles.styleRedRock
   Constraints.MinHeight = 630.000000000000000000
   Constraints.MinWidth = 1000.000000000000000000
@@ -14,8 +14,8 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  Left = 172
-  Top = 135
+  Left = 465
+  Top = 210
   DesignerMasterStyle = 0
   object mnbrMain: TMenuBar
     Images = dmIcons.ilMenuIcons_24
@@ -55,8 +55,9 @@ object frmMain: TfrmMain
         OnClick = mniClearRSMCacheClick
       end
       object mniTrayIconOptions: TMenuItem
+        Enabled = False
         Locked = True
-        Text = 'Tray Icon'
+        Text = 'Tray Icon (Temp Disabled)'
         object mniTrayIconEnabled: TMenuItem
           Locked = True
           Text = 'Enabled'
