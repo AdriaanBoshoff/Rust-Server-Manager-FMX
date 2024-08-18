@@ -38,6 +38,9 @@ type
     lbluModAPIDescription2: TLabel;
     btnuModLogin: TButton;
     lblViewuModLoginSourceCode: TLabel;
+    tbcAPISettings: TTabControl;
+    tviTestSection: TTreeViewItem;
+    tbtmTestSection: TTabItem;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -168,13 +171,41 @@ end;
 
 procedure TfrmSettings.tvNavChange(Sender: TObject);
 begin
-  for var I := 0 to tbcNav.TabCount - 1 do
+  // Note: Make sure the items are in the correct order as
+  // this code works from indexes
+  var selectedTvItem := tvNav.Selected;
+  var parentTvItem: TTreeViewItem;
+  var isChild := False;
+
+  // Check if selected treeview item is a child
+  if selectedTvItem.Level > 1 then
   begin
-    if tvNav.Selected.GlobalIndex = tbcNav.Tabs[I].Index then
+    parentTvItem := selectedTvItem.ParentItem;
+    isChild := True;
+  end;
+
+  if isChild then
+  begin
+    // Set Main Nav
+    tbcNav.TabIndex := parentTvItem.Index;
+
+    // Set Child Nav
+    // Loop through children to find the TTabControl
+    for var I := 0 to tbcNav.Tabs[tbcNav.TabIndex].GetTabList.Count - 1 do
     begin
-      tbcNav.ActiveTab := tbcNav.Tabs[I];
-      Break;
+      if tbcNav.Tabs[tbcNav.TabIndex].GetTabList.GetItem(I).GetObject is TTabControl then
+      begin
+        // Found the TTabControl. Now set the index
+        var childTabControl := tbcNav.Tabs[tbcNav.TabIndex].GetTabList.GetItem(I).GetObject as TTabControl;
+        childTabControl.TabIndex := selectedTvItem.Index;
+        Break;
+      end;
     end;
+  end
+  else
+  begin
+    // Only set main tab index
+    tbcNav.TabIndex := selectedTvItem.Index;
   end;
 
 end;
