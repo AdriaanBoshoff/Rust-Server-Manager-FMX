@@ -51,13 +51,13 @@ object frmSettings: TfrmSettings
         TabOrder = 2
         Text = 'uMod API'
       end
-    end
-    object tviTestSection: TTreeViewItem
-      IsChecked = False
-      IsExpanded = False
-      IsSelected = False
-      TabOrder = 1
-      Text = 'tviTestSection'
+      object tviCodeFlingAPI: TTreeViewItem
+        IsChecked = False
+        IsExpanded = False
+        IsSelected = False
+        TabOrder = 3
+        Text = 'Codefling API'
+      end
     end
   end
   object tbcNav: TTabControl
@@ -69,8 +69,6 @@ object frmSettings: TfrmSettings
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
-      546s
-      400s
       546s
       400s)
     object tbtmAPISettings: TTabItem
@@ -96,10 +94,12 @@ object frmSettings: TfrmSettings
         Size.Width = 546.000000000000000000
         Size.Height = 400.000000000000000000
         Size.PlatformDefault = False
-        TabIndex = 2
+        TabIndex = 3
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
+          530s
+          360s
           530s
           360s
           530s
@@ -159,6 +159,7 @@ object frmSettings: TfrmSettings
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Left
               TabOrder = 1
+              Password = True
               TextSettings.HorzAlign = Center
               Position.X = 84.000000000000000000
               Margins.Left = 5.000000000000000000
@@ -235,6 +236,7 @@ object frmSettings: TfrmSettings
               Touch.InteractiveGestures = [LongTap, DoubleTap]
               Align = Left
               TabOrder = 1
+              Password = True
               TextSettings.HorzAlign = Center
               Position.X = 107.000000000000000000
               Margins.Left = 5.000000000000000000
@@ -263,7 +265,7 @@ object frmSettings: TfrmSettings
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 73.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -350,20 +352,38 @@ object frmSettings: TfrmSettings
             OnClick = lblViewuModLoginSourceCodeClick
           end
         end
+        object tbtmCodeflingAPI: TTabItem
+          CustomIcon = <
+            item
+            end>
+          TextSettings.Trimming = None
+          IsSelected = True
+          Size.Width = 93.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'Codefling API'
+          object lblCodeflingAPIDescription: TLabel
+            Align = Top
+            AutoSize = True
+            StyledSettings = [Family, Size, Style]
+            Size.Width = 530.000000000000000000
+            Size.Height = 80.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.FontColor = xFFCDCDCD
+            TextSettings.HorzAlign = Center
+            Text = 
+              'The Codefling API is used to install and update plugins from Cod' +
+              'efling.com. RSMfmx uses the same method to login as CarbonMod do' +
+              'es. Because of this only one can be logged in at a time. RSMfmx ' +
+              'or CarbonMod. RSMfmx does not have the ability to read the store' +
+              'd token from CarbonMod.'#13#10#13#10'This API integration is still a Work ' +
+              'in Progress'
+            TabOrder = 1
+          end
+        end
       end
-    end
-    object tbtmTestSection: TTabItem
-      CustomIcon = <
-        item
-        end>
-      TextSettings.Trimming = None
-      IsSelected = False
-      Size.Width = 106.000000000000000000
-      Size.Height = 24.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = ''
-      TabOrder = 0
-      Text = 'tbtmTestSection'
     end
   end
   object pnlFooter: TPanel

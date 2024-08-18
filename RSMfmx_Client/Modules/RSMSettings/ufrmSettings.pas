@@ -39,8 +39,9 @@ type
     btnuModLogin: TButton;
     lblViewuModLoginSourceCode: TLabel;
     tbcAPISettings: TTabControl;
-    tviTestSection: TTreeViewItem;
-    tbtmTestSection: TTabItem;
+    tviCodeFlingAPI: TTreeViewItem;
+    tbtmCodeflingAPI: TTabItem;
+    lblCodeflingAPIDescription: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
