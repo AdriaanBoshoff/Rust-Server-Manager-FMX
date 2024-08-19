@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.TreeView, FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.TabControl, FMX.Edit, FMX.EditBox, FMX.NumberBox;
+  FMX.TabControl, FMX.Edit, FMX.EditBox, FMX.NumberBox, udmMapServer;
 
 type
   TfrmSettings = class(TForm)
@@ -66,6 +66,13 @@ type
     nmbrbxMapServerPort: TNumberBox;
     lytMapServerControls: TLayout;
     btnStartStopMapServer: TButton;
+    chkMapServerAutoStart: TCheckBox;
+    lytMapServerButtons: TLayout;
+    btnOpenMapServerFolder: TButton;
+    lytMapServerExampleLink: TLayout;
+    lblMapServerLinkHeader: TLabel;
+    edtMapServerExampleLink: TEdit;
+    lblMapServerExpl: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -74,6 +81,8 @@ type
     procedure lblViewuModLoginSourceCodeClick(Sender: TObject);
     procedure btnGetRustMapsAPIClick(Sender: TObject);
     procedure btnGetSteamAPIKeyClick(Sender: TObject);
+    procedure btnStartStopMapServerClick(Sender: TObject);
+    procedure btnOpenMapServerFolderClick(Sender: TObject);
   private
     { Private declarations }
     FuModSessionToken: string;
@@ -110,6 +119,11 @@ begin
   OpenURL('https://steamcommunity.com/dev/apikey');
 end;
 
+procedure TfrmSettings.btnOpenMapServerFolderClick(Sender: TObject);
+begin
+  OpenURL(rsmCore.Paths.GetMapServerDir);
+end;
+
 procedure TfrmSettings.btnSaveClick(Sender: TObject);
 begin
   // APIs
@@ -120,10 +134,33 @@ begin
   // Services - Map Server
   rsmConfig.Services.MapServer.Port := Trunc(nmbrbxMapServerPort.Value);
   rsmConfig.Services.MapServer.IP := edtMapServerListenIP.Text;
+  rsmConfig.Services.MapServer.AutoStart := chkMapServerAutoStart.IsChecked;
 
   rsmConfig.SaveConfig;
 
   Self.ModalResult := mrOk;
+end;
+
+procedure TfrmSettings.btnStartStopMapServerClick(Sender: TObject);
+begin
+  if dmMapServer.isRunning then
+    dmMapServer.StopServer
+  else
+    dmMapServer.StartServer;
+
+  if dmMapServer.isRunning then
+  begin
+    btnStartStopMapServer.Text := 'Stop Server';
+    btnStartStopMapServer.TintColor := TAlphaColorRec.Darkred;
+  end
+  else
+  begin
+    btnStartStopMapServer.Text := 'Start Server';
+    btnStartStopMapServer.TintColor := TAlphaColorRec.Green;
+  end;
+
+  edtMapServerListenIP.Enabled := not dmMapServer.isRunning;
+  nmbrbxMapServerPort.Enabled := not dmMapServer.isRunning;
 end;
 
 procedure TfrmSettings.btnuModLoginClick(Sender: TObject);
@@ -200,6 +237,20 @@ begin
   // Services - Map Server
   edtMapServerListenIP.Text := rsmConfig.Services.MapServer.IP;
   nmbrbxMapServerPort.Value := rsmConfig.Services.MapServer.Port;
+  chkMapServerAutoStart.IsChecked := rsmConfig.Services.MapServer.AutoStart;
+  edtMapServerListenIP.Enabled := not dmMapServer.isRunning;
+  nmbrbxMapServerPort.Enabled := not dmMapServer.isRunning;
+  if dmMapServer.isRunning then
+  begin
+    btnStartStopMapServer.Text := 'Stop Server';
+    btnStartStopMapServer.TintColor := TAlphaColorRec.Darkred;
+  end
+  else
+  begin
+    btnStartStopMapServer.Text := 'Start Server';
+    btnStartStopMapServer.TintColor := TAlphaColorRec.Green;
+  end;
+
 
   // uMod login
   if rsmConfig.LoginTokens.uModToken.Trim.IsEmpty then

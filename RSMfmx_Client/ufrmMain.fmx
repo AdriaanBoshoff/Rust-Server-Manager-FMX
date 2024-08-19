@@ -4813,4 +4813,11 @@ object frmMain: TfrmMain
     Left = 96
     Top = 176
   end
+  object tmrServicesStatus: TTimer
+    Enabled = False
+    Interval = 3000
+    OnTimer = tmrServicesStatusTimer
+    Left = 488
+    Top = 304
+  end
 end

@@ -584,7 +584,7 @@ object frmSettings: TfrmSettings
               TextSettings.FontColor = xFFCDCDCD
               TextSettings.HorzAlign = Center
               Text = 'RSM can host a http server to self host custom maps.'
-              TabOrder = 0
+              TabOrder = 1
             end
             object lytMapServerIP: TLayout
               Align = Top
@@ -596,7 +596,7 @@ object frmSettings: TfrmSettings
               Size.Width = 526.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 2
+              TabOrder = 5
               object lblMapServerIPHeader: TLabel
                 Align = MostLeft
                 AutoSize = True
@@ -665,7 +665,7 @@ object frmSettings: TfrmSettings
               Size.Width = 526.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 1
+              TabOrder = 4
               object btnStartStopMapServer: TButton
                 Align = Left
                 CanFocus = False
@@ -673,11 +673,107 @@ object frmSettings: TfrmSettings
                 Size.Width = 80.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
+                StyleLookup = 'tintedbutton'
                 TabOrder = 0
                 Text = 'Start Server'
                 TextSettings.Font.StyleExt = {00060000000000000004000000}
                 TextSettings.Trimming = None
+                TintColor = claGreen
+                OnClick = btnStartStopMapServerClick
               end
+              object chkMapServerAutoStart: TCheckBox
+                Align = Left
+                Margins.Left = 50.000000000000000000
+                Position.X = 130.000000000000000000
+                Size.Width = 135.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                Text = 'Auto Start with RSM'
+              end
+            end
+            object lytMapServerButtons: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 111.000000000000000000
+              Size.Width = 526.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              object btnOpenMapServerFolder: TButton
+                Align = Left
+                CanFocus = False
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 120.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                Text = 'Open Maps Folder'
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.Trimming = None
+                OnClick = btnOpenMapServerFolderClick
+              end
+            end
+            object lytMapServerExampleLink: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 151.000000000000000000
+              Size.Width = 526.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              object lblMapServerLinkHeader: TLabel
+                Align = MostLeft
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 75.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Example Link:'
+                TabOrder = 1
+              end
+              object edtMapServerExampleLink: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 2
+                ReadOnly = True
+                Text = 'http://192.168.1.15/download?map=MyCustomMap.map'
+                TextSettings.HorzAlign = Center
+                Margins.Left = 5.000000000000000000
+                Size.Width = 446.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+              end
+            end
+            object lblMapServerExpl: TLabel
+              Align = Top
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Margins.Left = 5.000000000000000000
+              Margins.Top = 20.000000000000000000
+              Margins.Right = 5.000000000000000000
+              Position.X = 5.000000000000000000
+              Position.Y = 201.000000000000000000
+              Size.Width = 536.000000000000000000
+              Size.Height = 96.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = xFFCDCDCD
+              TextSettings.HorzAlign = Center
+              Text = 
+                'Use the following format for the download link:'#13#10'http://<publicI' +
+                'P>:<configuredPort>/download?map=<mapFile>'#13#10#13#10'The map file is th' +
+                'e file name with the extention in the "mapServer" folder.'#13#10#13#10'You' +
+                ' will need to allow RSMfmx through the Windows firewall and also' +
+                ' port forward the port.'
+              TabOrder = 0
             end
           end
         end

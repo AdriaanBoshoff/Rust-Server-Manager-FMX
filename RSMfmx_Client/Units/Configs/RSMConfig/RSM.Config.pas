@@ -63,7 +63,7 @@ type
       TRSMConfigMapServer = record
         IP: string;
         Port: Integer;
-        Enabled: boolean;
+        AutoStart: boolean;
       end;
     // Services
     type
@@ -140,7 +140,7 @@ begin
   // Services - Map Server
   Self.Services.MapServer.IP := '0.0.0.0';
   Self.Services.MapServer.Port := 3000;
-  Self.Services.MapServer.Enabled := False;
+  Self.Services.MapServer.AutoStart := False;
 
   // Load Config
   Self.LoadConfig;

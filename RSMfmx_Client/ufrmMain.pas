@@ -300,6 +300,7 @@ type
     Layout1: TLayout;
     lblMapServerStatusHeader: TLabel;
     lblMapServerStatusValue: TLabel;
+    tmrServicesStatus: TTimer;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -368,6 +369,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnPreviewMapClick(Sender: TObject);
+    procedure tmrServicesStatusTimer(Sender: TObject);
   private
     { Private Const }
   private
@@ -415,7 +417,7 @@ uses
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
   ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
-  ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings;      {udmTrayIcon}
+  ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer;      {udmTrayIcon}
 
 {$R *.fmx}
 
@@ -805,6 +807,17 @@ begin
   // Modules
   CreateModules;
 
+  // Directories
+  try
+    // Map Server
+    ForceDirectories(rsmCore.Paths.GetMapServerDir);
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Unable to create folder.' + sLineBreak + E.ClassName + ': ' + E.Message);
+    end;
+  end;
+
   // Change UI Layout for redistribution
   ModifyUIForRelease;
   ResetServerInfoValues;
@@ -922,6 +935,12 @@ begin
   frmLogs := TfrmLogs.Create(tbtmLogs);
   while frmLogs.ChildrenCount > 0 do
     frmLogs.Children[0].Parent := tbtmLogs;
+
+  // Services - Map Service
+  dmMapServer := TdmMapServer.Create(Self);
+
+  // Start Services Monitor
+  tmrServicesStatus.Enabled := True;
 end;
 
 procedure TfrmMain.FreeClasses;
@@ -1375,13 +1394,13 @@ begin
     if not Assigned(serverProcess) then
       Exit;
 
-//  // Check if PID is default value
-//  if serverProcess.PID = -1 then
-//    Exit;
+    //  // Check if PID is default value
+    //  if serverProcess.PID = -1 then
+    //    Exit;
 
-  { Set Running state }
+    { Set Running state }
 
-  // Labels
+    // Labels
     var isServerRunning := serverProcess.isRunning;
     if isServerRunning then
     begin
@@ -1394,16 +1413,16 @@ begin
       lblStatServerPIDValue.Text := '---';
     end;
 
-  // Server Controls
+    // Server Controls
     btnStartServer.Enabled := not isServerRunning;
     btnKillServer.Enabled := isServerRunning;
 
-  // Rcon Connection
+    // Rcon Connection
     btnStopServer.Enabled := wsClientRcon.Active;
     btnRestartServer.Enabled := wsClientRcon.Active;
     btnForceSave.Enabled := wsClientRcon.Active;
 
-  // Server Config
+    // Server Config
     lytServerMap1.Enabled := not isServerRunning;
     lytServerMap2.Enabled := not isServerRunning;
     lytServerNetworking1.Enabled := not isServerRunning;
@@ -1415,13 +1434,13 @@ begin
     lytServerNetworking3.Enabled := not isServerRunning;
     lytServerConfigMisc2.Enabled := not isServerRunning;
 
-  // Oxide Module
+    // Oxide Module
     frmOxide.rctnglHeader.Enabled := not isServerRunning;
     frmOxide.rctnglSettings.Enabled := not isServerRunning;
-  // Cabon Module
+    // Cabon Module
     frmCarbonMod.rctnglHeader.Enabled := not isServerRunning;
 
-  // Tray Icon
+    // Tray Icon
     mniTrayIconStartServer.Enabled := not isServerRunning;
     mniTrayIconStopServer.Enabled := wsClientRcon.Active;
     if isServerRunning then
@@ -1433,9 +1452,9 @@ begin
       mniTrayIconServerStatus.Text := 'Server Stopped';
     end;
 
-  // Check if server is running and rcon is connected.
-  // If server is running and rcon is not connected then
-  // try to connect
+    // Check if server is running and rcon is connected.
+    // If server is running and rcon is not connected then
+    // try to connect
     if isServerRunning and not wsClientRcon.Active then
     begin
       if serverConfig.Networking.RconIP = '0.0.0.0' then
@@ -1449,7 +1468,7 @@ begin
       wsClientRcon.Active := True;
     end;
 
-  // Auto Restart
+    // Auto Restart
     if not serverProcess.isRunning and not FServerIsStarting then
     begin
       if FDoAutoRestart or rsmConfig.Misc.StartServerAfterShutdown then
@@ -1479,6 +1498,21 @@ begin
   // Request Server Info
   if wsClientRcon.Active then
     TRCON.SendRconCommand(RCON_CMD_SERVERINFO, RCON_ID_SERVERINFO, wsClientRcon);
+end;
+
+procedure TfrmMain.tmrServicesStatusTimer(Sender: TObject);
+begin
+  // Services Status
+  if dmMapServer.isRunning then
+  begin
+    lblMapServerStatusValue.Text := 'Online';
+    lblMapServerStatusValue.FontColor := TAlphaColorRec.Lime;
+  end
+  else
+  begin
+    lblMapServerStatusValue.Text := 'Offline';
+    lblMapServerStatusValue.FontColor := TAlphaColorRec.Red;
+  end;
 end;
 
 procedure TfrmMain.wsClientRconConnect(Connection: TsgcWSConnection);

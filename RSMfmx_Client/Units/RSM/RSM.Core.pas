@@ -55,6 +55,8 @@ type
         class function GetCarbonModRootPath: string;
         class function GetCarbonModPluginsDir: string;
         class function GetCarbonModPluginsPath: string;
+        { Map Server }
+        class function GetMapServerDir: string;
       end;
   public
   { TRSMCore Public Variables }
@@ -96,6 +98,11 @@ end;
 class function TRSMCore.TRSMCorePaths.GetCarbonModRootPath: string;
 begin
   Result := TPath.Combine([Self.GetRootDir, Self.FOLDER_CARBON]) + TPath.DirectorySeparatorChar;
+end;
+
+class function TRSMCore.TRSMCorePaths.GetMapServerDir: string;
+begin
+  Result := TPath.Combine(Self.GetRSMDataDir, 'mapServer');
 end;
 
 class function TRSMCore.TRSMCorePaths.GetOxidePluginsConfigDir: string;
