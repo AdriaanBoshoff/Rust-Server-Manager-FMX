@@ -87,10 +87,6 @@ object frmSettings: TfrmSettings
       ExplicitSize.cy = 24.000000000000000000
       object tbcAPISettings: TTabControl
         Align = Client
-        Padding.Left = 8.000000000000000000
-        Padding.Top = 8.000000000000000000
-        Padding.Right = 8.000000000000000000
-        Padding.Bottom = 8.000000000000000000
         Size.Width = 546.000000000000000000
         Size.Height = 400.000000000000000000
         Size.PlatformDefault = False
@@ -98,14 +94,14 @@ object frmSettings: TfrmSettings
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
-          530s
-          360s
-          530s
-          360s
-          530s
-          360s
-          530s
-          360s)
+          546s
+          376s
+          546s
+          376s
+          546s
+          376s
+          546s
+          376s)
         object tbtmSteamAPI: TTabItem
           Tag = 1
           CustomIcon = <
@@ -125,7 +121,12 @@ object frmSettings: TfrmSettings
             Align = Top
             AutoSize = True
             StyledSettings = [Family, Size, Style]
-            Size.Width = 530.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 45.000000000000000000
+            Size.Width = 536.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFCDCDCD
@@ -137,9 +138,12 @@ object frmSettings: TfrmSettings
           end
           object lytSteamAPIKey: TLayout
             Align = Top
-            Margins.Top = 10.000000000000000000
-            Position.Y = 42.000000000000000000
-            Size.Width = 530.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 82.000000000000000000
+            Size.Width = 536.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -181,6 +185,25 @@ object frmSettings: TfrmSettings
               OnClick = btnGetSteamAPIKeyClick
             end
           end
+          object tlbSteamAPIHeader: TToolBar
+            Align = MostTop
+            Size.Width = 546.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object lblSteamAPIHeader: TLabel
+              Align = Contents
+              StyledSettings = [Family, FontColor]
+              Size.Width = 546.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.HorzAlign = Center
+              Text = 'Steam API'
+              TabOrder = 1
+            end
+          end
         end
         object tbtmRustMapsAPI: TTabItem
           Tag = 2
@@ -201,7 +224,12 @@ object frmSettings: TfrmSettings
             Align = Top
             AutoSize = True
             StyledSettings = [Family, Size, Style]
-            Size.Width = 530.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 45.000000000000000000
+            Size.Width = 536.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFCDCDCD
@@ -214,9 +242,12 @@ object frmSettings: TfrmSettings
           end
           object lytRustMapsAPIKey: TLayout
             Align = Top
-            Margins.Top = 10.000000000000000000
-            Position.Y = 42.000000000000000000
-            Size.Width = 530.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 82.000000000000000000
+            Size.Width = 536.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -258,6 +289,25 @@ object frmSettings: TfrmSettings
               OnClick = btnGetRustMapsAPIClick
             end
           end
+          object tlbRustMapsAPIHeader: TToolBar
+            Align = MostTop
+            Size.Width = 546.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object lblRustMapsAPIHeader: TLabel
+              Align = Contents
+              StyledSettings = [Family, FontColor]
+              Size.Width = 546.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.HorzAlign = Center
+              Text = 'Rust Maps API'
+              TabOrder = 1
+            end
+          end
         end
         object tbtmuModAPI: TTabItem
           Tag = 3
@@ -278,7 +328,12 @@ object frmSettings: TfrmSettings
             Align = Top
             AutoSize = True
             StyledSettings = [Family, Size, Style]
-            Size.Width = 530.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 45.000000000000000000
+            Size.Width = 536.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFCDCDCD
@@ -291,17 +346,20 @@ object frmSettings: TfrmSettings
           end
           object lytuModLogin: TLayout
             Align = Top
+            Margins.Left = 5.000000000000000000
             Margins.Top = 10.000000000000000000
-            Position.Y = 42.000000000000000000
-            Size.Width = 530.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 87.000000000000000000
+            Size.Width = 536.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
-            TabOrder = 3
+            TabOrder = 4
             object btnuModLogin: TButton
               Align = HorzCenter
               CanFocus = False
               StyledSettings = [Family, Size, FontColor]
-              Position.X = 190.000000000000000000
+              Position.X = 193.000000000000000000
               Size.Width = 150.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
@@ -316,9 +374,12 @@ object frmSettings: TfrmSettings
             Align = Top
             AutoSize = True
             StyledSettings = [Family, Size, Style]
+            Margins.Left = 5.000000000000000000
             Margins.Top = 10.000000000000000000
-            Position.Y = 82.000000000000000000
-            Size.Width = 530.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 127.000000000000000000
+            Size.Width = 536.000000000000000000
             Size.Height = 48.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFE6E6E6
@@ -338,8 +399,8 @@ object frmSettings: TfrmSettings
             StyledSettings = [Family, Size]
             HitTest = True
             Margins.Top = 10.000000000000000000
-            Position.Y = 140.000000000000000000
-            Size.Width = 530.000000000000000000
+            Position.Y = 185.000000000000000000
+            Size.Width = 546.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.StyleExt = {04040000000100000004000000}
@@ -348,8 +409,27 @@ object frmSettings: TfrmSettings
             TextSettings.WordWrap = False
             TextSettings.Trimming = None
             Text = 'View Source Code'
-            TabOrder = 2
+            TabOrder = 3
             OnClick = lblViewuModLoginSourceCodeClick
+          end
+          object tlbuModAPIHeader: TToolBar
+            Align = MostTop
+            Size.Width = 546.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object lbluModAPIHeader: TLabel
+              Align = Contents
+              StyledSettings = [Family, FontColor]
+              Size.Width = 546.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.HorzAlign = Center
+              Text = 'uMod API'
+              TabOrder = 1
+            end
           end
         end
         object tbtmCodeflingAPI: TTabItem
@@ -364,11 +444,18 @@ object frmSettings: TfrmSettings
           StyleLookup = ''
           TabOrder = 0
           Text = 'Codefling API'
+          ExplicitSize.cx = 93.000000000000000000
+          ExplicitSize.cy = 24.000000000000000000
           object lblCodeflingAPIDescription: TLabel
             Align = Top
             AutoSize = True
             StyledSettings = [Family, Size, Style]
-            Size.Width = 530.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 45.000000000000000000
+            Size.Width = 536.000000000000000000
             Size.Height = 80.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFCDCDCD
@@ -381,6 +468,25 @@ object frmSettings: TfrmSettings
               'd token from CarbonMod.'#13#10#13#10'This API integration is still a Work ' +
               'in Progress'
             TabOrder = 1
+          end
+          object tlbCodeflingAPIHeader: TToolBar
+            Align = MostTop
+            Size.Width = 546.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object lblCodeflingAPIHeader: TLabel
+              Align = Contents
+              StyledSettings = [Family, FontColor]
+              Size.Width = 546.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.HorzAlign = Center
+              Text = 'Codefling API'
+              TabOrder = 1
+            end
           end
         end
       end

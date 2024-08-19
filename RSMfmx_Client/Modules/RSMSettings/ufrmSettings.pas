@@ -42,6 +42,14 @@ type
     tviCodeFlingAPI: TTreeViewItem;
     tbtmCodeflingAPI: TTabItem;
     lblCodeflingAPIDescription: TLabel;
+    tlbSteamAPIHeader: TToolBar;
+    lblSteamAPIHeader: TLabel;
+    tlbRustMapsAPIHeader: TToolBar;
+    lblRustMapsAPIHeader: TLabel;
+    tlbuModAPIHeader: TToolBar;
+    lbluModAPIHeader: TLabel;
+    tlbCodeflingAPIHeader: TToolBar;
+    lblCodeflingAPIHeader: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -144,10 +152,13 @@ end;
 
 procedure TfrmSettings.FormCreate(Sender: TObject);
 begin
-  { Main Nav }
-  //tbcNav.TabPosition := TTabPosition.None;
+  {$IFDEF RELEASE}
+  tbcNav.TabPosition := TTabPosition.None;
+  tbcAPISettings.TabPosition := TTabPosition.None;
+  {$ENDIF}
 
-  tbcNav.TabIndex := 0;
+  tbcNav.TabIndex := -1;
+  tbcAPISettings.TabIndex := -1;
 
   PopulateConfig;
 end;
