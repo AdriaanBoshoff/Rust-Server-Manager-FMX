@@ -295,6 +295,8 @@ type
     swtchAutoStartServerAfterShutdown: TSwitch;
     lblAutoStartServerAfterShutdown: TLabel;
     btnPreviewMap: TButton;
+    rctnglServiceStatus: TRectangle;
+    lblServicesStatusHeader: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
