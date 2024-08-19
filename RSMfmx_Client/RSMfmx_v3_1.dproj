@@ -282,6 +282,60 @@
             <Form>frmSettings</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Modules\Services\udmMapServer.pas">
+            <Form>dmMapServer</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Libs\Horse\Horse.Callback.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Commons.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Constants.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Files.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Group.Contract.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Group.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Param.Config.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Param.Field.Brackets.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Param.Field.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Param.Header.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Param.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Route.Contract.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.Route.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.RouterTree.NextCaller.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Core.RouterTree.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.EnvironmentVariables.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Exception.Interrupted.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Exception.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Mime.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Proc.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.Abstract.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.Apache.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.CGI.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.Console.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.Daemon.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.FPC.Apache.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.FPC.CGI.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.FPC.Daemon.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.FPC.FastCGI.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.FPC.HTTPApplication.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.FPC.LCL.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.IOHandleSSL.Contract.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.IOHandleSSL.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.ISAPI.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Provider.VCL.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Request.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Response.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Rtti.Helper.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Rtti.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.Session.pas"/>
+        <DCCReference Include="Libs\Horse\Horse.WebModule.pas">
+            <Form>HorseWebModule</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TWebModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Libs\Horse\ThirdParty.Posix.Syslog.pas"/>
+        <DCCReference Include="Libs\Horse\Web.WebConst.pas"/>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

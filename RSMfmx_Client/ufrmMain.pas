@@ -297,6 +297,9 @@ type
     btnPreviewMap: TButton;
     rctnglServiceStatus: TRectangle;
     lblServicesStatusHeader: TLabel;
+    Layout1: TLayout;
+    lblMapServerStatusHeader: TLabel;
+    lblMapServerStatusValue: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);

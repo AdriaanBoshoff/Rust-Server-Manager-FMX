@@ -57,6 +57,19 @@ type
         uModToken: string;
         CodeFlingToken: string;
       end;
+
+      // Services - Map Server
+    type
+      TRSMConfigMapServer = record
+        IP: string;
+        Port: Integer;
+        Enabled: boolean;
+      end;
+    // Services
+    type
+      TRSMConfigServices = record
+        MapServer: TRSMConfigMapServer;
+      end;
   public
     { Public Variables }
     UI: TRSMConfigIU;
@@ -65,6 +78,7 @@ type
     Misc: TRSMConfigMisc;
     APIKeys: TRSMConfigAPIKeys;
     LoginTokens: TRSMConfigLoginTokens;
+    Services: TRSMConfigServices;
   public
     { Public Methods }
     constructor Create;
@@ -122,6 +136,11 @@ begin
   // Login Tokens
   Self.LoginTokens.uModToken := '';
   Self.LoginTokens.CodeFlingToken := '';
+
+  // Services - Map Server
+  Self.Services.MapServer.IP := '0.0.0.0';
+  Self.Services.MapServer.Port := 3000;
+  Self.Services.MapServer.Enabled := False;
 
   // Load Config
   Self.LoadConfig;

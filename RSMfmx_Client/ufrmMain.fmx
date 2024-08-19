@@ -2897,7 +2897,7 @@ object frmMain: TfrmMain
             Position.Y = 321.000000000000000000
             Sides = []
             Size.Width = 210.000000000000000000
-            Size.Height = 98.000000000000000000
+            Size.Height = 65.000000000000000000
             Size.PlatformDefault = False
             Stroke.Color = claNull
             XRadius = 10.000000000000000000
@@ -2916,6 +2916,45 @@ object frmMain: TfrmMain
               TextSettings.Trimming = None
               Text = 'Services Status'
               TabOrder = 0
+            end
+            object Layout1: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 27.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object lblMapServerStatusHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 66.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claLime
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Map Server:'
+                TabOrder = 0
+              end
+              object lblMapServerStatusValue: TLabel
+                Align = Right
+                AutoSize = True
+                StyledSettings = [Family, Size]
+                Position.X = 153.000000000000000000
+                Size.Width = 37.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.FontColor = claRed
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Offline'
+                TabOrder = 1
+              end
             end
           end
         end

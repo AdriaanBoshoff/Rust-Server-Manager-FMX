@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.TreeView, FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.TabControl, FMX.Edit;
+  FMX.TabControl, FMX.Edit, FMX.EditBox, FMX.NumberBox;
 
 type
   TfrmSettings = class(TForm)
@@ -50,6 +50,22 @@ type
     lbluModAPIHeader: TLabel;
     tlbCodeflingAPIHeader: TToolBar;
     lblCodeflingAPIHeader: TLabel;
+    tviServices: TTreeViewItem;
+    tviMapServer: TTreeViewItem;
+    tbtmServices: TTabItem;
+    tbcServices: TTabControl;
+    tbtmMapServer: TTabItem;
+    tlbMapServerHeader: TToolBar;
+    lblMapServerHeader: TLabel;
+    lblMapServerDescription: TLabel;
+    vrtscrlbxMapServer: TVertScrollBox;
+    lytMapServerIP: TLayout;
+    lblMapServerIPHeader: TLabel;
+    edtMapServerListenIP: TEdit;
+    lblMapServerPortHeader: TLabel;
+    nmbrbxMapServerPort: TNumberBox;
+    lytMapServerControls: TLayout;
+    btnStartStopMapServer: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -96,9 +112,15 @@ end;
 
 procedure TfrmSettings.btnSaveClick(Sender: TObject);
 begin
+  // APIs
   rsmConfig.APIKeys.SteamAPIKey := edtSteamAPIKeyValue.Text;
   rsmConfig.APIKeys.RustMapsAPIKey := edtRustMapsAPIKeyValue.Text;
   rsmConfig.LoginTokens.uModToken := FuModSessionToken;
+
+  // Services - Map Server
+  rsmConfig.Services.MapServer.Port := Trunc(nmbrbxMapServerPort.Value);
+  rsmConfig.Services.MapServer.IP := edtMapServerListenIP.Text;
+
   rsmConfig.SaveConfig;
 
   Self.ModalResult := mrOk;
@@ -155,6 +177,7 @@ begin
   {$IFDEF RELEASE}
   tbcNav.TabPosition := TTabPosition.None;
   tbcAPISettings.TabPosition := TTabPosition.None;
+  tbcServices.TabPosition := TTabPosition.None;
   {$ENDIF}
 
   tbcNav.TabIndex := -1;
@@ -173,6 +196,10 @@ begin
   // API Settings
   edtSteamAPIKeyValue.Text := rsmConfig.APIKeys.SteamAPIKey;
   edtRustMapsAPIKeyValue.Text := rsmConfig.APIKeys.RustMapsAPIKey;
+
+  // Services - Map Server
+  edtMapServerListenIP.Text := rsmConfig.Services.MapServer.IP;
+  nmbrbxMapServerPort.Value := rsmConfig.Services.MapServer.Port;
 
   // uMod login
   if rsmConfig.LoginTokens.uModToken.Trim.IsEmpty then
