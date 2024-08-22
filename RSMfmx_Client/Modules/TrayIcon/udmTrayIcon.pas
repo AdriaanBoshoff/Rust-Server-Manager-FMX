@@ -8,7 +8,6 @@ uses
 type
   TdmTrayIcon = class(TDataModule)
     trycnMain: TTrayIcon;
-    procedure trycnMainDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,11 +24,6 @@ uses
   RSM.Config;
 
 {$R *.dfm}
-
-procedure TdmTrayIcon.trycnMainDblClick(Sender: TObject);
-begin
-  frmMain.WindowState := TWindowState.wsNormal;
-end;
 
 end.
 
