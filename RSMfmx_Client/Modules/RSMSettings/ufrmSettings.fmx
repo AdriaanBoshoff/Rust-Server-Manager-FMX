@@ -73,16 +73,32 @@ object frmSettings: TfrmSettings
         Text = 'Map Server'
       end
     end
+    object tviRSMSettings: TTreeViewItem
+      IsChecked = False
+      IsExpanded = True
+      IsSelected = False
+      TabOrder = 2
+      Text = 'RSM Settings'
+      object tviTrayIconSettings: TTreeViewItem
+        IsChecked = False
+        IsExpanded = False
+        IsSelected = False
+        TabOrder = 0
+        Text = 'Tray Icon && Title'
+      end
+    end
   end
   object tbcNav: TTabControl
     Align = Client
     Size.Width = 546.000000000000000000
     Size.Height = 424.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
+      546s
+      400s
       546s
       400s
       546s
@@ -512,7 +528,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 63.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -794,6 +810,44 @@ object frmSettings: TfrmSettings
               TabOrder = 0
             end
           end
+        end
+      end
+    end
+    object tbtmRSMSettings: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = True
+      Size.Width = 91.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'RSM Settings'
+      object tbcRSMSettings: TTabControl
+        Align = Client
+        Size.Width = 546.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabIndex = 0
+        TabOrder = 0
+        TabPosition = PlatformDefault
+        Sizes = (
+          546s
+          376s)
+        object tbtmTrayIconSettings: TTabItem
+          CustomIcon = <
+            item
+            end>
+          TextSettings.Trimming = None
+          IsSelected = True
+          Size.Width = 68.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'Tray Icon'
         end
       end
     end

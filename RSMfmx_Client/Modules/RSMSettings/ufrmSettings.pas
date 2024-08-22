@@ -74,6 +74,11 @@ type
     edtMapServerExampleLink: TEdit;
     lblMapServerExpl: TLabel;
     lblMapServerPortTCPDescription: TLabel;
+    tviRSMSettings: TTreeViewItem;
+    tbtmRSMSettings: TTabItem;
+    tbcRSMSettings: TTabControl;
+    tbtmTrayIconSettings: TTabItem;
+    tviTrayIconSettings: TTreeViewItem;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -216,6 +221,7 @@ begin
   tbcNav.TabPosition := TTabPosition.None;
   tbcAPISettings.TabPosition := TTabPosition.None;
   tbcServices.TabPosition := TTabPosition.None;
+  tbcRSMSettings.TabPosition := TTabPosition.None;
   {$ENDIF}
 
   tbcNav.TabIndex := -1;
