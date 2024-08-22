@@ -3,17 +3,15 @@
 interface
 
 uses
-  System.SysUtils, System.Classes, FMX.Trayicon.Win, ufrmMain;
+  System.SysUtils, System.Classes, ufrmMain, Vcl.ExtCtrls, System.UITypes;
 
 type
   TdmTrayIcon = class(TDataModule)
-    procedure DataModuleCreate(Sender: TObject);
-    procedure OnTrayIconDblClick(Sender: TObject);
+    trycnMain: TTrayIcon;
+    procedure trycnMainDblClick(Sender: TObject);
   private
     { Private declarations }
   public
-    trayIcon: TFMXTrayIcon;
-    procedure UpdateConfig;
   end;
 
 var
@@ -21,35 +19,16 @@ var
 
 implementation
 
-{%CLASSGROUP 'FMX.Controls.TControl'}
+{%CLASSGROUP 'Vcl.Controls.TControl'}
 
 uses
   RSM.Config;
 
 {$R *.dfm}
 
-procedure TdmTrayIcon.DataModuleCreate(Sender: TObject);
+procedure TdmTrayIcon.trycnMainDblClick(Sender: TObject);
 begin
-  trayIcon := TFMXTrayIcon.Create(frmMain);
-  trayIcon.OnDblClick := OnTrayIconDblClick;
-  Self.UpdateConfig;
-end;
-
-procedure TdmTrayIcon.OnTrayIconDblClick(Sender: TObject);
-begin
-  frmMain.BringToForeground;
-end;
-
-procedure TdmTrayIcon.UpdateConfig;
-begin
-  trayIcon.Hint := rsmConfig.TrayIcon.Title;
-
-  if rsmConfig.TrayIcon.Enabled then
-    trayIcon.Show
-  else
-    trayIcon.Hide;
-
-  trayIcon.PopupMenu := frmMain.pmTrayIcon;
+  frmMain.WindowState := TWindowState.wsNormal;
 end;
 
 end.

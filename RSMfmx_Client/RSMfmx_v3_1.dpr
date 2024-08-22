@@ -47,7 +47,6 @@ uses
   ufrmAffinitySelect in 'Forms\Affinity Selector\ufrmAffinitySelect.pas' {frmSelectAffinity},
   uHelpers in 'Units\uHelpers.pas',
   udmTrayIcon in 'Modules\TrayIcon\udmTrayIcon.pas' {dmTrayIcon: TDataModule},
-  FMX.Trayicon.Win in 'Modules\TrayIcon\FMX.Trayicon.Win.pas',
   Rust.Manifest in 'Units\RustManifest\Rust.Manifest.pas',
   udmChatDB in 'DataModules\ChatDB\udmChatDB.pas' {dmChatDB: TDataModule},
   ufrmLogs in 'Modules\Logs\ufrmLogs.pas' {frmLogs},

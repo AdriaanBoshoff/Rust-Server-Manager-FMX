@@ -205,16 +205,6 @@ type
     lblUpdateAvailable: TLabel;
     btnOpenUpdater: TButton;
     btnCloseUpdateMessage: TButton;
-    mniTrayIconOptions: TMenuItem;
-    mniTrayIconEnabled: TMenuItem;
-    mniSetTrayIconTitle: TMenuItem;
-    pmTrayIcon: TPopupMenu;
-    mniTrayIconExitRSM: TMenuItem;
-    mniTrayIconStartServer: TMenuItem;
-    mniTrayIconStopServer: TMenuItem;
-    mniTrayIconSep1: TMenuItem;
-    mniTrayIconSep2: TMenuItem;
-    mniTrayIconServerStatus: TMenuItem;
     lblAutoRestartHeader: TLabel;
     lytAutoRestart1: TLayout;
     lytAutoRestart2: TLayout;
@@ -403,7 +393,6 @@ type
     FServerIsStarting: Boolean;
   public
     { Public declarations }
-    procedure BringToForeground;
   end;
 
 var
@@ -417,16 +406,11 @@ uses
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
   ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
-  ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer;      {udmTrayIcon}
+  ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer, udmTrayIcon;
 
 {$R *.fmx}
 
 { TfrmMain }
-
-procedure TfrmMain.BringToForeground;
-begin
-  SetForegroundWindow(ApplicationHWND);
-end;
 
 procedure TfrmMain.btnAdjustAffinityClick(Sender: TObject);
 begin
@@ -904,7 +888,7 @@ end;
 procedure TfrmMain.CreateModules;
 begin
   // Tray Icon
-//  dmTrayIcon := TdmTrayIcon.Create(Self);
+  dmTrayIcon := TdmTrayIcon.Create(Self);
 
   // Server Installer Module
   frmServerInstaller := TfrmServerInstaller.Create(tbtmServerInstaller);
@@ -1024,9 +1008,6 @@ begin
   else
     HideServerInfo;
 
-  // Tray Icon (RSM > Tray Icon)
-  mniTrayIconEnabled.IsChecked := rsmConfig.TrayIcon.Enabled;
-
   // Auto Restart
   swtchAutoRestart1.IsChecked := rsmConfig.AutoRestart.AutoRestart1.Enabled;
   swtchAutoRestart2.IsChecked := rsmConfig.AutoRestart.AutoRestart2.Enabled;
@@ -1114,8 +1095,6 @@ procedure TfrmMain.mniTrayIconEnabledClick(Sender: TObject);
 begin
   rsmConfig.TrayIcon.Enabled := not rsmConfig.TrayIcon.Enabled;
   rsmConfig.SaveConfig;
-
-  mniTrayIconEnabled.IsChecked := rsmConfig.TrayIcon.Enabled;
 
  // dmTrayIcon.UpdateConfig;
 end;

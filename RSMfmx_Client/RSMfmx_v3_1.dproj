@@ -257,7 +257,6 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="Modules\TrayIcon\FMX.Trayicon.Win.pas"/>
         <DCCReference Include="Units\RustManifest\Rust.Manifest.pas"/>
         <DCCReference Include="DataModules\ChatDB\udmChatDB.pas">
             <Form>dmChatDB</Form>
