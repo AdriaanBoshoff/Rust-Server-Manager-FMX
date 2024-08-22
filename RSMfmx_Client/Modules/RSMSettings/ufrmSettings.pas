@@ -159,6 +159,9 @@ begin
     btnStartStopMapServer.Text := 'Start Server';
     btnStartStopMapServer.TintColor := TAlphaColorRec.Green;
   end;
+
+  edtMapServerListenIP.Enabled := not dmMapServer.isRunning;
+  nmbrbxMapServerPort.Enabled := not dmMapServer.isRunning;
 end;
 
 procedure TfrmSettings.btnuModLoginClick(Sender: TObject);
