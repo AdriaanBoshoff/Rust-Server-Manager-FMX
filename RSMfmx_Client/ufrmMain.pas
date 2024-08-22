@@ -287,7 +287,7 @@ type
     btnPreviewMap: TButton;
     rctnglServiceStatus: TRectangle;
     lblServicesStatusHeader: TLabel;
-    Layout1: TLayout;
+    lytMapServerStatus: TLayout;
     lblMapServerStatusHeader: TLabel;
     lblMapServerStatusValue: TLabel;
     tmrServicesStatus: TTimer;
@@ -360,6 +360,7 @@ type
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnPreviewMapClick(Sender: TObject);
     procedure tmrServicesStatusTimer(Sender: TObject);
+    procedure OnMapServerStatusClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -1127,6 +1128,20 @@ begin
 {$ENDIF}
 end;
 
+procedure TfrmMain.OnMapServerStatusClick(Sender: TObject);
+begin
+  frmSettings := TfrmSettings.Create(Self);
+  try
+    frmSettings.tbcNav.ActiveTab := frmSettings.tbtmServices;
+    frmSettings.tbcServices.ActiveTab := frmSettings.tbtmMapServer;
+    frmSettings.tvNav.Selected := frmSettings.tviMapServer;
+    frmSettings.ShowModal;
+  finally
+    frmSettings.Free;
+    frmSettings := nil;
+  end;
+end;
+
 procedure TfrmMain.OnServerPIDResized(Sender: TObject);
 begin
   // Server PID in stat bar resize
@@ -1418,18 +1433,6 @@ begin
     frmOxide.rctnglSettings.Enabled := not isServerRunning;
     // Cabon Module
     frmCarbonMod.rctnglHeader.Enabled := not isServerRunning;
-
-    // Tray Icon
-    mniTrayIconStartServer.Enabled := not isServerRunning;
-    mniTrayIconStopServer.Enabled := wsClientRcon.Active;
-    if isServerRunning then
-    begin
-      mniTrayIconServerStatus.Text := 'Server Running';
-    end
-    else
-    begin
-      mniTrayIconServerStatus.Text := 'Server Stopped';
-    end;
 
     // Check if server is running and rcon is connected.
     // If server is running and rcon is not connected then

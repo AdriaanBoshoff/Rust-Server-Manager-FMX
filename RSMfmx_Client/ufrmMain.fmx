@@ -2902,7 +2902,7 @@ object frmMain: TfrmMain
               Text = 'Services Status'
               TabOrder = 0
             end
-            object Layout1: TLayout
+            object lytMapServerStatus: TLayout
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
@@ -2914,7 +2914,9 @@ object frmMain: TfrmMain
               object lblMapServerStatusHeader: TLabel
                 Align = Left
                 AutoSize = True
+                Cursor = crHandPoint
                 StyledSettings = [Family, Size, FontColor]
+                HitTest = True
                 Size.Width = 66.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -2924,11 +2926,14 @@ object frmMain: TfrmMain
                 TextSettings.Trimming = None
                 Text = 'Map Server:'
                 TabOrder = 0
+                OnClick = OnMapServerStatusClick
               end
               object lblMapServerStatusValue: TLabel
                 Align = Right
                 AutoSize = True
+                Cursor = crHandPoint
                 StyledSettings = [Family, Size]
+                HitTest = True
                 Position.X = 153.000000000000000000
                 Size.Width = 37.000000000000000000
                 Size.Height = 25.000000000000000000
@@ -2939,6 +2944,7 @@ object frmMain: TfrmMain
                 TextSettings.Trimming = None
                 Text = 'Offline'
                 TabOrder = 1
+                OnClick = OnMapServerStatusClick
               end
             end
           end
