@@ -519,6 +519,8 @@ object frmSettings: TfrmSettings
       StyleLookup = ''
       TabOrder = 0
       Text = 'Services'
+      ExplicitSize.cx = 63.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
       object tbcServices: TTabControl
         Align = Client
         Size.Width = 546.000000000000000000
@@ -542,6 +544,8 @@ object frmSettings: TfrmSettings
           StyleLookup = ''
           TabOrder = 0
           Text = 'Map Server'
+          ExplicitSize.cx = 81.000000000000000000
+          ExplicitSize.cy = 24.000000000000000000
           object tlbMapServerHeader: TToolBar
             Align = MostTop
             Size.Width = 546.000000000000000000
@@ -607,12 +611,12 @@ object frmSettings: TfrmSettings
                 TextSettings.Font.StyleExt = {00060000000000000004000000}
                 TextSettings.WordWrap = False
                 Text = 'Listen IP:'
-                TabOrder = 1
+                TabOrder = 2
               end
               object edtMapServerListenIP: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Left
-                TabOrder = 2
+                TabOrder = 3
                 Text = '0.0.0.0'
                 TextSettings.HorzAlign = Center
                 Position.X = 54.000000000000000000
@@ -634,12 +638,12 @@ object frmSettings: TfrmSettings
                 TextSettings.Font.StyleExt = {00060000000000000004000000}
                 TextSettings.WordWrap = False
                 Text = 'Port:'
-                TabOrder = 0
+                TabOrder = 1
               end
               object nmbrbxMapServerPort: TNumberBox
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Left
-                TabOrder = 3
+                TabOrder = 4
                 Cursor = crIBeam
                 Min = 1.000000000000000000
                 Max = 9999999.000000000000000000
@@ -653,6 +657,20 @@ object frmSettings: TfrmSettings
                 Size.Width = 77.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
+              end
+              object lblMapServerPortTCPDescription: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 5.000000000000000000
+                Position.X = 307.000000000000000000
+                Size.Width = 21.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'TCP'
+                TabOrder = 0
               end
             end
             object lytMapServerControls: TLayout
@@ -745,7 +763,7 @@ object frmSettings: TfrmSettings
                 Align = Client
                 TabOrder = 2
                 ReadOnly = True
-                Text = 'http://192.168.1.15/download?map=MyCustomMap.map'
+                Text = 'http://192.168.1.15:3000/map/myCustomMap.map'
                 TextSettings.HorzAlign = Center
                 Margins.Left = 5.000000000000000000
                 Size.Width = 446.000000000000000000
@@ -769,10 +787,10 @@ object frmSettings: TfrmSettings
               TextSettings.HorzAlign = Center
               Text = 
                 'Use the following format for the download link:'#13#10'http://<publicI' +
-                'P>:<configuredPort>/download?map=<mapFile>'#13#10#13#10'The map file is th' +
-                'e file name with the extention in the "mapServer" folder.'#13#10#13#10'You' +
-                ' will need to allow RSMfmx through the Windows firewall and also' +
-                ' port forward the port.'
+                'P>:<configuredPort>/map/<mapFile>'#13#10#13#10'The map file is the file na' +
+                'me with the extention in the "mapServer" folder.'#13#10#13#10'You will nee' +
+                'd to allow RSMfmx through the Windows firewall and also port for' +
+                'ward the port.'
               TabOrder = 0
             end
           end

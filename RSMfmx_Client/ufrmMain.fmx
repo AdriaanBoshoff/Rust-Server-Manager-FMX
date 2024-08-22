@@ -685,9 +685,8 @@ object frmMain: TfrmMain
               object swtchAutoRestart1: TSwitch
                 Align = Left
                 IsChecked = False
-                Position.Y = 2.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
                 OnSwitch = swtchAutoRestart1Switch
@@ -770,9 +769,8 @@ object frmMain: TfrmMain
               object swtchAutoRestart2: TSwitch
                 Align = Left
                 IsChecked = False
-                Position.Y = 2.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
                 OnSwitch = swtchAutoRestart2Switch
@@ -855,9 +853,8 @@ object frmMain: TfrmMain
               object swtchAutoRestart3: TSwitch
                 Align = Left
                 IsChecked = False
-                Position.Y = 2.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
                 OnSwitch = swtchAutoRestart3Switch
@@ -945,9 +942,8 @@ object frmMain: TfrmMain
                   'This option will start the server if the server is stopped when ' +
                   'RSM opens'
                 IsChecked = False
-                Position.Y = 5.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 1
                 ParentShowHint = False
@@ -991,9 +987,8 @@ object frmMain: TfrmMain
                   'Install the latest version of Oxide / uMod before starting the s' +
                   'erver'
                 IsChecked = False
-                Position.Y = 5.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 1
                 ParentShowHint = False
@@ -1037,9 +1032,8 @@ object frmMain: TfrmMain
                   'This option will make RSM update the server before starting it. ' +
                   'It will use the last selected version branch.'
                 IsChecked = False
-                Position.Y = 5.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 1
                 ParentShowHint = False
@@ -1080,9 +1074,8 @@ object frmMain: TfrmMain
               object swtchAutoStartServerAfterShutdown: TSwitch
                 Align = Left
                 IsChecked = False
-                Position.Y = 5.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 1
                 ParentShowHint = False
@@ -1755,9 +1748,8 @@ object frmMain: TfrmMain
                 IsChecked = True
                 Margins.Left = 5.000000000000000000
                 Position.X = 294.000000000000000000
-                Position.Y = 2.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 3
               end
@@ -2274,8 +2266,8 @@ object frmMain: TfrmMain
               Size.Height = 215.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 652.000000000000000000
-              Viewport.Height = 207.000000000000000000
+              Viewport.Width = 664.000000000000000000
+              Viewport.Height = 215.000000000000000000
             end
           end
         end
@@ -3145,6 +3137,13 @@ object frmMain: TfrmMain
     Left = 584
     Top = 488
   end
+  object tmrServicesStatus: TTimer
+    Enabled = False
+    Interval = 3000
+    OnTimer = tmrServicesStatusTimer
+    Left = 488
+    Top = 304
+  end
   object mltvwNav: TMultiView
     MasterButton = btnNavBurger
     Mode = NavigationPane
@@ -3290,7 +3289,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Config'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstServerInstaller: TListBoxItem
@@ -3380,7 +3379,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Installer'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstPlayerManager: TListBoxItem
@@ -3447,7 +3446,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Player Manager'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstOxideMod: TListBoxItem
@@ -3468,7 +3467,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'OxideMod / uMod'
-          TabOrder = 50
+          TabOrder = 49
         end
         object rctnglOxideModNavImage: TRectangle
           Align = MostLeft
@@ -3772,7 +3771,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Carbon Mod'
-          TabOrder = 50
+          TabOrder = 49
         end
         object rctnglCarbonmodNavImg: TRectangle
           Align = MostLeft
@@ -4662,7 +4661,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Plugin Manager'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
       object lstLogs: TListBoxItem
@@ -4731,7 +4730,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Logs'
-          TabOrder = 50
+          TabOrder = 49
         end
       end
     end
@@ -4812,12 +4811,5 @@ object frmMain: TfrmMain
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
     Left = 96
     Top = 176
-  end
-  object tmrServicesStatus: TTimer
-    Enabled = False
-    Interval = 3000
-    OnTimer = tmrServicesStatusTimer
-    Left = 488
-    Top = 304
   end
 end

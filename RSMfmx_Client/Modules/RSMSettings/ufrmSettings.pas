@@ -73,6 +73,7 @@ type
     lblMapServerLinkHeader: TLabel;
     edtMapServerExampleLink: TEdit;
     lblMapServerExpl: TLabel;
+    lblMapServerPortTCPDescription: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -81,8 +82,8 @@ type
     procedure lblViewuModLoginSourceCodeClick(Sender: TObject);
     procedure btnGetRustMapsAPIClick(Sender: TObject);
     procedure btnGetSteamAPIKeyClick(Sender: TObject);
-    procedure btnStartStopMapServerClick(Sender: TObject);
     procedure btnOpenMapServerFolderClick(Sender: TObject);
+    procedure btnStartStopMapServerClick(Sender: TObject);
   private
     { Private declarations }
     FuModSessionToken: string;
@@ -158,9 +159,6 @@ begin
     btnStartStopMapServer.Text := 'Start Server';
     btnStartStopMapServer.TintColor := TAlphaColorRec.Green;
   end;
-
-  edtMapServerListenIP.Enabled := not dmMapServer.isRunning;
-  nmbrbxMapServerPort.Enabled := not dmMapServer.isRunning;
 end;
 
 procedure TfrmSettings.btnuModLoginClick(Sender: TObject);

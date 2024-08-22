@@ -3,23 +3,24 @@ unit udmMapServer;
 interface
 
 uses
-  System.SysUtils, System.Classes, System.IOUtils, RSM.Config, RSM.Core, Horse;
+  System.SysUtils, System.Classes, System.IOUtils, RSM.Config, RSM.Core,
+  IdBaseComponent, IdComponent, IdCustomTCPServer, IdCustomHTTPServer,
+  IdHTTPServer, IdContext;
 
 type
   TdmMapServer = class(TDataModule)
-    procedure DataModuleDestroy(Sender: TObject);
+    idhttpserverMapServer: TIdHTTPServer;
+    procedure idhttpserverMapServerCommandGet(AContext: TIdContext; ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
     procedure DataModuleCreate(Sender: TObject);
   private
+    function GetServerStatus: boolean;
     { Private declarations }
-    var
-      FisRunning: boolean;
   public
     { Public declarations }
     procedure StartServer;
     procedure StopServer;
-    procedure RegisterEndpoints;
   published
-    property isRunning: boolean read FisRunning write FisRunning;
+    property isRunning: boolean read GetServerStatus;
   end;
 
 var
@@ -33,84 +34,74 @@ implementation
 
 procedure TdmMapServer.DataModuleCreate(Sender: TObject);
 begin
-  RegisterEndpoints;
-
-  if rsmConfig.Services.MapServer.AutoStart and not Self.isRunning then
+  if rsmConfig.Services.MapServer.AutoStart then
     Self.StartServer;
 end;
 
-procedure TdmMapServer.DataModuleDestroy(Sender: TObject);
+function TdmMapServer.GetServerStatus: boolean;
 begin
-  if Self.isRunning then
-    Self.StopServer;
+  Result := idhttpserverMapServer.Active;
 end;
 
-procedure TdmMapServer.RegisterEndpoints;
+procedure TdmMapServer.idhttpserverMapServerCommandGet(AContext: TIdContext; ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
 begin
-  // Test
-  THorse.Get('/ping',
-    procedure(Req: THorseRequest; Res: THorseResponse)
-    begin
-      Res.Send('pong');
-    end);
+  // Only Get Requests
+  if not (ARequestInfo.CommandType = hcGET) then
+  begin
+    AResponseInfo.ResponseNo := 400;
+    AResponseInfo.ContentText := 'Invalid request';
+    Exit;
+  end;
 
-  // Download Endpoint
-  THorse.Get('/download',
-    procedure(Req: THorseRequest; Res: THorseResponse)
-    begin
-      // Get Requested Map
-      var aMap := '';
-      if not Req.Query.TryGetValue('map', aMap) then
-      begin
-        Res.Status(400).Send('Missing map query');
-        Exit;
-      end;
+  // Only allow /map/ requests
+  if not ARequestInfo.URI.StartsWith('/map/', True) and not ARequestInfo.URI.EndsWith('.map', True) then
+  begin
+    AResponseInfo.ResponseNo := 400;
+    AResponseInfo.ContentText := 'Invalid request';
+    Exit;
+  end;
 
-      // Check trailing
-      if aMap.Contains('/') or aMap.Contains('\') then
-      begin
-        Res.Status(400).Send('Invalid Request');
-        Exit;
-      end;
+  // Strip file from uri
+  var requestedFile := ARequestInfo.URI.Replace('/map/', '');
 
-      var mapFile := TPath.Combine([rsmCore.Paths.GetMapServerDir, aMap]);
+  // Check if filename contains any slashes.
+  if requestedFile.Contains('/') or requestedFile.Contains('\') then
+  begin
+    AResponseInfo.ResponseNo := 400;
+    AResponseInfo.ContentText := 'Invalid request';
+    Exit;
+  end;
 
-      if not TFile.Exists(mapFile) then
-      begin
-        Res.Status(404).Send('Requested Map does not exist');
-        Exit;
-      end;
+  var mapFile := TPath.Combine([rsmCore.Paths.GetMapServerDir, requestedFile]);
 
-      var fs := TFileStream.Create(mapFile, fmShareDenyWrite);
-      try
-        Res.Status(200).SendFile(fs, TPath.GetFileName(mapFile), 'application/octet-stream');
-      finally
-        fs.Free;
-      end;
-    end);
+  // Check if map exists
+  if not TFile.Exists(mapFile) then
+  begin
+    AResponseInfo.ResponseNo := 404;
+    AResponseInfo.ContentText := 'Map Does not exists';
+    Exit;
+  end;
+
+  // Provide Map File
+  AResponseInfo.ResponseNo := 200;
+  AResponseInfo.ContentType := 'application/octet-stream';
+  AResponseInfo.ServeFile(AContext, mapFile);
 end;
 
 procedure TdmMapServer.StartServer;
 begin
-  var aPort := rsmConfig.Services.MapServer.Port;
-  var aHost := rsmConfig.Services.MapServer.IP;
+  if idhttpserverMapServer.Active then
+    idhttpserverMapServer.Active := False;
 
-  THorse.Listen(aPort, aHost,
-    procedure
-    begin
-      // Started Listening
-      FisRunning := True;
-    end,
-    procedure
-    begin
-      // Stopped Listening
-      FisRunning := False;
-    end);
+  idhttpserverMapServer.Bindings.Clear;
+  idhttpserverMapServer.DefaultPort := rsmConfig.Services.MapServer.Port;
+  idhttpserverMapServer.Bindings.Add.SetBinding(rsmConfig.Services.MapServer.IP, rsmConfig.Services.MapServer.Port);
+  idhttpserverMapServer.Active := True;
 end;
 
 procedure TdmMapServer.StopServer;
 begin
-  THorse.StopListen;
+  idhttpserverMapServer.Active := False;
 end;
 
 end.
