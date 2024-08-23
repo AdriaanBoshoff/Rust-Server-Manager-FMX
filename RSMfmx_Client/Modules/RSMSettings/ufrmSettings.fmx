@@ -825,6 +825,8 @@ object frmSettings: TfrmSettings
       StyleLookup = ''
       TabOrder = 0
       Text = 'RSM Settings'
+      ExplicitSize.cx = 91.000000000000000000
+      ExplicitSize.cy = 24.000000000000000000
       object tbcRSMSettings: TTabControl
         Align = Client
         Size.Width = 546.000000000000000000
@@ -848,6 +850,123 @@ object frmSettings: TfrmSettings
           StyleLookup = ''
           TabOrder = 0
           Text = 'Tray Icon'
+          ExplicitSize.cx = 68.000000000000000000
+          ExplicitSize.cy = 24.000000000000000000
+          object lytApplicationTitle: TLayout
+            Align = Top
+            Margins.Left = 10.000000000000000000
+            Margins.Top = 10.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 10.000000000000000000
+            Size.Width = 526.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object lblApplicationTitleDescription: TLabel
+              Align = MostLeft
+              AutoSize = True
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 93.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.WordWrap = False
+              Text = 'Application Title:'
+              TabOrder = 2
+            end
+            object edtApplicationTitleValue: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 3
+              Text = 'RSMfmx v3.1'
+              Hint = 
+                'Here you can change the title of RSM. This will effect things su' +
+                'ch as when you hover over the task bar icon and task manager.'
+              Margins.Left = 5.000000000000000000
+              Size.Width = 428.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'RSMfmx v3.1'
+              ParentShowHint = False
+              ShowHint = True
+            end
+          end
+          object grpTrayIcon: TGroupBox
+            Align = Top
+            StyledSettings = [Family, Size, FontColor, Other]
+            Margins.Left = 10.000000000000000000
+            Margins.Top = 10.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 50.000000000000000000
+            Size.Width = 526.000000000000000000
+            Size.Height = 199.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Tray Icon'
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TabOrder = 1
+            object lytEnableTrayIcon: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 20.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 20.000000000000000000
+              Size.Width = 506.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 43
+              object chkEnableTrayIcon: TCheckBox
+                Align = Left
+                Size.Width = 241.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 2
+                Text = 'Enable Tray Icon'
+              end
+            end
+            object lytTrayIconTitle: TLayout
+              Align = Top
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 55.000000000000000000
+              Size.Width = 506.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 42
+              object lblTrayIconTitleHeader: TLabel
+                Align = MostLeft
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Size.Width = 79.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Tray Icon Title:'
+                TabOrder = 2
+              end
+              object edtTrayIconTitleValue: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 3
+                Text = 'RSMfmx v3.1'
+                Hint = 
+                  'Here you can change the title of RSM. This will effect things su' +
+                  'ch as when you hover over the task bar icon and task manager.'
+                Margins.Left = 5.000000000000000000
+                Size.Width = 422.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'RSMfmx v3.1'
+                ParentShowHint = False
+                ShowHint = True
+              end
+            end
+          end
         end
       end
     end

@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.TreeView, FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.TabControl, FMX.Edit, FMX.EditBox, FMX.NumberBox, udmMapServer;
+  FMX.TabControl, FMX.Edit, FMX.EditBox, FMX.NumberBox, udmMapServer, ufrmMain,
+  udmTrayIcon;
 
 type
   TfrmSettings = class(TForm)
@@ -79,6 +80,15 @@ type
     tbcRSMSettings: TTabControl;
     tbtmTrayIconSettings: TTabItem;
     tviTrayIconSettings: TTreeViewItem;
+    lytApplicationTitle: TLayout;
+    lblApplicationTitleDescription: TLabel;
+    edtApplicationTitleValue: TEdit;
+    grpTrayIcon: TGroupBox;
+    lytEnableTrayIcon: TLayout;
+    chkEnableTrayIcon: TCheckBox;
+    lytTrayIconTitle: TLayout;
+    lblTrayIconTitleHeader: TLabel;
+    edtTrayIconTitleValue: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -142,7 +152,17 @@ begin
   rsmConfig.Services.MapServer.IP := edtMapServerListenIP.Text;
   rsmConfig.Services.MapServer.AutoStart := chkMapServerAutoStart.IsChecked;
 
+  // Title and Tray Icon
+  rsmConfig.TrayIcon.AppTitle := edtApplicationTitleValue.Text;
+  rsmConfig.TrayIcon.Enabled := chkEnableTrayIcon.IsChecked;
+  rsmConfig.TrayIcon.Title := edtTrayIconTitleValue.Text;
   rsmConfig.SaveConfig;
+
+  // Title & Tray Icon
+  frmMain.Caption := rsmConfig.TrayIcon.AppTitle;
+  Application.Title := rsmConfig.TrayIcon.AppTitle;
+  dmTrayIcon.trycnMain.Visible := rsmConfig.TrayIcon.Enabled;
+  dmTrayIcon.trycnMain.Hint := rsmConfig.TrayIcon.Title;
 
   Self.ModalResult := mrOk;
 end;
@@ -258,12 +278,16 @@ begin
     btnStartStopMapServer.TintColor := TAlphaColorRec.Green;
   end;
 
-
   // uMod login
   if rsmConfig.LoginTokens.uModToken.Trim.IsEmpty then
     btnuModLogin.Text := 'uMod.org Login'
   else
     btnuModLogin.Text := 'Logout uMod.org';
+
+  // Tray Icon
+  edtApplicationTitleValue.Text := rsmConfig.TrayIcon.AppTitle;
+  edtTrayIconTitleValue.Text := rsmConfig.TrayIcon.Title;
+  chkEnableTrayIcon.IsChecked := rsmConfig.TrayIcon.Enabled;
 end;
 
 procedure TfrmSettings.tvNavChange(Sender: TObject);

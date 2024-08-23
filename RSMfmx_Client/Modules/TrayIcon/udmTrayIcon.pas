@@ -8,6 +8,7 @@ uses
 type
   TdmTrayIcon = class(TDataModule)
     trycnMain: TTrayIcon;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -24,6 +25,12 @@ uses
   RSM.Config;
 
 {$R *.dfm}
+
+procedure TdmTrayIcon.DataModuleCreate(Sender: TObject);
+begin
+  trycnMain.Hint := rsmConfig.TrayIcon.Title;
+  trycnMain.Visible := rsmConfig.TrayIcon.Enabled;
+end;
 
 end.
 

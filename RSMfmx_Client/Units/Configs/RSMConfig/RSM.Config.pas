@@ -23,6 +23,7 @@ type
       TRSMConfigTrayIcon = record
         Enabled: Boolean;
         Title: string;
+        AppTitle: string;
       end;
       // Auto Restart Server
     type
@@ -111,6 +112,7 @@ begin
   // Tray Icon
   Self.TrayIcon.Enabled := True;
   Self.TrayIcon.Title := 'RSMfmx v3';
+  Self.TrayIcon.AppTitle := 'RSMfmx v3';
 
   // Auto Restart
   Self.AutoRestart.AutoRestart1.Enabled := False;

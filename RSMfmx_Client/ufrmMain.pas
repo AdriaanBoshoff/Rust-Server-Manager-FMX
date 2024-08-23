@@ -1025,6 +1025,9 @@ begin
   swtchUpdateServerBeforeStartingServer.IsChecked := rsmConfig.Misc.UpdateServerBeforeServerStart;
   swtchInstallOxideBeforeServerStart.IsChecked := rsmConfig.Misc.InstallOxideBeforeServerStart;
   swtchAutoStartServerAfterShutdown.IsChecked := rsmConfig.Misc.StartServerAfterShutdown;
+
+  // Application Title
+  Application.Title := rsmConfig.TrayIcon.AppTitle;
 end;
 
 procedure TfrmMain.lstNavChange(Sender: TObject);
