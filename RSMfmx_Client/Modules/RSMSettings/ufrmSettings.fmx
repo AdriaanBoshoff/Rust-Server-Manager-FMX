@@ -901,7 +901,7 @@ object frmSettings: TfrmSettings
             Position.X = 10.000000000000000000
             Position.Y = 50.000000000000000000
             Size.Width = 526.000000000000000000
-            Size.Height = 199.000000000000000000
+            Size.Height = 95.000000000000000000
             Size.PlatformDefault = False
             Text = 'Tray Icon'
             TextSettings.Font.StyleExt = {00060000000000000004000000}
