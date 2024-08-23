@@ -5,6 +5,7 @@ object frmServerConsole: TfrmServerConsole
   Caption = 'Server Console'
   ClientHeight = 528
   ClientWidth = 742
+  Position = MainFormCenter
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
