@@ -13,8 +13,6 @@ type
     lblMessage: TLabel;
     floataniFade: TFloatAnimation;
     lytOverlayControls: TLayout;
-    btnClear: TButton;
-    procedure btnClearClick(Sender: TObject);
     procedure floataniFadeFinish(Sender: TObject);
     procedure rctnglBGMouseEnter(Sender: TObject);
     procedure rctnglBGMouseLeave(Sender: TObject);
@@ -63,13 +61,6 @@ begin
   // Fade Animation
   toastFrame.floataniFade.Duration := FadeDuration;
   toastFrame.floataniFade.Start;
-end;
-
-procedure TframeToastMessage.btnClearClick(Sender: TObject);
-begin
-  // Stopping the animation will trigger
-  // the "floataniFadeFinish" event
-  Self.floataniFade.Stop;
 end;
 
 procedure TframeToastMessage.floataniFadeFinish(Sender: TObject);
