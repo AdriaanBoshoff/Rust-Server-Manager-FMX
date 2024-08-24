@@ -954,9 +954,6 @@ object frmSettings: TfrmSettings
                 Align = Client
                 TabOrder = 3
                 Text = 'RSMfmx v3.1'
-                Hint = 
-                  'Here you can change the title of RSM. This will effect things su' +
-                  'ch as when you hover over the task bar icon and task manager.'
                 Margins.Left = 5.000000000000000000
                 Size.Width = 422.000000000000000000
                 Size.Height = 30.000000000000000000

@@ -3,11 +3,14 @@
 interface
 
 uses
-  System.SysUtils, System.Classes, ufrmMain, Vcl.ExtCtrls, System.UITypes;
+  System.SysUtils, System.Classes, ufrmMain, Vcl.ExtCtrls, System.UITypes,
+  Vcl.Menus;
 
 type
   TdmTrayIcon = class(TDataModule)
     trycnMain: TTrayIcon;
+    pmTrayIcon: TPopupMenu;
+    mnitest1: TMenuItem;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
