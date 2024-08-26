@@ -45,6 +45,8 @@ type
         UpdateServerBeforeServerStart: Boolean;
         InstallOxideBeforeServerStart: Boolean;
         StartServerAfterShutdown: Boolean;
+        ExecuteBeforeServerStart: Boolean;
+        ExecuteBeforeServerStartFilePath: string;
       end;
       // API Settings
     type
@@ -130,6 +132,8 @@ begin
   Self.Misc.UpdateServerBeforeServerStart := False;
   Self.Misc.InstallOxideBeforeServerStart := False;
   Self.Misc.StartServerAfterShutdown := False;
+  Self.Misc.ExecuteBeforeServerStart := False;
+  Self.Misc.ExecuteBeforeServerStartFilePath := '';
 
   // API Keys
   Self.APIKeys.SteamAPIKey := '';

@@ -291,6 +291,11 @@ type
     lblMapServerStatusHeader: TLabel;
     lblMapServerStatusValue: TLabel;
     tmrServicesStatus: TTimer;
+    lytExecuteBeforeServerStart: TLayout;
+    swtchExecuteBeforeServerStart: TSwitch;
+    lblExecuteBeforeServerStart: TLabel;
+    edtExecuteBeforeServerStart: TEdit;
+    btnBrowseExecuteBeforeStart: TEllipsesEditButton;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -361,6 +366,8 @@ type
     procedure btnPreviewMapClick(Sender: TObject);
     procedure tmrServicesStatusTimer(Sender: TObject);
     procedure OnMapServerStatusClick(Sender: TObject);
+    procedure btnBrowseExecuteBeforeStartClick(Sender: TObject);
+    procedure swtchExecuteBeforeServerStartSwitch(Sender: TObject);
   private
     { Private Const }
   private
@@ -449,6 +456,24 @@ begin
   finally
     frmSettings.Free;
     frmSettings := nil;
+  end;
+end;
+
+procedure TfrmMain.btnBrowseExecuteBeforeStartClick(Sender: TObject);
+begin
+  var dlg := TOpenDialog.Create(Self);
+  try
+    dlg.InitialDir := GetCurrentDir;
+    dlg.Options := [TOpenOption.ofDontAddToRecent, TOpenOption.ofFileMustExist];
+
+    if dlg.Execute then
+    begin
+      edtExecuteBeforeServerStart.Text := dlg.FileName;
+      rsmConfig.Misc.ExecuteBeforeServerStartFilePath := dlg.FileName;
+      rsmConfig.SaveConfig;
+    end;
+  finally
+    dlg.Free;
   end;
 end;
 
@@ -655,6 +680,18 @@ begin
     Sleep(500);
     while frmOxide.FIsInstallingOxide do
       Application.ProcessMessages;
+  end;
+
+  // Execute Before Server Start
+  if rsmConfig.Misc.ExecuteBeforeServerStart then
+  begin
+    if not TFile.Exists(rsmConfig.Misc.ExecuteBeforeServerStartFilePath) then
+    begin
+      ShowMessageBox('File "' + rsmConfig.Misc.ExecuteBeforeServerStartFilePath + '" does not exists. Cannot execute before server start.', 'Execute Before Start', Self);
+      Exit;
+    end;
+
+    CreateProcess(rsmConfig.Misc.ExecuteBeforeServerStartFilePath, '', '', True);
   end;
 
   // Build Params
@@ -1025,6 +1062,8 @@ begin
   swtchUpdateServerBeforeStartingServer.IsChecked := rsmConfig.Misc.UpdateServerBeforeServerStart;
   swtchInstallOxideBeforeServerStart.IsChecked := rsmConfig.Misc.InstallOxideBeforeServerStart;
   swtchAutoStartServerAfterShutdown.IsChecked := rsmConfig.Misc.StartServerAfterShutdown;
+  swtchExecuteBeforeServerStart.IsChecked := rsmConfig.Misc.ExecuteBeforeServerStart;
+  edtExecuteBeforeServerStart.Text := rsmConfig.Misc.ExecuteBeforeServerStartFilePath;
 
   // Application Title
   Application.Title := rsmConfig.TrayIcon.AppTitle;
@@ -1282,6 +1321,12 @@ end;
 procedure TfrmMain.swtchAutoStartServerAfterShutdownSwitch(Sender: TObject);
 begin
   rsmConfig.Misc.StartServerAfterShutdown := swtchAutoStartServerAfterShutdown.IsChecked;
+  rsmConfig.SaveConfig;
+end;
+
+procedure TfrmMain.swtchExecuteBeforeServerStartSwitch(Sender: TObject);
+begin
+  rsmConfig.Misc.ExecuteBeforeServerStart := swtchExecuteBeforeServerStart.IsChecked;
   rsmConfig.SaveConfig;
 end;
 

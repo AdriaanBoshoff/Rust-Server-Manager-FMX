@@ -648,7 +648,7 @@ object frmMain: TfrmMain
               StyledSettings = [Family, FontColor]
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 202.000000000000000000
+              Position.Y = 237.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 17.000000000000000000
               Size.PlatformDefault = False
@@ -662,7 +662,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 229.000000000000000000
+              Position.Y = 264.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -747,7 +747,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 259.000000000000000000
+              Position.Y = 294.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -832,7 +832,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 289.000000000000000000
+              Position.Y = 324.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -923,7 +923,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 9
+              TabOrder = 10
               object swtchStartServerWithRSM: TSwitch
                 Align = Left
                 Hint = 
@@ -969,7 +969,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 8
+              TabOrder = 9
               object swtchUpdateServerBeforeStartingServer: TSwitch
                 Align = Left
                 Hint = 
@@ -1015,7 +1015,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 7
+              TabOrder = 8
               object swtchInstallOxideBeforeServerStart: TSwitch
                 Align = Left
                 Hint = 
@@ -1061,7 +1061,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 6
+              TabOrder = 7
               object swtchAutoStartServerAfterShutdown: TSwitch
                 Align = Left
                 IsChecked = False
@@ -1093,6 +1093,68 @@ object frmMain: TfrmMain
                 ParentShowHint = False
                 ShowHint = True
                 TabOrder = 0
+              end
+            end
+            object lytExecuteBeforeServerStart: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 202.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 6
+              object swtchExecuteBeforeServerStart: TSwitch
+                Align = Left
+                IsChecked = False
+                Position.Y = 5.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                ParentShowHint = False
+                ShowHint = True
+                OnSwitch = swtchExecuteBeforeServerStartSwitch
+              end
+              object lblExecuteBeforeServerStart: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                HitTest = True
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 148.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                TextSettings.Trimming = None
+                Text = 'Execute Before Server Start'
+                ParentShowHint = False
+                ShowHint = True
+                TabOrder = 0
+              end
+              object edtExecuteBeforeServerStart: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 2
+                ReadOnly = True
+                Margins.Left = 5.000000000000000000
+                Size.Width = 339.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'Path to .exe / script'
+                object btnBrowseExecuteBeforeStart: TEllipsesEditButton
+                  Touch.InteractiveGestures = [LongTap]
+                  CanFocus = False
+                  Cursor = crArrow
+                  TextSettings.Trimming = None
+                  Size.Width = 28.000000000000000000
+                  Size.Height = 26.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  OnClick = btnBrowseExecuteBeforeStartClick
+                end
               end
             end
           end
@@ -3102,8 +3164,8 @@ object frmMain: TfrmMain
     Enabled = False
     Interval = 10000
     OnTimer = tmrAutoRestartTimer
-    Left = 584
-    Top = 488
+    Left = 592
+    Top = 248
   end
   object tmrServicesStatus: TTimer
     Enabled = False
