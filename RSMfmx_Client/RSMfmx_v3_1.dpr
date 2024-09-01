@@ -12,6 +12,7 @@ uses
   XSuperObject in 'Libs\XSuperObject\XSuperObject.pas',
   uServerConfig in 'Units\Configs\ServerConfig\uServerConfig.pas',
   uframeMessageBox in 'Frames\Dialogs\uframeMessageBox.pas' {frameMessageBox: TFrame},
+  udmRSMAPI in 'DataModules\udmRSMAPI.pas' {dmRSMApi: TDataModule},
   RSM.Config in 'Units\Configs\RSMConfig\RSM.Config.pas',
   ufrmServerInstaller in 'Modules\ServerInstaller\ufrmServerInstaller.pas' {frmServerInstaller},
   uSteamCMD in 'Units\uSteamCMD.pas',
@@ -54,6 +55,7 @@ uses
   uEndpointTypes in 'Units\RSM\uEndpointTypes.pas',
   uGlobalConst in 'uGlobalConst.pas',
   ufrmSettings in 'Modules\RSMSettings\ufrmSettings.pas' {frmSettings},
+  udmMapServer in 'Modules\Services\udmMapServer.pas' {dmMapServer: TDataModule},
   Horse.Callback in 'Libs\Horse\Horse.Callback.pas',
   Horse.Commons in 'Libs\Horse\Horse.Commons.pas',
   Horse.Constants in 'Libs\Horse\Horse.Constants.pas',
@@ -98,9 +100,7 @@ uses
   Horse.Session in 'Libs\Horse\Horse.Session.pas',
   Horse.WebModule in 'Libs\Horse\Horse.WebModule.pas' {HorseWebModule: TWebModule},
   ThirdParty.Posix.Syslog in 'Libs\Horse\ThirdParty.Posix.Syslog.pas',
-  Web.WebConst in 'Libs\Horse\Web.WebConst.pas',
-  udmRSMAPI in 'Modules\Services\RSMAPI\udmRSMAPI.pas' {dmRSMAPI: TDataModule},
-  udmMapServer in 'Modules\Services\MapServer\udmMapServer.pas' {dmMapServer: TDataModule};
+  Web.WebConst in 'Libs\Horse\Web.WebConst.pas';
 
 {$R *.res}
 
@@ -129,8 +129,6 @@ begin
   Application.CreateForm(TdmIcons, dmIcons);
   Application.CreateForm(TdmChatDB, dmChatDB);
   Application.CreateForm(TfrmServerConsole, frmServerConsole);
-  Application.CreateForm(TdmRSMAPI, dmRSMAPI);
-  Application.CreateForm(TdmMapServer, dmMapServer);
   Application.Run;
 end.
 
