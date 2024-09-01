@@ -1,12 +1,12 @@
-unit udmRSMAPI;
+﻿unit udmRSMAPI;
 
 interface
 
 uses
-  System.SysUtils, System.Classes;
+  System.SysUtils, System.Classes, Web.HTTPApp;
 
 type
-  TdmRSMAPI = class(TDataModule)
+  TdmRSMApi = class(TWebModule)
   private
     { Private declarations }
   public
@@ -14,7 +14,7 @@ type
   end;
 
 var
-  dmRSMAPI: TdmRSMAPI;
+  dmRSMApi: TdmRSMApi;
 
 implementation
 
