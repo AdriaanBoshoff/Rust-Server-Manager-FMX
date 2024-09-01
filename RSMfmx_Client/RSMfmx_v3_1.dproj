@@ -174,10 +174,6 @@
             <Form>frameMessageBox</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="DataModules\udmRSMAPI.pas">
-            <Form>dmRSMApi</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="Units\Configs\RSMConfig\RSM.Config.pas"/>
         <DCCReference Include="Modules\ServerInstaller\ufrmServerInstaller.pas">
             <Form>frmServerInstaller</Form>

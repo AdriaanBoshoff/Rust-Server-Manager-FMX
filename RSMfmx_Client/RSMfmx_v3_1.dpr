@@ -12,7 +12,6 @@ uses
   XSuperObject in 'Libs\XSuperObject\XSuperObject.pas',
   uServerConfig in 'Units\Configs\ServerConfig\uServerConfig.pas',
   uframeMessageBox in 'Frames\Dialogs\uframeMessageBox.pas' {frameMessageBox: TFrame},
-  udmRSMAPI in 'DataModules\udmRSMAPI.pas' {dmRSMApi: TDataModule},
   RSM.Config in 'Units\Configs\RSMConfig\RSM.Config.pas',
   ufrmServerInstaller in 'Modules\ServerInstaller\ufrmServerInstaller.pas' {frmServerInstaller},
   uSteamCMD in 'Units\uSteamCMD.pas',
