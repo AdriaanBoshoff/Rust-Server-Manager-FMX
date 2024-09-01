@@ -55,7 +55,6 @@ uses
   uEndpointTypes in 'Units\RSM\uEndpointTypes.pas',
   uGlobalConst in 'uGlobalConst.pas',
   ufrmSettings in 'Modules\RSMSettings\ufrmSettings.pas' {frmSettings},
-  udmMapServer in 'Modules\Services\udmMapServer.pas' {dmMapServer: TDataModule},
   Horse.Callback in 'Libs\Horse\Horse.Callback.pas',
   Horse.Commons in 'Libs\Horse\Horse.Commons.pas',
   Horse.Constants in 'Libs\Horse\Horse.Constants.pas',
@@ -100,7 +99,8 @@ uses
   Horse.Session in 'Libs\Horse\Horse.Session.pas',
   Horse.WebModule in 'Libs\Horse\Horse.WebModule.pas' {HorseWebModule: TWebModule},
   ThirdParty.Posix.Syslog in 'Libs\Horse\ThirdParty.Posix.Syslog.pas',
-  Web.WebConst in 'Libs\Horse\Web.WebConst.pas';
+  Web.WebConst in 'Libs\Horse\Web.WebConst.pas',
+  udmMapServer in 'Modules\Services\MapServer\udmMapServer.pas' {dmMapServer: TDataModule};
 
 {$R *.res}
 
