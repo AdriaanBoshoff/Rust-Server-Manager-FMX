@@ -72,6 +72,13 @@ object frmSettings: TfrmSettings
         TabOrder = 0
         Text = 'Map Server'
       end
+      object tviRSMAPI: TTreeViewItem
+        IsChecked = False
+        IsExpanded = False
+        IsSelected = False
+        TabOrder = 1
+        Text = 'RSM API'
+      end
     end
     object tviRSMSettings: TTreeViewItem
       IsChecked = False
@@ -93,7 +100,7 @@ object frmSettings: TfrmSettings
     Size.Width = 546.000000000000000000
     Size.Height = 424.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
@@ -528,7 +535,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 63.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -542,10 +549,12 @@ object frmSettings: TfrmSettings
         Size.Width = 546.000000000000000000
         Size.Height = 400.000000000000000000
         Size.PlatformDefault = False
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
+          546s
+          376s
           546s
           376s)
         object tbtmMapServer: TTabItem
@@ -553,7 +562,7 @@ object frmSettings: TfrmSettings
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 81.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -811,6 +820,38 @@ object frmSettings: TfrmSettings
             end
           end
         end
+        object tbtmRSMAPI: TTabItem
+          CustomIcon = <
+            item
+            end>
+          TextSettings.Trimming = None
+          IsSelected = True
+          Size.Width = 66.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'RSM API'
+          object tlbRSMAPIHeader: TToolBar
+            Align = MostTop
+            Size.Width = 546.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object lblRSMAPIHeader: TLabel
+              Align = Contents
+              StyledSettings = [Family, FontColor]
+              Size.Width = 546.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.HorzAlign = Center
+              Text = 'RSM API'
+              TabOrder = 1
+            end
+          end
+        end
       end
     end
     object tbtmRSMSettings: TTabItem
@@ -818,7 +859,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 91.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False

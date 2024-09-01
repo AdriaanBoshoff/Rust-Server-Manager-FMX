@@ -89,6 +89,10 @@ type
     lytTrayIconTitle: TLayout;
     lblTrayIconTitleHeader: TLabel;
     edtTrayIconTitleValue: TEdit;
+    tviRSMAPI: TTreeViewItem;
+    tbtmRSMAPI: TTabItem;
+    tlbRSMAPIHeader: TToolBar;
+    lblRSMAPIHeader: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
