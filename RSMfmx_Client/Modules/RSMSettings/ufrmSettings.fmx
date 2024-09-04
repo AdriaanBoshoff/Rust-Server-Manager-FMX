@@ -832,6 +832,8 @@ object frmSettings: TfrmSettings
           StyleLookup = ''
           TabOrder = 0
           Text = 'RSM API'
+          ExplicitSize.cx = 66.000000000000000000
+          ExplicitSize.cy = 24.000000000000000000
           object tlbRSMAPIHeader: TToolBar
             Align = MostTop
             Size.Width = 546.000000000000000000

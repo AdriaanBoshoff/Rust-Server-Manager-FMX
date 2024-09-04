@@ -179,7 +179,7 @@ begin
 
       // Main Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchMain.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, 'release', swtchLimitCPU.IsChecked);
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, False, '', swtchLimitCPU.IsChecked);
 
       // Staging Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchStaging.Index then
@@ -235,7 +235,7 @@ begin
 
       // Main Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchMain.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'release', swtchLimitCPU.IsChecked);
+        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, '', swtchLimitCPU.IsChecked);
 
       // Staging Branch
       if cbbServerInstallerBranch.ItemIndex = lstServerBranchStaging.Index then
