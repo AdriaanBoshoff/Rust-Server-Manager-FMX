@@ -1402,30 +1402,30 @@ begin
   if FSkipUpdateMessage then
     Exit;
 
-//  TTask.Run(
-//    procedure
-//    begin
-//      var rest := TRESTRequest.Create(Self);
-//      try
-//        rest.Client := TRESTClient.Create(rest);
-//        rest.Response := TRESTResponse.Create(rest);
-//
-//        rest.Client.BaseURL := 'https://api.rustservermanager.com/v1/version';
-//
-//        rest.Execute;
-//
-//        if rest.Response.StatusCode = 200 then
-//        begin
-//          if rest.Response.JSONValue.GetValue<string>('version') <> APP_VERSION then
-//          begin
-//            lytUpdateAvailable.Visible := True;
-//            lytUpdateAvailable.BringToFront;
-//          end;
-//        end;
-//      finally
-//        rest.Free;
-//      end;
-//    end);
+  TTask.Run(
+    procedure
+    begin
+      var rest := TRESTRequest.Create(Self);
+      try
+        rest.Client := TRESTClient.Create(rest);
+        rest.Response := TRESTResponse.Create(rest);
+
+        rest.Client.BaseURL := 'https://api.rustservermanager.com/v1/version';
+
+        rest.Execute;
+
+        if rest.Response.StatusCode = 200 then
+        begin
+          if rest.Response.JSONValue.GetValue<string>('version') <> APP_VERSION then
+          begin
+            lytUpdateAvailable.Visible := True;
+            lytUpdateAvailable.BringToFront;
+          end;
+        end;
+      finally
+        rest.Free;
+      end;
+    end);
 end;
 
 procedure TfrmMain.tmrCheckServerRunningStatusTimer(Sender: TObject);

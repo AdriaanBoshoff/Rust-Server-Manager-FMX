@@ -849,7 +849,7 @@ object frmSettings: TfrmSettings
               TextSettings.Font.Size = 18.000000000000000000
               TextSettings.Font.StyleExt = {00060000000000000004000000}
               TextSettings.HorzAlign = Center
-              Text = 'RSM API'
+              Text = 'RSM API (Coming Soon)'
               TabOrder = 1
             end
           end
