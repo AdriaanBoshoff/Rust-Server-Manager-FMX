@@ -17,7 +17,7 @@ type
 implementation
 
 uses
-  RSM.Config, uServerConfig, XSuperObject, ufrmMain;
+  RSM.Config, uServerConfig, XSuperObject, ufrmMain, RCON.Types;
 
 { Tv1RSMAPIEndpoints }
 
@@ -52,6 +52,8 @@ begin
     serverConfig.LoadConfig;
 
     frmMain.PopulateServerConfigUI;
+
+    TRCON.SendRconCommand('server.readcfg', 0, frmMain.wsClientRcon);
 
     Res.Status(THTTPStatus.OK).Send('{ "message": "Server Config Applied. Some Changes will only take effect after a server restart." }');
   except

@@ -995,6 +995,7 @@ object frmSettings: TfrmSettings
                   StyleLookup = 'refreshtoolbutton'
                   Text = 'Generate API Key'
                   TextSettings.Trimming = None
+                  OnClick = btnGenerateAPIKeyClick
                 end
               end
             end

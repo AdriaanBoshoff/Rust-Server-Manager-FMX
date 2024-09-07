@@ -129,6 +129,7 @@ type
     procedure btnBrowserRSMAPICertFileClick(Sender: TObject);
     procedure btnBrowseRSMAPIKeyFileClick(Sender: TObject);
     procedure btnStartStopRSMAPIServerClick(Sender: TObject);
+    procedure btnGenerateAPIKeyClick(Sender: TObject);
   private
     { Private declarations }
     FuModSessionToken: string;
@@ -143,7 +144,8 @@ var
 implementation
 
 uses
-  RSM.Config, uWinUtils, System.IOUtils, RSM.Core, Rest.Client, WinAPI.Windows;
+  RSM.Config, uWinUtils, System.IOUtils, RSM.Core, Rest.Client, WinAPI.Windows,
+  uHelpers;
 
 {$R *.fmx}
 
@@ -183,6 +185,11 @@ procedure TfrmSettings.btnCancelClick(Sender: TObject);
 begin
   rsmConfig.LoadConfig;
   Self.ModalResult := mrCancel;
+end;
+
+procedure TfrmSettings.btnGenerateAPIKeyClick(Sender: TObject);
+begin
+  edtRSMAPIKey.Text := GenerateAPIKey;
 end;
 
 procedure TfrmSettings.btnGetRustMapsAPIClick(Sender: TObject);
