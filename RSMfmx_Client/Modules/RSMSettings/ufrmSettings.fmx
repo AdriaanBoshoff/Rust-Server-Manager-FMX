@@ -4,8 +4,8 @@ object frmSettings: TfrmSettings
   BorderIcons = [biSystemMenu]
   BorderStyle = SizeToolWin
   Caption = 'Settings'
-  ClientHeight = 469
-  ClientWidth = 746
+  ClientHeight = 489
+  ClientWidth = 780
   Position = MainFormCenter
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
@@ -16,14 +16,14 @@ object frmSettings: TfrmSettings
   object tvNav: TTreeView
     Align = Left
     Size.Width = 200.000000000000000000
-    Size.Height = 424.000000000000000000
+    Size.Height = 444.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     AlternatingRowBackground = True
     ItemHeight = 25.000000000000000000
     OnChange = tvNavChange
     Viewport.Width = 196.000000000000000000
-    Viewport.Height = 420.000000000000000000
+    Viewport.Height = 440.000000000000000000
     object tviAPISettings: TTreeViewItem
       IsChecked = False
       IsExpanded = True
@@ -97,19 +97,19 @@ object frmSettings: TfrmSettings
   end
   object tbcNav: TTabControl
     Align = Client
-    Size.Width = 546.000000000000000000
-    Size.Height = 424.000000000000000000
+    Size.Width = 580.000000000000000000
+    Size.Height = 444.000000000000000000
     Size.PlatformDefault = False
     TabIndex = 1
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
-      546s
-      400s
-      546s
-      400s
-      546s
-      400s)
+      580s
+      420s
+      580s
+      420s
+      580s
+      420s)
     object tbtmAPISettings: TTabItem
       CustomIcon = <
         item
@@ -126,21 +126,21 @@ object frmSettings: TfrmSettings
       ExplicitSize.cy = 24.000000000000000000
       object tbcAPISettings: TTabControl
         Align = Client
-        Size.Width = 546.000000000000000000
-        Size.Height = 400.000000000000000000
+        Size.Width = 580.000000000000000000
+        Size.Height = 420.000000000000000000
         Size.PlatformDefault = False
-        TabIndex = 3
+        TabIndex = 1
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
-          546s
-          376s
-          546s
-          376s
-          546s
-          376s
-          546s
-          376s)
+          580s
+          396s
+          580s
+          396s
+          580s
+          396s
+          580s
+          396s)
         object tbtmSteamAPI: TTabItem
           Tag = 1
           CustomIcon = <
@@ -165,8 +165,8 @@ object frmSettings: TfrmSettings
             Margins.Right = 5.000000000000000000
             Position.X = 5.000000000000000000
             Position.Y = 45.000000000000000000
-            Size.Width = 536.000000000000000000
-            Size.Height = 32.000000000000000000
+            Size.Width = 570.000000000000000000
+            Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFCDCDCD
             TextSettings.HorzAlign = Center
@@ -181,8 +181,8 @@ object frmSettings: TfrmSettings
             Margins.Top = 10.000000000000000000
             Margins.Right = 10.000000000000000000
             Position.X = 10.000000000000000000
-            Position.Y = 87.000000000000000000
-            Size.Width = 526.000000000000000000
+            Position.Y = 71.000000000000000000
+            Size.Width = 560.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -226,14 +226,14 @@ object frmSettings: TfrmSettings
           end
           object tlbSteamAPIHeader: TToolBar
             Align = MostTop
-            Size.Width = 546.000000000000000000
+            Size.Width = 580.000000000000000000
             Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 2
             object lblSteamAPIHeader: TLabel
               Align = Contents
               StyledSettings = [Family, FontColor]
-              Size.Width = 546.000000000000000000
+              Size.Width = 580.000000000000000000
               Size.Height = 40.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 18.000000000000000000
@@ -250,7 +250,7 @@ object frmSettings: TfrmSettings
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = False
+          IsSelected = True
           Size.Width = 97.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -268,7 +268,7 @@ object frmSettings: TfrmSettings
             Margins.Right = 5.000000000000000000
             Position.X = 5.000000000000000000
             Position.Y = 45.000000000000000000
-            Size.Width = 536.000000000000000000
+            Size.Width = 570.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFCDCDCD
@@ -286,7 +286,7 @@ object frmSettings: TfrmSettings
             Margins.Right = 10.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 87.000000000000000000
-            Size.Width = 526.000000000000000000
+            Size.Width = 560.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -330,14 +330,14 @@ object frmSettings: TfrmSettings
           end
           object tlbRustMapsAPIHeader: TToolBar
             Align = MostTop
-            Size.Width = 546.000000000000000000
+            Size.Width = 580.000000000000000000
             Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 2
             object lblRustMapsAPIHeader: TLabel
               Align = Contents
               StyledSettings = [Family, FontColor]
-              Size.Width = 546.000000000000000000
+              Size.Width = 580.000000000000000000
               Size.Height = 40.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 18.000000000000000000
@@ -372,7 +372,7 @@ object frmSettings: TfrmSettings
             Margins.Right = 5.000000000000000000
             Position.X = 5.000000000000000000
             Position.Y = 45.000000000000000000
-            Size.Width = 536.000000000000000000
+            Size.Width = 570.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFCDCDCD
@@ -390,7 +390,7 @@ object frmSettings: TfrmSettings
             Margins.Right = 5.000000000000000000
             Position.X = 5.000000000000000000
             Position.Y = 87.000000000000000000
-            Size.Width = 536.000000000000000000
+            Size.Width = 570.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 4
@@ -398,7 +398,7 @@ object frmSettings: TfrmSettings
               Align = HorzCenter
               CanFocus = False
               StyledSettings = [Family, Size, FontColor]
-              Position.X = 193.000000000000000000
+              Position.X = 210.000000000000000000
               Size.Width = 150.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
@@ -418,7 +418,7 @@ object frmSettings: TfrmSettings
             Margins.Right = 5.000000000000000000
             Position.X = 5.000000000000000000
             Position.Y = 127.000000000000000000
-            Size.Width = 536.000000000000000000
+            Size.Width = 570.000000000000000000
             Size.Height = 48.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFE6E6E6
@@ -439,7 +439,7 @@ object frmSettings: TfrmSettings
             HitTest = True
             Margins.Top = 10.000000000000000000
             Position.Y = 185.000000000000000000
-            Size.Width = 546.000000000000000000
+            Size.Width = 580.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
             TextSettings.Font.StyleExt = {04040000000100000004000000}
@@ -453,14 +453,14 @@ object frmSettings: TfrmSettings
           end
           object tlbuModAPIHeader: TToolBar
             Align = MostTop
-            Size.Width = 546.000000000000000000
+            Size.Width = 580.000000000000000000
             Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 2
             object lbluModAPIHeader: TLabel
               Align = Contents
               StyledSettings = [Family, FontColor]
-              Size.Width = 546.000000000000000000
+              Size.Width = 580.000000000000000000
               Size.Height = 40.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 18.000000000000000000
@@ -476,7 +476,7 @@ object frmSettings: TfrmSettings
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 93.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -494,7 +494,7 @@ object frmSettings: TfrmSettings
             Margins.Right = 5.000000000000000000
             Position.X = 5.000000000000000000
             Position.Y = 45.000000000000000000
-            Size.Width = 536.000000000000000000
+            Size.Width = 570.000000000000000000
             Size.Height = 80.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = xFFCDCDCD
@@ -510,14 +510,14 @@ object frmSettings: TfrmSettings
           end
           object tlbCodeflingAPIHeader: TToolBar
             Align = MostTop
-            Size.Width = 546.000000000000000000
+            Size.Width = 580.000000000000000000
             Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 2
             object lblCodeflingAPIHeader: TLabel
               Align = Contents
               StyledSettings = [Family, FontColor]
-              Size.Width = 546.000000000000000000
+              Size.Width = 580.000000000000000000
               Size.Height = 40.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 18.000000000000000000
@@ -546,17 +546,17 @@ object frmSettings: TfrmSettings
       ExplicitSize.cy = 24.000000000000000000
       object tbcServices: TTabControl
         Align = Client
-        Size.Width = 546.000000000000000000
-        Size.Height = 400.000000000000000000
+        Size.Width = 580.000000000000000000
+        Size.Height = 420.000000000000000000
         Size.PlatformDefault = False
         TabIndex = 1
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
-          546s
-          376s
-          546s
-          376s)
+          580s
+          396s
+          580s
+          396s)
         object tbtmMapServer: TTabItem
           CustomIcon = <
             item
@@ -573,14 +573,14 @@ object frmSettings: TfrmSettings
           ExplicitSize.cy = 24.000000000000000000
           object tlbMapServerHeader: TToolBar
             Align = MostTop
-            Size.Width = 546.000000000000000000
+            Size.Width = 580.000000000000000000
             Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
             object lblMapServerHeader: TLabel
               Align = Contents
               StyledSettings = [Family, FontColor]
-              Size.Width = 546.000000000000000000
+              Size.Width = 580.000000000000000000
               Size.Height = 40.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 18.000000000000000000
@@ -592,12 +592,12 @@ object frmSettings: TfrmSettings
           end
           object vrtscrlbxMapServer: TVertScrollBox
             Align = Client
-            Size.Width = 546.000000000000000000
-            Size.Height = 336.000000000000000000
+            Size.Width = 580.000000000000000000
+            Size.Height = 356.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 2
-            Viewport.Width = 546.000000000000000000
-            Viewport.Height = 336.000000000000000000
+            Viewport.Width = 580.000000000000000000
+            Viewport.Height = 356.000000000000000000
             object lblMapServerDescription: TLabel
               Align = Top
               AutoSize = True
@@ -607,7 +607,7 @@ object frmSettings: TfrmSettings
               Margins.Right = 5.000000000000000000
               Position.X = 5.000000000000000000
               Position.Y = 5.000000000000000000
-              Size.Width = 536.000000000000000000
+              Size.Width = 570.000000000000000000
               Size.Height = 16.000000000000000000
               Size.PlatformDefault = False
               TextSettings.FontColor = xFFCDCDCD
@@ -622,7 +622,7 @@ object frmSettings: TfrmSettings
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 31.000000000000000000
-              Size.Width = 526.000000000000000000
+              Size.Width = 560.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 5
@@ -705,7 +705,7 @@ object frmSettings: TfrmSettings
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 71.000000000000000000
-              Size.Width = 526.000000000000000000
+              Size.Width = 560.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 4
@@ -742,7 +742,7 @@ object frmSettings: TfrmSettings
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 111.000000000000000000
-              Size.Width = 526.000000000000000000
+              Size.Width = 560.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 3
@@ -767,7 +767,7 @@ object frmSettings: TfrmSettings
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 151.000000000000000000
-              Size.Width = 526.000000000000000000
+              Size.Width = 560.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 2
@@ -791,7 +791,7 @@ object frmSettings: TfrmSettings
                 Text = 'http://192.168.1.15:3000/map/myCustomMap.map'
                 TextSettings.HorzAlign = Center
                 Margins.Left = 5.000000000000000000
-                Size.Width = 446.000000000000000000
+                Size.Width = 480.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
               end
@@ -805,7 +805,7 @@ object frmSettings: TfrmSettings
               Margins.Right = 5.000000000000000000
               Position.X = 5.000000000000000000
               Position.Y = 201.000000000000000000
-              Size.Width = 536.000000000000000000
+              Size.Width = 570.000000000000000000
               Size.Height = 96.000000000000000000
               Size.PlatformDefault = False
               TextSettings.FontColor = xFFCDCDCD
@@ -836,21 +836,308 @@ object frmSettings: TfrmSettings
           ExplicitSize.cy = 24.000000000000000000
           object tlbRSMAPIHeader: TToolBar
             Align = MostTop
-            Size.Width = 546.000000000000000000
+            Size.Width = 580.000000000000000000
             Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
-            TabOrder = 1
+            TabOrder = 2
             object lblRSMAPIHeader: TLabel
               Align = Contents
               StyledSettings = [Family, FontColor]
-              Size.Width = 546.000000000000000000
+              Size.Width = 580.000000000000000000
               Size.Height = 40.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Size = 18.000000000000000000
               TextSettings.Font.StyleExt = {00060000000000000004000000}
               TextSettings.HorzAlign = Center
-              Text = 'RSM API (Coming Soon)'
+              Text = 'RSM API'
               TabOrder = 1
+            end
+          end
+          object lblRSMAPIDescription: TLabel
+            Align = Top
+            AutoSize = True
+            StyledSettings = [Family, Size, Style]
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 45.000000000000000000
+            Size.Width = 570.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.FontColor = xFFCDCDCD
+            TextSettings.HorzAlign = Center
+            Text = 
+              'The RSM API exposes several endpoints for you via RestAPI so you' +
+              ' can interact with RSM'
+            TabOrder = 1
+          end
+          object lstRSMAPISettings: TListBox
+            Align = Client
+            Margins.Top = 10.000000000000000000
+            Size.Width = 580.000000000000000000
+            Size.Height = 285.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'transparentlistboxstyle'
+            TabOrder = 3
+            DisableFocusEffect = True
+            DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
+            DefaultItemStyles.GroupHeaderStyle = ''
+            DefaultItemStyles.GroupFooterStyle = ''
+            Viewport.Width = 564.000000000000000000
+            Viewport.Height = 285.000000000000000000
+            object lstRSMAPIServerSettings: TListBoxGroupHeader
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              TextSettings.FontColor = claLightgray
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, Size]
+              Size.Width = 564.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              Text = 'Server Settings'
+            end
+            object lstRSMAPIServerHost: TListBoxItem
+              ItemData.Detail = 'Set a IP for the API server to listen on. Default 0.0.0.0'
+              Position.Y = 30.000000000000000000
+              Size.Width = 564.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 4
+              Text = 'Host IP'
+              object edtRSMAPIHost: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Right
+                TabOrder = 51
+                Text = '0.0.0.0'
+                TextSettings.HorzAlign = Center
+                Position.X = 404.000000000000000000
+                Position.Y = 10.000000000000000000
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Size.Width = 150.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = '0.0.0.0'
+              end
+            end
+            object lstRSMAPIServerPort: TListBoxItem
+              ItemData.Detail = 'Set a Port for the API server to listen on. Default 7744'
+              Position.Y = 80.000000000000000000
+              Size.Width = 564.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              Text = 'Port'
+              object nmbrbxRSMAPIPort: TNumberBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Right
+                TabOrder = 51
+                Cursor = crIBeam
+                Min = 1.000000000000000000
+                Max = 999999.000000000000000000
+                Value = 774.000000000000000000
+                TextSettings.HorzAlign = Center
+                Position.X = 404.000000000000000000
+                Position.Y = 10.000000000000000000
+                HorzIncrement = 0.000000000000000000
+                VertIncrement = 0.000000000000000000
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Size.Width = 150.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+              end
+            end
+            object lstRSMAPIServerAuthSettings: TListBoxGroupHeader
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              TextSettings.FontColor = claLightgray
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, Size]
+              Position.Y = 130.000000000000000000
+              Size.Width = 564.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              Text = 'Auth Settings'
+            end
+            object lstRSMAPIKey: TListBoxItem
+              ItemData.Detail = 'Header X-API-KEY'
+              Position.Y = 160.000000000000000000
+              Size.Width = 564.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 5
+              Text = 'API Key'
+              object edtRSMAPIKey: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Right
+                TabOrder = 51
+                ReadOnly = True
+                TextSettings.HorzAlign = Center
+                Position.X = 254.000000000000000000
+                Position.Y = 10.000000000000000000
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Size.Width = 300.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'API Key'
+                object btnGenerateAPIKey: TSpeedButton
+                  Align = Right
+                  Position.X = 270.000000000000000000
+                  Size.Width = 30.000000000000000000
+                  Size.Height = 30.000000000000000000
+                  Size.PlatformDefault = False
+                  StyleLookup = 'refreshtoolbutton'
+                  Text = 'Generate API Key'
+                  TextSettings.Trimming = None
+                end
+              end
+            end
+            object lstRSMAPIServerTLSSettings: TListBoxGroupHeader
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+              TextSettings.FontColor = claLightgray
+              TextSettings.HorzAlign = Center
+              StyledSettings = [Family, Size]
+              Position.Y = 210.000000000000000000
+              Size.Width = 564.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Text = 'TLS Settings'
+            end
+            object lstRSMAPITLSEnabled: TListBoxItem
+              ItemData.Detail = 'Enable secure calls over https'
+              Position.Y = 240.000000000000000000
+              Size.Width = 564.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 6
+              Text = 'TLS Enabled'
+              object swtchRSMAPITLSEnabled: TSwitch
+                Align = Right
+                IsChecked = False
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Position.X = 514.000000000000000000
+                Position.Y = 15.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 51
+              end
+            end
+            object lstRSMAPITLSCertFile: TListBoxItem
+              ItemData.Detail = 'Location the of .crt file'
+              Position.Y = 290.000000000000000000
+              Size.Width = 564.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 7
+              Text = 'TLS Certificate File'
+              object edtRSMAPICertFile: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Right
+                TabOrder = 50
+                TextSettings.HorzAlign = Center
+                Position.X = 204.000000000000000000
+                Position.Y = 10.000000000000000000
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Size.Width = 350.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'Path of the .crt file'
+                object btnBrowserRSMAPICertFile: TEllipsesEditButton
+                  Touch.InteractiveGestures = [LongTap]
+                  CanFocus = False
+                  Cursor = crArrow
+                  TextSettings.Trimming = None
+                  Size.Width = 28.000000000000000000
+                  Size.Height = 26.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  OnClick = btnBrowserRSMAPICertFileClick
+                end
+              end
+            end
+            object lstRSMAPITLSCertKey: TListBoxItem
+              ItemData.Detail = 'Location of the .key file'
+              Position.Y = 340.000000000000000000
+              Size.Width = 564.000000000000000000
+              Size.Height = 50.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 8
+              Text = 'TLS Certifiacte Key File'
+              object edtRSMAPIKeyFile: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Right
+                TabOrder = 51
+                TextSettings.HorzAlign = Center
+                Position.X = 204.000000000000000000
+                Position.Y = 10.000000000000000000
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Size.Width = 350.000000000000000000
+                Size.Height = 30.000000000000000000
+                Size.PlatformDefault = False
+                TextPrompt = 'Path of the .key file'
+                object btnBrowseRSMAPIKeyFile: TEllipsesEditButton
+                  Touch.InteractiveGestures = [LongTap]
+                  CanFocus = False
+                  Cursor = crArrow
+                  TextSettings.Trimming = None
+                  Size.Width = 28.000000000000000000
+                  Size.Height = 26.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  OnClick = btnBrowseRSMAPIKeyFileClick
+                end
+              end
+            end
+          end
+          object lytRSMAPIServerControls: TLayout
+            Align = Top
+            Margins.Left = 10.000000000000000000
+            Margins.Top = 10.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 71.000000000000000000
+            Size.Width = 560.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 4
+            object btnStartStopRSMAPIServer: TButton
+              Align = Left
+              CanFocus = False
+              StyledSettings = [Family, Size, FontColor]
+              Size.Width = 80.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'tintedbutton'
+              TabOrder = 0
+              Text = 'Start Server'
+              TextSettings.Font.StyleExt = {00060000000000000004000000}
+              TextSettings.Trimming = None
+              TintColor = claGreen
+              OnClick = btnStartStopRSMAPIServerClick
+            end
+            object chkRSMAPIAutoStart: TCheckBox
+              Align = Left
+              Margins.Left = 50.000000000000000000
+              Position.X = 130.000000000000000000
+              Size.Width = 135.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              Text = 'Auto Start with RSM'
             end
           end
         end
@@ -872,15 +1159,15 @@ object frmSettings: TfrmSettings
       ExplicitSize.cy = 24.000000000000000000
       object tbcRSMSettings: TTabControl
         Align = Client
-        Size.Width = 546.000000000000000000
-        Size.Height = 400.000000000000000000
+        Size.Width = 580.000000000000000000
+        Size.Height = 420.000000000000000000
         Size.PlatformDefault = False
         TabIndex = 0
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
-          546s
-          376s)
+          580s
+          396s)
         object tbtmTrayIconSettings: TTabItem
           CustomIcon = <
             item
@@ -902,7 +1189,7 @@ object frmSettings: TfrmSettings
             Margins.Right = 10.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 10.000000000000000000
-            Size.Width = 526.000000000000000000
+            Size.Width = 560.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
@@ -927,7 +1214,7 @@ object frmSettings: TfrmSettings
                 'Here you can change the title of RSM. This will effect things su' +
                 'ch as when you hover over the task bar icon and task manager.'
               Margins.Left = 5.000000000000000000
-              Size.Width = 428.000000000000000000
+              Size.Width = 462.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TextPrompt = 'RSMfmx v3.1'
@@ -943,7 +1230,7 @@ object frmSettings: TfrmSettings
             Margins.Right = 10.000000000000000000
             Position.X = 10.000000000000000000
             Position.Y = 50.000000000000000000
-            Size.Width = 526.000000000000000000
+            Size.Width = 560.000000000000000000
             Size.Height = 95.000000000000000000
             Size.PlatformDefault = False
             Text = 'Tray Icon'
@@ -956,7 +1243,7 @@ object frmSettings: TfrmSettings
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 20.000000000000000000
-              Size.Width = 506.000000000000000000
+              Size.Width = 540.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 43
@@ -976,7 +1263,7 @@ object frmSettings: TfrmSettings
               Margins.Right = 10.000000000000000000
               Position.X = 10.000000000000000000
               Position.Y = 55.000000000000000000
-              Size.Width = 506.000000000000000000
+              Size.Width = 540.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 42
@@ -998,7 +1285,7 @@ object frmSettings: TfrmSettings
                 TabOrder = 3
                 Text = 'RSMfmx v3.1'
                 Margins.Left = 5.000000000000000000
-                Size.Width = 422.000000000000000000
+                Size.Width = 456.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
                 TextPrompt = 'RSMfmx v3.1'
@@ -1017,8 +1304,8 @@ object frmSettings: TfrmSettings
     Padding.Top = 8.000000000000000000
     Padding.Right = 8.000000000000000000
     Padding.Bottom = 8.000000000000000000
-    Position.Y = 424.000000000000000000
-    Size.Width = 746.000000000000000000
+    Position.Y = 444.000000000000000000
+    Size.Width = 780.000000000000000000
     Size.Height = 45.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
@@ -1026,7 +1313,7 @@ object frmSettings: TfrmSettings
       Align = Right
       CanFocus = False
       Margins.Right = 8.000000000000000000
-      Position.X = 570.000000000000000000
+      Position.X = 604.000000000000000000
       Position.Y = 8.000000000000000000
       Size.Width = 80.000000000000000000
       Size.Height = 29.000000000000000000
@@ -1039,7 +1326,7 @@ object frmSettings: TfrmSettings
     object btnCancel: TButton
       Align = Right
       CanFocus = False
-      Position.X = 658.000000000000000000
+      Position.X = 692.000000000000000000
       Position.Y = 8.000000000000000000
       Size.Width = 80.000000000000000000
       Size.Height = 29.000000000000000000

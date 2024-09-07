@@ -27,6 +27,8 @@ type
     procedure DeleteRow(const RowID: Integer);
   end;
 
+function GenerateAPIKey: string;
+
 procedure SaveToFile(const aText, aFile: string);
 
 function ReadFromFile(const aFile: string): string;
@@ -54,6 +56,14 @@ function SetupRestRequest(const Owner: TComponent): TRESTRequest;
 procedure SelectFileInExplorer(const Fn: string);
 
 implementation
+
+function GenerateAPIKey: string;
+begin
+  var newGUID: TGUID;
+  CreateGUID(newGUID);
+  Result := GUIDToString(newGUID);
+  Result := Result.Replace('-', '', [rfReplaceAll]).Replace('{', '').Replace('}', '');
+end;
 
 procedure SelectFileInExplorer(const Fn: string);
 begin

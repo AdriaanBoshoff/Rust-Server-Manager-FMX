@@ -296,6 +296,9 @@ type
     lblExecuteBeforeServerStart: TLabel;
     edtExecuteBeforeServerStart: TEdit;
     btnBrowseExecuteBeforeStart: TEllipsesEditButton;
+    lytRSMAPIStatus: TLayout;
+    lblRSMAPIStatusHeader: TLabel;
+    lblRSMAPIStatusValue: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -368,6 +371,7 @@ type
     procedure OnMapServerStatusClick(Sender: TObject);
     procedure btnBrowseExecuteBeforeStartClick(Sender: TObject);
     procedure swtchExecuteBeforeServerStartSwitch(Sender: TObject);
+    procedure OnRSMAPIServerStatusClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -383,9 +387,6 @@ type
     // UI
     procedure LoadRSMUIConfig;
     procedure ResetServerInfoValues;
-
-    // Server Config
-    procedure PopulateServerConfigUI;
     // Startup
     procedure ModifyUIForRelease;
     procedure CreateClasses;
@@ -400,7 +401,10 @@ type
     MainFormCreated: Boolean;
     FServerIsStarting: Boolean;
   public
-    { Public declarations }
+    { Public Methods }
+
+    // Server Config
+    procedure PopulateServerConfigUI;
   end;
 
 var
@@ -414,7 +418,8 @@ uses
   RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
   ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
-  ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer, udmTrayIcon;
+  ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer, udmTrayIcon,
+  udmRSMAPI;
 
 {$R *.fmx}
 
@@ -961,6 +966,9 @@ begin
   // Services - Map Service
   dmMapServer := TdmMapServer.Create(Self);
 
+  // Services - RSM API
+  dmRSMAPI := TdmRSMAPI.Create(Self);
+
   // Start Services Monitor
   tmrServicesStatus.Enabled := True;
 end;
@@ -1177,6 +1185,20 @@ begin
     frmSettings.tbcNav.ActiveTab := frmSettings.tbtmServices;
     frmSettings.tbcServices.ActiveTab := frmSettings.tbtmMapServer;
     frmSettings.tvNav.Selected := frmSettings.tviMapServer;
+    frmSettings.ShowModal;
+  finally
+    frmSettings.Free;
+    frmSettings := nil;
+  end;
+end;
+
+procedure TfrmMain.OnRSMAPIServerStatusClick(Sender: TObject);
+begin
+  frmSettings := TfrmSettings.Create(Self);
+  try
+    frmSettings.tbcNav.ActiveTab := frmSettings.tbtmServices;
+    frmSettings.tbcServices.ActiveTab := frmSettings.tbtmRSMAPI;
+    frmSettings.tvNav.Selected := frmSettings.tviRSMAPI;
     frmSettings.ShowModal;
   finally
     frmSettings.Free;
@@ -1533,6 +1555,8 @@ end;
 procedure TfrmMain.tmrServicesStatusTimer(Sender: TObject);
 begin
   // Services Status
+
+  // Map Server
   if dmMapServer.isRunning then
   begin
     lblMapServerStatusValue.Text := 'Online';
@@ -1542,6 +1566,18 @@ begin
   begin
     lblMapServerStatusValue.Text := 'Offline';
     lblMapServerStatusValue.FontColor := TAlphaColorRec.Red;
+  end;
+
+  // RSM API
+  if dmRSMAPI.isRunning then
+  begin
+    lblRSMAPIStatusValue.Text := 'Online';
+    lblRSMAPIStatusValue.FontColor := TAlphaColorRec.Lime;
+  end
+  else
+  begin
+    lblRSMAPIStatusValue.Text := 'Offline';
+    lblRSMAPIStatusValue.FontColor := TAlphaColorRec.Red;
   end;
 end;
 

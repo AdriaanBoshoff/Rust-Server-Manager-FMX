@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.TreeView, FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls,
   FMX.TabControl, FMX.Edit, FMX.EditBox, FMX.NumberBox, udmMapServer, ufrmMain,
-  udmTrayIcon;
+  udmTrayIcon, FMX.ListBox, udmRSMAPI;
 
 type
   TfrmSettings = class(TForm)
@@ -93,6 +93,29 @@ type
     tbtmRSMAPI: TTabItem;
     tlbRSMAPIHeader: TToolBar;
     lblRSMAPIHeader: TLabel;
+    lblRSMAPIDescription: TLabel;
+    lstRSMAPISettings: TListBox;
+    lstRSMAPIServerSettings: TListBoxGroupHeader;
+    lstRSMAPIServerHost: TListBoxItem;
+    lstRSMAPIServerPort: TListBoxItem;
+    lytRSMAPIServerControls: TLayout;
+    btnStartStopRSMAPIServer: TButton;
+    chkRSMAPIAutoStart: TCheckBox;
+    lstRSMAPIServerAuthSettings: TListBoxGroupHeader;
+    lstRSMAPIKey: TListBoxItem;
+    lstRSMAPIServerTLSSettings: TListBoxGroupHeader;
+    lstRSMAPITLSEnabled: TListBoxItem;
+    lstRSMAPITLSCertFile: TListBoxItem;
+    lstRSMAPITLSCertKey: TListBoxItem;
+    edtRSMAPIHost: TEdit;
+    nmbrbxRSMAPIPort: TNumberBox;
+    edtRSMAPIKey: TEdit;
+    btnGenerateAPIKey: TSpeedButton;
+    swtchRSMAPITLSEnabled: TSwitch;
+    edtRSMAPICertFile: TEdit;
+    edtRSMAPIKeyFile: TEdit;
+    btnBrowserRSMAPICertFile: TEllipsesEditButton;
+    btnBrowseRSMAPIKeyFile: TEllipsesEditButton;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -103,6 +126,9 @@ type
     procedure btnGetSteamAPIKeyClick(Sender: TObject);
     procedure btnOpenMapServerFolderClick(Sender: TObject);
     procedure btnStartStopMapServerClick(Sender: TObject);
+    procedure btnBrowserRSMAPICertFileClick(Sender: TObject);
+    procedure btnBrowseRSMAPIKeyFileClick(Sender: TObject);
+    procedure btnStartStopRSMAPIServerClick(Sender: TObject);
   private
     { Private declarations }
     FuModSessionToken: string;
@@ -122,6 +148,36 @@ uses
 {$R *.fmx}
 
 function GetuModLoginSession: PWChar; stdcall; external 'uModLoginHelper.dll';
+
+procedure TfrmSettings.btnBrowserRSMAPICertFileClick(Sender: TObject);
+begin
+  var dlg := TOpenDialog.Create(Self);
+  try
+    dlg.Title := 'Select .crt file';
+    dlg.Filter := 'Certificate File | *.crt';
+    dlg.Options := [TOpenOption.ofFileMustExist, TOpenOption.ofDontAddToRecent];
+
+    if dlg.Execute then
+      edtRSMAPICertFile.Text := dlg.FileName;
+  finally
+    dlg.Free;
+  end;
+end;
+
+procedure TfrmSettings.btnBrowseRSMAPIKeyFileClick(Sender: TObject);
+begin
+  var dlg := TOpenDialog.Create(Self);
+  try
+    dlg.Title := 'Select .key file';
+    dlg.Filter := 'Certificate Key File | *.key';
+    dlg.Options := [TOpenOption.ofFileMustExist, TOpenOption.ofDontAddToRecent];
+
+    if dlg.Execute then
+      edtRSMAPIKeyFile.Text := dlg.FileName;
+  finally
+    dlg.Free;
+  end;
+end;
 
 procedure TfrmSettings.btnCancelClick(Sender: TObject);
 begin
@@ -155,6 +211,15 @@ begin
   rsmConfig.Services.MapServer.Port := Trunc(nmbrbxMapServerPort.Value);
   rsmConfig.Services.MapServer.IP := edtMapServerListenIP.Text;
   rsmConfig.Services.MapServer.AutoStart := chkMapServerAutoStart.IsChecked;
+
+  // Services - RSM API
+  rsmConfig.Services.RSMAPI.Host := edtRSMAPIHost.Text;
+  rsmConfig.Services.RSMAPI.Port := Round(nmbrbxRSMAPIPort.Value);
+  rsmConfig.Services.RSMAPI.TLSEnabled := swtchRSMAPITLSEnabled.IsChecked;
+  rsmConfig.Services.RSMAPI.TLSCertFile := edtRSMAPICertFile.Text;
+  rsmConfig.Services.RSMAPI.TLSKeyFile := edtRSMAPIKeyFile.Text;
+  rsmConfig.Services.RSMAPI.APIKey := edtRSMAPIKey.Text;
+  rsmConfig.Services.RSMAPI.AutoStart := chkRSMAPIAutoStart.IsChecked;
 
   // Title and Tray Icon
   rsmConfig.TrayIcon.AppTitle := edtApplicationTitleValue.Text;
@@ -191,6 +256,27 @@ begin
 
   edtMapServerListenIP.Enabled := not dmMapServer.isRunning;
   nmbrbxMapServerPort.Enabled := not dmMapServer.isRunning;
+end;
+
+procedure TfrmSettings.btnStartStopRSMAPIServerClick(Sender: TObject);
+begin
+  if dmRSMAPI.isRunning then
+    dmRSMAPI.Stop
+  else
+    dmRSMAPI.Start;
+
+  if dmRSMAPI.isRunning then
+  begin
+    btnStartStopRSMAPIServer.Text := 'Stop Server';
+    btnStartStopRSMAPIServer.TintColor := TAlphaColorRec.Darkred;
+  end
+  else
+  begin
+    btnStartStopRSMAPIServer.Text := 'Start Server';
+    btnStartStopRSMAPIServer.TintColor := TAlphaColorRec.Green;
+  end;
+
+  lstRSMAPISettings.Enabled := not dmRSMAPI.isRunning;
 end;
 
 procedure TfrmSettings.btnuModLoginClick(Sender: TObject);
@@ -280,6 +366,26 @@ begin
   begin
     btnStartStopMapServer.Text := 'Start Server';
     btnStartStopMapServer.TintColor := TAlphaColorRec.Green;
+  end;
+
+  // Services - RSM API
+  chkRSMAPIAutoStart.IsChecked := rsmConfig.Services.RSMAPI.AutoStart;
+  edtRSMAPIHost.Text := rsmConfig.Services.RSMAPI.Host;
+  nmbrbxRSMAPIPort.Value := rsmConfig.Services.RSMAPI.Port;
+  edtRSMAPIKey.Text := rsmConfig.Services.RSMAPI.APIKey;
+  swtchRSMAPITLSEnabled.IsChecked := rsmConfig.Services.RSMAPI.TLSEnabled;
+  edtRSMAPICertFile.Text := rsmConfig.Services.RSMAPI.TLSCertFile;
+  edtRSMAPIKeyFile.Text := rsmConfig.Services.RSMAPI.TLSKeyFile;
+  lstRSMAPISettings.Enabled := not dmRSMAPI.isRunning;
+  if dmRSMAPI.isRunning then
+  begin
+    btnStartStopRSMAPIServer.Text := 'Stop Server';
+    btnStartStopRSMAPIServer.TintColor := TAlphaColorRec.Darkred;
+  end
+  else
+  begin
+    btnStartStopRSMAPIServer.Text := 'Start Server';
+    btnStartStopRSMAPIServer.TintColor := TAlphaColorRec.Green;
   end;
 
   // uMod login

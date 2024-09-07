@@ -99,7 +99,9 @@ uses
   Horse.WebModule in 'Libs\Horse\Horse.WebModule.pas' {HorseWebModule: TWebModule},
   ThirdParty.Posix.Syslog in 'Libs\Horse\ThirdParty.Posix.Syslog.pas',
   Web.WebConst in 'Libs\Horse\Web.WebConst.pas',
-  udmMapServer in 'Modules\Services\MapServer\udmMapServer.pas' {dmMapServer: TDataModule};
+  udmMapServer in 'Modules\Services\MapServer\udmMapServer.pas' {dmMapServer: TDataModule},
+  udmRSMAPI in 'Modules\Services\RSMAPI\udmRSMAPI.pas' {dmRSMAPI: TDataModule},
+  uRSMAPIv1 in 'Modules\Services\RSMAPI\uRSMAPIv1.pas';
 
 {$R *.res}
 

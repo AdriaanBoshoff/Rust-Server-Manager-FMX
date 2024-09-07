@@ -68,10 +68,24 @@ type
         Port: Integer;
         AutoStart: boolean;
       end;
+
+      // Services - RSM API
+    type
+      TRSMConfigAPIServer = record
+        Host: string;
+        Port: Integer;
+        TLSEnabled: Boolean;
+        TLSCertFile: string;
+        TLSKeyFile: string;
+        TLSPassword: string;
+        APIKey: string;
+        AutoStart: Boolean;
+      end;
     // Services
     type
       TRSMConfigServices = record
         MapServer: TRSMConfigMapServer;
+        RSMAPI: TRSMConfigAPIServer;
       end;
   public
     { Public Variables }
@@ -95,7 +109,8 @@ var
 implementation
 
 uses
-  XSuperObject, System.SysUtils, System.IOUtils, uframeMessageBox, RSM.Core;
+  XSuperObject, System.SysUtils, System.IOUtils, uframeMessageBox, RSM.Core,
+  uHelpers;
 
 { TRSMConfig }
 
@@ -147,6 +162,16 @@ begin
   Self.Services.MapServer.IP := '0.0.0.0';
   Self.Services.MapServer.Port := 3000;
   Self.Services.MapServer.AutoStart := False;
+
+  // Services - RSM API
+  Self.Services.RSMAPI.Host := '0.0.0.0';
+  Self.Services.RSMAPI.Port := 7744;
+  Self.Services.RSMAPI.TLSEnabled := False;
+  Self.Services.RSMAPI.TLSCertFile := '';
+  Self.Services.RSMAPI.TLSKeyFile := '';
+  Self.Services.RSMAPI.TLSPassword := '';
+  Self.Services.RSMAPI.APIKey := GenerateAPIKey;
+  Self.Services.RSMAPI.AutoStart := False;
 
   // Load Config
   Self.LoadConfig;
