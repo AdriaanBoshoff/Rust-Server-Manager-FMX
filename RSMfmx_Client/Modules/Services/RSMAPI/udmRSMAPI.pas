@@ -91,6 +91,9 @@ begin
     Route('/serverConfig').Get(Tv1RSMAPIEndpoints.v1GETserverConfig);
     // Put - serverConfig
     Route('/serverConfig').Put(Tv1RSMAPIEndpoints.v1PUTserverConfig);
+
+    // Get - isServerRunning
+    Route('/serverStatus').Get(Tv1RSMAPIEndpoints.v1GETserverStatus);
   end;
 end;
 
