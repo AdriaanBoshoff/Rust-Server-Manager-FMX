@@ -651,21 +651,21 @@ begin
   rsmConfig.Misc.StartServerAfterShutdown := swtchAutoStartServerAfterShutdown.IsChecked;
 
   // Check if server is installed
-  if not TFile.Exists(rustDedicatedExe) then
+  if not TFile.Exists(rustDedicatedExe) and (Sender is TButton) then
   begin
     ShowMessageBox('Server not installed! Use the server installer to install the server.', 'Start Failure', Self);
     Exit;
   end;
 
   // Check if Server is running
-  if serverProcess.isRunning then
+  if serverProcess.isRunning and (Sender is TButton) then
   begin
     ShowMessageBox('Server is already running with PID: ' + serverProcess.PID.ToString, 'Start Failure', Self);
     Exit;
   end;
 
   // Check if server is being installed
-  if frmServerInstaller.FIsInstallingServer then
+  if frmServerInstaller.FIsInstallingServer and (Sender is TButton) then
   begin
     ShowToast('ERROR: Server is being installed');
     Exit;
