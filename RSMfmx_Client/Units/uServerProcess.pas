@@ -5,6 +5,8 @@ interface
 type
   TServerProcess = class
   private
+    FbBlank: Boolean;
+  private
     function GetProcessPath(ProcessID: Integer): string;
     function TerminateProcessByPID(PID: Integer): Boolean;
     function GetisRunning: Boolean;
@@ -15,7 +17,7 @@ type
     procedure Load;
     function KillProcess: Boolean;
   published
-    property isRunning: Boolean read GetisRunning;
+    property isRunning: Boolean read GetisRunning write FbBlank;
   end;
 
 var
