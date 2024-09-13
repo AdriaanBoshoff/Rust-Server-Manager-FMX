@@ -692,7 +692,9 @@ begin
   begin
     if not TFile.Exists(rsmConfig.Misc.ExecuteBeforeServerStartFilePath) then
     begin
-      ShowMessageBox('File "' + rsmConfig.Misc.ExecuteBeforeServerStartFilePath + '" does not exists. Cannot execute before server start.', 'Execute Before Start', Self);
+      if (Sender is TButton) then
+        ShowMessageBox('File "' + rsmConfig.Misc.ExecuteBeforeServerStartFilePath + '" does not exists. Cannot execute before server start.', 'Execute Before Start', Self);
+
       Exit;
     end;
 
@@ -750,7 +752,8 @@ begin
     try
       SetProcessAffinityMask(serverHandle, CombinedProcessorMask(serverConfig.ServerAffinity));
 
-      ShowToast('Server affinity applied.');
+      if Sender is TButton then
+        ShowToast('Server affinity applied.');
     finally
       CloseHandle(serverHandle);
     end;

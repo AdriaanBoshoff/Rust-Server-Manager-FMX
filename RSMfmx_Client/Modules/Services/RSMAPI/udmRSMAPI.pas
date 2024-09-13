@@ -94,6 +94,13 @@ begin
 
     // Get - isServerRunning
     Route('/serverStatus').Get(Tv1RSMAPIEndpoints.v1GETserverStatus);
+
+    // Get - startServer
+    Route('/startServer').Get(Tv1RSMAPIEndpoints.v1GETstartServer);
+    // Get - stopServer
+    Route('/stopServer').Get(Tv1RSMAPIEndpoints.v1GETstopServer);
+    // Get - forceStopServer
+    Route('/forceStopServer').Get(Tv1RSMAPIEndpoints.v1GETforceStopServer);
   end;
 end;
 

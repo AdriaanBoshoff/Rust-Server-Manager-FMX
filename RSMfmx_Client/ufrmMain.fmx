@@ -332,7 +332,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -357,7 +357,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1165,7 +1165,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
