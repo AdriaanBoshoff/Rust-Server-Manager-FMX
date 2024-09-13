@@ -10,16 +10,17 @@ type
     procedure DataModuleDestroy(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private
-  { Private declarations }
+    { Private declarations }
     function GetRunningStatus: boolean;
     procedure RegisterV1Endpoints;
     procedure OnGetTLSPassword(var Password: string);
+    procedure MiddlewareAuth(Req: THorseRequest; Res: THorseResponse; Next: TProc);
   public
     { Public declarations }
     procedure Start;
     procedure Stop;
   published
-   { Published Properties }
+    { Published Properties }
     property isRunning: boolean read GetRunningStatus;
   end;
 
@@ -32,9 +33,7 @@ uses
   RSM.Config, uRSMAPIv1, IdSSLOpenSSL;
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
-
 {$R *.dfm}
-
 { TdmRSMAPI }
 
 procedure TdmRSMAPI.DataModuleCreate(Sender: TObject);
@@ -53,7 +52,30 @@ end;
 
 function TdmRSMAPI.GetRunningStatus: boolean;
 begin
-  Result := THorse.IsRunning;
+  Result := THorse.isRunning;
+end;
+
+procedure TdmRSMAPI.MiddlewareAuth(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+begin
+  var providedKey := '';
+
+  // Check if API Key was provided
+  if not Req.Headers.TryGetValue('X-API-KEY', providedKey) then
+  begin
+    Res.Status(THTTPStatus.Unauthorized).Send('Header "X-API-KEY" not provided');
+
+    raise EHorseCallbackInterrupted.Create;
+  end;
+
+  // Validate API Key
+  if not (providedKey = rsmConfig.Services.RSMAPI.APIKey) then
+  begin
+    Res.Status(THTTPStatus.Unauthorized).Send('Invalid API key provided');
+
+    raise EHorseCallbackInterrupted.Create;
+  end;
+
+  Next;
 end;
 
 procedure TdmRSMAPI.OnGetTLSPassword(var Password: string);
@@ -63,7 +85,7 @@ end;
 
 procedure TdmRSMAPI.RegisterV1Endpoints;
 begin
-  with THorse.Group.Prefix('/v1') do
+  with THorse.Group.Prefix('/v1').Use(MiddlewareAuth) do
   begin
     // Get - serverConfig
     Route('/serverConfig').Get(Tv1RSMAPIEndpoints.v1GETserverConfig);
