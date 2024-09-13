@@ -7,13 +7,15 @@ type
   private
     function GetProcessPath(ProcessID: Integer): string;
     function TerminateProcessByPID(PID: Integer): Boolean;
+    function GetisRunning: Boolean;
   public
     PID: Integer;
     constructor Create;
     procedure Save;
     procedure Load;
-    function isRunning: Boolean;
     function KillProcess: Boolean;
+  published
+    property isRunning: Boolean read GetisRunning;
   end;
 
 var
@@ -45,8 +47,7 @@ begin
   Result := '';
 
   if ProcessID = -1 then
-  Exit;
-
+    Exit;
 
   hProcess := OpenProcess(PROCESS_QUERY_INFORMATION or PROCESS_VM_READ, False, PID);
   if hProcess <> 0 then
@@ -60,7 +61,7 @@ begin
   end;
 end;
 
-function TServerProcess.isRunning: Boolean;
+function TServerProcess.GetisRunning: Boolean;
 begin
   Result := (Self.GetProcessPath(Self.PID) = ExtractFilePath(ParamStr(0)) + 'RustDedicated.exe');
 end;
@@ -70,7 +71,7 @@ begin
   Result := False;
 
   // Check if PID is running
-  if not Self.isRunning then
+  if not Self.GetisRunning then
     Exit;
 
   // Kill PID
