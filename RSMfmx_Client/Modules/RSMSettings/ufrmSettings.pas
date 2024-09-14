@@ -116,6 +116,7 @@ type
     edtRSMAPIKeyFile: TEdit;
     btnBrowserRSMAPICertFile: TEllipsesEditButton;
     btnBrowseRSMAPIKeyFile: TEllipsesEditButton;
+    lblRSMAPIDocumentation: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -130,6 +131,7 @@ type
     procedure btnBrowseRSMAPIKeyFileClick(Sender: TObject);
     procedure btnStartStopRSMAPIServerClick(Sender: TObject);
     procedure btnGenerateAPIKeyClick(Sender: TObject);
+    procedure lblRSMAPIDocumentationClick(Sender: TObject);
   private
     { Private declarations }
     FuModSessionToken: string;
@@ -240,6 +242,20 @@ begin
   dmTrayIcon.trycnMain.Visible := rsmConfig.TrayIcon.Enabled;
   dmTrayIcon.trycnMain.Hint := rsmConfig.TrayIcon.Title;
 
+  // Restart RSMAPI if running
+  if dmRSMAPI.isRunning then
+  begin
+    dmRSMAPI.Stop;
+    dmRSMAPI.Start;
+  end;
+
+  // Restart Map Server if running
+  if dmMapServer.isRunning then
+  begin
+    dmMapServer.StopServer;
+    dmMapServer.StartServer;
+  end;
+
   Self.ModalResult := mrOk;
 end;
 
@@ -345,6 +361,11 @@ begin
   tbcAPISettings.TabIndex := -1;
 
   PopulateConfig;
+end;
+
+procedure TfrmSettings.lblRSMAPIDocumentationClick(Sender: TObject);
+begin
+  OpenURL('https://github.com/RustServerManager/RSMfmx_v3.1_API-Docs/blob/main/README.md');
 end;
 
 procedure TfrmSettings.lblViewuModLoginSourceCodeClick(Sender: TObject);

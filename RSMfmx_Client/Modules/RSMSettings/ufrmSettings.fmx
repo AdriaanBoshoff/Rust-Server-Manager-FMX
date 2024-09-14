@@ -852,6 +852,24 @@ object frmSettings: TfrmSettings
               Text = 'RSM API'
               TabOrder = 1
             end
+            object lblRSMAPIDocumentation: TLabel
+              Align = Right
+              AutoSize = True
+              Cursor = crHandPoint
+              StyledSettings = [Family, Size]
+              HitTest = True
+              Margins.Right = 10.000000000000000000
+              Position.X = 464.000000000000000000
+              Size.Width = 106.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.StyleExt = {04060000000100000004000000}
+              TextSettings.FontColor = xFF00C3F6
+              TextSettings.WordWrap = False
+              Text = 'API Documentation'
+              TabOrder = 2
+              OnClick = lblRSMAPIDocumentationClick
+            end
           end
           object lblRSMAPIDescription: TLabel
             Align = Top
