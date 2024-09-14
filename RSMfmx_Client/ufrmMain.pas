@@ -298,6 +298,10 @@ type
     lytRSMAPIStatus: TLayout;
     lblRSMAPIStatusHeader: TLabel;
     lblRSMAPIStatusValue: TLabel;
+    lytAutoWipe: TLayout;
+    swtchEnableAutoWipe: TSwitch;
+    lblAutoWiipeHeader: TLabel;
+    btnConfigureAutoWipe: TButton;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);

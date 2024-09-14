@@ -332,7 +332,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -357,7 +357,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -648,7 +648,7 @@ object frmMain: TfrmMain
               StyledSettings = [Family, FontColor]
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 237.000000000000000000
+              Position.Y = 267.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 17.000000000000000000
               Size.PlatformDefault = False
@@ -662,11 +662,11 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 264.000000000000000000
+              Position.Y = 294.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 5
+              TabOrder = 6
               object swtchAutoRestart1: TSwitch
                 Align = Left
                 IsChecked = False
@@ -747,7 +747,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 294.000000000000000000
+              Position.Y = 324.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -832,7 +832,7 @@ object frmMain: TfrmMain
               Align = Top
               Margins.Top = 5.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 324.000000000000000000
+              Position.Y = 354.000000000000000000
               Size.Width = 537.000000000000000000
               Size.Height = 25.000000000000000000
               Size.PlatformDefault = False
@@ -923,7 +923,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 10
+              TabOrder = 11
               object swtchStartServerWithRSM: TSwitch
                 Align = Left
                 Hint = 
@@ -969,7 +969,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 9
+              TabOrder = 10
               object swtchUpdateServerBeforeStartingServer: TSwitch
                 Align = Left
                 Hint = 
@@ -1015,7 +1015,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 8
+              TabOrder = 9
               object swtchInstallOxideBeforeServerStart: TSwitch
                 Align = Left
                 Hint = 
@@ -1061,7 +1061,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 7
+              TabOrder = 8
               object swtchAutoStartServerAfterShutdown: TSwitch
                 Align = Left
                 IsChecked = False
@@ -1103,7 +1103,7 @@ object frmMain: TfrmMain
               Size.Width = 537.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 6
+              TabOrder = 7
               object swtchExecuteBeforeServerStart: TSwitch
                 Align = Left
                 IsChecked = False
@@ -1157,6 +1157,54 @@ object frmMain: TfrmMain
                 end
               end
             end
+            object lytAutoWipe: TLayout
+              Align = Top
+              Margins.Top = 5.000000000000000000
+              Position.X = 10.000000000000000000
+              Position.Y = 237.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 5
+              object swtchEnableAutoWipe: TSwitch
+                Align = Left
+                IsChecked = False
+                Position.Y = 2.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 20.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                OnSwitch = swtchAutoRestart1Switch
+              end
+              object lblAutoWiipeHeader: TLabel
+                Align = Left
+                AutoSize = True
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 5.000000000000000000
+                Position.X = 45.000000000000000000
+                Size.Width = 59.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.WordWrap = False
+                Text = 'Auto Wipe'
+                TabOrder = 1
+              end
+              object btnConfigureAutoWipe: TButton
+                Align = Left
+                CanFocus = False
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 10.000000000000000000
+                Position.X = 114.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 2
+                Text = 'Configure'
+                TextSettings.Font.StyleExt = {00060000000000000004000000}
+                TextSettings.Trimming = None
+              end
+            end
           end
         end
       end
@@ -1165,7 +1213,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
