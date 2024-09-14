@@ -89,6 +89,9 @@ begin
   if QuitSteamCMDAfterComplete then
     startStr := startStr + ' +quit';
 
+  // Make install.bat file
+  TFile.WriteAllText(TPath.Combine([ExtractFilePath(ParamStr(0)), 'install.bat']), startStr);
+
   if not CreateProcessW(nil, PWideChar(startStr), nil, nil, False, 0, nil, PWideChar(ExtractFilePath(ParamStr(0))), StartupInfo, ProcessInfo) then
   begin
     RaiseLastOSError;
