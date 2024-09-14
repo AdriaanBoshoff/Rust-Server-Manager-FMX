@@ -152,7 +152,6 @@ type
     lblPlayerManager: TLabel;
     vrtscrlbxServerInfo: TVertScrollBox;
     mmoServerCFG: TMemo;
-    btnEditRadioList: TButton;
     rctnglServerConfigControls: TRectangle;
     btnSaveServerConfig: TButton;
     tmrCheckServerRunningStatus: TTimer;

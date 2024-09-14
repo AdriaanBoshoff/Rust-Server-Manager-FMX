@@ -332,7 +332,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -357,7 +357,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1165,7 +1165,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -1807,21 +1807,6 @@ object frmMain: TfrmMain
                 Size.Height = 20.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 3
-              end
-              object btnEditRadioList: TButton
-                Align = Right
-                StyledSettings = [Family, Size, FontColor]
-                Hint = 'Edit the Radio list for the boombox'
-                Position.X = 564.000000000000000000
-                Size.Width = 100.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                StyleLookup = 'tintedbutton'
-                TabOrder = 4
-                Text = 'Edit Radio List'
-                TextSettings.Font.StyleExt = {00060000000000000004000000}
-                TextSettings.Trimming = None
-                TintColor = claDarkred
               end
             end
             object lytServerConfigMisc2: TLayout
