@@ -375,6 +375,7 @@ type
     procedure btnBrowseExecuteBeforeStartClick(Sender: TObject);
     procedure swtchExecuteBeforeServerStartSwitch(Sender: TObject);
     procedure OnRSMAPIServerStatusClick(Sender: TObject);
+    procedure btnConfigureAutoWipeClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -422,7 +423,7 @@ uses
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
   ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
   ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer, udmTrayIcon,
-  udmRSMAPI;
+  udmRSMAPI, ufrmAutoWipe;
 
 {$R *.fmx}
 
@@ -490,6 +491,16 @@ begin
   FSkipUpdateMessage := True;
   lytUpdateAvailable.Visible := False;
   lytUpdateAvailable.SendToBack;
+end;
+
+procedure TfrmMain.btnConfigureAutoWipeClick(Sender: TObject);
+begin
+  var dlg := TfrmAutoWipe.Create(Self);
+  try
+    dlg.ShowModal;
+  finally
+    dlg.Free;
+  end;
 end;
 
 procedure TfrmMain.btnCopyRconPasswordClick(Sender: TObject);

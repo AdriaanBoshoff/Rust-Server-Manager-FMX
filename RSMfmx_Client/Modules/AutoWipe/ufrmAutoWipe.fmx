@@ -1,0 +1,41 @@
+object frmAutoWipe: TfrmAutoWipe
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = Single
+  Caption = 'Auto Wipe'
+  ClientHeight = 500
+  ClientWidth = 700
+  Position = MainFormCenter
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object statFooter: TStatusBar
+    Position.Y = 478.000000000000000000
+    ShowSizeGrip = True
+    Size.Width = 700.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+  end
+  object tlbHeader: TToolBar
+    Size.Width = 700.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object lblHeader: TLabel
+      Align = Contents
+      StyledSettings = [Family, FontColor]
+      Size.Width = 700.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TextSettings.HorzAlign = Center
+      Text = 'Configure Auto Wipe'
+      TabOrder = 1
+    end
+  end
+end

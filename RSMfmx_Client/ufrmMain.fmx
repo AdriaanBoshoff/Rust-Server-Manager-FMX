@@ -1203,6 +1203,7 @@ object frmMain: TfrmMain
                 Text = 'Configure'
                 TextSettings.Font.StyleExt = {00060000000000000004000000}
                 TextSettings.Trimming = None
+                OnClick = btnConfigureAutoWipeClick
               end
             end
           end

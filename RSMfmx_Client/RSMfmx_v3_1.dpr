@@ -101,7 +101,8 @@ uses
   Web.WebConst in 'Libs\Horse\Web.WebConst.pas',
   udmMapServer in 'Modules\Services\MapServer\udmMapServer.pas' {dmMapServer: TDataModule},
   udmRSMAPI in 'Modules\Services\RSMAPI\udmRSMAPI.pas' {dmRSMAPI: TDataModule},
-  uRSMAPIv1 in 'Modules\Services\RSMAPI\uRSMAPIv1.pas';
+  uRSMAPIv1 in 'Modules\Services\RSMAPI\uRSMAPIv1.pas',
+  ufrmAutoWipe in 'Modules\AutoWipe\ufrmAutoWipe.pas' {frmAutoWipe};
 
 {$R *.res}
 
