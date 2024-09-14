@@ -191,6 +191,7 @@ begin
     // Provide Exception
     on E: Exception do
     begin
+      serverConfig.LoadConfig;
       Res.Status(THTTPStatus.InternalServerError).Send(E.ClassName + ': ' + E.Message);
     end;
   end;
