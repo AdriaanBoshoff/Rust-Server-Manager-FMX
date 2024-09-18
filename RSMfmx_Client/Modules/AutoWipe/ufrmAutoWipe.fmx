@@ -13,10 +13,10 @@ object frmAutoWipe: TfrmAutoWipe
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
   object statFooter: TStatusBar
-    Position.Y = 478.000000000000000000
-    ShowSizeGrip = True
+    Position.Y = 450.000000000000000000
+    ShowSizeGrip = False
     Size.Width = 700.000000000000000000
-    Size.Height = 22.000000000000000000
+    Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
   end
