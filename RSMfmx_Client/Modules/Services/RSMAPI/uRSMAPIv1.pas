@@ -179,6 +179,10 @@ begin
   // Provide Data
   try
     serverConfig.AssignFromJSON(Req.Body);
+
+    // Apply Map Name from main combobox
+    serverConfig.Map.MapName := frmMain.cbbServerMap.ListItems[serverConfig.Map.MapIndex].ItemData.Detail;
+
     serverConfig.SaveConfig;
     serverConfig.LoadConfig;
 
