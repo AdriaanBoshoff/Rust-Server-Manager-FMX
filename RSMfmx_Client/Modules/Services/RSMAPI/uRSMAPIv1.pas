@@ -183,6 +183,9 @@ begin
     // Apply Map Name from main combobox
     serverConfig.Map.MapName := frmMain.cbbServerMap.ListItems[serverConfig.Map.MapIndex].ItemData.Detail;
 
+    // Game Mode
+    serverConfig.GameMode.GameModeName := frmMain.cbbServerGamemodeValue.ListItems[serverConfig.GameMode.Index].ItemData.Detail;
+
     serverConfig.SaveConfig;
     serverConfig.LoadConfig;
 
