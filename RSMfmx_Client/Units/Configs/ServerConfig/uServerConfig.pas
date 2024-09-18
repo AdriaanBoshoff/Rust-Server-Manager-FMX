@@ -88,7 +88,7 @@ var
 implementation
 
 uses
-  XSuperObject, System.SysUtils, System.IOUtils;
+  XSuperObject, System.SysUtils, System.IOUtils, uHelpers;
 
 { TServerConfig }
 
@@ -120,7 +120,7 @@ begin
   Self.Networking.ServerQueryPort := 28016; // UDP
   Self.Networking.RconIP := '0.0.0.0';
   Self.Networking.RconPort := 28017; // TCP
-  Self.Networking.RconPassword := 'ChangeMe';
+  Self.Networking.RconPassword := GenerateAPIKey;
   Self.Networking.AppIP := '0.0.0.0';
   Self.Networking.AppPort := 28018; // TCP
   Self.Networking.AppPublicIP := '';
