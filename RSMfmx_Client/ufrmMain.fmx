@@ -332,7 +332,7 @@ object frmMain: TfrmMain
       Size.Width = 720.000000000000000000
       Size.Height = 514.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
@@ -357,7 +357,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = False
+        IsSelected = True
         Size.Width = 101.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -467,7 +467,7 @@ object frmMain: TfrmMain
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             StyleLookup = 'tintedbutton'
-            TabOrder = 5
+            TabOrder = 6
             Text = 'Start Server'
             TextSettings.Font.StyleExt = {00060000000000000004000000}
             TextSettings.Trimming = None
@@ -524,9 +524,9 @@ object frmMain: TfrmMain
             Enabled = False
             StyledSettings = [Family, Size, FontColor]
             Hint = 'RSM sends the "save" command to the server over rcon.'
-            Margins.Top = 80.000000000000000000
+            Margins.Top = 60.000000000000000000
             Position.X = 10.000000000000000000
-            Position.Y = 252.000000000000000000
+            Position.Y = 302.000000000000000000
             Size.Width = 128.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -557,6 +557,29 @@ object frmMain: TfrmMain
             TextSettings.Trimming = None
             TintColor = claDarkred
             OnClick = btnKillServerClick
+          end
+          object btnStartServerDebug: TButton
+            Align = Top
+            CanFocus = False
+            StyledSettings = [Family, Size]
+            Hint = 
+              'Creates a debug_start.bat file and execute it. A "pause" is adde' +
+              'd to the bottom of the bat file so you can see any errors before' +
+              ' the console window closes.'
+            Margins.Top = 40.000000000000000000
+            Position.X = 10.000000000000000000
+            Position.Y = 212.000000000000000000
+            Size.Width = 128.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'tintedbutton'
+            TabOrder = 5
+            Text = 'Debug Start Server'
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhite
+            TextSettings.Trimming = None
+            TintColor = xFFB36F00
+            OnClick = btnStartServerDebugClick
           end
         end
         object rctnglServerOptions: TRectangle
@@ -1214,7 +1237,7 @@ object frmMain: TfrmMain
           item
           end>
         TextSettings.Trimming = None
-        IsSelected = True
+        IsSelected = False
         Size.Width = 92.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -3236,8 +3259,8 @@ object frmMain: TfrmMain
   object tmrCheckForUpdate: TTimer
     Interval = 300000
     OnTimer = tmrCheckForUpdateTimer
-    Left = 112
-    Top = 328
+    Left = 232
+    Top = 176
   end
   object tmrAutoRestart: TTimer
     Enabled = False

@@ -302,6 +302,7 @@ type
     swtchEnableAutoWipe: TSwitch;
     lblAutoWiipeHeader: TLabel;
     btnConfigureAutoWipe: TButton;
+    btnStartServerDebug: TButton;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -376,6 +377,7 @@ type
     procedure swtchExecuteBeforeServerStartSwitch(Sender: TObject);
     procedure OnRSMAPIServerStatusClick(Sender: TObject);
     procedure btnConfigureAutoWipeClick(Sender: TObject);
+    procedure btnStartServerDebugClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -755,6 +757,22 @@ begin
     // Networking - Misc
     slParams.Add('+server.favoritesEndpoint "' + serverConfig.Networking.FavouritesListEndpoint + '" ^');
 
+    // Debug Start
+    if (Sender is TButton) then
+    begin
+      // Check if debug start button is used
+      if ((Sender as TButton).Name = 'btnStartServerDebug') then
+      begin
+        ShowMessage('WARNING: Debug start creates a debug_start.bat and executes it. This is used for when your server does not start and just closes. Do not permanently run your server with this.');
+
+        TFile.WriteAllText(TPath.Combine([rsmCore.Paths.GetRootDir, 'debug_start.bat']), rustDedicatedExe.QuotedString('"') + ' ' + slParams.Text + sLineBreak + 'pause');
+
+        OpenURL(TPath.Combine([rsmCore.Paths.GetRootDir, 'debug_start.bat']));
+
+        Exit;
+      end;
+    end;
+
     // Start Server and Save PID
     serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
 
@@ -775,6 +793,11 @@ begin
     slParams.Free;
     FServerIsStarting := False;
   end;
+end;
+
+procedure TfrmMain.btnStartServerDebugClick(Sender: TObject);
+begin
+  btnStartServerClick(btnStartServerDebug);
 end;
 
 procedure TfrmMain.btnStopServerClick(Sender: TObject);
@@ -1496,6 +1519,7 @@ begin
 
     // Server Controls
     btnStartServer.Enabled := not isServerRunning;
+    btnStartServerDebug.Enabled := not isServerRunning;
     btnKillServer.Enabled := isServerRunning;
 
     // Rcon Connection
