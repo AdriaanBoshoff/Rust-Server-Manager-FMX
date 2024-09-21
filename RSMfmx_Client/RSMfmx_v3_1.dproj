@@ -397,6 +397,7 @@
             <Form>frmAutoWipe</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Modules\AutoWipe\uAutoWipeManager.pas"/>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

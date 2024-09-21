@@ -4,8 +4,8 @@ object frmAutoWipe: TfrmAutoWipe
   BorderIcons = [biSystemMenu]
   BorderStyle = Single
   Caption = 'Auto Wipe'
-  ClientHeight = 500
-  ClientWidth = 700
+  ClientHeight = 496
+  ClientWidth = 719
   Position = MainFormCenter
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
@@ -13,22 +13,63 @@ object frmAutoWipe: TfrmAutoWipe
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
   object statFooter: TStatusBar
-    Position.Y = 450.000000000000000000
+    Padding.Left = 10.000000000000000000
+    Padding.Top = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 10.000000000000000000
+    Position.Y = 446.000000000000000000
     ShowSizeGrip = False
-    Size.Width = 700.000000000000000000
+    Size.Width = 719.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
+    object btnCancel: TButton
+      Align = Right
+      Position.X = 629.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Cancel'
+      TextSettings.Trimming = None
+      OnClick = btnCancelClick
+    end
+    object btnSave: TButton
+      Align = Right
+      Margins.Right = 10.000000000000000000
+      Position.X = 539.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Save'
+      TextSettings.Trimming = None
+      OnClick = btnSaveClick
+    end
+    object btnAddAutoWipe: TButton
+      Align = Left
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Add New'
+      TextSettings.Trimming = None
+      OnClick = btnSaveClick
+    end
   end
   object tlbHeader: TToolBar
-    Size.Width = 700.000000000000000000
+    Size.Width = 719.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
     object lblHeader: TLabel
       Align = Contents
       StyledSettings = [Family, FontColor]
-      Size.Width = 700.000000000000000000
+      Size.Width = 719.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 20.000000000000000000
@@ -37,5 +78,13 @@ object frmAutoWipe: TfrmAutoWipe
       Text = 'Configure Auto Wipe'
       TabOrder = 1
     end
+  end
+  object tbcAutoWipes: TTabControl
+    Align = Client
+    Size.Width = 719.000000000000000000
+    Size.Height = 406.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    TabPosition = PlatformDefault
   end
 end

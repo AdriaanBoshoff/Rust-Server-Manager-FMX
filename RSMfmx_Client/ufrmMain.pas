@@ -425,7 +425,7 @@ uses
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
   ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
   ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer, udmTrayIcon,
-  udmRSMAPI, ufrmAutoWipe;
+  udmRSMAPI, ufrmAutoWipe, uAutoWipeManager;
 
 {$R *.fmx}
 
@@ -966,6 +966,9 @@ begin
 
   // Server Process
   serverProcess := TServerProcess.Create;
+
+  // Auto Wipe Manager
+  autoWipeManager := TAutoWipeManager.Create;
 end;
 
 procedure TfrmMain.CreateModules;
@@ -1023,6 +1026,9 @@ begin
 
   // Server Process
   serverProcess.Free;
+
+  // Auto Wipe Manager
+  autoWipeManager.Free;
 end;
 
 procedure TfrmMain.HideServerInfo;

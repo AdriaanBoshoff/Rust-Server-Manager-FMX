@@ -102,7 +102,8 @@ uses
   udmMapServer in 'Modules\Services\MapServer\udmMapServer.pas' {dmMapServer: TDataModule},
   udmRSMAPI in 'Modules\Services\RSMAPI\udmRSMAPI.pas' {dmRSMAPI: TDataModule},
   uRSMAPIv1 in 'Modules\Services\RSMAPI\uRSMAPIv1.pas',
-  ufrmAutoWipe in 'Modules\AutoWipe\ufrmAutoWipe.pas' {frmAutoWipe};
+  ufrmAutoWipe in 'Modules\AutoWipe\ufrmAutoWipe.pas' {frmAutoWipe},
+  uAutoWipeManager in 'Modules\AutoWipe\uAutoWipeManager.pas';
 
 {$R *.res}
 
