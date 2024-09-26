@@ -54,7 +54,7 @@ var
 implementation
 
 uses
-  XSuperObject, RSM.Core;
+  XSuperObject, RSM.Core, uServerConfig, ufrmMain;
 
 { TAutoWipeManager }
 
@@ -163,6 +163,14 @@ begin
     if autoWipe.newMap.ChangeMap then
     begin
       // TODO: Auto Wipe change server config.
+      serverConfig.Map.MapIndex := autoWipe.newMap.MapTypeIndex;
+      serverConfig.Map.MapName := frmMain.cbbServerMap.ListItems[serverConfig.Map.MapIndex].ItemData.Detail;
+      serverConfig.Map.MapSize := autoWipe.newMap.MapSize;
+      serverConfig.Map.MapSeed := autoWipe.newMap.MapSeed;
+      serverConfig.Map.CustomMapURL := autoWipe.newMap.CustomMapURL;
+
+      serverConfig.SaveConfig;
+      frmMain.PopulateServerConfigUI;
     end;
 
     if autoWipe.enabled then
