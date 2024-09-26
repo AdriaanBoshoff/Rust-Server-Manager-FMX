@@ -910,12 +910,14 @@ begin
             procedure
             begin
               var autoStartDlg := TfrmAutoServerStartDlg.Create(Self);
-
-              case autoStartDlg.ShowModal of
-                mrOk:
-                  frmMain.btnStartServerClick(btnStartServer);
+              try
+                case autoStartDlg.ShowModal of
+                  mrOk:
+                    frmMain.btnStartServerClick(btnStartServer);
+                end;
+              finally
+                autoStartDlg.Free;
               end;
-
             end);
         end);
     end;
@@ -1573,18 +1575,21 @@ begin
       if FDoAutoRestart or rsmConfig.Misc.StartServerAfterShutdown then
       begin
         var autoStartDlg := TfrmAutoServerStartDlg.Create(Self);
-        case autoStartDlg.ShowModal of
-          mrOk:
-            begin
-              btnStartServerClick(btnStartServer);
-            end;
-          mrCancel:
-            begin
-              FDoAutoRestart := False;
-              rsmConfig.Misc.StartServerAfterShutdown := False;
-            end;
+        try
+          case autoStartDlg.ShowModal of
+            mrOk:
+              begin
+                btnStartServerClick(btnStartServer);
+              end;
+            mrCancel:
+              begin
+                FDoAutoRestart := False;
+                rsmConfig.Misc.StartServerAfterShutdown := False;
+              end;
+          end;
+        finally
+          autoStartDlg.Free;
         end;
-
       end;
     end;
   finally
