@@ -26,7 +26,6 @@ type
     nextWipe: TDateTime;
     wipeDirs: TArray<string>;
     wipeFiles: TArray<string>;
-    wipeLog: TArray<string>;
     newMap: TAutoWipeNewMap;
   end;
 
@@ -42,7 +41,6 @@ type
   public
     constructor Create;
     procedure DoWipe(var autoWipe: TAutoWipe);
-    procedure LogWipe(var autoWipe: TAutoWipe; const LogText: string);
     function GetAutoWipeTypeString(const aType: TAutoWipeType): string;
     procedure Load;
     procedure Save;
@@ -67,26 +65,25 @@ procedure TAutoWipeManager.DoWipe(var autoWipe: TAutoWipe);
 begin
   if not autoWipe.enabled then
   begin
-    LogWipe(autoWipe, 'Skipping... Wipe not enabled.');
     Exit;
   end;
 
   case autoWipe.wipeType of
     awrOnce:
       begin
-        LogWipe(autoWipe, 'Doing Once off Wipe');
+        // TODO: Handle Auto Wipe
       end;
     awtDaily:
       begin
-        LogWipe(autoWipe, 'Doing Daily Wipe');
+        // TODO: Handle Auto Wipe
       end;
     awtWeekly:
       begin
-        LogWipe(autoWipe, 'Doing Weekly Wipe');
+        // TODO: Handle Auto Wipe
       end;
     awtBiWeekly:
       begin
-        LogWipe(autoWipe, 'Doing BiWeekly Wipe');
+       // TODO: Handle Auto Wipe
       end;
   end;
 
@@ -96,18 +93,12 @@ begin
     try
       if TDirectory.Exists(aDir) then
       begin
-        LogWipe(autoWipe, 'Deleting "' + aDir + '"');
         TDirectory.Delete(aDir);
-        LogWipe(autoWipe, 'Deleted.');
-      end
-      else
-      begin
-        LogWipe(autoWipe, 'Skipping... Directory does not exists.');
       end;
     except
       on E: Exception do
       begin
-        LogWipe(autoWipe, 'Delete Failed: ' + E.ClassName + ': ' + E.Message);
+        // TODO: Handle Auto Wipe exception when deleting dirs
 
         raise E;
       end;
@@ -120,19 +111,12 @@ begin
     try
       if TFile.Exists(aFile) then
       begin
-        LogWipe(autoWipe, 'Deleting "' + aFile + '"');
         TFile.Delete(aFile);
-        LogWipe(autoWipe, 'Deleted.');
-      end
-      else
-      begin
-        LogWipe(autoWipe, 'Skipping... File does not exists.');
       end;
     except
       on E: Exception do
       begin
-        LogWipe(autoWipe, 'Delete Failed: ' + E.ClassName + ': ' + E.Message);
-
+        // TODO: Handle Auto Wipe exception when deleting files
         raise E;
       end;
     end;
@@ -143,7 +127,7 @@ begin
     case autoWipe.wipeType of
       awrOnce:
         begin
-          autoWipe.nextWipe := IncDay(autoWipe.nextWipe);
+          autoWipe.nextWipe := IncYear(autoWipe.nextWipe, 99);
         end;
       awtDaily:
         begin
@@ -162,7 +146,6 @@ begin
     // Change Map Settings
     if autoWipe.newMap.ChangeMap then
     begin
-      // TODO: Auto Wipe change server config.
       serverConfig.Map.MapIndex := autoWipe.newMap.MapTypeIndex;
       serverConfig.Map.MapName := frmMain.cbbServerMap.ListItems[serverConfig.Map.MapIndex].ItemData.Detail;
       serverConfig.Map.MapSize := autoWipe.newMap.MapSize;
@@ -173,14 +156,10 @@ begin
       frmMain.PopulateServerConfigUI;
     end;
 
-    if autoWipe.enabled then
-      LogWipe(autoWipe, 'Wipe Complete. Next Wipe: ' + autoWipe.nextWipe.ToString)
-    else
-      LogWipe(autoWipe, 'Wipe Complete. Next Wipe: Disabled');
   except
     on E: Exception do
     begin
-      LogWipe(autoWipe, 'Setting Next Wipe Schedule Failed: ' + E.ClassName + ': ' + E.Message);
+      // TODO: Handle Auto Wipe exception when inc next wipe
 
       raise E;
     end;
@@ -189,7 +168,10 @@ begin
   try
     Self.Save;
   except
-    LogWipe(autoWipe, 'Failed to save next wipe schedule');
+    on E: Exception do
+    begin
+      // TODO: Handle Auto Wipe exception when saving class
+    end;
   end;
 end;
 
@@ -204,12 +186,6 @@ begin
     Self.AssignFromJSON(Self.SaveFilePath);
 
   Self.Save;
-end;
-
-procedure TAutoWipeManager.LogWipe(var autoWipe: TAutoWipe; const LogText: string);
-begin
-  SetLength(autoWipe.wipeLog, Length(autoWipe.wipeLog) + 1);
-  autoWipe.wipeLog[High(autoWipe.wipeLog)] := Format('[%s] %s', [FormatDateTime('hh:nn:ss', Now), LogText]);
 end;
 
 procedure TAutoWipeManager.Save;
