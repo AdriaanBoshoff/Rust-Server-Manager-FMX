@@ -212,6 +212,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="Libs\FastMM5\FastMM5.pas"/>
         <DCCReference Include="ufrmMain.pas">
             <Form>frmMain</Form>
         </DCCReference>
@@ -306,32 +307,26 @@
         <DCCReference Include="Units\uHelpers.pas"/>
         <DCCReference Include="Modules\TrayIcon\udmTrayIcon.pas">
             <Form>dmTrayIcon</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="Units\RustManifest\Rust.Manifest.pas"/>
         <DCCReference Include="DataModules\ChatDB\udmChatDB.pas">
             <Form>dmChatDB</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="Modules\Logs\ufrmLogs.pas">
             <Form>frmLogs</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Forms\Server Console\ufrmServerConsole.pas">
             <Form>frmServerConsole</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas">
             <Form>frmAutoServerStartDlg</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Units\RSM\uEndpointTypes.pas"/>
         <DCCReference Include="uGlobalConst.pas"/>
         <DCCReference Include="Modules\RSMSettings\ufrmSettings.pas">
             <Form>frmSettings</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Libs\Horse\Horse.Callback.pas"/>
         <DCCReference Include="Libs\Horse\Horse.Commons.pas"/>
@@ -377,25 +372,21 @@
         <DCCReference Include="Libs\Horse\Horse.Session.pas"/>
         <DCCReference Include="Libs\Horse\Horse.WebModule.pas">
             <Form>HorseWebModule</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TWebModule</DesignClass>
         </DCCReference>
         <DCCReference Include="Libs\Horse\ThirdParty.Posix.Syslog.pas"/>
         <DCCReference Include="Libs\Horse\Web.WebConst.pas"/>
         <DCCReference Include="Modules\Services\MapServer\udmMapServer.pas">
             <Form>dmMapServer</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="Modules\Services\RSMAPI\udmRSMAPI.pas">
             <Form>dmRSMAPI</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="Modules\Services\RSMAPI\uRSMAPIv1.pas"/>
         <DCCReference Include="Modules\AutoWipe\ufrmAutoWipe.pas">
             <Form>frmAutoWipe</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Modules\AutoWipe\uAutoWipeManager.pas"/>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>

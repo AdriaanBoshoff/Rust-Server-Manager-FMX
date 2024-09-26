@@ -1,6 +1,7 @@
 program RSMfmx_v3_1;
 
 uses
+  FastMM5 in 'Libs\FastMM5\FastMM5.pas',
   System.StartUpCopy,
   FMX.Forms,
   FMX.Skia,
@@ -117,14 +118,20 @@ begin
 
   GlobalUseSkia := True;
   {$IFDEF DEBUG}
-  ReportMemoryLeaksOnShutdown := True;
+ // ReportMemoryLeaksOnShutdown := True;
   Application.Title := 'RSMfmx v3.1 (DEBUG BUILD)';
   {$ENDIF}
 
   {$IFDEF RELEASE}
-  ReportMemoryLeaksOnShutdown := False;
+ // ReportMemoryLeaksOnShutdown := True;
   Application.Title := 'RSMfmx v3.1';
   {$ENDIF}
+
+  // FastMM5
+  FastMM_MessageBoxEvents := FastMM_MessageBoxEvents + [mmetUnexpectedMemoryLeakSummary];
+  FastMM_LogToFileEvents := FastMM_LogToFileEvents + [mmetUnexpectedMemoryLeakSummary, mmetUnexpectedMemoryLeakDetail];
+  if FastMM_GetInstallationState = mmisInstalled then
+    ShowMessage('Using FastMM');
 
   Application.Initialize;
   Application.CreateForm(TfrmLicenseManager, frmLicenseManager);
