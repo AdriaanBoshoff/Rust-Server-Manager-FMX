@@ -2378,8 +2378,8 @@ object frmMain: TfrmMain
               Size.Height = 215.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 664.000000000000000000
-              Viewport.Height = 215.000000000000000000
+              Viewport.Width = 652.000000000000000000
+              Viewport.Height = 207.000000000000000000
             end
           end
         end
@@ -3259,8 +3259,8 @@ object frmMain: TfrmMain
   object tmrCheckForUpdate: TTimer
     Interval = 300000
     OnTimer = tmrCheckForUpdateTimer
-    Left = 232
-    Top = 176
+    Left = 264
+    Top = 128
   end
   object tmrAutoRestart: TTimer
     Enabled = False
@@ -3273,7 +3273,7 @@ object frmMain: TfrmMain
     Enabled = False
     Interval = 3000
     OnTimer = tmrServicesStatusTimer
-    Left = 488
+    Left = 672
     Top = 304
   end
   object mltvwNav: TMultiView
@@ -3421,7 +3421,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Config'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstServerInstaller: TListBoxItem
@@ -3511,7 +3511,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Server Installer'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstPlayerManager: TListBoxItem
@@ -3578,7 +3578,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Player Manager'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstOxideMod: TListBoxItem
@@ -3599,7 +3599,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'OxideMod / uMod'
-          TabOrder = 49
+          TabOrder = 50
         end
         object rctnglOxideModNavImage: TRectangle
           Align = MostLeft
@@ -3903,7 +3903,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Carbon Mod'
-          TabOrder = 49
+          TabOrder = 50
         end
         object rctnglCarbonmodNavImg: TRectangle
           Align = MostLeft
@@ -4793,7 +4793,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Plugin Manager'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
       object lstLogs: TListBoxItem
@@ -4862,7 +4862,7 @@ object frmMain: TfrmMain
           TextSettings.WordWrap = False
           TextSettings.Trimming = None
           Text = 'Logs'
-          TabOrder = 49
+          TabOrder = 50
         end
       end
     end

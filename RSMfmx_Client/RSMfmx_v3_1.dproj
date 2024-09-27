@@ -389,6 +389,23 @@
             <Form>frmAutoWipe</Form>
         </DCCReference>
         <DCCReference Include="Modules\AutoWipe\uAutoWipeManager.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\CompilerAndRTLVersions.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.BigDecimals.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.BigIntegers.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.BigIntegers.Primes.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.BigRationals.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.ExactFloatStrings.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.FloatUtils.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.Loggers.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.Numerics.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.RandomNumbers.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.Sizes.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.StrConsts.pas"/>
+        <DCCReference Include="Libs\DelphiBigNumbers\Velthuis.XorShifts.pas"/>
+        <DCCReference Include="Libs\IPTypesX\IPTypesX.pas"/>
+        <DCCReference Include="Libs\MMDBReader\uMMDBInfo.pas"/>
+        <DCCReference Include="Libs\MMDBReader\uMMDBIPAddress.pas"/>
+        <DCCReference Include="Libs\MMDBReader\uMMDBReader.pas"/>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
