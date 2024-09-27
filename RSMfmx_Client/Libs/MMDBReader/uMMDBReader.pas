@@ -32,10 +32,16 @@
 { ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                                   }
 {                                                                              }
 { Last edit by: Vitaly Yakovlev                                                }
-{ Date: July 19, 2021                                                          }
-{ Version: 1.2                                                                 }
+{ Date: March 07, 2024                                                         }
+{ Version: 1.3                                                                 }
 {                                                                              }
 { Changelog:                                                                   }
+{                                                                              }
+{ v1.3:                                                                        }
+{ - added debug exceptions:                                                    }
+{     EMMDBException,                                                          }
+{     EMMDBNotFoundException                                                   }
+{ - TMMDBReader.Find: T raises EMMDBNotFoundException when ipAddress not found }
 {                                                                              }
 { v1.2:                                                                        }
 { - added debug macros: DEBUG_OUT, DEBUG_OUT_FILE, DEBUG_OUT_FILTER            }
@@ -323,6 +329,9 @@ type
     FFindOwnerObjects: TObjectList;
   end;
 
+  EMMDBException = class(Exception);
+  EMMDBNotFoundException = class(EMMDBException);
+
 implementation
 
 uses System.Math, Winapi.Windows, System.StrUtils;
@@ -477,7 +486,7 @@ begin
   if expected <> from then
   begin
     if expected = TypeInfo(TValue) then Exit;
-    raise Exception.Create(Format(
+    raise EMMDBException.Create(Format(
       'Could not convert ''%s'' to ''%s''.',
       [from.Name, expected.Name]));
   end;
@@ -518,7 +527,7 @@ var
   i: Integer;
 begin
   if offset >= _database.Length then
-    raise Exception.Create(
+    raise EMMDBException.Create(
       'The MaxMind DB file''s data section contains bad data: '
       + 'pointer larger than the database.');
   ctrlByte := _database.ReadOne(offset);
@@ -529,7 +538,7 @@ begin
     nextByte := _database.ReadOne(offset);
     typeNum := nextByte + 7;
     if typeNum < 8 then
-      raise Exception.Create(
+      raise EMMDBException.Create(
         'Something went horribly wrong in the decoder. An extended type '
         + 'resolved to a type number < 8 (' + IntToStr(typeNum)
         + ')');
@@ -679,7 +688,7 @@ end;
 function TMMDBDecoder.DecodeBigInteger(expectedType: PTypeInfo; offset: Int64;
   size: Integer): BigInteger;
 begin
-  raise Exception.Create('Unsupported method: DecodeBigInteger');
+  raise EMMDBException.Create('Unsupported method: DecodeBigInteger');
 end;
 
 function TMMDBDecoder.DecodeBoolean(expectedType: PTypeInfo;
@@ -690,7 +699,7 @@ begin
     0: Exit(False);
     1: Exit(True);
   else
-    raise Exception.Create('The MaxMind DB file''s data section contains bad data: '
+    raise EMMDBException.Create('The MaxMind DB file''s data section contains bad data: '
       + 'invalid size of boolean.');
   end;
 end;
@@ -775,7 +784,7 @@ begin
       valResult := TValue.From<BigInteger>(DecodeBigInteger(expectedType, offset, size));
 
   else
-     raise Exception.Create('Unable to handle type:' + IntToStr(Ord(_type)));
+     raise EMMDBException.Create('Unable to handle type:' + IntToStr(Ord(_type)));
   end;
 end;
 
@@ -784,7 +793,7 @@ function TMMDBDecoder.DecodeDouble(expectedType: PTypeInfo; offset: Int64;
 begin
   CheckType(expectedType, TypeInfo(Double));
   if (size <> 8) then
-    raise Exception.Create('The MaxMind DB file''s data section contains bad data: '
+    raise EMMDBException.Create('The MaxMind DB file''s data section contains bad data: '
       + 'invalid size of double.');
   Result := _database.ReadDouble(offset);
 end;
@@ -794,7 +803,7 @@ function TMMDBDecoder.DecodeFloat(expectedType: PTypeInfo; offset: Int64;
 begin
   CheckType(expectedType, TypeInfo(Single));
   if (size <> 4) then
-    raise Exception.Create('The MaxMind DB file''s data section contains bad data: '
+    raise EMMDBException.Create('The MaxMind DB file''s data section contains bad data: '
       + 'invalid size of float.');
   Result := _database.ReadFloat(offset);
 end;
@@ -826,7 +835,7 @@ begin
       end
 
     else
-      raise Exception.Create('Database contains a non-string as map key: '+IntToStr(Ord(_type)));
+      raise EMMDBException.Create('Database contains a non-string as map key: '+IntToStr(Ord(_type)));
   end;
 end;
 
@@ -1045,7 +1054,7 @@ begin
 {$IFDEF DEBUG_OUT}
     DebugOutput(instance.Name+'.'+methodName+' method does not exist.');
 {$ENDIF}
-    //raise Exception.Create(instance.Name+'.'+methodName+' method does not exist.');
+    //raise EMMDBException.Create(instance.Name+'.'+methodName+' method does not exist.');
     Exit(False);
   end;
   if paramCount >= 0 then
@@ -1056,7 +1065,7 @@ begin
 {$IFDEF DEBUG_OUT}
       DebugOutput('Bad '+instance.Name+'.'+methodName+' parameters count.');
 {$ENDIF}
-      //raise Exception.Create('Bad '+instance.Name+'.'+methodName+' parameters count.');
+      //raise EMMDBException.Create('Bad '+instance.Name+'.'+methodName+' parameters count.');
       Exit(False);
     end;
   end;
@@ -1262,7 +1271,7 @@ begin
         SetLength(ipRight, byteCount);
         Move(node.IPBytes[0], ipRight[0], Length(ipRight));
         if Length(ipRight) <= (node.Bit shr 3) then
-          raise Exception.Create(Format(
+          raise EMMDBException.Create(Format(
             'Invalid search tree, bad bit %d', [node.Bit]));
         ipRight[node.Bit shr 3] := ipRight[node.Bit shr 3] or
           Byte(1 shl (7 - (node.Bit mod 8)));
@@ -1395,7 +1404,8 @@ var
   pointer: Integer;
 begin
   pointer := FindAddressInTree(ipAddress, prefixLength);
-  if pointer = 0 then Exit;
+  if pointer = 0 then
+    raise EMMDBNotFoundException.Create('Not Found');
   Result := ResolveDataPointer<T>(pointer);
 end;
 
@@ -1441,7 +1451,7 @@ begin
     //record is a data pointer
     Exit(_record);
   end;
-  raise Exception.Create('Something bad happened');
+  raise EMMDBException.Create('Something bad happened');
 end;
 
 function TMMDBReader.FindAll<T>(data: T; IPv4Only: Boolean;
@@ -1476,7 +1486,7 @@ begin
     end;
     Dec(I);
   end;
-  raise Exception.Create(
+  raise EMMDBException.Create(
     Format('Could not find a MaxMind Db metadata marker in this file (%s). Is this a valid MaxMind Db file?',
       [_fileName]));
 end;
@@ -1534,7 +1544,7 @@ begin
           Integer(_database.ReadOne(offset + 3)));
       end;
   end;
-  raise Exception.Create(Format('Unknown record size: %d', [size]));
+  raise EMMDBException.Create(Format('Unknown record size: %d', [size]));
 end;
 
 procedure TMMDBReader.ResolveDataPointer<T>(pointer: Integer; var tResult: T);
@@ -1543,7 +1553,7 @@ var
 begin
   resolved := pointer - Metadata.NodeCount + Metadata.SearchTreeSize;
   if resolved >= _database.Length then
-    raise Exception.Create('The MaxMind Db file''s search tree is corrupt: '
+    raise EMMDBException.Create('The MaxMind Db file''s search tree is corrupt: '
       + 'contains pointer larger than the database.');
   Decoder.Decode<T>(resolved, _, tResult);
 end;
@@ -1554,7 +1564,7 @@ var
 begin
   resolved := pointer - Metadata.NodeCount + Metadata.SearchTreeSize;
   if resolved >= _database.Length then
-    raise Exception.Create('The MaxMind Db file''s search tree is corrupt: '
+    raise EMMDBException.Create('The MaxMind Db file''s search tree is corrupt: '
       + 'contains pointer larger than the database.');
   Exit(Decoder.Decode<T>(resolved, _));
 end;

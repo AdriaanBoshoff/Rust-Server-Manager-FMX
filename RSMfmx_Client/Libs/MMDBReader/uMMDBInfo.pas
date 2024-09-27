@@ -32,10 +32,17 @@
 { ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                                   }
 {                                                                              }
 { Last edit by: Vitaly Yakovlev                                                }
-{ Date: July 19, 2021                                                          }
-{ Version: 1.4                                                                 }
+{ Date: March 07, 2024                                                         }
+{ Version: 1.5                                                                 }
 {                                                                              }
 { Changelog:                                                                   }
+{                                                                              }
+{ v1.5:                                                                        }
+{ - added debug exceptions:                                                    }
+{     EMMDBDebugSubdivisionException,                                          }
+{     EMMDBDebugIPCountryCityInfoException,                                    }
+{     EMMDBDebugIPCountryCityInfoExException                                   }
+{                                                                              }
 { v1.4:                                                                        }
 { - added TMMDBPostal                                                          }
 { - added TMMDBSubdivision amd TMMDBSubdivisionEx                              }
@@ -45,7 +52,6 @@
 { - added TMMDBAnonymousIP                                                     }
 { - added TMMDBDomain                                                          }
 {                                                                              }
-{ Changelog:                                                                   }
 { v1.3:                                                                        }
 { - added TMMDBIPCountryCityInfo.Location                                      }
 {                                                                              }
@@ -356,6 +362,12 @@ type
     property Domain: String read _domain write _domain;
   end;
 
+{$IF Defined(DEBUG_TMMDBSubdivision) or Defined(DEBUG_TMMDBIPCountryCityInfo) or Defined(DEBUG_TMMDBIPCountryCityInfoEx)}
+  EMMDBDebugException = class(Exception);
+  EMMDBDebugSubdivisionException = class(EMMDBDebugException);
+  EMMDBDebugIPCountryCityInfoException = class(EMMDBDebugException);
+  EMMDBDebugIPCountryCityInfoExException = class(EMMDBDebugException);
+{$ENDIF}
 
 implementation
 
@@ -551,15 +563,15 @@ initialization
 finalization
 {$IFDEF DEBUG_TMMDBSubdivision}
   if TMMDBSubdivisionEx_Count <> 0 then
-    raise Exception.Create('DEBUG_TMMDBSubdivision');
+    raise EMMDBDebugSubdivisionException.Create('DEBUG_TMMDBSubdivision');
 {$ENDIF}
 {$IFDEF DEBUG_TMMDBIPCountryCityInfo}
   if TMMDBIPCountryCityInfo_Count <> 0 then
-    raise Exception.Create('DEBUG_TMMDBIPCountryCityInfo');
+    raise EMMDBDebugIPCountryCityInfoException.Create('DEBUG_TMMDBIPCountryCityInfo');
 {$ENDIF}
 {$IFDEF DEBUG_TMMDBIPCountryCityInfoEx}
   if TMMDBIPCountryCityInfoEx_Count <> 0 then
-    raise Exception.Create('DEBUG_TMMDBIPCountryCityInfoEx');
+    raise EMMDBDebugIPCountryCityInfoExException.Create('DEBUG_TMMDBIPCountryCityInfoEx');
 {$ENDIF}
 
 {$ENDIF}
