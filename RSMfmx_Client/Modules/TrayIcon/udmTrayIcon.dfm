@@ -6,6 +6,7 @@ object dmTrayIcon: TdmTrayIcon
     BalloonTitle = 'RSM FMX'
     PopupMenu = pmTrayIcon
     Visible = True
+    OnDblClick = trycnMainDblClick
     Left = 304
     Top = 224
   end

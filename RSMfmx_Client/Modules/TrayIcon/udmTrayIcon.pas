@@ -18,6 +18,7 @@ type
     procedure pmTrayIconPopup(Sender: TObject);
     procedure mniStartServerClick(Sender: TObject);
     procedure mniStopServerClick(Sender: TObject);
+    procedure trycnMainDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,6 +66,11 @@ begin
     mniStartServer.Enabled := True;
     mniStopServer.Enabled := False;
   end;
+end;
+
+procedure TdmTrayIcon.trycnMainDblClick(Sender: TObject);
+begin
+  frmMain.Show;
 end;
 
 end.

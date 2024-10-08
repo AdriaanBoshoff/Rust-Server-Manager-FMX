@@ -149,7 +149,7 @@ begin
   FastMM_LogToFileEvents := FastMM_LogToFileEvents + [mmetUnexpectedMemoryLeakSummary, mmetUnexpectedMemoryLeakDetail];
 
   Application.Initialize;
-  Application.CreateForm(TfrmLicenseManager, frmLicenseManager);
+  Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TdmStyles, dmStyles);
   Application.CreateForm(TdmIcons, dmIcons);
   Application.CreateForm(TdmChatDB, dmChatDB);

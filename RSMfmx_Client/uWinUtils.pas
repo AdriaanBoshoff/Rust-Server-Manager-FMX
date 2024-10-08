@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.ShellAPI, System.SysUtils, IdHashMessageDigest,
-  IdGlobal, System.Classes, System.Win.Registry, FMX.Forms;
+  IdGlobal, System.Classes, System.Win.Registry, FMX.Forms, FMX.Platform.Win;
 
 function isWebView2RuntimeInstalled: Boolean;
 
@@ -18,7 +18,21 @@ function CreateProcess(const Exe, Params, AppTitle: string; const WaitUntilClose
 
 function IsElevated: Boolean;
 
+procedure HideAppOnTaskbar;
+
+procedure ShowAppOnTaskbar;
+
 implementation
+
+procedure HideAppOnTaskbar;
+begin
+  ShowWindow(ApplicationHWND, SW_HIDE);
+end;
+
+procedure ShowAppOnTaskbar;
+begin
+  ShowWindow(ApplicationHWND, SW_SHOWNORMAL);
+end;
 
 function IsElevated: Boolean;
 const

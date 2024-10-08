@@ -303,6 +303,15 @@ type
     lblAutoWiipeHeader: TLabel;
     btnConfigureAutoWipe: TButton;
     btnStartServerDebug: TButton;
+    mniTest: TMenuItem;
+    rctnglBorderTop: TRectangle;
+    rctnglBorderLeft: TRectangle;
+    rctnglBorderRight: TRectangle;
+    lytClient: TLayout;
+    rctnglBorderBottom: TRectangle;
+    btnClose: TSpeedButton;
+    btnMaximize: TSpeedButton;
+    btnMinimize: TSpeedButton;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -378,6 +387,12 @@ type
     procedure OnRSMAPIServerStatusClick(Sender: TObject);
     procedure btnConfigureAutoWipeClick(Sender: TObject);
     procedure btnStartServerDebugClick(Sender: TObject);
+    procedure mniTestClick(Sender: TObject);
+    procedure FormHide(Sender: TObject);
+    procedure rctnglBorderTopMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);
+    procedure btnCloseClick(Sender: TObject);
+    procedure btnMaximizeClick(Sender: TObject);
+    procedure btnMinimizeClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -388,6 +403,7 @@ type
     FSkipUpdateMessage: Boolean;
     // Do Auto Restart
     FDoAutoRestart: boolean;
+    // Custom Window State
   private
     { Private declarations }
     // UI
@@ -402,6 +418,8 @@ type
     procedure FreeClasses;
     procedure HideServerInfo;
     procedure ShowServerInfo;
+    // Window Border Controls
+    procedure MaximizeWindow;
   public
     { Public Variables }
     MainFormCreated: Boolean;
@@ -488,6 +506,11 @@ begin
   end;
 end;
 
+procedure TfrmMain.btnCloseClick(Sender: TObject);
+begin
+  Self.Close;
+end;
+
 procedure TfrmMain.btnCloseUpdateMessageClick(Sender: TObject);
 begin
   FSkipUpdateMessage := True;
@@ -551,6 +574,16 @@ end;
 procedure TfrmMain.btnKillServerClick(Sender: TObject);
 begin
   serverProcess.KillProcess;
+end;
+
+procedure TfrmMain.btnMaximizeClick(Sender: TObject);
+begin
+  MaximizeWindow;
+end;
+
+procedure TfrmMain.btnMinimizeClick(Sender: TObject);
+begin
+  Self.Hide;
 end;
 
 procedure TfrmMain.btnOpenUpdaterClick(Sender: TObject);
@@ -952,9 +985,16 @@ begin
   FreeClasses;
 end;
 
+procedure TfrmMain.FormHide(Sender: TObject);
+begin
+  HideAppOnTaskbar;
+end;
+
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-// Server Size
+  ShowAppOnTaskbar;
+
+  // Server Size
   lblServerSizeValue.Text := ConvertBytes(GetDirSize(ExtractFileDir(ParamStr(0)), True));
 end;
 
@@ -1140,6 +1180,18 @@ begin
   rsmConfig.SaveConfig;
 end;
 
+procedure TfrmMain.MaximizeWindow;
+begin
+  case Self.WindowState of
+    TWindowState.wsNormal:
+      Self.WindowState := TWindowState.wsMaximized;
+    TWindowState.wsMinimized:
+      Self.WindowState := TWindowState.wsMaximized;
+    TWindowState.wsMaximized:
+      Self.WindowState := TWindowState.wsNormal;
+  end;
+end;
+
 procedure TfrmMain.mniClearRSMCacheClick(Sender: TObject);
 begin
   // Delete RSM Cache Folder
@@ -1188,6 +1240,12 @@ begin
 //        dmTrayIcon.UpdateConfig;
 //      end;
 //    end);
+end;
+
+procedure TfrmMain.mniTestClick(Sender: TObject);
+begin
+  Self.Hide;
+ // HideAppOnTaskbar;
 end;
 
 procedure TfrmMain.mniTrayIconEnabledClick(Sender: TObject);
@@ -1307,6 +1365,12 @@ begin
 
   // server.cfg
   mmoServerCFG.Text := serverConfig.ServerCFGText;
+end;
+
+procedure TfrmMain.rctnglBorderTopMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);
+begin
+  if Button = TMouseButton.mbLeft then
+    StartWindowDrag;
 end;
 
 procedure TfrmMain.ResetServerInfoValues;
