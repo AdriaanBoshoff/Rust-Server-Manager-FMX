@@ -303,7 +303,6 @@ type
     lblAutoWiipeHeader: TLabel;
     btnConfigureAutoWipe: TButton;
     btnStartServerDebug: TButton;
-    mniTest: TMenuItem;
     rctnglBorderTop: TRectangle;
     rctnglBorderLeft: TRectangle;
     rctnglBorderRight: TRectangle;
@@ -394,6 +393,7 @@ type
     procedure btnCloseClick(Sender: TObject);
     procedure btnMaximizeClick(Sender: TObject);
     procedure btnMinimizeClick(Sender: TObject);
+    procedure rctnglBorderTopDblClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -1358,6 +1358,23 @@ begin
 
   // server.cfg
   mmoServerCFG.Text := serverConfig.ServerCFGText;
+end;
+
+procedure TfrmMain.rctnglBorderTopDblClick(Sender: TObject);
+begin
+  TTask.Run(
+    procedure
+    begin
+      // Delay by 100ms because it tries to maximize it while clicking
+      // fucking with the form position
+      Sleep(100);
+
+      TThread.ForceQueue(TThread.CurrentThread,
+        procedure
+        begin
+          Self.MaximizeWindow;
+        end);
+    end);
 end;
 
 procedure TfrmMain.rctnglBorderTopMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);

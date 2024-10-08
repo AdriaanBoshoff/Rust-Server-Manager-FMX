@@ -62,6 +62,7 @@ object frmMain: TfrmMain
     Size.Height = 30.000000000000000000
     Size.PlatformDefault = False
     Stroke.Color = xFFED3B3B
+    OnDblClick = rctnglBorderTopDblClick
     OnMouseDown = rctnglBorderTopMouseDown
     object btnClose: TSpeedButton
       Align = Right
@@ -158,6 +159,7 @@ object frmMain: TfrmMain
             'o'
         end>
       Align = MostLeft
+      HitTest = False
       Position.X = 3.000000000000000000
       Position.Y = 3.000000000000000000
       Size.Width = 24.000000000000000000
@@ -2251,8 +2253,8 @@ object frmMain: TfrmMain
                 Size.Height = 215.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
-                Viewport.Width = 654.000000000000000000
-                Viewport.Height = 215.000000000000000000
+                Viewport.Width = 642.000000000000000000
+                Viewport.Height = 207.000000000000000000
               end
             end
           end
@@ -3119,9 +3121,6 @@ object frmMain: TfrmMain
       object mniServerConsole: TMenuItem
         Text = 'Server Console'
         OnClick = mniServerConsoleClick
-      end
-      object mniTest: TMenuItem
-        Text = 'MINIMIZE TEST'
       end
     end
     object pnlExperimentalWarning: TPanel
