@@ -121,7 +121,9 @@ uses
   IPTypesX in 'Libs\IPTypesX\IPTypesX.pas',
   uMMDBInfo in 'Libs\MMDBReader\uMMDBInfo.pas',
   uMMDBIPAddress in 'Libs\MMDBReader\uMMDBIPAddress.pas',
-  uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas';
+  uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas',
+  ufrmConfirmDialog in 'Forms\Dialogs\ConfirmDialog\ufrmConfirmDialog.pas' {frmConfirmDialog},
+  ufrmConfirmCloseToTray in 'Forms\Dialogs\CloseToTray\ufrmConfirmCloseToTray.pas' {frmConfirmCloseToTray};
 
 {$R *.res}
 

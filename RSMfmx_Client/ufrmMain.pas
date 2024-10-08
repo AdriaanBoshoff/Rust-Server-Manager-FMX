@@ -394,6 +394,7 @@ type
     procedure btnMaximizeClick(Sender: TObject);
     procedure btnMinimizeClick(Sender: TObject);
     procedure rctnglBorderTopDblClick(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private Const }
   private
@@ -444,7 +445,7 @@ uses
   ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
   ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
   ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer, udmTrayIcon,
-  udmRSMAPI, ufrmAutoWipe, uAutoWipeManager;
+  udmRSMAPI, ufrmAutoWipe, uAutoWipeManager, ufrmConfirmCloseToTray;
 
 {$R *.fmx}
 
@@ -701,21 +702,21 @@ begin
   rsmConfig.Misc.StartServerAfterShutdown := swtchAutoStartServerAfterShutdown.IsChecked;
 
   // Check if server is installed
-  if not TFile.Exists(rustDedicatedExe) and (Sender is TButton) then
+  if not TFile.Exists(rustDedicatedExe) and Assigned(Sender) and (Sender is TButton) then
   begin
     ShowMessageBox('Server not installed! Use the server installer to install the server.', 'Start Failure', Self);
     Exit;
   end;
 
   // Check if Server is running
-  if serverProcess.isRunning and (Sender is TButton) then
+  if serverProcess.isRunning and Assigned(Sender) and (Sender is TButton) then
   begin
     ShowMessageBox('Server is already running with PID: ' + serverProcess.PID.ToString, 'Start Failure', Self);
     Exit;
   end;
 
   // Check if server is being installed
-  if frmServerInstaller.FIsInstallingServer and (Sender is TButton) then
+  if frmServerInstaller.FIsInstallingServer and Assigned(Sender) and (Sender is TButton) then
   begin
     ShowToast('ERROR: Server is being installed');
     Exit;
@@ -742,13 +743,24 @@ begin
   begin
     if not TFile.Exists(rsmConfig.Misc.ExecuteBeforeServerStartFilePath) then
     begin
-      if (Sender is TButton) then
+      if Assigned(Sender) and (Sender is TButton) then
         ShowMessageBox('File "' + rsmConfig.Misc.ExecuteBeforeServerStartFilePath + '" does not exists. Cannot execute before server start.', 'Execute Before Start', Self);
 
       Exit;
     end;
 
-    CreateProcess(rsmConfig.Misc.ExecuteBeforeServerStartFilePath, '', '', True);
+    try
+      CreateProcess(rsmConfig.Misc.ExecuteBeforeServerStartFilePath, '', '', True);
+    except
+      on E: Exception do
+      begin
+        if Assigned(Sender) and (Sender is TButton) then
+        begin
+          ShowMessage('[TfrmMain.btnStartServerClick] Failed to execute before server start. ' + E.ClassName + E.Message);
+        end;
+        Exit;
+      end;
+    end;
   end;
 
   // Build Params
@@ -819,17 +831,33 @@ begin
     end;
 
     // Save processs details
-    serverProcess.Save;
+    try
+      serverProcess.Save;
+    except
+      on E: Exception do
+      begin
+        if Assigned(Sender) then
+          ShowMessage('[TfrmMain.btnStartServerClick] Failed to save process ID. ' + E.ClassName + ': ' + E.Message);
+      end;
+    end;
 
     // Apply affinity mask
-    var serverHandle := OpenProcess(PROCESS_ALL_ACCESS, False, serverProcess.PID);
     try
-      SetProcessAffinityMask(serverHandle, CombinedProcessorMask(serverConfig.ServerAffinity));
+      var serverHandle := OpenProcess(PROCESS_ALL_ACCESS, False, serverProcess.PID);
+      try
+        SetProcessAffinityMask(serverHandle, CombinedProcessorMask(serverConfig.ServerAffinity));
 
-      if Sender is TButton then
-        ShowToast('Server affinity applied.');
-    finally
-      CloseHandle(serverHandle);
+        if Sender is TButton then
+          ShowToast('Server affinity applied.');
+      finally
+        CloseHandle(serverHandle);
+      end;
+    except
+      on E: Exception do
+      begin
+        if Assigned(Sender) then
+          ShowMessage('[TfrmMain.btnStartServerClick] Failed to apply affinity mask. ' + E.ClassName + ': ' + E.Message);
+      end;
     end;
   finally
     slParams.Free;
@@ -890,6 +918,22 @@ end;
 procedure TfrmMain.edtRconPasswordValueExit(Sender: TObject);
 begin
   ShowServerInfo;
+end;
+
+procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  var dlg := TfrmConfirmCloseToTray.Create(Self);
+  case dlg.ShowModal of
+    mrYes: // Quit App
+      begin
+        CanClose := True;
+      end;
+    mrOk: // Minimize to tray
+      begin
+        CanClose := False;
+        Self.Hide;
+      end;
+  end;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
@@ -997,6 +1041,10 @@ end;
 procedure TfrmMain.FormHide(Sender: TObject);
 begin
   HideAppOnTaskbar;
+
+  dmTrayIcon.trycnMain.BalloonTitle := 'RSMfmx v3.1';
+  dmTrayIcon.trycnMain.BalloonHint := 'Running in background.';
+  dmTrayIcon.trycnMain.ShowBalloonHint;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);

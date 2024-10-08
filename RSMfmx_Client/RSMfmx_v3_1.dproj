@@ -198,10 +198,10 @@
         <UWP_DelphiLogo44>Assets\AppIcons\RSM.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>Assets\AppIcons\RSM.png</UWP_DelphiLogo150>
         <VerInfo_MajorVer>2024</VerInfo_MajorVer>
-        <VerInfo_MinorVer>9</VerInfo_MinorVer>
-        <VerInfo_Release>20</VerInfo_Release>
+        <VerInfo_MinorVer>10</VerInfo_MinorVer>
+        <VerInfo_Release>8</VerInfo_Release>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2024.9.20.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.rustservermanager.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2024.10.8.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.rustservermanager.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=</VerInfo_Keys>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
         <VerInfo_Build>1</VerInfo_Build>
         <DCC_Define>HORSE_VCL;$(DCC_Define)</DCC_Define>
@@ -406,6 +406,14 @@
         <DCCReference Include="Libs\MMDBReader\uMMDBInfo.pas"/>
         <DCCReference Include="Libs\MMDBReader\uMMDBIPAddress.pas"/>
         <DCCReference Include="Libs\MMDBReader\uMMDBReader.pas"/>
+        <DCCReference Include="Forms\Dialogs\ConfirmDialog\ufrmConfirmDialog.pas">
+            <Form>frmConfirmDialog</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Forms\Dialogs\CloseToTray\ufrmConfirmCloseToTray.pas">
+            <Form>frmConfirmCloseToTray</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

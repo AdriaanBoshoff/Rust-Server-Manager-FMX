@@ -16,6 +16,7 @@ type
     btnSave: TButton;
     tbcAutoWipes: TTabControl;
     btnAddAutoWipe: TButton;
+    lblComingSoon: TLabel;
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
   private

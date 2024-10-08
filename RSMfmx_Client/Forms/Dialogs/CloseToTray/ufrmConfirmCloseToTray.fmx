@@ -1,0 +1,75 @@
+object frmConfirmCloseToTray: TfrmConfirmCloseToTray
+  Left = 0
+  Top = 0
+  BorderStyle = ToolWindow
+  Caption = 'Quit RSM?'
+  ClientHeight = 146
+  ClientWidth = 368
+  Position = MainFormCenter
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  object pnlButtons: TPanel
+    Align = Bottom
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Position.Y = 106.000000000000000000
+    Size.Width = 368.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object btnCancel: TButton
+      Align = Left
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Cancel'
+      TextSettings.Trimming = None
+      OnClick = btnCancelClick
+    end
+    object btnQuit: TButton
+      Align = HorzCenter
+      Position.X = 144.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Quit'
+      TextSettings.Trimming = None
+      OnClick = btnQuitClick
+    end
+    object btnCloseToTray: TButton
+      Align = Right
+      Position.X = 283.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Close to Tray'
+      TextSettings.Trimming = None
+      OnClick = btnCloseToTrayClick
+    end
+  end
+  object lblMessage: TLabel
+    Align = Client
+    StyledSettings = [Family, FontColor]
+    Size.Width = 368.000000000000000000
+    Size.Height = 106.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 28.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000100000004000000}
+    TextSettings.HorzAlign = Center
+    Text = 'Are you sure you want to quit RSM?'
+    TabOrder = 2
+  end
+end

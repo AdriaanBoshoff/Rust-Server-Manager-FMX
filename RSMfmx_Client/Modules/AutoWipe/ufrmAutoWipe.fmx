@@ -87,4 +87,16 @@ object frmAutoWipe: TfrmAutoWipe
     TabOrder = 4
     TabPosition = PlatformDefault
   end
+  object lblComingSoon: TLabel
+    Align = Client
+    StyledSettings = [Family, FontColor]
+    Size.Width = 719.000000000000000000
+    Size.Height = 406.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 36.000000000000000000
+    TextSettings.Font.StyleExt = {00060000000100000004000000}
+    TextSettings.HorzAlign = Center
+    Text = 'COMING SOON'
+    TabOrder = 6
+  end
 end
