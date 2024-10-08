@@ -808,7 +808,15 @@ begin
     end;
 
     // Start Server and Save PID
-    serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
+    try
+      serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
+    except
+      on E: Exception do
+      begin
+        ShowMessage('[TfrmMain.btnStartServerClick] Create Process Failure: ' + E.ClassName + ': ' + E.Message);
+        raise E;
+      end;
+    end;
 
     // Save processs details
     serverProcess.Save;
