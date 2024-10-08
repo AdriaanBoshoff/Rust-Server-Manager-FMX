@@ -312,6 +312,8 @@ type
     btnClose: TSpeedButton;
     btnMaximize: TSpeedButton;
     btnMinimize: TSpeedButton;
+    lblBorderTitle: TLabel;
+    imgBorderIcon: TImage;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -387,7 +389,6 @@ type
     procedure OnRSMAPIServerStatusClick(Sender: TObject);
     procedure btnConfigureAutoWipeClick(Sender: TObject);
     procedure btnStartServerDebugClick(Sender: TObject);
-    procedure mniTestClick(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure rctnglBorderTopMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);
     procedure btnCloseClick(Sender: TObject);
@@ -1242,18 +1243,10 @@ begin
 //    end);
 end;
 
-procedure TfrmMain.mniTestClick(Sender: TObject);
-begin
-  Self.Hide;
- // HideAppOnTaskbar;
-end;
-
 procedure TfrmMain.mniTrayIconEnabledClick(Sender: TObject);
 begin
   rsmConfig.TrayIcon.Enabled := not rsmConfig.TrayIcon.Enabled;
   rsmConfig.SaveConfig;
-
- // dmTrayIcon.UpdateConfig;
 end;
 
 procedure TfrmMain.mniTrayIconExitRSMClick(Sender: TObject);
