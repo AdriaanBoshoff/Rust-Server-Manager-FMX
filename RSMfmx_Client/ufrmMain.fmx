@@ -108,13 +108,13 @@ object frmMain: TfrmMain
       Margins.Left = 5.000000000000000000
       Position.X = 32.000000000000000000
       Position.Y = 3.000000000000000000
-      Size.Width = 161.000000000000000000
+      Size.Width = 359.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
       TextSettings.WordWrap = False
-      Text = 'Rust Server Manager v3.1'
+      Text = 'Rust Server Manager v3.1 [TEST BUILD] DATE: 2024.10.08'
       TabOrder = 3
     end
     object imgBorderIcon: TImage
@@ -2254,8 +2254,8 @@ object frmMain: TfrmMain
                 Size.Height = 215.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
-                Viewport.Width = 654.000000000000000000
-                Viewport.Height = 215.000000000000000000
+                Viewport.Width = 642.000000000000000000
+                Viewport.Height = 207.000000000000000000
               end
             end
           end
@@ -3570,7 +3570,7 @@ object frmMain: TfrmMain
             TextSettings.WordWrap = False
             TextSettings.Trimming = None
             Text = 'Server Config'
-            TabOrder = 49
+            TabOrder = 50
           end
         end
         object lstServerInstaller: TListBoxItem
@@ -3660,7 +3660,7 @@ object frmMain: TfrmMain
             TextSettings.WordWrap = False
             TextSettings.Trimming = None
             Text = 'Server Installer'
-            TabOrder = 49
+            TabOrder = 50
           end
         end
         object lstPlayerManager: TListBoxItem
@@ -3727,7 +3727,7 @@ object frmMain: TfrmMain
             TextSettings.WordWrap = False
             TextSettings.Trimming = None
             Text = 'Player Manager'
-            TabOrder = 49
+            TabOrder = 50
           end
         end
         object lstOxideMod: TListBoxItem
@@ -3748,7 +3748,7 @@ object frmMain: TfrmMain
             TextSettings.WordWrap = False
             TextSettings.Trimming = None
             Text = 'OxideMod / uMod'
-            TabOrder = 49
+            TabOrder = 50
           end
           object rctnglOxideModNavImage: TRectangle
             Align = MostLeft
@@ -4052,7 +4052,7 @@ object frmMain: TfrmMain
             TextSettings.WordWrap = False
             TextSettings.Trimming = None
             Text = 'Carbon Mod'
-            TabOrder = 49
+            TabOrder = 50
           end
           object rctnglCarbonmodNavImg: TRectangle
             Align = MostLeft
@@ -4942,7 +4942,7 @@ object frmMain: TfrmMain
             TextSettings.WordWrap = False
             TextSettings.Trimming = None
             Text = 'Plugin Manager'
-            TabOrder = 49
+            TabOrder = 50
           end
         end
         object lstLogs: TListBoxItem
@@ -5011,7 +5011,7 @@ object frmMain: TfrmMain
             TextSettings.WordWrap = False
             TextSettings.Trimming = None
             Text = 'Logs'
-            TabOrder = 49
+            TabOrder = 50
           end
         end
       end

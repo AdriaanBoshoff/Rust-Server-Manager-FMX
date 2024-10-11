@@ -695,172 +695,175 @@ end;
 procedure TfrmMain.btnStartServerClick(Sender: TObject);
 begin
   FServerIsStarting := True;
-  var rustDedicatedExe := ExtractFilePath(ParamStr(0)) + 'RustDedicated.exe';
+  try
+    var rustDedicatedExe := ExtractFilePath(ParamStr(0)) + 'RustDedicated.exe';
 
   // Set this again because auto restart function changes the config value
   // when cancelled. Do not save it again.
-  rsmConfig.Misc.StartServerAfterShutdown := swtchAutoStartServerAfterShutdown.IsChecked;
+    rsmConfig.Misc.StartServerAfterShutdown := swtchAutoStartServerAfterShutdown.IsChecked;
 
   // Check if server is installed
-  if not TFile.Exists(rustDedicatedExe) and Assigned(Sender) and (Sender is TButton) then
-  begin
-    ShowMessageBox('Server not installed! Use the server installer to install the server.', 'Start Failure', Self);
-    Exit;
-  end;
-
-  // Check if Server is running
-  if serverProcess.isRunning and Assigned(Sender) and (Sender is TButton) then
-  begin
-    ShowMessageBox('Server is already running with PID: ' + serverProcess.PID.ToString, 'Start Failure', Self);
-    Exit;
-  end;
-
-  // Check if server is being installed
-  if frmServerInstaller.FIsInstallingServer and Assigned(Sender) and (Sender is TButton) then
-  begin
-    ShowToast('ERROR: Server is being installed');
-    Exit;
-  end;
-
-  // Update Server
-  if rsmConfig.Misc.UpdateServerBeforeServerStart then
-  begin
-    frmServerInstaller.btnInstallServerClick(frmServerInstaller.btnInstallServer);
-  end;
-
-  // Install Oxide / uMod
-  if rsmConfig.Misc.InstallOxideBeforeServerStart then
-  begin
-    ShowToast('Installing the latest Oxide', 5);
-    frmOxide.btnInstallUpdateClick(frmOxide.btnInstallUpdate);
-    Sleep(500);
-    while frmOxide.FIsInstallingOxide do
-      Application.ProcessMessages;
-  end;
-
-  // Execute Before Server Start
-  if rsmConfig.Misc.ExecuteBeforeServerStart then
-  begin
-    if not TFile.Exists(rsmConfig.Misc.ExecuteBeforeServerStartFilePath) then
+    if not TFile.Exists(rustDedicatedExe) and Assigned(Sender) and (Sender is TButton) then
     begin
-      if Assigned(Sender) and (Sender is TButton) then
-        ShowMessageBox('File "' + rsmConfig.Misc.ExecuteBeforeServerStartFilePath + '" does not exists. Cannot execute before server start.', 'Execute Before Start', Self);
-
+      ShowMessageBox('Server not installed! Use the server installer to install the server.', 'Start Failure', Self);
       Exit;
     end;
 
-    try
-      CreateProcess(rsmConfig.Misc.ExecuteBeforeServerStartFilePath, '', '', True);
-    except
-      on E: Exception do
+  // Check if Server is running
+    if serverProcess.isRunning and Assigned(Sender) and (Sender is TButton) then
+    begin
+      ShowMessageBox('Server is already running with PID: ' + serverProcess.PID.ToString, 'Start Failure', Self);
+      Exit;
+    end;
+
+  // Check if server is being installed
+    if frmServerInstaller.FIsInstallingServer and Assigned(Sender) and (Sender is TButton) then
+    begin
+      ShowToast('ERROR: Server is being installed');
+      Exit;
+    end;
+
+  // Update Server
+    if rsmConfig.Misc.UpdateServerBeforeServerStart then
+    begin
+      frmServerInstaller.btnInstallServerClick(frmServerInstaller.btnInstallServer);
+    end;
+
+  // Install Oxide / uMod
+    if rsmConfig.Misc.InstallOxideBeforeServerStart then
+    begin
+      ShowToast('Installing the latest Oxide', 5);
+      frmOxide.btnInstallUpdateClick(frmOxide.btnInstallUpdate);
+      Sleep(500);
+      while frmOxide.FIsInstallingOxide do
+        Application.ProcessMessages;
+    end;
+
+  // Execute Before Server Start
+    if rsmConfig.Misc.ExecuteBeforeServerStart then
+    begin
+      if not TFile.Exists(rsmConfig.Misc.ExecuteBeforeServerStartFilePath) then
       begin
         if Assigned(Sender) and (Sender is TButton) then
-        begin
-          ShowMessage('[TfrmMain.btnStartServerClick] Failed to execute before server start. ' + E.ClassName + E.Message);
-        end;
+          ShowMessageBox('File "' + rsmConfig.Misc.ExecuteBeforeServerStartFilePath + '" does not exists. Cannot execute before server start.', 'Execute Before Start', Self);
+
         Exit;
       end;
+
+      try
+        CreateProcess(rsmConfig.Misc.ExecuteBeforeServerStartFilePath, '', '', True);
+      except
+        on E: Exception do
+        begin
+          if Assigned(Sender) and (Sender is TButton) then
+          begin
+            ShowMessage('[TfrmMain.btnStartServerClick] Failed to execute before server start. ' + E.ClassName + E.Message);
+          end;
+          Exit;
+        end;
+      end;
     end;
-  end;
 
   // Build Params
-  var slParams := TStringList.Create;
-  try
+    var slParams := TStringList.Create;
+    try
     // Console Mode
-    slParams.Add('-batchmode -nographics -silent-crashes ^');
+      slParams.Add('-batchmode -nographics -silent-crashes ^');
 
     // Server Identity
-    slParams.Add('+server.identity "rsm" ^');
+      slParams.Add('+server.identity "rsm" ^');
 
     // Server Game Mode
-    slParams.Add('+server.gamemode "' + serverConfig.GameMode.GameModeName + '" ^');
+      slParams.Add('+server.gamemode "' + serverConfig.GameMode.GameModeName + '" ^');
 
     // Server Map
-    if not (serverConfig.Map.MapIndex = lstMapCustom.Index) then
-      slParams.Add('+server.level "' + serverConfig.Map.MapName + '" ^')
-    else
-      slParams.Add('+server.levelurl "' + serverConfig.Map.CustomMapURL + '" ^');
-    slParams.Add('+server.seed ' + serverConfig.Map.MapSeed.ToString + ' ^');
-    slParams.Add('+server.worldsize ' + serverConfig.Map.MapSize.ToString + ' ^');
+      if not (serverConfig.Map.MapIndex = lstMapCustom.Index) then
+        slParams.Add('+server.level "' + serverConfig.Map.MapName + '" ^')
+      else
+        slParams.Add('+server.levelurl "' + serverConfig.Map.CustomMapURL + '" ^');
+      slParams.Add('+server.seed ' + serverConfig.Map.MapSeed.ToString + ' ^');
+      slParams.Add('+server.worldsize ' + serverConfig.Map.MapSize.ToString + ' ^');
 
     // Networking - Server
-    slParams.Add('+server.ip ' + serverConfig.Networking.ServerIP + ' ^');
-    slParams.Add('+server.port ' + serverConfig.Networking.ServerPort.ToString + ' ^');
-    slParams.Add('+server.queryport ' + serverConfig.Networking.ServerQueryPort.ToString + ' ^');
+      slParams.Add('+server.ip ' + serverConfig.Networking.ServerIP + ' ^');
+      slParams.Add('+server.port ' + serverConfig.Networking.ServerPort.ToString + ' ^');
+      slParams.Add('+server.queryport ' + serverConfig.Networking.ServerQueryPort.ToString + ' ^');
 
     // Networking - RCON
-    slParams.Add('+rcon.ip ' + serverConfig.Networking.RconIP + ' ^');
-    slParams.Add('+rcon.port ' + serverConfig.Networking.RconPort.ToString + ' ^');
-    slParams.Add('+rcon.password ' + serverConfig.Networking.RconPassword + ' ^');
+      slParams.Add('+rcon.ip ' + serverConfig.Networking.RconIP + ' ^');
+      slParams.Add('+rcon.port ' + serverConfig.Networking.RconPort.ToString + ' ^');
+      slParams.Add('+rcon.password ' + serverConfig.Networking.RconPassword + ' ^');
 
     // Networking - Rust +
-    slParams.Add('+app.listenip ' + serverConfig.Networking.AppIP + ' ^');
-    slParams.Add('+app.port ' + serverConfig.Networking.AppPort.ToString + ' ^');
-    if not serverConfig.Networking.AppPublicIP.Trim.IsEmpty then
+      slParams.Add('+app.listenip ' + serverConfig.Networking.AppIP + ' ^');
+      slParams.Add('+app.port ' + serverConfig.Networking.AppPort.ToString + ' ^');
+      if not serverConfig.Networking.AppPublicIP.Trim.IsEmpty then
     // Dont add if empty
-      slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
+        slParams.Add('+app.publicip ' + serverConfig.Networking.AppPublicIP + '');
 
     // Networking - Misc
-    slParams.Add('+server.favoritesEndpoint "' + serverConfig.Networking.FavouritesListEndpoint + '" ^');
+      slParams.Add('+server.favoritesEndpoint "' + serverConfig.Networking.FavouritesListEndpoint + '" ^');
 
     // Debug Start
-    if (Sender is TButton) then
-    begin
-      // Check if debug start button is used
-      if ((Sender as TButton).Name = 'btnStartServerDebug') then
+      if (Sender is TButton) then
       begin
-        ShowMessage('WARNING: Debug start creates a debug_start.bat and executes it. This is used for when your server does not start and just closes. Do not permanently run your server with this.');
+      // Check if debug start button is used
+        if ((Sender as TButton).Name = 'btnStartServerDebug') then
+        begin
+          ShowMessage('WARNING: Debug start creates a debug_start.bat and executes it. This is used for when your server does not start and just closes. Do not permanently run your server with this.');
 
-        TFile.WriteAllText(TPath.Combine([rsmCore.Paths.GetRootDir, 'debug_start.bat']), rustDedicatedExe.QuotedString('"') + ' ' + slParams.Text + sLineBreak + 'pause');
+          TFile.WriteAllText(TPath.Combine([rsmCore.Paths.GetRootDir, 'debug_start.bat']), rustDedicatedExe.QuotedString('"') + ' ' + slParams.Text + sLineBreak + 'pause');
 
-        OpenURL(TPath.Combine([rsmCore.Paths.GetRootDir, 'debug_start.bat']));
+          OpenURL(TPath.Combine([rsmCore.Paths.GetRootDir, 'debug_start.bat']));
 
-        Exit;
+          Exit;
+        end;
       end;
-    end;
 
     // Start Server and Save PID
-    try
-      serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
-    except
-      on E: Exception do
-      begin
-        ShowMessage('[TfrmMain.btnStartServerClick] Create Process Failure: ' + E.ClassName + ': ' + E.Message);
-        raise E;
+      try
+        serverProcess.PID := CreateProcess(rustDedicatedExe, slParams.Text, serverConfig.Hostname, False);
+      except
+        on E: Exception do
+        begin
+          ShowMessage('[TfrmMain.btnStartServerClick] Create Process Failure: ' + E.ClassName + ': ' + E.Message);
+          raise E;
+        end;
       end;
-    end;
 
     // Save processs details
-    try
-      serverProcess.Save;
-    except
-      on E: Exception do
-      begin
-        if Assigned(Sender) then
-          ShowMessage('[TfrmMain.btnStartServerClick] Failed to save process ID. ' + E.ClassName + ': ' + E.Message);
+      try
+        serverProcess.Save;
+      except
+        on E: Exception do
+        begin
+          if Assigned(Sender) then
+            ShowMessage('[TfrmMain.btnStartServerClick] Failed to save process ID. ' + E.ClassName + ': ' + E.Message);
+        end;
       end;
-    end;
 
     // Apply affinity mask
-    try
-      var serverHandle := OpenProcess(PROCESS_ALL_ACCESS, False, serverProcess.PID);
       try
-        SetProcessAffinityMask(serverHandle, CombinedProcessorMask(serverConfig.ServerAffinity));
+        var serverHandle := OpenProcess(PROCESS_ALL_ACCESS, False, serverProcess.PID);
+        try
+          SetProcessAffinityMask(serverHandle, CombinedProcessorMask(serverConfig.ServerAffinity));
 
-        if Sender is TButton then
-          ShowToast('Server affinity applied.');
-      finally
-        CloseHandle(serverHandle);
+          if Sender is TButton then
+            ShowToast('Server affinity applied.');
+        finally
+          CloseHandle(serverHandle);
+        end;
+      except
+        on E: Exception do
+        begin
+          if Assigned(Sender) then
+            ShowMessage('[TfrmMain.btnStartServerClick] Failed to apply affinity mask. ' + E.ClassName + ': ' + E.Message);
+        end;
       end;
-    except
-      on E: Exception do
-      begin
-        if Assigned(Sender) then
-          ShowMessage('[TfrmMain.btnStartServerClick] Failed to apply affinity mask. ' + E.ClassName + ': ' + E.Message);
-      end;
+    finally
+      slParams.Free;
     end;
   finally
-    slParams.Free;
     FServerIsStarting := False;
   end;
 end;
