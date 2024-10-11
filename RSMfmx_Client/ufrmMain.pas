@@ -313,6 +313,7 @@ type
     btnMinimize: TSpeedButton;
     lblBorderTitle: TLabel;
     imgBorderIcon: TImage;
+    lnBorderTop: TLine;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -395,6 +396,7 @@ type
     procedure btnMinimizeClick(Sender: TObject);
     procedure rctnglBorderTopDblClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormActivate(Sender: TObject);
   private
     { Private Const }
   private
@@ -923,6 +925,12 @@ begin
   ShowServerInfo;
 end;
 
+procedure TfrmMain.FormActivate(Sender: TObject);
+begin
+  // Server Size
+  lblServerSizeValue.Text := ConvertBytes(GetDirSize(ExtractFileDir(ParamStr(0)), True));
+end;
+
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   var dlg := TfrmConfirmCloseToTray.Create(Self);
@@ -1053,9 +1061,6 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   ShowAppOnTaskbar;
-
-  // Server Size
-  lblServerSizeValue.Text := ConvertBytes(GetDirSize(ExtractFileDir(ParamStr(0)), True));
 end;
 
 procedure TfrmMain.CreateClasses;
@@ -1439,7 +1444,12 @@ end;
 procedure TfrmMain.rctnglBorderTopMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);
 begin
   if Button = TMouseButton.mbLeft then
+  begin
+    if Self.WindowState = TWindowState.wsMaximized then
+      Self.WindowState := TWindowState.wsNormal;
+
     StartWindowDrag;
+  end;
 end;
 
 procedure TfrmMain.ResetServerInfoValues;

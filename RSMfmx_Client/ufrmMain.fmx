@@ -12,6 +12,7 @@ object frmMain: TfrmMain
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
   OnCreate = FormCreate
   OnCloseQuery = FormCloseQuery
   OnDestroy = FormDestroy
@@ -63,14 +64,15 @@ object frmMain: TfrmMain
     Size.Height = 30.000000000000000000
     Size.PlatformDefault = False
     Stroke.Color = xFFED3B3B
+    Stroke.Thickness = 0.000000000000000000
     OnDblClick = rctnglBorderTopDblClick
     OnMouseDown = rctnglBorderTopMouseDown
     object btnClose: TSpeedButton
       Align = Right
       Position.X = 973.000000000000000000
-      Position.Y = 3.000000000000000000
+      Position.Y = 4.000000000000000000
       Size.Width = 24.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'stoptoolbutton'
       Text = 'Close'
@@ -80,9 +82,9 @@ object frmMain: TfrmMain
     object btnMaximize: TSpeedButton
       Align = Right
       Position.X = 949.000000000000000000
-      Position.Y = 3.000000000000000000
+      Position.Y = 4.000000000000000000
       Size.Width = 24.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'arrowuptoolbutton'
       Text = 'Maximize'
@@ -92,9 +94,9 @@ object frmMain: TfrmMain
     object btnMinimize: TSpeedButton
       Align = Right
       Position.X = 925.000000000000000000
-      Position.Y = 3.000000000000000000
+      Position.Y = 4.000000000000000000
       Size.Width = 24.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'arrowdowntoolbutton'
       Text = 'Maximize'
@@ -107,14 +109,14 @@ object frmMain: TfrmMain
       StyledSettings = [Family, FontColor]
       Margins.Left = 5.000000000000000000
       Position.X = 32.000000000000000000
-      Position.Y = 3.000000000000000000
-      Size.Width = 359.000000000000000000
-      Size.Height = 24.000000000000000000
+      Position.Y = 4.000000000000000000
+      Size.Width = 355.000000000000000000
+      Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
       TextSettings.WordWrap = False
-      Text = 'Rust Server Manager v3.1 [TEST BUILD] DATE: 2024.10.08'
+      Text = 'Rust Server Manager v3.1 [TEST BUILD] DATE: 2024.10.11'
       TabOrder = 3
     end
     object imgBorderIcon: TImage
@@ -162,11 +164,22 @@ object frmMain: TfrmMain
       Align = MostLeft
       HitTest = False
       Position.X = 3.000000000000000000
-      Position.Y = 3.000000000000000000
+      Position.Y = 4.000000000000000000
       Size.Width = 24.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Height = 23.000000000000000000
       Size.PlatformDefault = False
       WrapMode = Stretch
+    end
+    object lnBorderTop: TLine
+      Align = MostTop
+      LineType = Diagonal
+      Position.X = 3.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 994.000000000000000000
+      Size.Height = 1.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFD84545
+      Stroke.Thickness = 2.000000000000000000
     end
   end
   object rctnglBorderLeft: TRectangle
