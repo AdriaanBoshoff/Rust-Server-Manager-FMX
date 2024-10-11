@@ -6,7 +6,7 @@ uses
   System.IOUtils, System.DateUtils, System.SysUtils;
 
 type
-  TAutoWipeType = (awrOnce, awtDaily, awtWeekly, awtBiWeekly);
+  TAutoWipeType = (awtOnce, awtDaily, awtWeekly, awtBiWeekly);
 
 type
   TAutoWipeNewMap = record
@@ -33,7 +33,7 @@ type
   TAutoWipeManager = class
   private
     const
-      AutoWipeTypeString: TArray<string> = ['Once off', 'Daily', 'Weekly', 'Monthly'];
+      AutoWipeTypeString: TArray<string> = ['Once', 'Daily', 'Weekly', 'Bi-Weekly'];
   private
     function SaveFilePath: string;
   public
@@ -69,7 +69,7 @@ begin
   end;
 
   case autoWipe.wipeType of
-    awrOnce:
+    awtOnce:
       begin
         // TODO: Handle Auto Wipe
       end;
@@ -125,7 +125,7 @@ begin
   // Increment Next Wipe
   try
     case autoWipe.wipeType of
-      awrOnce:
+      awtOnce:
         begin
           autoWipe.nextWipe := IncYear(autoWipe.nextWipe, 99);
         end;
