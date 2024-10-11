@@ -16,8 +16,6 @@ object frameToastMessage: TframeToastMessage
     Size.PlatformDefault = False
     XRadius = 25.000000000000000000
     YRadius = 25.000000000000000000
-    OnMouseEnter = rctnglBGMouseEnter
-    OnMouseLeave = rctnglBGMouseLeave
     object floataniFade: TFloatAnimation
       Duration = 2.000000000000000000
       OnFinish = floataniFadeFinish

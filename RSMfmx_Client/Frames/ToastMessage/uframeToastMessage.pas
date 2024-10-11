@@ -14,8 +14,6 @@ type
     floataniFade: TFloatAnimation;
     lytOverlayControls: TLayout;
     procedure floataniFadeFinish(Sender: TObject);
-    procedure rctnglBGMouseEnter(Sender: TObject);
-    procedure rctnglBGMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,16 +65,6 @@ procedure TframeToastMessage.floataniFadeFinish(Sender: TObject);
 begin
   // When Fade is finished then free toast message
   Self.Release;
-end;
-
-procedure TframeToastMessage.rctnglBGMouseEnter(Sender: TObject);
-begin
-  Self.floataniFade.Pause := True;
-end;
-
-procedure TframeToastMessage.rctnglBGMouseLeave(Sender: TObject);
-begin
-  Self.floataniFade.Pause := False;
 end;
 
 end.
