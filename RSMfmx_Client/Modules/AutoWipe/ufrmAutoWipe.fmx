@@ -2,7 +2,7 @@ object frmAutoWipe: TfrmAutoWipe
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  BorderStyle = Single
+  BorderStyle = ToolWindow
   Caption = 'Auto Wipe'
   ClientHeight = 496
   ClientWidth = 719
@@ -58,7 +58,7 @@ object frmAutoWipe: TfrmAutoWipe
       TabOrder = 0
       Text = 'Add New'
       TextSettings.Trimming = None
-      OnClick = btnSaveClick
+      OnClick = btnAddAutoWipeClick
     end
   end
   object tlbHeader: TToolBar
@@ -86,17 +86,5 @@ object frmAutoWipe: TfrmAutoWipe
     Size.PlatformDefault = False
     TabOrder = 4
     TabPosition = PlatformDefault
-  end
-  object lblComingSoon: TLabel
-    Align = Client
-    StyledSettings = [Family, FontColor]
-    Size.Width = 719.000000000000000000
-    Size.Height = 406.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 36.000000000000000000
-    TextSettings.Font.StyleExt = {00060000000100000004000000}
-    TextSettings.HorzAlign = Center
-    Text = 'COMING SOON'
-    TabOrder = 6
   end
 end

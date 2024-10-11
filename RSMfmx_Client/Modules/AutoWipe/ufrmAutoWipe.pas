@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, ufrmAutoWipeItem;
 
 type
   TfrmAutoWipe = class(TForm)
@@ -16,9 +16,9 @@ type
     btnSave: TButton;
     tbcAutoWipes: TTabControl;
     btnAddAutoWipe: TButton;
-    lblComingSoon: TLabel;
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
+    procedure btnAddAutoWipeClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,6 +31,14 @@ type
 implementation
 
 {$R *.fmx}
+
+procedure TfrmAutoWipe.btnAddAutoWipeClick(Sender: TObject);
+begin
+  var tab := tbcAutoWipes.Add;
+  var wipe := TfrmAutoWipeItem.Create(tab);
+  while wipe.ChildrenCount > 0 do
+    wipe.Children[0].Parent := tab;
+end;
 
 procedure TfrmAutoWipe.btnCancelClick(Sender: TObject);
 begin
