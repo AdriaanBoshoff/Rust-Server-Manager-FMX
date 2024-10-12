@@ -33,7 +33,7 @@ implementation
 
 procedure TfrmConfirmCloseToTray.btnCancelClick(Sender: TObject);
 begin
-  Self.ModalResult := mrCancel; // Quit App
+  Self.ModalResult := mrCancel; // Cancel
 end;
 
 procedure TfrmConfirmCloseToTray.btnCloseToTrayClick(Sender: TObject);
