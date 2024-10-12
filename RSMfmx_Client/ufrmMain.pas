@@ -943,7 +943,9 @@ begin
       begin
         CanClose := False;
         Self.Hide;
-      end;
+      end
+  else
+    CanClose := False;
   end;
 end;
 
