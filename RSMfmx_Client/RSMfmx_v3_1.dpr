@@ -123,7 +123,8 @@ uses
   uMMDBIPAddress in 'Libs\MMDBReader\uMMDBIPAddress.pas',
   uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas',
   ufrmConfirmDialog in 'Forms\Dialogs\ConfirmDialog\ufrmConfirmDialog.pas' {frmConfirmDialog},
-  ufrmConfirmCloseToTray in 'Forms\Dialogs\CloseToTray\ufrmConfirmCloseToTray.pas' {frmConfirmCloseToTray};
+  ufrmConfirmCloseToTray in 'Forms\Dialogs\CloseToTray\ufrmConfirmCloseToTray.pas' {frmConfirmCloseToTray},
+  ufrmAutoWipeItem in 'Modules\AutoWipe\ufrmAutoWipeItem.pas' {frmAutoWipeItem};
 
 {$R *.res}
 

@@ -2,59 +2,102 @@ object frmAutoWipeItem: TfrmAutoWipeItem
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 424
-  ClientWidth = 669
+  ClientHeight = 671
+  ClientWidth = 589
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
-  object lytClient: TLayout
+  object vrtscrlbxClient: TVertScrollBox
     Align = Client
-    Size.Width = 669.000000000000000000
-    Size.Height = 424.000000000000000000
+    Padding.Left = 10.000000000000000000
+    Padding.Top = 1.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Size.Width = 589.000000000000000000
+    Size.Height = 661.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
-    object lytEnabled: TLayout
+    TabOrder = 0
+    Viewport.Width = 589.000000000000000000
+    Viewport.Height = 661.000000000000000000
+    object rctnglEnabled: TRectangle
       Align = MostTop
-      Margins.Left = 10.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
+      Fill.Color = xFF1F222A
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 5.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 5.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 649.000000000000000000
-      Size.Height = 30.000000000000000000
+      Position.Y = 1.000000000000000000
+      Size.Width = 569.000000000000000000
+      Size.Height = 35.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 3
-      object chkEnabled: TCheckBox
+      Stroke.Color = claNull
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      object swtchEnabled: TSwitch
         Align = Left
-        StyledSettings = [Family, Size, FontColor]
-        Size.Width = 80.000000000000000000
-        Size.Height = 30.000000000000000000
+        IsChecked = False
+        Position.X = 10.000000000000000000
+        Position.Y = 7.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 0
-        Text = 'Enabled'
+        TabOrder = 1
+      end
+      object lblEnabledHeader: TLabel
+        Align = Left
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Margins.Left = 5.000000000000000000
+        Position.X = 55.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 44.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
         TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'Enabled'
+        TabOrder = 2
+      end
+      object btnEditTitle: TButton
+        Align = Right
+        Position.X = 479.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Edit Title'
+        TextSettings.Trimming = None
       end
     end
-    object lytDescription: TLayout
+    object rctnglDescription: TRectangle
       Align = Top
-      Margins.Left = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
+      Fill.Color = xFF1F222A
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 5.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 5.000000000000000000
+      Margins.Top = 10.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 50.000000000000000000
-      Size.Width = 649.000000000000000000
-      Size.Height = 30.000000000000000000
+      Position.Y = 46.000000000000000000
+      Size.Width = 569.000000000000000000
+      Size.Height = 35.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
+      Stroke.Color = claNull
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
       object lblDescription: TLabel
         Align = Left
         AutoSize = True
         StyledSettings = [Family, Size, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 5.000000000000000000
         Size.Width = 66.000000000000000000
-        Size.Height = 30.000000000000000000
+        Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         TextSettings.WordWrap = False
@@ -66,45 +109,59 @@ object frmAutoWipeItem: TfrmAutoWipeItem
         Align = Client
         TabOrder = 1
         Margins.Left = 5.000000000000000000
-        Size.Width = 578.000000000000000000
-        Size.Height = 30.000000000000000000
+        Size.Width = 478.000000000000000000
+        Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TextPrompt = 'Wipe Description'
       end
     end
-    object grpInterval: TGroupBox
+    object rctnglInterval: TRectangle
       Align = Top
+      Fill.Color = xFF1F222A
       Padding.Left = 10.000000000000000000
-      Padding.Top = 20.000000000000000000
+      Padding.Top = 10.000000000000000000
       Padding.Right = 10.000000000000000000
-      Padding.Bottom = 10.000000000000000000
-      Margins.Left = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
+      Padding.Bottom = 5.000000000000000000
+      Margins.Top = 10.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 90.000000000000000000
-      Size.Width = 649.000000000000000000
-      Size.Height = 170.000000000000000000
+      Position.Y = 91.000000000000000000
+      Size.Width = 569.000000000000000000
+      Size.Height = 135.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Interval'
-      TabOrder = 1
+      Stroke.Color = claNull
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      object lblInterval: TLabel
+        Align = MostTop
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 16.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {04060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'Interval'
+        TabOrder = 0
+      end
       object lytIntervalType: TLayout
         Align = Top
         Position.X = 10.000000000000000000
-        Position.Y = 20.000000000000000000
-        Size.Width = 629.000000000000000000
+        Position.Y = 26.000000000000000000
+        Size.Width = 549.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 43
+        TabOrder = 42
         object rbIntervalOnce: TRadioButton
           Align = Left
           GroupName = 'interval'
-          IsChecked = True
           Size.Width = 70.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 3
           Text = 'Once'
+          OnChange = OnIntervalChange
         end
         object rbIntervalDaily: TRadioButton
           Align = Left
@@ -115,6 +172,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
           Size.PlatformDefault = False
           TabOrder = 2
           Text = 'Daily'
+          OnChange = OnIntervalChange
         end
         object rbIntervalWeekly: TRadioButton
           Align = Left
@@ -125,6 +183,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
           Size.PlatformDefault = False
           TabOrder = 1
           Text = 'Weekly'
+          OnChange = OnIntervalChange
         end
         object rbIntervalBiWeekly: TRadioButton
           Align = Left
@@ -135,135 +194,273 @@ object frmAutoWipeItem: TfrmAutoWipeItem
           Size.PlatformDefault = False
           TabOrder = 0
           Text = 'Bi-Weekyl'
+          OnChange = OnIntervalChange
         end
       end
-      object grpDay: TGroupBox
+      object lytIntervalDay: TLayout
         Align = Top
-        Padding.Left = 10.000000000000000000
-        Padding.Top = 10.000000000000000000
-        Padding.Right = 10.000000000000000000
-        Padding.Bottom = 10.000000000000000000
         Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 55.000000000000000000
-        Size.Width = 629.000000000000000000
-        Size.Height = 103.000000000000000000
+        Position.Y = 61.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
-        Text = 'Day'
-        TabOrder = 42
-        object lytIntervalDay: TLayout
-          Align = Top
-          Margins.Top = 10.000000000000000000
-          Position.X = 10.000000000000000000
-          Position.Y = 20.000000000000000000
-          Size.Width = 609.000000000000000000
+        TabOrder = 43
+        object rbIntervalMon: TRadioButton
+          Align = Left
+          GroupName = 'intervalDay'
+          IsChecked = True
+          Size.Width = 55.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 42
-          object rbIntervalMon: TRadioButton
-            Align = Left
-            GroupName = 'intervalDay'
-            IsChecked = True
-            Size.Width = 55.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 6
-            Text = 'Mon'
-          end
-          object rbIntervalTue: TRadioButton
-            Align = Left
-            GroupName = 'intervalDay'
-            Position.X = 55.000000000000000000
-            Size.Width = 55.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 5
-            Text = 'Tue'
-          end
-          object rbIntervalWed: TRadioButton
-            Align = Left
-            GroupName = 'intervalDay'
-            Position.X = 110.000000000000000000
-            Size.Width = 55.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 4
-            Text = 'Wed'
-          end
-          object rbIntervalThur: TRadioButton
-            Align = Left
-            GroupName = 'intervalDay'
-            Position.X = 165.000000000000000000
-            Size.Width = 55.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 3
-            Text = 'Thur'
-          end
-          object rbIntervalFri: TRadioButton
-            Align = Left
-            GroupName = 'intervalDay'
-            Position.X = 220.000000000000000000
-            Size.Width = 55.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 2
-            Text = 'Fri'
-          end
-          object rbIntervalSat: TRadioButton
-            Align = Left
-            GroupName = 'intervalDay'
-            Position.X = 275.000000000000000000
-            Size.Width = 55.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 1
-            Text = 'Sat'
-          end
-          object rbIntervalSun: TRadioButton
-            Align = Left
-            GroupName = 'intervalDay'
-            Position.X = 330.000000000000000000
-            Size.Width = 55.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 0
-            Text = 'Sun'
-          end
+          TabOrder = 6
+          Text = 'Mon'
         end
-        object lytIntervalTime: TLayout
-          Align = Top
-          Margins.Top = 10.000000000000000000
-          Position.X = 10.000000000000000000
-          Position.Y = 60.000000000000000000
-          Size.Width = 609.000000000000000000
+        object rbIntervalTue: TRadioButton
+          Align = Left
+          GroupName = 'intervalDay'
+          Position.X = 55.000000000000000000
+          Size.Width = 55.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 44
-          object lblIntervalTime: TLabel
-            Align = Left
-            AutoSize = True
-            StyledSettings = [Family, Size, FontColor]
-            Size.Width = 30.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.StyleExt = {00060000000000000004000000}
-            TextSettings.WordWrap = False
-            Text = 'Time:'
-            TabOrder = 0
-          end
-          object tmdtInterval: TTimeEdit
-            Format = 'hh:nn'
-            Time = 0.948367141203703700
-            Align = Left
-            Margins.Left = 5.000000000000000000
-            Position.X = 35.000000000000000000
-            Size.Width = 100.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.HorzAlign = Center
-            TabOrder = 1
-          end
+          TabOrder = 5
+          Text = 'Tue'
+        end
+        object rbIntervalWed: TRadioButton
+          Align = Left
+          GroupName = 'intervalDay'
+          Position.X = 110.000000000000000000
+          Size.Width = 55.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          Text = 'Wed'
+        end
+        object rbIntervalThur: TRadioButton
+          Align = Left
+          GroupName = 'intervalDay'
+          Position.X = 165.000000000000000000
+          Size.Width = 55.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = 'Thur'
+        end
+        object rbIntervalFri: TRadioButton
+          Align = Left
+          GroupName = 'intervalDay'
+          Position.X = 220.000000000000000000
+          Size.Width = 55.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Fri'
+        end
+        object rbIntervalSat: TRadioButton
+          Align = Left
+          GroupName = 'intervalDay'
+          Position.X = 275.000000000000000000
+          Size.Width = 55.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Sat'
+        end
+        object rbIntervalSun: TRadioButton
+          Align = Left
+          GroupName = 'intervalDay'
+          Position.X = 330.000000000000000000
+          Size.Width = 55.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Sun'
+        end
+      end
+      object lytIntervalTime: TLayout
+        Align = Top
+        Margins.Top = 5.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 96.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 44
+        object lblIntervalTime: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Size.Width = 30.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'Time:'
+          TabOrder = 0
+        end
+        object tmdtInterval: TTimeEdit
+          Format = 'hh:nn'
+          Time = 0.948367141203703700
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Position.X = 35.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          TabOrder = 1
+        end
+      end
+    end
+    object rctnglWipeOptions: TRectangle
+      Align = Top
+      Fill.Color = xFF1F222A
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 10.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 5.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 236.000000000000000000
+      Size.Width = 569.000000000000000000
+      Size.Height = 105.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claNull
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      object lblWipeOptionsHeader: TLabel
+        Align = MostTop
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 16.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {04060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'Wipe Options:'
+        TabOrder = 0
+      end
+      object lytWipeBlueprints: TLayout
+        Align = Top
+        Margins.Top = 5.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 31.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object swtchWipeBlueprints: TSwitch
+          Align = Left
+          IsChecked = False
+          Position.Y = 5.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 20.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+        end
+        object lblWipeBlueprintsDescription: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Margins.Left = 5.000000000000000000
+          Position.X = 45.000000000000000000
+          Size.Width = 122.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'Wipe Player Blurprints'
+          TabOrder = 2
+        end
+      end
+      object lytDeleteSavFiles: TLayout
+        Align = Top
+        Margins.Top = 5.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 66.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object swtchDeleteSavFiles: TSwitch
+          Align = Left
+          IsChecked = False
+          Position.Y = 5.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 20.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+        end
+        object lblDeleteSavFilesDescription: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Family, Size, FontColor]
+          Margins.Left = 5.000000000000000000
+          Position.X = 45.000000000000000000
+          Size.Width = 85.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.WordWrap = False
+          Text = 'Delete .sav files'
+          TabOrder = 2
+        end
+      end
+    end
+    object rctnglDeleteFilesDirs: TRectangle
+      Align = Top
+      Fill.Color = xFF1F222A
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 10.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 351.000000000000000000
+      Size.Width = 569.000000000000000000
+      Size.Height = 243.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claNull
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      object lblDeleteFilesDirsHeader: TLabel
+        Align = MostTop
+        AutoSize = True
+        StyledSettings = [Family, Size, FontColor]
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 16.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {04060000000000000004000000}
+        TextSettings.WordWrap = False
+        Text = 'Delete Files && Dirs'
+        TabOrder = 0
+      end
+      object strngrdDeleteFilesDirs: TStringGrid
+        Align = Client
+        CanFocus = True
+        ClipChildren = True
+        Margins.Top = 10.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 197.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        RowCount = 5
+        Options = [AlternatingRowBackground, ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, AutoDisplacement]
+        Viewport.Width = 545.000000000000000000
+        Viewport.Height = 172.000000000000000000
+        object strngclmnFileName: TStringColumn
+          Header = 'File Name'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 150.000000000000000000
+        end
+        object strngclmnFilePath: TStringColumn
+          Header = 'File Path'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 266.000000000000000000
         end
       end
     end

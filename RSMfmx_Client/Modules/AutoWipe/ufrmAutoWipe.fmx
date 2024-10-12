@@ -5,7 +5,7 @@ object frmAutoWipe: TfrmAutoWipe
   BorderStyle = ToolWindow
   Caption = 'Auto Wipe'
   ClientHeight = 496
-  ClientWidth = 719
+  ClientWidth = 585
   Position = MainFormCenter
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
@@ -19,13 +19,13 @@ object frmAutoWipe: TfrmAutoWipe
     Padding.Bottom = 10.000000000000000000
     Position.Y = 446.000000000000000000
     ShowSizeGrip = False
-    Size.Width = 719.000000000000000000
+    Size.Width = 585.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     object btnCancel: TButton
       Align = Right
-      Position.X = 629.000000000000000000
+      Position.X = 495.000000000000000000
       Position.Y = 10.000000000000000000
       Size.Width = 80.000000000000000000
       Size.Height = 30.000000000000000000
@@ -38,7 +38,7 @@ object frmAutoWipe: TfrmAutoWipe
     object btnSave: TButton
       Align = Right
       Margins.Right = 10.000000000000000000
-      Position.X = 539.000000000000000000
+      Position.X = 405.000000000000000000
       Position.Y = 10.000000000000000000
       Size.Width = 80.000000000000000000
       Size.Height = 30.000000000000000000
@@ -62,14 +62,14 @@ object frmAutoWipe: TfrmAutoWipe
     end
   end
   object tlbHeader: TToolBar
-    Size.Width = 719.000000000000000000
+    Size.Width = 585.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
     object lblHeader: TLabel
       Align = Contents
       StyledSettings = [Family, FontColor]
-      Size.Width = 719.000000000000000000
+      Size.Width = 585.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 20.000000000000000000
@@ -81,7 +81,7 @@ object frmAutoWipe: TfrmAutoWipe
   end
   object tbcAutoWipes: TTabControl
     Align = Client
-    Size.Width = 719.000000000000000000
+    Size.Width = 585.000000000000000000
     Size.Height = 406.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
