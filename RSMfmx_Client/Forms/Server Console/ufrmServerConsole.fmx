@@ -3,18 +3,20 @@ object frmServerConsole: TfrmServerConsole
   Top = 0
   BorderIcons = [biSystemMenu, biMaximize]
   Caption = 'Server Console'
-  ClientHeight = 528
-  ClientWidth = 742
+  ClientHeight = 462
+  ClientWidth = 735
   Position = MainFormCenter
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   object statFooter: TStatusBar
-    Position.Y = 506.000000000000000000
+    Position.Y = 440.000000000000000000
     ShowSizeGrip = True
-    Size.Width = 742.000000000000000000
+    Size.Width = 735.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
@@ -28,6 +30,7 @@ object frmServerConsole: TfrmServerConsole
     Size.Height = 466.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
+    Visible = False
     Viewport.Width = 730.000000000000000000
     Viewport.Height = 458.000000000000000000
   end
@@ -36,7 +39,7 @@ object frmServerConsole: TfrmServerConsole
     Padding.Top = 5.000000000000000000
     Padding.Right = 5.000000000000000000
     Padding.Bottom = 5.000000000000000000
-    Size.Width = 742.000000000000000000
+    Size.Width = 735.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
@@ -53,5 +56,29 @@ object frmServerConsole: TfrmServerConsole
       Text = 'Auto Scroll'
       TextSettings.Font.StyleExt = {00060000000000000004000000}
     end
+    object btn1: TButton
+      Position.X = 328.000000000000000000
+      Position.Y = 8.000000000000000000
+      TabOrder = 1
+      Text = 'btn1'
+      TextSettings.Trimming = None
+      OnClick = btn1Click
+    end
+    object btn2: TButton
+      Position.X = 432.000000000000000000
+      Position.Y = 9.000000000000000000
+      TabOrder = 2
+      Text = 'btn2'
+      TextSettings.Trimming = None
+      OnClick = btn2Click
+    end
+  end
+  object lytConsole: TLayout
+    Align = Client
+    Size.Width = 735.000000000000000000
+    Size.Height = 400.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    OnResized = lytConsoleResized
   end
 end
