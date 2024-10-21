@@ -350,7 +350,6 @@ type
     procedure mniExitRSMClick(Sender: TObject);
     procedure mniOpenServerRootClick(Sender: TObject);
     procedure mniServerConsoleClick(Sender: TObject);
-    procedure mniSetTrayIconTitleClick(Sender: TObject);
     procedure mniTrayIconEnabledClick(Sender: TObject);
     procedure mniTrayIconExitRSMClick(Sender: TObject);
     procedure mniTrayIconStartServerClick(Sender: TObject);
@@ -1292,21 +1291,6 @@ end;
 procedure TfrmMain.mniServerConsoleClick(Sender: TObject);
 begin
   frmServerConsole.Show;
-end;
-
-procedure TfrmMain.mniSetTrayIconTitleClick(Sender: TObject);
-begin
-//  InputBox('Set Tray Icon Title', 'Change Tray Icon hover text: ', rsmConfig.TrayIcon.Title,
-//    procedure(const AResult: TModalResult; const AValue: string)
-//    begin
-//      if AResult = mrOk then
-//      begin
-//        rsmConfig.TrayIcon.Title := AValue;
-//        rsmConfig.SaveConfig;
-//
-//        dmTrayIcon.UpdateConfig;
-//      end;
-//    end);
 end;
 
 procedure TfrmMain.mniTrayIconEnabledClick(Sender: TObject);
