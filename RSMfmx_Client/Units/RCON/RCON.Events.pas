@@ -35,7 +35,7 @@ implementation
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
   RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager, uMisc,
-  uframeMessageBox, Rust.Manifest, udmChatDB, ufrmServerConsole;
+  uframeMessageBox, Rust.Manifest, udmChatDB, ufrmServerConsole, RSM.Config;
 
 { TRCONEvents }
 
@@ -67,12 +67,20 @@ begin
   // All messages received from rcon will be processed here.
 
   if not (rconMessage.aIdentifier > 0) then
+  begin
+    if not rsmConfig.RCON.HandleRCONConsoleMessages then
+      Exit;
+
     ServerConsoleLog(rconMessage.aMessage);
+  end;
 
 
   // Identifier = -1
   if rconMessage.aIdentifier = -1 then
   begin
+    if not rsmConfig.RCON.HandleOnChat then
+      Exit;
+
     // Type is "Chat"
     if rconMessage.aType = 'Chat' then
     begin
@@ -93,6 +101,9 @@ begin
   // ServerInfo
   if rconMessage.aIdentifier = RCON_ID_SERVERINFO then
   begin
+    if not rsmConfig.RCON.HandleOnServerInfo then
+      Exit;
+
     var serverInfo := TRCONParser.ParseServerInfo(rconMessage.aMessage);
     OnServerInfo(serverInfo);
 
@@ -109,6 +120,9 @@ begin
   // PlayerList
   if rconMessage.aIdentifier = RCON_ID_PLAYERLIST then
   begin
+    if not rsmConfig.RCON.HandleOnPlayerList then
+      Exit;
+
     OnPlayerList(TRCONParser.ParsePlayerList(rconMessage.aMessage));
 
     Exit;
@@ -117,6 +131,9 @@ begin
   // Server Manifest
   if rconMessage.aIdentifier = RCON_ID_MANIFEST then
   begin
+    if not rsmConfig.RCON.HandleOnServerManifest then
+      Exit;
+
     OnServerManifest(rconMessage.aMessage);
 
     Exit;

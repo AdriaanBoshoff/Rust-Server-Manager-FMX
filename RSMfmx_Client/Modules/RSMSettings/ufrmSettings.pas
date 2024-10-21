@@ -117,6 +117,14 @@ type
     btnBrowserRSMAPICertFile: TEllipsesEditButton;
     btnBrowseRSMAPIKeyFile: TEllipsesEditButton;
     lblRSMAPIDocumentation: TLabel;
+    tbtmRCONHandles: TTabItem;
+    tviRCONHandles: TTreeViewItem;
+    grpRCONEvents: TGroupBox;
+    chkRCONHandleOnChat: TCheckBox;
+    chkRCONHandleOnPlayerList: TCheckBox;
+    chkRCONHandleOnServerManifest: TCheckBox;
+    chkRCONHandleOnConsoleMessage: TCheckBox;
+    chkRCONHandleOnServerInfo: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
@@ -234,6 +242,15 @@ begin
   rsmConfig.TrayIcon.AppTitle := edtApplicationTitleValue.Text;
   rsmConfig.TrayIcon.Enabled := chkEnableTrayIcon.IsChecked;
   rsmConfig.TrayIcon.Title := edtTrayIconTitleValue.Text;
+
+  // RCON Handling
+  rsmConfig.RCON.HandleOnPlayerList := chkRCONHandleOnPlayerList.IsChecked;
+  rsmConfig.RCON.HandleOnChat := chkRCONHandleOnChat.IsChecked;
+  rsmConfig.RCON.HandleOnServerInfo := chkRCONHandleOnServerInfo.IsChecked;
+  rsmConfig.RCON.HandleOnServerManifest := chkRCONHandleOnServerManifest.IsChecked;
+  rsmConfig.RCON.HandleRCONConsoleMessages := chkRCONHandleOnConsoleMessage.IsChecked;
+
+  // Save
   rsmConfig.SaveConfig;
 
   // Title & Tray Icon
@@ -426,6 +443,13 @@ begin
   edtApplicationTitleValue.Text := rsmConfig.TrayIcon.AppTitle;
   edtTrayIconTitleValue.Text := rsmConfig.TrayIcon.Title;
   chkEnableTrayIcon.IsChecked := rsmConfig.TrayIcon.Enabled;
+
+  // RCON Handling
+  chkRCONHandleOnPlayerList.IsChecked := rsmConfig.RCON.HandleOnPlayerList;
+  chkRCONHandleOnChat.IsChecked := rsmConfig.RCON.HandleOnChat;
+  chkRCONHandleOnServerInfo.IsChecked := rsmConfig.RCON.HandleOnServerInfo;
+  chkRCONHandleOnServerManifest.IsChecked := rsmConfig.RCON.HandleOnServerManifest;
+  chkRCONHandleOnConsoleMessage.IsChecked := rsmConfig.RCON.HandleRCONConsoleMessages;
 end;
 
 procedure TfrmSettings.tvNavChange(Sender: TObject);

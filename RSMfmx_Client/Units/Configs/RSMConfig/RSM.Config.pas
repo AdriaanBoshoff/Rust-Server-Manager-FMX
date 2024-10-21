@@ -87,6 +87,15 @@ type
         MapServer: TRSMConfigMapServer;
         RSMAPI: TRSMConfigAPIServer;
       end;
+    // RCON Events Handle
+    type
+      TRSMConfigRCONEvents = record
+        HandleOnPlayerList: Boolean;
+        HandleOnChat: Boolean;
+        HandleOnServerInfo: Boolean;
+        HandleOnServerManifest: Boolean;
+        HandleRCONConsoleMessages: Boolean;
+      end;
   public
     { Public Variables }
     UI: TRSMConfigIU;
@@ -96,6 +105,7 @@ type
     APIKeys: TRSMConfigAPIKeys;
     LoginTokens: TRSMConfigLoginTokens;
     Services: TRSMConfigServices;
+    RCON: TRSMConfigRCONEvents;
   public
     { Public Methods }
     constructor Create;
@@ -172,6 +182,13 @@ begin
   Self.Services.RSMAPI.TLSPassword := '';
   Self.Services.RSMAPI.APIKey := GenerateAPIKey;
   Self.Services.RSMAPI.AutoStart := False;
+
+  // RCON Handles
+  Self.RCON.HandleOnPlayerList := True;
+  Self.RCON.HandleOnChat := True;
+  Self.RCON.HandleOnServerInfo := True;
+  Self.RCON.HandleOnServerManifest := True;
+  Self.RCON.HandleRCONConsoleMessages := True;
 
   // Load Config
   Self.LoadConfig;

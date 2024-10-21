@@ -93,6 +93,13 @@ object frmSettings: TfrmSettings
         TabOrder = 0
         Text = 'Tray Icon && Title'
       end
+      object tviRCONHandles: TTreeViewItem
+        IsChecked = False
+        IsExpanded = False
+        IsSelected = False
+        TabOrder = 1
+        Text = 'RCON Handles'
+      end
     end
   end
   object tbcNav: TTabControl
@@ -100,7 +107,7 @@ object frmSettings: TfrmSettings
     Size.Width = 580.000000000000000000
     Size.Height = 444.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
@@ -535,7 +542,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 63.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -1062,7 +1069,7 @@ object frmSettings: TfrmSettings
               object edtRSMAPICertFile: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Right
-                TabOrder = 50
+                TabOrder = 51
                 TextSettings.HorzAlign = Center
                 Position.X = 204.000000000000000000
                 Position.Y = 10.000000000000000000
@@ -1167,7 +1174,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 91.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -1181,10 +1188,12 @@ object frmSettings: TfrmSettings
         Size.Width = 580.000000000000000000
         Size.Height = 420.000000000000000000
         Size.PlatformDefault = False
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
+          580s
+          396s
           580s
           396s)
         object tbtmTrayIconSettings: TTabItem
@@ -1192,7 +1201,7 @@ object frmSettings: TfrmSettings
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 68.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -1311,6 +1320,99 @@ object frmSettings: TfrmSettings
                 ParentShowHint = False
                 ShowHint = True
               end
+            end
+          end
+        end
+        object tbtmRCONHandles: TTabItem
+          CustomIcon = <
+            item
+            end>
+          TextSettings.Trimming = None
+          IsSelected = True
+          Size.Width = 99.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = ''
+          TabOrder = 0
+          Text = 'RCON Handles'
+          ExplicitSize.cx = 99.000000000000000000
+          ExplicitSize.cy = 24.000000000000000000
+          object grpRCONEvents: TGroupBox
+            Padding.Left = 10.000000000000000000
+            Padding.Top = 20.000000000000000000
+            Padding.Right = 10.000000000000000000
+            Padding.Bottom = 10.000000000000000000
+            Position.X = 6.000000000000000000
+            Position.Y = 8.000000000000000000
+            Size.Width = 232.000000000000000000
+            Size.Height = 125.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'RCON Events'
+            TabOrder = 0
+            object chkRCONHandleOnChat: TCheckBox
+              Align = Top
+              Hint = 'Enable / Disable RSM chat logging'
+              Position.X = 10.000000000000000000
+              Position.Y = 20.000000000000000000
+              Size.Width = 212.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 46
+              Text = 'Handle OnChat'
+              ParentShowHint = False
+              ShowHint = True
+            end
+            object chkRCONHandleOnPlayerList: TCheckBox
+              Align = Top
+              Hint = 'Enable / Disable the RSM player list'
+              Position.X = 10.000000000000000000
+              Position.Y = 39.000000000000000000
+              Size.Width = 212.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 45
+              Text = 'Handle OnPlayerList'
+              ParentShowHint = False
+              ShowHint = True
+            end
+            object chkRCONHandleOnServerManifest: TCheckBox
+              Align = Top
+              Hint = 'Enable / Disable RSM from reading the server manifest'
+              Position.X = 10.000000000000000000
+              Position.Y = 58.000000000000000000
+              Size.Width = 212.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 44
+              Text = 'Handle OnServerManifest'
+              ParentShowHint = False
+              ShowHint = True
+            end
+            object chkRCONHandleOnConsoleMessage: TCheckBox
+              Align = Top
+              Hint = 'Enable / Disable RSM from logging server console messages'
+              Position.X = 10.000000000000000000
+              Position.Y = 77.000000000000000000
+              Size.Width = 212.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 43
+              Text = 'Handle OnConsoleMessage'
+              ParentShowHint = False
+              ShowHint = True
+            end
+            object chkRCONHandleOnServerInfo: TCheckBox
+              Align = Top
+              Hint = 'Enable / Disable RSM from handling server info'
+              Position.X = 10.000000000000000000
+              Position.Y = 96.000000000000000000
+              Size.Width = 212.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 42
+              Text = 'Handle OnServerInfo'
+              ParentShowHint = False
+              ShowHint = True
             end
           end
         end
