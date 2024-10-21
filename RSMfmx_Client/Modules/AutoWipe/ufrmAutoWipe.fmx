@@ -75,7 +75,7 @@ object frmAutoWipe: TfrmAutoWipe
       TextSettings.Font.Size = 20.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
       TextSettings.HorzAlign = Center
-      Text = 'Configure Auto Wipe'
+      Text = 'Configure Auto Wipe (COMING SOON)'
       TabOrder = 1
     end
   end
