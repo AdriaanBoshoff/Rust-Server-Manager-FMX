@@ -27,6 +27,8 @@ type
     procedure DeleteRow(const RowID: Integer);
   end;
 
+function StringContains(const Str: string; const Values: TArray<string>): boolean;
+
 function GenerateAPIKey: string;
 
 procedure SaveToFile(const aText, aFile: string);
@@ -56,6 +58,20 @@ function SetupRestRequest(const Owner: TComponent): TRESTRequest;
 procedure SelectFileInExplorer(const Fn: string);
 
 implementation
+
+function StringContains(const Str: string; const Values: TArray<string>): boolean;
+begin
+  Result := False;
+
+  for var aValue in Values do
+  begin
+    if Str.Contains(aValue) then
+    begin
+      Result := True;
+      Break;
+    end;
+  end;
+end;
 
 function GenerateAPIKey: string;
 begin
