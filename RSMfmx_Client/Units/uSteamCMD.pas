@@ -73,15 +73,11 @@ begin
   startStr := startStr + Format(' +login %s', ['anonymous']);
   startStr := startStr + Format(' +app_update %d', [AppID]);
 
-  if not Beta.Trim.IsEmpty then
-    startStr := startStr + ' -beta ' + Beta
-  else
-  begin
-    // Delete app manifest file to get rid of previous beta selection
-    var appManifest := TPath.Combine([rsmCore.Paths.GetRootDir, 'steamapps', 'appmanifest_258550.acf']);
-    if TFile.Exists(appManifest) then
-      TFile.Delete(appManifest);
-  end;
+
+  // Delete steamapps folder
+  var steamAppsDir := TPath.Combine([rsmCore.Paths.GetRootDir, 'steamapps']);
+  if TDirectory.Exists(steamAppsDir) then
+    TDirectory.Delete(steamAppsDir, True);
 
   if VerifyFiles then
     startStr := startStr + ' -validate';
