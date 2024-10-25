@@ -192,19 +192,7 @@
         <DCCReference Include="Units\RCON\RCON.Parser.pas"/>
         <DCCReference Include="Units\uServerInfo.pas"/>
         <DCCReference Include="Units\PlayerManager\RSM.PlayerManager.pas"/>
-        <DCCReference Include="Modules\PlayerManager\ufrmPlayerManager.pas">
-            <Form>frmPlayerManager</Form>
-        </DCCReference>
-        <DCCReference Include="Modules\PlayerManager\FrameItems\uframePlayerItem.pas">
-            <Form>framePlayerItem</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Modules\PlayerManager\FrameItems\uframePlayerOptions.pas">
-            <Form>framePlayerOptions</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
         <DCCReference Include="Units\uMisc.pas"/>
-        <DCCReference Include="Libs\IPWho\IPWhoAPI.pas"/>
         <DCCReference Include="Modules\OxideuMod\ufrmOxide.pas">
             <Form>frmOxide</Form>
         </DCCReference>
@@ -364,6 +352,10 @@
         </DCCReference>
         <DCCReference Include="Modules\AutoWipe\ufrmAutoWipeItem.pas">
             <Form>frmAutoWipeItem</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Modules\PlayerManager\ufrmPlayerManager.pas">
+            <Form>frmPlayerManager</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>

@@ -24,11 +24,7 @@ uses
   RCON.Parser in 'Units\RCON\RCON.Parser.pas',
   uServerInfo in 'Units\uServerInfo.pas',
   RSM.PlayerManager in 'Units\PlayerManager\RSM.PlayerManager.pas',
-  ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager},
-  uframePlayerItem in 'Modules\PlayerManager\FrameItems\uframePlayerItem.pas' {framePlayerItem: TFrame},
-  uframePlayerOptions in 'Modules\PlayerManager\FrameItems\uframePlayerOptions.pas' {framePlayerOptions: TFrame},
   uMisc in 'Units\uMisc.pas',
-  IPWhoAPI in 'Libs\IPWho\IPWhoAPI.pas',
   ufrmOxide in 'Modules\OxideuMod\ufrmOxide.pas' {frmOxide},
   uframeServerDescriptionEditor in 'Frames\Dialogs\uframeServerDescriptionEditor.pas' {frameServerDescriptionEditor: TFrame},
   ufrmCarbonMod in 'Modules\CarbonMod\ufrmCarbonMod.pas' {frmCarbonMod},
@@ -124,7 +120,8 @@ uses
   uMMDBReader in 'Libs\MMDBReader\uMMDBReader.pas',
   ufrmConfirmDialog in 'Forms\Dialogs\ConfirmDialog\ufrmConfirmDialog.pas' {frmConfirmDialog},
   ufrmConfirmCloseToTray in 'Forms\Dialogs\CloseToTray\ufrmConfirmCloseToTray.pas' {frmConfirmCloseToTray},
-  ufrmAutoWipeItem in 'Modules\AutoWipe\ufrmAutoWipeItem.pas' {frmAutoWipeItem};
+  ufrmAutoWipeItem in 'Modules\AutoWipe\ufrmAutoWipeItem.pas' {frmAutoWipeItem},
+  ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager};
 
 {$R *.res}
 
