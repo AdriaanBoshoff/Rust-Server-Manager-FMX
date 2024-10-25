@@ -1051,9 +1051,9 @@ object frmSettings: TfrmSettings
                 Margins.Right = 10.000000000000000000
                 Margins.Bottom = 10.000000000000000000
                 Position.X = 514.000000000000000000
-                Position.Y = 15.000000000000000000
+                Position.Y = 10.000000000000000000
                 Size.Width = 40.000000000000000000
-                Size.Height = 20.000000000000000000
+                Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 50
               end

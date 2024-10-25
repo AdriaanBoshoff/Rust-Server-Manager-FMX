@@ -68,10 +68,7 @@ begin
 
   if not (rconMessage.aIdentifier > 0) then
   begin
-    if not rsmConfig.RCON.HandleRCONConsoleMessages then
-      Exit;
-
-   // ServerConsoleLog(rconMessage.aMessage);
+    // TODO: Handle Server Console output
   end;
 
 

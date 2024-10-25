@@ -94,7 +94,6 @@ type
         HandleOnChat: Boolean;
         HandleOnServerInfo: Boolean;
         HandleOnServerManifest: Boolean;
-        HandleRCONConsoleMessages: Boolean;
       end;
   public
     { Public Variables }
@@ -188,7 +187,6 @@ begin
   Self.RCON.HandleOnChat := True;
   Self.RCON.HandleOnServerInfo := True;
   Self.RCON.HandleOnServerManifest := True;
-  Self.RCON.HandleRCONConsoleMessages := True;
 
   // Load Config
   Self.LoadConfig;

@@ -248,7 +248,6 @@ begin
   rsmConfig.RCON.HandleOnChat := chkRCONHandleOnChat.IsChecked;
   rsmConfig.RCON.HandleOnServerInfo := chkRCONHandleOnServerInfo.IsChecked;
   rsmConfig.RCON.HandleOnServerManifest := chkRCONHandleOnServerManifest.IsChecked;
-  rsmConfig.RCON.HandleRCONConsoleMessages := chkRCONHandleOnConsoleMessage.IsChecked;
 
   // Save
   rsmConfig.SaveConfig;
@@ -449,7 +448,6 @@ begin
   chkRCONHandleOnChat.IsChecked := rsmConfig.RCON.HandleOnChat;
   chkRCONHandleOnServerInfo.IsChecked := rsmConfig.RCON.HandleOnServerInfo;
   chkRCONHandleOnServerManifest.IsChecked := rsmConfig.RCON.HandleOnServerManifest;
-  chkRCONHandleOnConsoleMessage.IsChecked := rsmConfig.RCON.HandleRCONConsoleMessages;
 end;
 
 procedure TfrmSettings.tvNavChange(Sender: TObject);
