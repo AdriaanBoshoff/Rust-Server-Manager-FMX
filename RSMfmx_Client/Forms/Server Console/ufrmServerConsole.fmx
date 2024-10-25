@@ -3,8 +3,8 @@ object frmServerConsole: TfrmServerConsole
   Top = 0
   BorderIcons = [biSystemMenu, biMaximize]
   Caption = 'Server Console'
-  ClientHeight = 462
-  ClientWidth = 735
+  ClientHeight = 486
+  ClientWidth = 794
   Position = MainFormCenter
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
@@ -14,71 +14,70 @@ object frmServerConsole: TfrmServerConsole
   OnDestroy = FormDestroy
   DesignerMasterStyle = 0
   object statFooter: TStatusBar
-    Position.Y = 440.000000000000000000
+    Position.Y = 464.000000000000000000
     ShowSizeGrip = True
-    Size.Width = 735.000000000000000000
+    Size.Width = 794.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-  end
-  object mmoServerConsole: TMemo
-    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-    DataDetectorTypes = []
-    ReadOnly = True
-    Align = Client
-    Size.Width = 742.000000000000000000
-    Size.Height = 466.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 1
-    Visible = False
-    Viewport.Width = 730.000000000000000000
-    Viewport.Height = 458.000000000000000000
   end
   object tlbHeader: TToolBar
     Padding.Left = 5.000000000000000000
     Padding.Top = 5.000000000000000000
     Padding.Right = 5.000000000000000000
     Padding.Bottom = 5.000000000000000000
-    Size.Width = 735.000000000000000000
+    Size.Width = 794.000000000000000000
     Size.Height = 40.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
-    object chkAutoScroll: TCheckBox
+    TabOrder = 1
+    object btnEmbed: TButton
       Align = Left
-      StyledSettings = [Family, Size, FontColor]
-      IsChecked = True
       Position.X = 5.000000000000000000
       Position.Y = 5.000000000000000000
-      Size.Width = 92.000000000000000000
+      Size.Width = 80.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Text = 'Auto Scroll'
-      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      Text = 'Embed'
+      TextSettings.Trimming = None
+      OnClick = btnEmbedClick
     end
-    object btn1: TButton
-      Position.X = 328.000000000000000000
-      Position.Y = 8.000000000000000000
+    object btnEject: TButton
+      Align = Left
+      Margins.Left = 5.000000000000000000
+      Position.X = 90.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 1
-      Text = 'btn1'
+      Text = 'Eject'
       TextSettings.Trimming = None
-      OnClick = btn1Click
+      OnClick = btnEjectClick
     end
-    object btn2: TButton
-      Position.X = 432.000000000000000000
-      Position.Y = 9.000000000000000000
-      TabOrder = 2
-      Text = 'btn2'
-      TextSettings.Trimming = None
-      OnClick = btn2Click
+    object lblExperimentalWarning: TLabel
+      Align = Left
+      AutoSize = True
+      StyledSettings = [Family, FontColor]
+      Margins.Left = 50.000000000000000000
+      Position.X = 220.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 246.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.WordWrap = False
+      Text = 'This feature is currently Experimental'
+      TabOrder = 3
     end
   end
   object lytConsole: TLayout
     Align = Client
-    Size.Width = 735.000000000000000000
-    Size.Height = 400.000000000000000000
+    Size.Width = 794.000000000000000000
+    Size.Height = 424.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 2
     OnResized = lytConsoleResized
   end
 end

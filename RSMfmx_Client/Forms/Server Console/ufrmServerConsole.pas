@@ -11,14 +11,13 @@ uses
 type
   TfrmServerConsole = class(TForm)
     statFooter: TStatusBar;
-    mmoServerConsole: TMemo;
     tlbHeader: TToolBar;
-    chkAutoScroll: TCheckBox;
-    btn1: TButton;
-    btn2: TButton;
+    btnEmbed: TButton;
+    btnEject: TButton;
     lytConsole: TLayout;
-    procedure btn1Click(Sender: TObject);
-    procedure btn2Click(Sender: TObject);
+    lblExperimentalWarning: TLabel;
+    procedure btnEmbedClick(Sender: TObject);
+    procedure btnEjectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lytConsoleResized(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -33,7 +32,7 @@ type
 var
   frmServerConsole: TfrmServerConsole;
 
-procedure ServerConsoleLog(const Text: string; const IncludeDTM: Boolean = True);
+//procedure ServerConsoleLog(const Text: string; const IncludeDTM: Boolean = True);
 
 implementation
 
@@ -44,28 +43,28 @@ uses
 {$R *.fmx}
 
 
-procedure ServerConsoleLog(const Text: string; const IncludeDTM: Boolean = True);
-begin
-  frmServerConsole.mmoServerConsole.BeginUpdate;
-  try
-    var logText := Text;
+//procedure ServerConsoleLog(const Text: string; const IncludeDTM: Boolean = True);
+//begin
+//  frmServerConsole.mmoServerConsole.BeginUpdate;
+//  try
+//    var logText := Text;
+//
+//    if IncludeDTM then
+//      logText := Format('[%s] %s', [FormatDateTime('yyyy-mm-dd', Now), logText]);
+//
+//    frmServerConsole.mmoServerConsole.Lines.Add(logText);
+//
+//    if frmServerConsole.mmoServerConsole.Lines.Count > 200 then
+//      frmServerConsole.mmoServerConsole.Lines.Delete(0);
+//  finally
+//    frmServerConsole.mmoServerConsole.EndUpdate;
+//  end;
+//
+//  if frmServerConsole.chkAutoScroll.IsChecked then
+//    frmServerConsole.mmoServerConsole.GoToTextEnd;
+//end;
 
-    if IncludeDTM then
-      logText := Format('[%s] %s', [FormatDateTime('yyyy-mm-dd', Now), logText]);
-
-    frmServerConsole.mmoServerConsole.Lines.Add(logText);
-
-    if frmServerConsole.mmoServerConsole.Lines.Count > 200 then
-      frmServerConsole.mmoServerConsole.Lines.Delete(0);
-  finally
-    frmServerConsole.mmoServerConsole.EndUpdate;
-  end;
-
-  if frmServerConsole.chkAutoScroll.IsChecked then
-    frmServerConsole.mmoServerConsole.GoToTextEnd;
-end;
-
-procedure TfrmServerConsole.btn1Click(Sender: TObject);
+procedure TfrmServerConsole.btnEmbedClick(Sender: TObject);
 begin
   if ConsoleHandle = 0 then
     ConsoleHandle := WinAPI.Windows.FindWindow(nil, PWideChar(serverConfig.Hostname));
@@ -97,7 +96,7 @@ begin
   //CloseHandle(externalHWND);
 end;
 
-procedure TfrmServerConsole.btn2Click(Sender: TObject);
+procedure TfrmServerConsole.btnEjectClick(Sender: TObject);
 begin
 
   WinAPI.Windows.SetParent(ConsoleHandle, 0);
@@ -129,7 +128,7 @@ end;
 
 procedure TfrmServerConsole.FormDestroy(Sender: TObject);
 begin
-  btn2Click(nil);
+  btnEjectClick(nil);
 end;
 
 procedure TfrmServerConsole.lytConsoleResized(Sender: TObject);
