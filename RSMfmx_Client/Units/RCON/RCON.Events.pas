@@ -34,8 +34,8 @@ implementation
 
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
-  RSM.PlayerManager, uframePlayerItem, ufrmPlayerManager, uMisc,
-  uframeMessageBox, Rust.Manifest, udmChatDB, ufrmServerConsole, RSM.Config;
+  RSM.PlayerManager, uMisc, uframeMessageBox, Rust.Manifest, udmChatDB,
+  ufrmServerConsole, RSM.Config, ufrmPlayerManager;
 
 { TRCONEvents }
 
@@ -59,7 +59,7 @@ begin
   PlayerManager.LoadOnlinePlayersFromArray(PlayerList);
 
   // Populate UI
-  frmPlayerManager.SearchOnlinePlayersUI(frmPlayerManager.edtSearchOnlinePlayers.Text);
+  frmPlayerManager.LoadPlayerList();
 end;
 
 procedure TRCONEvents.OnRconMessage(const rconMessage: TRCONMessage);
@@ -71,7 +71,7 @@ begin
     if not rsmConfig.RCON.HandleRCONConsoleMessages then
       Exit;
 
-    ServerConsoleLog(rconMessage.aMessage);
+   // ServerConsoleLog(rconMessage.aMessage);
   end;
 
 

@@ -440,13 +440,13 @@ var
 implementation
 
 uses
-  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller,
-  ufrmPlayerManager, uWinUtils, uServerProcess, RCON.Commands, RCON.Types,
-  RCON.Events, RCON.Parser, uMisc, ufrmOxide, uframeServerDescriptionEditor,
-  ufrmCarbonMod, ufrmPluginManager, Rest.Client, Rest.Types, uframeToastMessage,
-  ufrmAffinitySelect, uHelpers, ufrmLogs, ufrmServerConsole,
-  ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer, udmTrayIcon,
-  udmRSMAPI, ufrmAutoWipe, uAutoWipeManager, ufrmConfirmCloseToTray;
+  uServerConfig, RSM.Config, uframeMessageBox, ufrmServerInstaller, uWinUtils,
+  uServerProcess, RCON.Commands, RCON.Types, RCON.Events, RCON.Parser, uMisc,
+  ufrmOxide, uframeServerDescriptionEditor, ufrmCarbonMod, ufrmPluginManager,
+  Rest.Client, Rest.Types, uframeToastMessage, ufrmAffinitySelect, uHelpers,
+  ufrmLogs, ufrmServerConsole, ufrmAutoServerStartDlg, uGlobalConst,
+  ufrmSettings, udmMapServer, udmTrayIcon, udmRSMAPI, ufrmAutoWipe,
+  uAutoWipeManager, ufrmConfirmCloseToTray, ufrmPlayerManager;
 
 {$R *.fmx}
 
@@ -1321,9 +1321,6 @@ begin
   tbcNav.TabPosition := TTabPosition.None;
   tbcNav.TabIndex := tbtmNavServerControls.Index;
   lstNav.ItemIndex := lstServerControls.Index;
-
-  // Default Player Manager Items
-  frmPlayerManager.tbcMain.TabIndex := frmPlayerManager.tbtmOnlinePlayers.Index;
 {$ENDIF}
 end;
 
@@ -1795,7 +1792,6 @@ begin
   ResetServerInfoValues;
 
   // Clear Online Players
-  frmPlayerManager.ClearOnlinePlayersUI;
 end;
 
 procedure TfrmMain.wsClientRconError(Connection: TsgcWSConnection; const Error: string);

@@ -2,8 +2,8 @@ object frmPlayerManager: TfrmPlayerManager
   Left = 0
   Top = 0
   Caption = 'Player Manager'
-  ClientHeight = 508
-  ClientWidth = 770
+  ClientHeight = 427
+  ClientWidth = 695
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -11,108 +11,100 @@ object frmPlayerManager: TfrmPlayerManager
   DesignerMasterStyle = 0
   object tbcMain: TTabControl
     Align = Client
-    Size.Width = 770.000000000000000000
-    Size.Height = 508.000000000000000000
+    FullSize = True
+    Size.Width = 695.000000000000000000
+    Size.Height = 427.000000000000000000
     Size.PlatformDefault = False
     TabIndex = 0
     TabOrder = 0
-    TabPosition = PlatformDefault
+    TabPosition = Top
     Sizes = (
-      770s
-      484s)
+      695s
+      403s)
     object tbtmOnlinePlayers: TTabItem
       CustomIcon = <
         item
         end>
+      TextSettings.Trimming = None
       IsSelected = True
-      Size.Width = 96.000000000000000000
+      Size.Width = 695.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = ''
       TabOrder = 0
       Text = 'Online Players'
-      ExplicitSize.cx = 96.000000000000000000
+      ExplicitSize.cx = 695.000000000000000000
       ExplicitSize.cy = 24.000000000000000000
-      object vrtscrlbxOnlinePlayers: TVertScrollBox
+      object strngrdOnlinePlayers: TStringGrid
         Align = Client
-        Margins.Left = 5.000000000000000000
-        Margins.Top = 5.000000000000000000
-        Margins.Right = 5.000000000000000000
-        Margins.Bottom = 5.000000000000000000
-        Size.Width = 760.000000000000000000
-        Size.Height = 434.000000000000000000
+        CanFocus = True
+        ClipChildren = True
+        Size.Width = 695.000000000000000000
+        Size.Height = 365.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        Viewport.Width = 760.000000000000000000
-        Viewport.Height = 434.000000000000000000
-        object flwlytOnlinePlayers: TFlowLayout
-          Align = Top
-          Size.Width = 760.000000000000000000
-          Size.Height = 50.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          Justify = Left
-          JustifyLastLine = Left
-          FlowDirection = LeftToRight
-          VerticalGap = 5.000000000000000000
-          OnResized = flwlytOnlinePlayersResized
+        RowCount = 5
+        Options = [AlternatingRowBackground, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, AutoDisplacement]
+        Viewport.Width = 691.000000000000000000
+        Viewport.Height = 340.000000000000000000
+        object strngclmnSteamID: TStringColumn
+          Header = 'SteamID'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 130.000000000000000000
+        end
+        object strngclmnUsername: TStringColumn
+          Header = 'Username'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 160.000000000000000000
+        end
+        object strngclmnHealth: TStringColumn
+          Header = 'Health'
+          HeaderSettings.TextSettings.WordWrap = False
+        end
+        object strngclmnAddress: TStringColumn
+          Header = 'Address'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 120.000000000000000000
+        end
+        object strngclmnConnectedSeconds: TStringColumn
+          Header = 'Connected For'
+          HeaderSettings.TextSettings.WordWrap = False
+          Size.Width = 109.000000000000000000
         end
       end
-      object rctnglOnlinePlayerControls: TRectangle
+      object pnlOnlineHeader: TPanel
         Align = Top
-        Fill.Color = xFF1F222A
         Padding.Left = 5.000000000000000000
         Padding.Top = 5.000000000000000000
         Padding.Right = 5.000000000000000000
         Padding.Bottom = 5.000000000000000000
-        Margins.Left = 5.000000000000000000
-        Margins.Top = 5.000000000000000000
-        Margins.Right = 5.000000000000000000
-        Position.X = 5.000000000000000000
-        Position.Y = 5.000000000000000000
-        Size.Width = 760.000000000000000000
-        Size.Height = 35.000000000000000000
+        Size.Width = 695.000000000000000000
+        Size.Height = 38.000000000000000000
         Size.PlatformDefault = False
-        Stroke.Color = claNull
-        XRadius = 10.000000000000000000
-        YRadius = 10.000000000000000000
-        object btnRefreshOnlinePlayers: TSpeedButton
-          Align = Right
-          Position.X = 720.000000000000000000
-          Position.Y = 5.000000000000000000
-          Size.Width = 35.000000000000000000
-          Size.Height = 25.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'refreshtoolbutton'
-          Text = 'Refresh'
-          OnClick = btnRefreshOnlinePlayersClick
-        end
-        object lblSearchOnlinePlayersHeader: TLabel
-          Align = Left
-          AutoSize = True
-          StyledSettings = [Family, Size, FontColor]
-          Position.X = 5.000000000000000000
-          Position.Y = 5.000000000000000000
-          Size.Width = 40.000000000000000000
-          Size.Height = 25.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.WordWrap = False
-          Text = 'Search:'
-          TabOrder = 1
-        end
-        object edtSearchOnlinePlayers: TEdit
+        TabOrder = 1
+        object edtSearch: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Left
-          TabOrder = 2
-          Position.X = 50.000000000000000000
+          TabOrder = 0
+          Position.X = 5.000000000000000000
           Position.Y = 5.000000000000000000
-          Margins.Left = 5.000000000000000000
-          Size.Width = 300.000000000000000000
-          Size.Height = 25.000000000000000000
+          Size.Width = 288.000000000000000000
+          Size.Height = 28.000000000000000000
           Size.PlatformDefault = False
-          TextPrompt = 'Search Name, SteamID or IP Address'
-          OnTyping = edtSearchOnlinePlayersTyping
+          TextPrompt = 'Search'
+          OnTyping = edtSearchTyping
+        end
+        object btnRefresh: TSpeedButton
+          Align = Right
+          Position.X = 662.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 28.000000000000000000
+          Size.Height = 28.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'refreshtoolbutton'
+          Text = 'REFRESH'
+          TextSettings.Trimming = None
+          OnClick = btnRefreshClick
         end
       end
     end
