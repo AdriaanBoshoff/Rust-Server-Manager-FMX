@@ -107,7 +107,7 @@ object frmSettings: TfrmSettings
     Size.Width = 580.000000000000000000
     Size.Height = 444.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
@@ -122,7 +122,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 84.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -933,7 +933,7 @@ object frmSettings: TfrmSettings
               object edtRSMAPIHost: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Right
-                TabOrder = 51
+                TabOrder = 50
                 Text = '0.0.0.0'
                 TextSettings.HorzAlign = Center
                 Position.X = 404.000000000000000000
@@ -958,7 +958,7 @@ object frmSettings: TfrmSettings
               object nmbrbxRSMAPIPort: TNumberBox
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Right
-                TabOrder = 51
+                TabOrder = 50
                 Cursor = crIBeam
                 Min = 1.000000000000000000
                 Max = 999999.000000000000000000
@@ -999,7 +999,7 @@ object frmSettings: TfrmSettings
               object edtRSMAPIKey: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Right
-                TabOrder = 51
+                TabOrder = 50
                 ReadOnly = True
                 TextSettings.HorzAlign = Center
                 Position.X = 254.000000000000000000
@@ -1055,7 +1055,7 @@ object frmSettings: TfrmSettings
                 Size.Width = 40.000000000000000000
                 Size.Height = 20.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 51
+                TabOrder = 50
               end
             end
             object lstRSMAPITLSCertFile: TListBoxItem
@@ -1069,7 +1069,7 @@ object frmSettings: TfrmSettings
               object edtRSMAPICertFile: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Right
-                TabOrder = 51
+                TabOrder = 50
                 TextSettings.HorzAlign = Center
                 Position.X = 204.000000000000000000
                 Position.Y = 10.000000000000000000
@@ -1104,7 +1104,7 @@ object frmSettings: TfrmSettings
               object edtRSMAPIKeyFile: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Right
-                TabOrder = 51
+                TabOrder = 50
                 TextSettings.HorzAlign = Center
                 Position.X = 204.000000000000000000
                 Position.Y = 10.000000000000000000
@@ -1174,7 +1174,7 @@ object frmSettings: TfrmSettings
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 91.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
@@ -1274,7 +1274,7 @@ object frmSettings: TfrmSettings
               Size.Width = 540.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 43
+              TabOrder = 42
               object chkEnableTrayIcon: TCheckBox
                 Align = Left
                 Size.Width = 241.000000000000000000
@@ -1294,7 +1294,7 @@ object frmSettings: TfrmSettings
               Size.Width = 540.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 42
+              TabOrder = 41
               object lblTrayIconTitleHeader: TLabel
                 Align = MostLeft
                 AutoSize = True
@@ -1357,7 +1357,7 @@ object frmSettings: TfrmSettings
               Size.Width = 212.000000000000000000
               Size.Height = 19.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 46
+              TabOrder = 45
               Text = 'Handle OnChat'
               ParentShowHint = False
               ShowHint = True
@@ -1370,7 +1370,7 @@ object frmSettings: TfrmSettings
               Size.Width = 212.000000000000000000
               Size.Height = 19.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 45
+              TabOrder = 44
               Text = 'Handle OnPlayerList'
               ParentShowHint = False
               ShowHint = True
@@ -1383,7 +1383,7 @@ object frmSettings: TfrmSettings
               Size.Width = 212.000000000000000000
               Size.Height = 19.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 44
+              TabOrder = 43
               Text = 'Handle OnServerManifest'
               ParentShowHint = False
               ShowHint = True
@@ -1396,7 +1396,7 @@ object frmSettings: TfrmSettings
               Size.Width = 212.000000000000000000
               Size.Height = 19.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 43
+              TabOrder = 42
               Text = 'Handle OnConsoleMessage'
               ParentShowHint = False
               ShowHint = True
@@ -1409,7 +1409,7 @@ object frmSettings: TfrmSettings
               Size.Width = 212.000000000000000000
               Size.Height = 19.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 42
+              TabOrder = 41
               Text = 'Handle OnServerInfo'
               ParentShowHint = False
               ShowHint = True
