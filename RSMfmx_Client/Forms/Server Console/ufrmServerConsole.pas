@@ -71,7 +71,7 @@ begin
 
   if ConsoleHandle = 0 then
   begin
-    ShowMessage('Window not found');
+    ShowMessage('Unable to find server console window');
     Exit;
   end;
 
@@ -87,23 +87,24 @@ begin
   // Apply the style changes immediately
   SetWindowPos(ConsoleHandle, 0, 0, 0, 0, 0, SWP_NOMOVE or SWP_NOSIZE or SWP_NOZORDER or SWP_FRAMECHANGED);
 
+  // Embed
   WinAPI.Windows.SetParent(ConsoleHandle, FMX.platform.Win.FormToHWND(Self));
 
+  // Resize
   MoveWindow(ConsoleHandle, 0, 40, Trunc(lytConsole.Width), Trunc(lytConsole.Height), True);
-
-
 
   //CloseHandle(externalHWND);
 end;
 
 procedure TfrmServerConsole.btnEjectClick(Sender: TObject);
 begin
-
+  // Remove from RSM
   WinAPI.Windows.SetParent(ConsoleHandle, 0);
 
+  // Restore window to original state
   ShowWindow(ConsoleHandle, SW_RESTORE);
 
-   // Get the current window style
+  // Get the current window style
   var Style := GetWindowLong(ConsoleHandle, GWL_STYLE);
 
   // Restore the window borders, title bar, and resizing border
@@ -115,9 +116,11 @@ begin
   // Apply the style changes immediately
   SetWindowPos(ConsoleHandle, 0, 0, 0, 0, 0, SWP_NOMOVE or SWP_NOSIZE or SWP_NOZORDER or SWP_FRAMECHANGED);
 
-  MoveWindow(ConsoleHandle, 0, 40, Trunc(lytConsole.Width), Trunc(lytConsole.Height), True);
+  // Resize
+  MoveWindow(ConsoleHandle, 0, 40, 700, 400, True);
 
   CloseHandle(ConsoleHandle);
+
   ConsoleHandle := 0;
 end;
 
