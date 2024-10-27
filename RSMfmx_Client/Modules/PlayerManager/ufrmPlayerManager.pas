@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   ufrmMain, FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, System.Rtti,
-  FMX.Grid.Style, FMX.ScrollBox, FMX.Grid, FMX.Edit;
+  FMX.Grid.Style, FMX.ScrollBox, FMX.Grid, FMX.Edit, FMX.Menus;
 
 type
   TfrmPlayerManager = class(TForm)
@@ -21,8 +21,14 @@ type
     pnlOnlineHeader: TPanel;
     edtSearch: TEdit;
     btnRefresh: TSpeedButton;
+    pmOnlinePlayers: TPopupMenu;
+    mniKick: TMenuItem;
+    mniBan: TMenuItem;
     procedure btnRefreshClick(Sender: TObject);
     procedure edtSearchTyping(Sender: TObject);
+    procedure mniBanClick(Sender: TObject);
+    procedure mniKickClick(Sender: TObject);
+    procedure pmOnlinePlayersPopup(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,10 +65,7 @@ begin
 
     for var player in playerManager.onlinePlayers.Values do
     begin
-      if SearchText.Trim.IsEmpty
-        or player.SteamID.ToLower.Contains(SearchText.ToLower)
-        or player.DisplayName.ToLower.Contains(SearchText.ToLower)
-        or player.Address.Contains(SearchText) then
+      if SearchText.Trim.IsEmpty or player.SteamID.ToLower.Contains(SearchText.ToLower) or player.DisplayName.ToLower.Contains(SearchText.ToLower) or player.Address.Contains(SearchText) then
       begin
         strngrdOnlinePlayers.RowCount := strngrdOnlinePlayers.RowCount + 1;
         var I := strngrdOnlinePlayers.RowCount - 1;
@@ -77,6 +80,63 @@ begin
   finally
     strngrdOnlinePlayers.EndUpdate;
   end;
+end;
+
+procedure TfrmPlayerManager.mniBanClick(Sender: TObject);
+begin
+  // Get selected row
+  var I := strngrdOnlinePlayers.Row;
+
+  // Check if a row is selected
+  if I = -1 then
+    Abort;
+
+  // Get steamID and username
+  var SteamID := strngrdOnlinePlayers.Cells[strngclmnSteamID.Index, I];
+  var Username := strngrdOnlinePlayers.Cells[strngclmnUsername.Index, I];
+
+  // Ban
+  TRCON.BanPlayerID(SteamID, Username, 'Banned by admin', 0, frmMain.wsClientRcon);
+
+  // Refresh playerlist
+  btnRefreshClick(mniBan);
+end;
+
+procedure TfrmPlayerManager.mniKickClick(Sender: TObject);
+begin
+  // Get selected row
+  var I := strngrdOnlinePlayers.Row;
+
+  // Check if a row is selected
+  if I = -1 then
+    Abort;
+
+  // Get steamID and username
+  var SteamID := strngrdOnlinePlayers.Cells[strngclmnSteamID.Index, I];
+  var Username := strngrdOnlinePlayers.Cells[strngclmnUsername.Index, I];
+
+  // Kick
+  TRCON.KickPlayer(SteamID, 'Kicked by admin', 0, frmMain.wsClientRcon);
+
+  // Refresh playerlist
+  btnRefreshClick(mniKick);
+end;
+
+procedure TfrmPlayerManager.pmOnlinePlayersPopup(Sender: TObject);
+begin
+  // Get selected row
+  var I := strngrdOnlinePlayers.Row;
+
+  // Check if a row is selected
+  if I = -1 then
+    Abort;
+
+  // Get Username
+  var Username := strngrdOnlinePlayers.Cells[strngclmnUsername.Index, I];
+
+  // Modify Popup with username
+  mniKick.Text := 'Kick ' + Username;
+  mniBan.Text := 'Ban ' + Username;
 end;
 
 end.
