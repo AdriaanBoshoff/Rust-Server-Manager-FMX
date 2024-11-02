@@ -406,7 +406,8 @@ type
     FSkipUpdateMessage: Boolean;
     // Do Auto Restart
     FDoAutoRestart: boolean;
-    // Custom Window State
+    // OverrideClose
+    FOverrideClose: Boolean;
   private
     { Private declarations }
     // UI
@@ -595,6 +596,7 @@ end;
 procedure TfrmMain.btnOpenUpdaterClick(Sender: TObject);
 begin
   OpenURL('.\updtr.exe');
+  Self.FOverrideClose := True;
   Self.Close;
 end;
 
@@ -935,6 +937,12 @@ end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
+  if FOverrideClose then
+  begin
+    CanClose := True;
+    Exit;
+  end;
+
   var dlg := TfrmConfirmCloseToTray.Create(Self);
   case dlg.ShowModal of
     mrYes: // Quit App
@@ -944,7 +952,11 @@ begin
     mrOk: // Minimize to tray
       begin
         CanClose := False;
-        Self.Hide;
+
+        if rsmConfig.TrayIcon.Enabled then
+          Self.Hide
+        else
+          Self.WindowState := TWindowState.wsMinimized;
       end
   else
     CanClose := False;
@@ -957,6 +969,7 @@ begin
   FDoAutoRestart := False;
   FSkipUpdateMessage := False;
   FServerIsStarting := False;
+  FOverrideClose := False;
 
 {$IFDEF DEBUG}
   Self.Caption := 'RSMfmx v3.1 (DEBUG BUILD)';

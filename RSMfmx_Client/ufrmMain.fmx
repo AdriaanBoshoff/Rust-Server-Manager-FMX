@@ -3013,17 +3013,16 @@ object frmMain: TfrmMain
     end
     object lytUpdateAvailable: TLayout
       Align = Contents
-      Size.Width = 1000.000000000000000000
-      Size.Height = 600.000000000000000000
+      Size.Width = 990.000000000000000000
+      Size.Height = 595.000000000000000000
       Size.PlatformDefault = False
-      Visible = False
       TabOrder = 14
       object rctnglUpdateAvailibleBG: TRectangle
         Align = Contents
         Fill.Color = claBlack
         Opacity = 0.800000011920929000
-        Size.Width = 1000.000000000000000000
-        Size.Height = 600.000000000000000000
+        Size.Width = 990.000000000000000000
+        Size.Height = 595.000000000000000000
         Size.PlatformDefault = False
       end
       object pnlUpdateAvailableMain: TPanel

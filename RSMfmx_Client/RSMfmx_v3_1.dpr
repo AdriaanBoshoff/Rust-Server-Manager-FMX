@@ -137,6 +137,11 @@ begin
   {$IFDEF DEBUG}
  // ReportMemoryLeaksOnShutdown := True;
   Application.Title := 'RSMfmx v3.1 (DEBUG BUILD)';
+
+   // FastMM5
+  FastMM_MessageBoxEvents := FastMM_MessageBoxEvents + [mmetUnexpectedMemoryLeakSummary];
+  FastMM_LogToFileEvents := FastMM_LogToFileEvents + [mmetUnexpectedMemoryLeakSummary, mmetUnexpectedMemoryLeakDetail];
+
   {$ENDIF}
 
   {$IFDEF RELEASE}
@@ -144,9 +149,6 @@ begin
   Application.Title := 'RSMfmx v3.1';
   {$ENDIF}
 
-  // FastMM5
-  FastMM_MessageBoxEvents := FastMM_MessageBoxEvents + [mmetUnexpectedMemoryLeakSummary];
-  FastMM_LogToFileEvents := FastMM_LogToFileEvents + [mmetUnexpectedMemoryLeakSummary, mmetUnexpectedMemoryLeakDetail];
 
   Application.Initialize;
   Application.CreateForm(TfrmLicenseManager, frmLicenseManager);
