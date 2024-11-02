@@ -586,7 +586,10 @@ end;
 
 procedure TfrmMain.btnMinimizeClick(Sender: TObject);
 begin
-  Self.Hide;
+  if rsmConfig.TrayIcon.Enabled then
+    Self.Hide
+  else
+    Self.WindowState := TWindowState.wsMinimized;
 end;
 
 procedure TfrmMain.btnOpenUpdaterClick(Sender: TObject);
@@ -1052,7 +1055,8 @@ end;
 
 procedure TfrmMain.FormHide(Sender: TObject);
 begin
-  HideAppOnTaskbar;
+  if rsmConfig.TrayIcon.Enabled then
+    HideAppOnTaskbar;
 
   dmTrayIcon.trycnMain.BalloonTitle := 'RSMfmx v3.1';
   dmTrayIcon.trycnMain.BalloonHint := 'Running in background.';
@@ -1062,6 +1066,8 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   ShowAppOnTaskbar;
+
+  Self.WindowState := TWindowState.wsNormal;
 end;
 
 procedure TfrmMain.CreateClasses;
