@@ -3016,6 +3016,7 @@ object frmMain: TfrmMain
       Size.Width = 990.000000000000000000
       Size.Height = 595.000000000000000000
       Size.PlatformDefault = False
+      Visible = False
       TabOrder = 14
       object rctnglUpdateAvailibleBG: TRectangle
         Align = Contents
