@@ -123,7 +123,6 @@ type
     chkRCONHandleOnChat: TCheckBox;
     chkRCONHandleOnPlayerList: TCheckBox;
     chkRCONHandleOnServerManifest: TCheckBox;
-    chkRCONHandleOnConsoleMessage: TCheckBox;
     chkRCONHandleOnServerInfo: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
