@@ -114,7 +114,7 @@ object frameInstalledPlugin: TframeInstalledPlugin
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        Text = 'Open Config'
+        Text = 'Edit Config'
         TextSettings.Trimming = None
         OnClick = btnOpenConfigClick
       end

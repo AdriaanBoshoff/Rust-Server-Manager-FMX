@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Objects, FMX.Controls.Presentation, udmStyles, FMX.Layouts,
-  ufrmInstalledPlugins;
+  ufrmInstalledPlugins, ufrmMain;
 
 type
   TframeInstalledPlugin = class(TFrame)
@@ -43,14 +43,18 @@ type
 implementation
 
 uses
-  System.IOUtils, uWinUtils;
+  System.IOUtils, uWinUtils, ufrmSyntaxEditor;
 
 {$R *.fmx}
 
 procedure TframeInstalledPlugin.btnOpenConfigClick(Sender: TObject);
 begin
-  if TFile.Exists(FPluginInfo.Path) then
-    OpenURL(FPluginInfo.ConfigPath);
+//  if TFile.Exists(FPluginInfo.Path) then
+//    OpenURL(FPluginInfo.ConfigPath);
+  var editor := TfrmSyntaxEditor.Create(frmMain);
+  editor.mmoEditor.LoadFromFile(FPluginInfo.ConfigPath);
+  editor.FfilePath := FPluginInfo.ConfigPath;
+  editor.Show;
 end;
 
 procedure TframeInstalledPlugin.btnUninstallClick(Sender: TObject);

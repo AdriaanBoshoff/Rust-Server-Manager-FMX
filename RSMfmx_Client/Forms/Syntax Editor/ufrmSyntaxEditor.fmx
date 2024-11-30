@@ -1,0 +1,123 @@
+object frmSyntaxEditor: TfrmSyntaxEditor
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMaximize]
+  Caption = 'Syntax Editor'
+  ClientHeight = 499
+  ClientWidth = 800
+  StyleBook = dmStyles.styleRedRock
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  object pnlFooter: TPanel
+    Align = Bottom
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Position.Y = 459.000000000000000000
+    Size.Width = 800.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object btnCancel: TButton
+      Align = Right
+      Margins.Right = 25.000000000000000000
+      Position.X = 610.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Cancel'
+      TextSettings.Trimming = None
+      OnClick = btnCancelClick
+    end
+    object btnSave: TButton
+      Align = Right
+      Position.X = 715.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Save'
+      TextSettings.Trimming = None
+      OnClick = btnSaveClick
+    end
+  end
+  object mmoEditor: TTMSFNCMemo
+    AdaptToStyle = True
+    Color = xFF292D37
+    Align = Client
+    Size.Width = 800.000000000000000000
+    Size.Height = 459.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Font.Family = 'Consolas'
+    Font.Name = 'Consolas'
+    Theme = mtVisualStudioDark
+    Options.WordWrap = wwtOff
+    Options.WordWrapColumn = 80
+    CompletionList = <>
+    LanguageFileExtensionsMap = <
+      item
+        Language = mlBat
+        Extension = '.bat'
+      end
+      item
+        Language = mlCsharp
+        Extension = '.cs'
+      end
+      item
+        Language = mlCSS
+        Extension = '.css'
+      end
+      item
+        Language = mlHtml
+        Extension = '.html'
+      end
+      item
+        Language = mlJavascript
+        Extension = '.js'
+      end
+      item
+        Language = mlJSON
+        Extension = '.json'
+      end
+      item
+        Extension = '.pas'
+      end
+      item
+        Extension = '.dpr'
+      end
+      item
+        Extension = '.dfm'
+      end
+      item
+        Extension = '.fmx'
+      end
+      item
+        Extension = '.inc'
+      end
+      item
+        Extension = '.dproj'
+      end
+      item
+        Language = mlPlainText
+        Extension = '.txt'
+      end
+      item
+        Language = mlTypeScript
+        Extension = '.ts'
+      end
+      item
+        Language = mlXml
+        Extension = '.xml'
+      end>
+    ActiveSource = -1
+    Sources = <>
+  end
+end

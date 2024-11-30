@@ -358,6 +358,10 @@
             <Form>frmPlayerManager</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Forms\Syntax Editor\ufrmSyntaxEditor.pas">
+            <Form>frmSyntaxEditor</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="Modules\PluginManager\Plugin_Manager.md"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
