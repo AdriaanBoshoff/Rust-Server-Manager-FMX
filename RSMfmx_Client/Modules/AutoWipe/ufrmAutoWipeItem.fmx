@@ -2,7 +2,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 671
+  ClientHeight = 654
   ClientWidth = 589
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
@@ -17,11 +17,11 @@ object frmAutoWipeItem: TfrmAutoWipeItem
     Padding.Bottom = 10.000000000000000000
     Margins.Top = 10.000000000000000000
     Size.Width = 589.000000000000000000
-    Size.Height = 661.000000000000000000
+    Size.Height = 644.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     Viewport.Width = 589.000000000000000000
-    Viewport.Height = 661.000000000000000000
+    Viewport.Height = 644.000000000000000000
     object rctnglEnabled: TRectangle
       Align = MostTop
       Fill.Color = xFF1F222A
@@ -45,7 +45,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
         Size.Width = 40.000000000000000000
         Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
+        TabOrder = 2
       end
       object lblEnabledHeader: TLabel
         Align = Left
@@ -60,41 +60,14 @@ object frmAutoWipeItem: TfrmAutoWipeItem
         TextSettings.Font.StyleExt = {00060000000000000004000000}
         TextSettings.WordWrap = False
         Text = 'Enabled'
-        TabOrder = 2
-      end
-      object btnEditTitle: TButton
-        Align = Right
-        Position.X = 479.000000000000000000
-        Position.Y = 5.000000000000000000
-        Size.Width = 80.000000000000000000
-        Size.Height = 25.000000000000000000
-        Size.PlatformDefault = False
         TabOrder = 3
-        Text = 'Edit Title'
-        TextSettings.Trimming = None
       end
-    end
-    object rctnglDescription: TRectangle
-      Align = Top
-      Fill.Color = xFF1F222A
-      Padding.Left = 10.000000000000000000
-      Padding.Top = 5.000000000000000000
-      Padding.Right = 10.000000000000000000
-      Padding.Bottom = 5.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Position.X = 10.000000000000000000
-      Position.Y = 46.000000000000000000
-      Size.Width = 569.000000000000000000
-      Size.Height = 35.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = claNull
-      XRadius = 10.000000000000000000
-      YRadius = 10.000000000000000000
       object lblDescription: TLabel
         Align = Left
         AutoSize = True
         StyledSettings = [Family, Size, FontColor]
-        Position.X = 10.000000000000000000
+        Margins.Left = 50.000000000000000000
+        Position.X = 149.000000000000000000
         Position.Y = 5.000000000000000000
         Size.Width = 66.000000000000000000
         Size.Height = 25.000000000000000000
@@ -109,7 +82,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
         Align = Client
         TabOrder = 1
         Margins.Left = 5.000000000000000000
-        Size.Width = 478.000000000000000000
+        Size.Width = 339.000000000000000000
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TextPrompt = 'Wipe Description'
@@ -124,7 +97,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
       Padding.Bottom = 5.000000000000000000
       Margins.Top = 10.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 91.000000000000000000
+      Position.Y = 46.000000000000000000
       Size.Width = 569.000000000000000000
       Size.Height = 135.000000000000000000
       Size.PlatformDefault = False
@@ -321,7 +294,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
       Padding.Bottom = 5.000000000000000000
       Margins.Top = 10.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 236.000000000000000000
+      Position.Y = 191.000000000000000000
       Size.Width = 569.000000000000000000
       Size.Height = 105.000000000000000000
       Size.PlatformDefault = False
@@ -418,9 +391,9 @@ object frmAutoWipeItem: TfrmAutoWipeItem
       Padding.Bottom = 10.000000000000000000
       Margins.Top = 10.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 351.000000000000000000
+      Position.Y = 306.000000000000000000
       Size.Width = 569.000000000000000000
-      Size.Height = 243.000000000000000000
+      Size.Height = 266.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claNull
       XRadius = 10.000000000000000000
@@ -445,13 +418,13 @@ object frmAutoWipeItem: TfrmAutoWipeItem
         ClipChildren = True
         Margins.Top = 10.000000000000000000
         Size.Width = 549.000000000000000000
-        Size.Height = 197.000000000000000000
+        Size.Height = 220.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         RowCount = 5
         Options = [AlternatingRowBackground, ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, AutoDisplacement]
         Viewport.Width = 545.000000000000000000
-        Viewport.Height = 172.000000000000000000
+        Viewport.Height = 195.000000000000000000
         object strngclmnFileName: TStringColumn
           Header = 'File Name'
           HeaderSettings.TextSettings.WordWrap = False

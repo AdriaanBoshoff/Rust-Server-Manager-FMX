@@ -33,7 +33,6 @@ type
     rctnglEnabled: TRectangle;
     swtchEnabled: TSwitch;
     lblEnabledHeader: TLabel;
-    rctnglDescription: TRectangle;
     rctnglInterval: TRectangle;
     lblInterval: TLabel;
     rctnglWipeOptions: TRectangle;
@@ -41,7 +40,6 @@ type
     lytWipeBlueprints: TLayout;
     swtchWipeBlueprints: TSwitch;
     lblWipeBlueprintsDescription: TLabel;
-    btnEditTitle: TButton;
     lytDeleteSavFiles: TLayout;
     swtchDeleteSavFiles: TSwitch;
     lblDeleteSavFilesDescription: TLabel;
