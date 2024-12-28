@@ -1725,6 +1725,7 @@ begin
             mrOk:
               begin
                 btnStartServerClick(btnStartServer);
+                FDoAutoRestart := False;
               end;
             mrCancel:
               begin

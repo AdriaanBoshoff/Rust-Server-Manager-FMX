@@ -5110,10 +5110,14 @@ object frmMain: TfrmMain
     TLSOptions.Version = tlsUndefined
     TLSOptions.IOHandler = iohOpenSSL
     TLSOptions.OpenSSL_Options.APIVersion = oslAPI_1_0
+    TLSOptions.OpenSSL_Options.LegacyProvider.Enabled = False
+    TLSOptions.OpenSSL_Options.LegacyProvider.LibPath = oslpNone
     TLSOptions.OpenSSL_Options.LibPath = oslpNone
     TLSOptions.OpenSSL_Options.UnixSymLinks = oslsSymLinksDefault
+    TLSOptions.OpenSSL_Options.VersionMin = tlsUndefined
     TLSOptions.SChannel_Options.CertStoreName = scsnMY
     TLSOptions.SChannel_Options.CertStorePath = scspStoreCurrentUser
+    TLSOptions.SChannel_Options.UseLegacyCredentials = False
     Left = 96
     Top = 176
   end
