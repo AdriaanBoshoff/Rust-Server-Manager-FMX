@@ -121,8 +121,7 @@ uses
   ufrmConfirmDialog in 'Forms\Dialogs\ConfirmDialog\ufrmConfirmDialog.pas' {frmConfirmDialog},
   ufrmConfirmCloseToTray in 'Forms\Dialogs\CloseToTray\ufrmConfirmCloseToTray.pas' {frmConfirmCloseToTray},
   ufrmAutoWipeItem in 'Modules\AutoWipe\ufrmAutoWipeItem.pas' {frmAutoWipeItem},
-  ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager},
-  ufrmSyntaxEditor in 'Forms\Syntax Editor\ufrmSyntaxEditor.pas' {frmSyntaxEditor};
+  ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager};
 
 {$R *.res}
 

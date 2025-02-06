@@ -221,7 +221,7 @@ object frmMain: TfrmMain
         Size.Width = 710.000000000000000000
         Size.Height = 479.000000000000000000
         Size.PlatformDefault = False
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
@@ -246,7 +246,7 @@ object frmMain: TfrmMain
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 101.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -1126,7 +1126,7 @@ object frmMain: TfrmMain
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = False
+          IsSelected = True
           Size.Width = 92.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -1819,6 +1819,11 @@ object frmMain: TfrmMain
                     ItemData.Detail = 'weapontest'
                     TabOrder = 4
                     Text = 'Weapon Test'
+                  end
+                  object lstGameModePrimitve: TListBoxItem
+                    ItemData.Detail = 'primitive'
+                    TabOrder = 5
+                    Text = 'Primitve'
                   end
                 end
                 object lblServerGameModeHead: TLabel

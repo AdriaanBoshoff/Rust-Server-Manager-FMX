@@ -314,6 +314,7 @@ type
     lblBorderTitle: TLabel;
     imgBorderIcon: TImage;
     lnBorderTop: TLine;
+    lstGameModePrimitve: TListBoxItem;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -613,7 +614,7 @@ end;
 
 procedure TfrmMain.btnSaveServerConfigClick(Sender: TObject);
 begin
-  // General Config
+   // General Config
   serverConfig.Hostname := edtHostnameValue.Text;
   serverConfig.Tags := edtServerTagsValue.Text;
   serverConfig.Description := edtServerDescriptionValue.Text;
