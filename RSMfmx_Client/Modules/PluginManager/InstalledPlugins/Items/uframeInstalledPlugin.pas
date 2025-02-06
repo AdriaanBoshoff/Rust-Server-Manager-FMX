@@ -43,18 +43,19 @@ type
 implementation
 
 uses
-  System.IOUtils, uWinUtils, ufrmSyntaxEditor;
+  System.IOUtils, uWinUtils;
 
 {$R *.fmx}
 
 procedure TframeInstalledPlugin.btnOpenConfigClick(Sender: TObject);
 begin
-//  if TFile.Exists(FPluginInfo.Path) then
-//    OpenURL(FPluginInfo.ConfigPath);
-  var editor := TfrmSyntaxEditor.Create(frmMain);
-  editor.mmoEditor.LoadFromFile(FPluginInfo.ConfigPath);
-  editor.FfilePath := FPluginInfo.ConfigPath;
-  editor.Show;
+  if TFile.Exists(FPluginInfo.Path) then
+    OpenURL(FPluginInfo.ConfigPath);
+
+//  var editor := TfrmSyntaxEditor.Create(frmMain);
+//  editor.mmoEditor.LoadFromFile(FPluginInfo.ConfigPath);
+//  editor.FfilePath := FPluginInfo.ConfigPath;
+//  editor.Show;
 end;
 
 procedure TframeInstalledPlugin.btnUninstallClick(Sender: TObject);

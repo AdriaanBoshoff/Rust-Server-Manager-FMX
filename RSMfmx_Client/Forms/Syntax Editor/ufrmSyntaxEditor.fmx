@@ -5,6 +5,7 @@ object frmSyntaxEditor: TfrmSyntaxEditor
   Caption = 'Syntax Editor'
   ClientHeight = 499
   ClientWidth = 800
+  Position = MainFormCenter
   StyleBook = dmStyles.styleRedRock
   FormFactor.Width = 320
   FormFactor.Height = 480
