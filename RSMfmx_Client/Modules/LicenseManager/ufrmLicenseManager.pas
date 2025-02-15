@@ -72,6 +72,7 @@ begin
   if edtLicenseKey.Text.Trim.IsEmpty then
     Exit;
 
+  var response := '';
 
   // Check License Key
   TTask.Run(
@@ -86,80 +87,77 @@ begin
           end);
 
         var rest := TRESTRequest.Create(Self);
-        var licenseResp := Tv1CheckLicenseResp.Create;
-        var licenseReq := Tv1CheckLicenseReq.Create;
         try
           rest.Client := TRESTClient.Create(rest);
           rest.Response := TRESTResponse.Create(rest);
 
-          rest.Client.BaseURL := 'https://api.rustservermanager.com';
-          rest.Resource := '/v1/checkLicense';
+          rest.Client.BaseURL := 'https://rsm.rustservermanager.com';
+          rest.Resource := '/v3/licensecheck';
           rest.Method := TRESTRequestMethod.rmGET;
           rest.Client.RaiseExceptionOn500 := False;
+          rest.Client.UserAgent := 'RSMfmxv3';
 
-          licenseReq.LicenseKey := edtLicenseKey.Text.Trim;
+          rest.Params.AddItem('key', edtLicenseKey.Text, TRESTRequestParameterKind.pkQUERY);
 
-          rest.Body.Add(licenseReq.AsJSON(True), TRestContentType.ctAPPLICATION_JSON);
+          rest.Execute;
 
-          try
-            rest.Execute;
-          except
-            on E: Exception do
-            begin
-              TThread.Synchronize(TThread.Current,
-                procedure
-                begin
-                  ShowMessage('EXCEPTION: ' + sLineBreak + e.ClassName + ': ' + E.Message);
-                  edtLicenseKey.Enabled := True;
-                  btnCheck.Enabled := True;
-                end);
-
-              Exit;
-            end;
-          end;
-
-          if not rest.Response.StatusCode = 200 then
-          begin
-            TThread.Synchronize(TThread.Current,
-              procedure
-              begin
-                ShowMessage('Unable to verify License Key' + sLineBreak + rest.Response.StatusCode.ToString + ' - ' + rest.Response.StatusText);
-                edtLicenseKey.Enabled := True;
-                btnCheck.Enabled := True;
-              end);
-            Exit;
-          end;
-
-          licenseResp.FromJSON(rest.Response.Content);
-
-          if not licenseResp.Valid then
-          begin
-            TThread.Synchronize(TThread.Current,
-              procedure
-              begin
-                ShowMessage(licenseResp.Message);
-                edtLicenseKey.Enabled := True;
-                btnCheck.Enabled := True;
-              end);
-
-            Exit;
-          end;
+          response := rest.Response.Content;
 
           TThread.Synchronize(TThread.Current,
             procedure
             begin
-              TFile.WriteAllText(FLicenseFile, edtLicenseKey.Text.Trim);
+              // Bad Gateway - API Server is offline but nginx is online
+              if rest.Response.StatusCode = 502 then
+              begin
+                ShowMessage('Auth Server offline... Please join the discord to see the status');
+                Exit;
+              end;
 
-              Application.CreateForm(TfrmMain, frmMain);
-              Application.MainForm := frmMain;
-              frmMain.Show;
+              // 401 - Unauthorised
+              if rest.Response.StatusCode = 401 then
+              begin
+                ShowMessage(rest.Response.JSONValue.GetValue<string>('message'));
 
-              Self.Close;
+                Exit;
+              end;
+
+              // Response is OK so check the actual data returned from the server
+              if rest.Response.StatusCode = 200 then
+              begin
+                // License is valid
+                if rest.Response.JSONValue.GetValue<boolean>('result') then
+                begin
+                  TFile.WriteAllText(FLicenseFile, edtLicenseKey.Text.Trim);
+
+                  Application.CreateForm(TfrmMain, frmMain);
+                  Application.MainForm := frmMain;
+                  frmMain.Show;
+
+                  Self.Close;
+
+                  Exit;
+                end
+                else
+                begin
+                  // Invalid License. Show returned message from server
+                  ShowMessage(rest.Response.JSONValue.GetValue<string>('message'));
+
+                  Exit;
+                end;
+              end
+              else
+              begin
+                // Unhandled status code. Show full result
+                ShowMessage('ERROR: Unhandled Status code: ' + rest.Response.StatusCode.ToString + ' - ' + rest.Response.StatusText + sLineBreak + rest.Response.Content);
+
+                Exit;
+              end;
             end);
         finally
-          licenseReq.Free;
-          licenseResp.Free;
           rest.Free;
+
+          edtLicenseKey.Enabled := True;
+          btnCheck.Enabled := True;
         end;
       except
         on E: Exception do
@@ -167,10 +165,7 @@ begin
           TThread.Synchronize(TThread.Current,
             procedure
             begin
-              ShowMessage(E.ClassName + ': ' + E.Message);
-
-              edtLicenseKey.Enabled := True;
-              btnCheck.Enabled := True;
+              ShowMessage(E.ClassName + ': ' + E.Message + sLineBreak + response);
             end);
         end;
       end;
