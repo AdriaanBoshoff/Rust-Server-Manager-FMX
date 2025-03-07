@@ -92,7 +92,7 @@ begin
           rest.Response := TRESTResponse.Create(rest);
 
           rest.Client.BaseURL := 'https://rsm.rustservermanager.com';
-          rest.Resource := '/v3/licensecheck';
+          rest.Resource := '/rsm/v3/licensecheck';
           rest.Method := TRESTRequestMethod.rmGET;
           rest.Client.RaiseExceptionOn500 := False;
           rest.Client.UserAgent := 'RSMfmxv3';
