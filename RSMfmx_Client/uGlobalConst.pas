@@ -2,9 +2,13 @@ unit uGlobalConst;
 
 interface
 
-const UPDATE_ID = 1;
-CONST APP_VERSION = 'v2025.02.06';
+const
+  BUILD_ID = -2;
+
+const
+  APP_VERSION = 'v2025.03.09';
 
 implementation
 
 end.
+

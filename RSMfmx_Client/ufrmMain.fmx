@@ -3073,7 +3073,7 @@ object frmMain: TfrmMain
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
-          Text = 'Open Updater'
+          Text = 'Download'
           TextSettings.Font.Size = 16.000000000000000000
           TextSettings.Font.StyleExt = {00060000000000000004000000}
           TextSettings.Trimming = None

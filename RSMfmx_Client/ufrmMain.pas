@@ -596,9 +596,7 @@ end;
 
 procedure TfrmMain.btnOpenUpdaterClick(Sender: TObject);
 begin
-  OpenURL('.\updtr.exe');
-  Self.FOverrideClose := True;
-  Self.Close;
+  OpenURL('https://rsm.rustservermanager.com/rsm/v3/downloadlatestversion');
 end;
 
 procedure TfrmMain.btnPreviewMapClick(Sender: TObject);
@@ -1625,19 +1623,25 @@ begin
       try
         rest.Client := TRESTClient.Create(rest);
         rest.Response := TRESTResponse.Create(rest);
+        rest.Client.RaiseExceptionOn500 := False;
 
-        rest.Client.BaseURL := 'https://api.rustservermanager.com/v1/version';
+        rest.Client.BaseURL := 'https://rsm.rustservermanager.com/rsm/v3/latestversion';
+        rest.Client.UserAgent := 'RSMfmxv3';
 
         rest.Execute;
 
-        if rest.Response.StatusCode = 200 then
-        begin
-          if rest.Response.JSONValue.GetValue<string>('version') <> APP_VERSION then
+        TThread.Synchronize(nil,
+          procedure
           begin
-            lytUpdateAvailable.Visible := True;
-            lytUpdateAvailable.BringToFront;
-          end;
-        end;
+            if rest.Response.StatusCode = 200 then
+            begin
+              if rest.Response.JSONValue.GetValue<integer>('buildID') > BUILD_ID then
+              begin
+                lytUpdateAvailable.Visible := True;
+                lytUpdateAvailable.BringToFront;
+              end;
+            end;
+          end);
       finally
         rest.Free;
       end;
