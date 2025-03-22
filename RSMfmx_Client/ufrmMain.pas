@@ -315,6 +315,9 @@ type
     imgBorderIcon: TImage;
     lnBorderTop: TLine;
     lstGameModePrimitve: TListBoxItem;
+    lytServerInfoUptime: TLayout;
+    lblServerInfoUptimeHeader: TLabel;
+    lblServerInfoUptimeValue: TLabel;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);

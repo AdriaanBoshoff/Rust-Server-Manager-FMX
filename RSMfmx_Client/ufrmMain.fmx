@@ -2272,8 +2272,8 @@ object frmMain: TfrmMain
                 Size.Height = 215.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
-                Viewport.Width = 642.000000000000000000
-                Viewport.Height = 207.000000000000000000
+                Viewport.Width = 654.000000000000000000
+                Viewport.Height = 215.000000000000000000
               end
             end
           end
@@ -2461,7 +2461,7 @@ object frmMain: TfrmMain
               Position.Y = 5.000000000000000000
               Sides = [Bottom, Right]
               Size.Width = 210.000000000000000000
-              Size.Height = 311.000000000000000000
+              Size.Height = 338.000000000000000000
               Size.PlatformDefault = False
               Stroke.Color = claNull
               XRadius = 10.000000000000000000
@@ -2526,7 +2526,7 @@ object frmMain: TfrmMain
                 Size.Width = 190.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 11
+                TabOrder = 12
                 object lblQueuedHeader: TLabel
                   Align = Left
                   AutoSize = True
@@ -2563,7 +2563,7 @@ object frmMain: TfrmMain
                 Size.Width = 190.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 10
+                TabOrder = 11
                 object lblJoiningHeader: TLabel
                   Align = Left
                   AutoSize = True
@@ -2600,7 +2600,7 @@ object frmMain: TfrmMain
                 Size.Width = 190.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 9
+                TabOrder = 10
                 object lblNetworkInHeader: TLabel
                   Align = Left
                   AutoSize = True
@@ -2672,7 +2672,7 @@ object frmMain: TfrmMain
                 Size.Width = 190.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 8
+                TabOrder = 9
                 object lblServerFPSHeader: TLabel
                   Align = Left
                   AutoSize = True
@@ -2708,7 +2708,7 @@ object frmMain: TfrmMain
                 Size.Width = 190.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 7
+                TabOrder = 8
                 object lblServerProtocolHeader: TLabel
                   Align = Left
                   AutoSize = True
@@ -2780,7 +2780,7 @@ object frmMain: TfrmMain
                 Size.Width = 190.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 6
+                TabOrder = 7
                 object lblServerMemoryUsageHeader: TLabel
                   Align = Left
                   AutoSize = True
@@ -2816,7 +2816,7 @@ object frmMain: TfrmMain
                 Size.Width = 190.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 5
+                TabOrder = 6
                 object lblServerSizeHeader: TLabel
                   Align = Left
                   AutoSize = True
@@ -2881,6 +2881,42 @@ object frmMain: TfrmMain
                   TabOrder = 1
                 end
               end
+              object lytServerInfoUptime: TLayout
+                Align = Top
+                Position.X = 10.000000000000000000
+                Position.Y = 302.000000000000000000
+                Size.Width = 190.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 5
+                object lblServerInfoUptimeHeader: TLabel
+                  Align = Left
+                  AutoSize = True
+                  StyledSettings = [Family, Size, FontColor]
+                  Size.Width = 44.000000000000000000
+                  Size.Height = 25.000000000000000000
+                  Size.PlatformDefault = False
+                  TextSettings.Font.StyleExt = {00060000000000000004000000}
+                  TextSettings.WordWrap = False
+                  TextSettings.Trimming = None
+                  Text = 'Uptime:'
+                  TabOrder = 0
+                end
+                object lblServerInfoUptimeValue: TLabel
+                  Align = Right
+                  AutoSize = True
+                  StyledSettings = [Family, Size, Style]
+                  Position.X = 175.000000000000000000
+                  Size.Width = 15.000000000000000000
+                  Size.Height = 25.000000000000000000
+                  Size.PlatformDefault = False
+                  TextSettings.FontColor = claGray
+                  TextSettings.WordWrap = False
+                  TextSettings.Trimming = None
+                  Text = '---'
+                  TabOrder = 1
+                end
+              end
             end
             object rctnglServiceStatus: TRectangle
               Align = Top
@@ -2892,7 +2928,7 @@ object frmMain: TfrmMain
               Margins.Top = 5.000000000000000000
               Margins.Right = 5.000000000000000000
               Position.X = 5.000000000000000000
-              Position.Y = 321.000000000000000000
+              Position.Y = 348.000000000000000000
               Sides = []
               Size.Width = 210.000000000000000000
               Size.Height = 97.000000000000000000

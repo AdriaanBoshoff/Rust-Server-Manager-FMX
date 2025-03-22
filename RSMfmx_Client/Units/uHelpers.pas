@@ -174,7 +174,7 @@ begin
   M := (Seconds - D * 86400 - H * 3600) div 60;
   S := Seconds - D * 86400 - H * 3600 - M * 60;
 
-  Result := Format('%d days %d hrs %d mins %d secs', [D, H, M, S]);
+  Result := Format('%dd %dh %dm %ds', [D, H, M, S]);
 end;
 
 function TerminateProcessByID(ProcessID: cardinal): Boolean;

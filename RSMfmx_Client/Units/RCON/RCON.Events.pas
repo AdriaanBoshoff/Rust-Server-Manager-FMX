@@ -35,7 +35,7 @@ implementation
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
   RSM.PlayerManager, uMisc, uframeMessageBox, Rust.Manifest, udmChatDB,
-  ufrmServerConsole, RSM.Config, ufrmPlayerManager;
+  ufrmServerConsole, RSM.Config, ufrmPlayerManager, uHelpers;
 
 { TRCONEvents }
 
@@ -171,6 +171,9 @@ begin
 
     // Last Wipe
     frmMain.lblLastWipeValue.Text := FormatDateTime('yyyy/mm/dd hh:nn:ss', serverInfo.SaveCreatedTime);
+
+    // Uptime
+    frmMain.lblServerInfoUptimeValue.Text := SecToDaysTime(serverInfo.UpTime);
   except
     on E: Exception do
     begin
