@@ -94,6 +94,13 @@ begin
     Exit;
   end;
 
+  // Excluded Messages from plugins when responding to rcon messages
+  if rconMessage.aIdentifier > 1 then
+  begin
+    // Exclude Logger plugin
+    if rconMessage.aMessage.ToLower.Trim.StartsWith('[logger]') then
+      Exit;
+  end;
 
   // ServerInfo
   if rconMessage.aIdentifier = RCON_ID_SERVERINFO then
