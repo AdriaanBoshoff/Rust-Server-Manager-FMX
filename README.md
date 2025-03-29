@@ -5,7 +5,7 @@ Rewrite of the RSMfmx v3 project.
 ## Depends On
 
 * [sgcWebsockets](https://www.esegece.com/websockets)
-* Delphi 12.2 (Lower Untested. Basically needs Skia4Delphi)
+* Delphi 12.3 ([Delphi 12 CE](https://www.embarcadero.com/products/delphi/starter) should also work)
 
 ## Libs Embedded
 
