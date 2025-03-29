@@ -4,6 +4,8 @@
 
 Rust Server Manager allows you to create and manage dedicated Rust Game servers on windows within a GUI.
 
+Join the [RSMfmx Discord Server](https://discord.gg/HraUQhtUcN)
+
 ![Server Controls](media/ServerControls.png)
 
 ## Depends On
