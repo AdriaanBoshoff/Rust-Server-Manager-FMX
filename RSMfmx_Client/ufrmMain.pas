@@ -400,6 +400,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure mniDiscordClick(Sender: TObject);
     procedure mniGithubClick(Sender: TObject);
+    procedure lblAppVersionValueClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -1174,6 +1175,11 @@ procedure TfrmMain.InitVariables;
 begin
   // Default Value
   Self.FServerInfoExpandAfter := False;
+end;
+
+procedure TfrmMain.lblAppVersionValueClick(Sender: TObject);
+begin
+  OpenURL('https://github.com/AdriaanBoshoff/RSMfmx_v3.1/releases');
 end;
 
 procedure TfrmMain.lblAppVersionValueResized(Sender: TObject);

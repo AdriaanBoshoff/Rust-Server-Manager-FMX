@@ -3236,6 +3236,7 @@ object frmMain: TfrmMain
         object lblAppVersionValue: TLabel
           Align = MostRight
           AutoSize = True
+          Cursor = crHandPoint
           StyledSettings = [Family, Size, Style]
           Position.X = 54.000000000000000000
           Size.Width = 57.000000000000000000
@@ -3246,6 +3247,7 @@ object frmMain: TfrmMain
           TextSettings.Trimming = None
           Text = '2024.06.15'
           TabOrder = 0
+          OnClick = lblAppVersionValueClick
           OnResized = lblAppVersionValueResized
         end
         object lblAppVersionHeader: TLabel
