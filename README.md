@@ -1,6 +1,6 @@
 # RSMfmx_v3.1
 
-## Free Since 2025.03.30 [Why???]()
+## Free Since 2025.03.30 [Why???](https://github.com/AdriaanBoshoff/RSMfmx_v3.1/blob/main/why-free.md)
 
 Rust Server Manager allows you to create and manage dedicated Rust Game servers on windows within a GUI.
 
