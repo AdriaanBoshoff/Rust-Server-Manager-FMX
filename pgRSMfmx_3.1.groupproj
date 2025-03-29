@@ -6,9 +6,6 @@
         <Projects Include="RSMfmx_Client\RSMfmx_v3_1.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="RSMfmx_Client_Updater\updtr.dproj">
-            <Dependencies/>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -26,23 +23,14 @@
     <Target Name="RSMfmx_v3_1:Make">
         <MSBuild Projects="RSMfmx_Client\RSMfmx_v3_1.dproj" Targets="Make"/>
     </Target>
-    <Target Name="updtr">
-        <MSBuild Projects="RSMfmx_Client_Updater\updtr.dproj"/>
-    </Target>
-    <Target Name="updtr:Clean">
-        <MSBuild Projects="RSMfmx_Client_Updater\updtr.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="updtr:Make">
-        <MSBuild Projects="RSMfmx_Client_Updater\updtr.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="RSMfmx_v3_1;updtr"/>
+        <CallTarget Targets="RSMfmx_v3_1"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="RSMfmx_v3_1:Clean;updtr:Clean"/>
+        <CallTarget Targets="RSMfmx_v3_1:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="RSMfmx_v3_1:Make;updtr:Make"/>
+        <CallTarget Targets="RSMfmx_v3_1:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
