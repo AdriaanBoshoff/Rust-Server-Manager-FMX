@@ -352,7 +352,6 @@ type
     procedure mniClearRSMCacheClick(Sender: TObject);
     procedure mniExitRSMClick(Sender: TObject);
     procedure mniOpenServerRootClick(Sender: TObject);
-    procedure mniServerConsoleClick(Sender: TObject);
     procedure mniTrayIconEnabledClick(Sender: TObject);
     procedure mniTrayIconExitRSMClick(Sender: TObject);
     procedure mniTrayIconStartServerClick(Sender: TObject);
@@ -447,7 +446,7 @@ uses
   uServerProcess, RCON.Commands, RCON.Types, RCON.Events, RCON.Parser, uMisc,
   ufrmOxide, uframeServerDescriptionEditor, ufrmCarbonMod, ufrmPluginManager,
   Rest.Client, Rest.Types, uframeToastMessage, ufrmAffinitySelect, uHelpers,
-  ufrmLogs, ufrmServerConsole, ufrmAutoServerStartDlg, uGlobalConst,
+  ufrmLogs, ufrmAutoServerStartDlg, uGlobalConst,
   ufrmSettings, udmMapServer, udmTrayIcon, udmRSMAPI, ufrmAutoWipe,
   uAutoWipeManager, ufrmConfirmCloseToTray, ufrmPlayerManager;
 
@@ -1302,11 +1301,6 @@ end;
 procedure TfrmMain.mniOpenServerRootClick(Sender: TObject);
 begin
   OpenURL(ExtractFileDir(ParamStr(0)));
-end;
-
-procedure TfrmMain.mniServerConsoleClick(Sender: TObject);
-begin
-  frmServerConsole.Show;
 end;
 
 procedure TfrmMain.mniTrayIconEnabledClick(Sender: TObject);

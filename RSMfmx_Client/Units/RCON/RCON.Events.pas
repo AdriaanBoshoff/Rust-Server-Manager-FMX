@@ -35,7 +35,7 @@ implementation
 uses
   RCON.Parser, ufrmMain, System.SysUtils, System.DateUtils, uServerInfo,
   RSM.PlayerManager, uMisc, uframeMessageBox, Rust.Manifest, udmChatDB,
-  ufrmServerConsole, RSM.Config, ufrmPlayerManager, uHelpers;
+  RSM.Config, ufrmPlayerManager, uHelpers;
 
 { TRCONEvents }
 

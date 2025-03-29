@@ -3169,7 +3169,6 @@ object frmMain: TfrmMain
       end
       object mniServerConsole: TMenuItem
         Text = 'Server Console'
-        OnClick = mniServerConsoleClick
       end
     end
     object pnlExperimentalWarning: TPanel

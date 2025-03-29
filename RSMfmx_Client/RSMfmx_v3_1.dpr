@@ -45,7 +45,6 @@ uses
   Rust.Manifest in 'Units\RustManifest\Rust.Manifest.pas',
   udmChatDB in 'DataModules\ChatDB\udmChatDB.pas' {dmChatDB: TDataModule},
   ufrmLogs in 'Modules\Logs\ufrmLogs.pas' {frmLogs},
-  ufrmServerConsole in 'Forms\Server Console\ufrmServerConsole.pas' {frmServerConsole},
   ufrmAutoServerStartDlg in 'Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas' {frmAutoServerStartDlg},
   uEndpointTypes in 'Units\RSM\uEndpointTypes.pas',
   uGlobalConst in 'uGlobalConst.pas',
@@ -154,7 +153,6 @@ begin
   Application.CreateForm(TdmStyles, dmStyles);
   Application.CreateForm(TdmIcons, dmIcons);
   Application.CreateForm(TdmChatDB, dmChatDB);
-  Application.CreateForm(TfrmServerConsole, frmServerConsole);
   Application.Run;
 end.
 

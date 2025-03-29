@@ -302,9 +302,6 @@
         <DCCReference Include="Modules\Logs\ufrmLogs.pas">
             <Form>frmLogs</Form>
         </DCCReference>
-        <DCCReference Include="Forms\Server Console\ufrmServerConsole.pas">
-            <Form>frmServerConsole</Form>
-        </DCCReference>
         <DCCReference Include="Forms\AutoServerStartDialog\ufrmAutoServerStartDlg.pas">
             <Form>frmAutoServerStartDlg</Form>
         </DCCReference>
