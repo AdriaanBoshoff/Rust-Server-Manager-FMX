@@ -26,3 +26,7 @@ Rewrite of the RSMfmx v3 project.
 6. (Optional) Install plugins.
 7. Configure server using server config editor.
 8. Start server via the server controls panel.
+
+## Misc
+
+Icons Provided by [icons8](https://icons8.com/)
