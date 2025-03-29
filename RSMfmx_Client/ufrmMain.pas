@@ -234,7 +234,6 @@ type
     lstLogs: TListBoxItem;
     imgLogsIcon: TImage;
     lblLogsHeader: TLabel;
-    mniServerConsole: TMenuItem;
     rctnglVersionInfo: TRectangle;
     lblServerInfoHeader: TLabel;
     lyt: TLayout;
