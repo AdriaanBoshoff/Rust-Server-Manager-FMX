@@ -3167,6 +3167,14 @@ object frmMain: TfrmMain
           OnClick = mniClearRSMCacheClick
         end
       end
+      object mniDiscord: TMenuItem
+        Text = 'Discord'
+        OnClick = mniDiscordClick
+      end
+      object mniGithub: TMenuItem
+        Text = 'Github'
+        OnClick = mniGithubClick
+      end
     end
     object pnlExperimentalWarning: TPanel
       Align = Top

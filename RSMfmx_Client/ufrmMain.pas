@@ -316,6 +316,8 @@ type
     lytServerInfoUptime: TLayout;
     lblServerInfoUptimeHeader: TLabel;
     lblServerInfoUptimeValue: TLabel;
+    mniDiscord: TMenuItem;
+    mniGithub: TMenuItem;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -396,6 +398,8 @@ type
     procedure rctnglBorderTopDblClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormActivate(Sender: TObject);
+    procedure mniDiscordClick(Sender: TObject);
+    procedure mniGithubClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -445,9 +449,9 @@ uses
   uServerProcess, RCON.Commands, RCON.Types, RCON.Events, RCON.Parser, uMisc,
   ufrmOxide, uframeServerDescriptionEditor, ufrmCarbonMod, ufrmPluginManager,
   Rest.Client, Rest.Types, uframeToastMessage, ufrmAffinitySelect, uHelpers,
-  ufrmLogs, ufrmAutoServerStartDlg, uGlobalConst,
-  ufrmSettings, udmMapServer, udmTrayIcon, udmRSMAPI, ufrmAutoWipe,
-  uAutoWipeManager, ufrmConfirmCloseToTray, ufrmPlayerManager;
+  ufrmLogs, ufrmAutoServerStartDlg, uGlobalConst, ufrmSettings, udmMapServer,
+  udmTrayIcon, udmRSMAPI, ufrmAutoWipe, uAutoWipeManager, ufrmConfirmCloseToTray,
+  ufrmPlayerManager;
 
 {$R *.fmx}
 
@@ -1292,9 +1296,19 @@ begin
     end);
 end;
 
+procedure TfrmMain.mniDiscordClick(Sender: TObject);
+begin
+  OpenURL('https://discord.gg/HraUQhtUcN');
+end;
+
 procedure TfrmMain.mniExitRSMClick(Sender: TObject);
 begin
   Self.Close;
+end;
+
+procedure TfrmMain.mniGithubClick(Sender: TObject);
+begin
+  OpenURL('https://github.com/AdriaanBoshoff/RSMfmx_v3.1');
 end;
 
 procedure TfrmMain.mniOpenServerRootClick(Sender: TObject);
