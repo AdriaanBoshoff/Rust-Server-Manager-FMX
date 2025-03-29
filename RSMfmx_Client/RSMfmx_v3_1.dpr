@@ -38,7 +38,6 @@ uses
   RSM.Core in 'Units\RSM\RSM.Core.pas',
   ufrmInstalledPlugins in 'Modules\PluginManager\InstalledPlugins\ufrmInstalledPlugins.pas' {frmInstalledPlugins},
   uframeInstalledPlugin in 'Modules\PluginManager\InstalledPlugins\Items\uframeInstalledPlugin.pas' {frameInstalledPlugin: TFrame},
-  ufrmLicenseManager in 'Modules\LicenseManager\ufrmLicenseManager.pas' {frmLicenseManager},
   uframeToastMessage in 'Frames\ToastMessage\uframeToastMessage.pas' {frameToastMessage: TFrame},
   ufrmAffinitySelect in 'Forms\Affinity Selector\ufrmAffinitySelect.pas' {frmSelectAffinity},
   uHelpers in 'Units\uHelpers.pas',
@@ -151,7 +150,7 @@ begin
 
 
   Application.Initialize;
-  Application.CreateForm(TfrmLicenseManager, frmLicenseManager);
+  Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TdmStyles, dmStyles);
   Application.CreateForm(TdmIcons, dmIcons);
   Application.CreateForm(TdmChatDB, dmChatDB);

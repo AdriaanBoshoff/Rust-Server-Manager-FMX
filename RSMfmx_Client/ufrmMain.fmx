@@ -32,12 +32,6 @@ object frmMain: TfrmMain
     Left = 96
     Top = 248
   end
-  object tmrCheckForUpdate: TTimer
-    Interval = 300000
-    OnTimer = tmrCheckForUpdateTimer
-    Left = 264
-    Top = 128
-  end
   object tmrAutoRestart: TTimer
     Enabled = False
     Interval = 10000
@@ -2272,8 +2266,8 @@ object frmMain: TfrmMain
                 Size.Height = 215.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
-                Viewport.Width = 654.000000000000000000
-                Viewport.Height = 215.000000000000000000
+                Viewport.Width = 642.000000000000000000
+                Viewport.Height = 207.000000000000000000
               end
             end
           end

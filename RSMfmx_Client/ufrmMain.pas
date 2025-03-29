@@ -196,7 +196,6 @@ type
     mniClearRSMCache: TMenuItem;
     pnlExperimentalWarning: TPanel;
     lblExperimentalWarning: TSkLabel;
-    tmrCheckForUpdate: TTimer;
     lytUpdateAvailable: TLayout;
     rctnglUpdateAvailibleBG: TRectangle;
     pnlUpdateAvailableMain: TPanel;
@@ -374,7 +373,6 @@ type
     procedure tmedtAutoRestart2Change(Sender: TObject);
     procedure tmedtAutoRestart3Change(Sender: TObject);
     procedure tmrAutoRestartTimer(Sender: TObject);
-    procedure tmrCheckForUpdateTimer(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
     procedure tmrServerInfoTimer(Sender: TObject);
     procedure wsClientRconConnect(Connection: TsgcWSConnection);
@@ -1007,9 +1005,6 @@ begin
   PopulateServerConfigUI;
   LoadRSMUIConfig;
 
-  // Check for Update
-  tmrCheckForUpdateTimer(tmrCheckForUpdate);
-
   // Auto Start Server when RSM starts
   if rsmConfig.Misc.StartServerOnRSMBoot then
   begin
@@ -1612,43 +1607,6 @@ begin
     wsClientRcon.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs.ToString);
     FDoAutoRestart := True;
   end;
-end;
-
-procedure TfrmMain.tmrCheckForUpdateTimer(Sender: TObject);
-begin
-  if FSkipUpdateMessage then
-    Exit;
-
-  TTask.Run(
-    procedure
-    begin
-      var rest := TRESTRequest.Create(Self);
-      try
-        rest.Client := TRESTClient.Create(rest);
-        rest.Response := TRESTResponse.Create(rest);
-        rest.Client.RaiseExceptionOn500 := False;
-
-        rest.Client.BaseURL := 'https://rsm.rustservermanager.com/rsm/v3/latestversion';
-        rest.Client.UserAgent := 'RSMfmxv3';
-
-        rest.Execute;
-
-        TThread.Synchronize(nil,
-          procedure
-          begin
-            if rest.Response.StatusCode = 200 then
-            begin
-              if rest.Response.JSONValue.GetValue<integer>('buildID') > BUILD_ID then
-              begin
-                lytUpdateAvailable.Visible := True;
-                lytUpdateAvailable.BringToFront;
-              end;
-            end;
-          end);
-      finally
-        rest.Free;
-      end;
-    end);
 end;
 
 procedure TfrmMain.tmrCheckServerRunningStatusTimer(Sender: TObject);
