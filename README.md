@@ -1,6 +1,8 @@
 # RSMfmx_v3.1
 
-Rewrite of the RSMfmx v3 project.
+Rust Server Manager allows you to create and manage dedicated Rust Game servers on windows within a GUI.
+
+![Server Controls](media/ServerControls.png)
 
 ## Depends On
 
