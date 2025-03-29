@@ -3238,6 +3238,7 @@ object frmMain: TfrmMain
           AutoSize = True
           Cursor = crHandPoint
           StyledSettings = [Family, Size, Style]
+          HitTest = True
           Position.X = 54.000000000000000000
           Size.Width = 57.000000000000000000
           Size.Height = 22.000000000000000000
