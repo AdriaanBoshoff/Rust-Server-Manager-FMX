@@ -1,4 +1,4 @@
-# RSMfmx_v3.1
+# Rust Server Manager FMX
 
 ## Free Since 2025.03.30 [Why???](https://github.com/AdriaanBoshoff/RSMfmx_v3.1/blob/main/why-free.md)
 
