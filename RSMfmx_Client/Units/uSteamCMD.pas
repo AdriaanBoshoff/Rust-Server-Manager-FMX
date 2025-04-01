@@ -79,6 +79,9 @@ begin
   if TDirectory.Exists(steamAppsDir) then
     TDirectory.Delete(steamAppsDir, True);
 
+  if not beta.Trim.IsEmpty then
+    startStr := startStr + ' -beta ' + Beta;
+
   if VerifyFiles then
     startStr := startStr + ' -validate';
 
