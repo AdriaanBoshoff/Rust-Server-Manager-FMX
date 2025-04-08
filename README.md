@@ -8,6 +8,10 @@ Join the [RSMfmx Discord Server](https://discord.gg/HraUQhtUcN)
 
 ![Server Controls](media/ServerControls.png)
 
+## ICS Branch
+
+This branch is an attempt to convert from sgcWebsockets to the [ICS](https://wiki.overbyte.eu/wiki/index.php/Main_Page) library.
+
 ## Depends On
 
 * [sgcWebsockets](https://www.esegece.com/websockets)
