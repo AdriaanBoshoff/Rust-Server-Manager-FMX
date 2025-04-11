@@ -14,8 +14,10 @@ This branch is an attempt to convert from sgcWebsockets to the [ICS](https://wik
 
 ## Depends On
 
-* [sgcWebsockets](https://www.esegece.com/websockets)
-* Delphi 12.3 ([Delphi 12 CE](https://www.embarcadero.com/products/delphi/starter) should also work)
+All dependencies are now free.
+
+* Internet Component Suite (ICS) (Free) from [overbyte.eu](https://www.esegece.com/websockets) or [Getit](https://getitnow.embarcadero.com/ics-for-fmx-and-vcl-for-delphi/) (Preferred)
+* Delphi 12.3 ([Delphi 12 CE (Free)](https://www.embarcadero.com/products/delphi/starter) should also work)
 
 ## Libs Embedded
 
