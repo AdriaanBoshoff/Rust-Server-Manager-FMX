@@ -107,14 +107,14 @@ begin
     end;
 
     // Check for active rcon connection
-    if not frmMain.wsClientRcon.Connected then
+    if not frmMain.wsClientRconICS.Connected then
     begin
       Res.Status(403).Send('RSM has no RCON connection to the server. Usually this is because the server is still booting, stuck or your rcon password contains symbols. Use GET - /v1/forceStopServer');
       Exit;
     end;
 
     // Send quit command
-    TRCON.SendRconCommand('quit', 0, frmMain.wsClientRcon);
+    TRCON.SendRconCommand('quit', 0, frmMain.wsClientRconICS);
 
     Res.Status(200).Send('"quit" command sent to server...');
   except
@@ -191,7 +191,7 @@ begin
 
     frmMain.PopulateServerConfigUI;
 
-    TRCON.SendRconCommand('server.readcfg', 0, frmMain.wsClientRcon);
+    TRCON.SendRconCommand('server.readcfg', 0, frmMain.wsClientRconICS);
 
     Res.Status(THTTPStatus.OK).Send('{ "message": "Server Config Applied. Some Changes will only take effect after a server restart." }');
   except

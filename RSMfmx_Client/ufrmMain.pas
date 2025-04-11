@@ -10,10 +10,11 @@ uses
   FMX.ListBox, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Edit,
   FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.Platform.Win, Winapi.Windows,
   System.IOUtils, FMX.Memo.Types, FMX.Memo, System.Threading, FMX.Clipboard,
-  FMX.Platform, sgcBase_Classes, sgcSocket_Classes, sgcTCP_Classes,
-  sgcWebSocket_Classes, sgcWebSocket_Classes_Indy, sgcWebSocket_Client,
-  sgcWebSocket, RSM.Core, FMX.DialogService, System.Skia, FMX.Skia,
-  FMX.DateTimeCtrls, System.NetEncoding;
+  FMX.Platform, RSM.Core, FMX.DialogService, System.Skia, FMX.Skia,
+  FMX.DateTimeCtrls, System.NetEncoding, OverbyteIcsTypes,
+  Ics.Fmx.OverbyteIcsSslBase, Ics.Fmx.OverbyteIcsWndControl,
+  Ics.Fmx.OverbyteIcsHttpProt, Ics.Fmx.OverbyteIcsSslHttpRest,
+  Ics.Fmx.OverbyteIcsWebSocketCli;
 
 type
   TfrmMain = class(TForm)
@@ -166,7 +167,6 @@ type
     lstGameModeHardcore: TListBoxItem;
     lstGameModeWeapontest: TListBoxItem;
     btnServerTagsInfo: TSpeedButton;
-    wsClientRcon: TsgcWebSocketClient;
     lytStatServerPID: TLayout;
     lblStatServerPIDHeader: TLabel;
     lblStatServerPIDValue: TLabel;
@@ -318,6 +318,7 @@ type
     lblServerInfoUptimeValue: TLabel;
     mniDiscord: TMenuItem;
     mniGithub: TMenuItem;
+    wsClientRconICS: TSslWebSocketCli;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -375,11 +376,6 @@ type
     procedure tmrAutoRestartTimer(Sender: TObject);
     procedure tmrCheckServerRunningStatusTimer(Sender: TObject);
     procedure tmrServerInfoTimer(Sender: TObject);
-    procedure wsClientRconConnect(Connection: TsgcWSConnection);
-    procedure wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
-    procedure wsClientRconError(Connection: TsgcWSConnection; const Error: string);
-    procedure wsClientRconException(Connection: TsgcWSConnection; E: Exception);
-    procedure wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
     procedure FormShow(Sender: TObject);
     procedure btnAppSettingsClick(Sender: TObject);
     procedure btnPreviewMapClick(Sender: TObject);
@@ -401,6 +397,10 @@ type
     procedure mniDiscordClick(Sender: TObject);
     procedure mniGithubClick(Sender: TObject);
     procedure lblAppVersionValueClick(Sender: TObject);
+    procedure wsClientRconICSWSConnected(Sender: TObject);
+    procedure wsClientRconICSWSDisconnected(Sender: TObject);
+    procedure wsClientRconICSWSFrameRcvd(Sender: TSslWebSocketCli;
+      const APacket: string; var AFrame: TWebSocketReceivedFrame);
   private
     { Private Const }
   private
@@ -566,7 +566,7 @@ end;
 
 procedure TfrmMain.btnForceSaveClick(Sender: TObject);
 begin
-  TRCON.SendRconCommand('server.save', 0, wsClientRcon);
+  TRCON.SendRconCommand('server.save', 0, wsClientRconICS);
 end;
 
 procedure TfrmMain.btnGameModeInfoClick(Sender: TObject);
@@ -610,7 +610,7 @@ end;
 
 procedure TfrmMain.btnRestartServerClick(Sender: TObject);
 begin
-  TRCON.SendRconCommand('restart 5', 0, wsClientRcon);
+  TRCON.SendRconCommand('restart 5', 0, wsClientRconICS);
   FDoAutoRestart := True;
 end;
 
@@ -662,7 +662,7 @@ begin
     PopulateServerConfigUI;
 
     // Tell the server to load the config file
-    TRCON.SendRconCommand('server.readcfg', 0, wsClientRcon);
+    TRCON.SendRconCommand('server.readcfg', 0, wsClientRconICS);
 
     // ShowMessage('Config Saved!');
    // ShowMessageBox('Saved Server Config!', 'Server Config', Self);
@@ -884,7 +884,7 @@ end;
 
 procedure TfrmMain.btnStopServerClick(Sender: TObject);
 begin
-  TRCON.SendRconCommand('quit', 0, wsClientRcon);
+  TRCON.SendRconCommand('quit', 0, wsClientRconICS);
 end;
 
 procedure TfrmMain.cbbServerGamemodeValueMouseWheel(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; var Handled: Boolean);
@@ -1044,8 +1044,8 @@ end;
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   // Disconnect Rcon if connected
-  if wsClientRcon.Active then
-    wsClientRcon.Active := False;
+  if wsClientRconICS.Connected then
+    wsClientRconICS.Abort;
 
   // Dont save UI pos when maximized
   if not (Self.WindowState = TWindowState.wsMaximized) then
@@ -1601,7 +1601,7 @@ begin
     if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart1.Time)) then
       Exit;
 
-    wsClientRcon.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart1.WarningTimeSecs.ToString);
+    TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart1.WarningTimeSecs.ToString, 0, wsClientRconICS);
     FDoAutoRestart := True;
   end
   else if rsmConfig.AutoRestart.AutoRestart2.Enabled then
@@ -1609,7 +1609,7 @@ begin
     if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart2.Time)) then
       Exit;
 
-    wsClientRcon.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart2.WarningTimeSecs.ToString);
+    TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart2.WarningTimeSecs.ToString, 0, wsClientRconICS);
     FDoAutoRestart := True;
   end
   else if rsmConfig.AutoRestart.AutoRestart3.Enabled then
@@ -1617,7 +1617,7 @@ begin
     if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart3.Time)) then
       Exit;
 
-    wsClientRcon.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs.ToString);
+    TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs.ToString, 0, wsClientRconICS);
     FDoAutoRestart := True;
   end;
 end;
@@ -1655,9 +1655,9 @@ begin
     btnKillServer.Enabled := isServerRunning;
 
     // Rcon Connection
-    btnStopServer.Enabled := wsClientRcon.Active;
-    btnRestartServer.Enabled := wsClientRcon.Active;
-    btnForceSave.Enabled := wsClientRcon.Active;
+    btnStopServer.Enabled := wsClientRconICS.Connected;
+    btnRestartServer.Enabled := wsClientRconICS.Connected;
+    btnForceSave.Enabled := wsClientRconICS.Connected;
 
     // Server Config
     lytServerMap1.Enabled := not isServerRunning;
@@ -1680,17 +1680,25 @@ begin
     // Check if server is running and rcon is connected.
     // If server is running and rcon is not connected then
     // try to connect
-    if isServerRunning and not wsClientRcon.Active then
+    if isServerRunning and not wsClientRconICS.Connected then
     begin
-      if serverConfig.Networking.RconIP = '0.0.0.0' then
-        wsClientRcon.Host := 'localhost'
-      else
-        wsClientRcon.Host := serverConfig.Networking.RconIP;
+      var rconURL := 'ws://';
 
-      wsClientRcon.Port := serverConfig.Networking.RconPort;
-      wsClientRcon.Options.Parameters := '/' + TNetEncoding.URL.Encode(serverConfig.Networking.RconPassword);
-      wsClientRcon.ConnectTimeout := 5;
-      wsClientRcon.Active := True;
+      // HostName
+      if serverConfig.Networking.RconIP = '0.0.0.0' then
+        rconURL := rconURL + '127.0.0.1'
+      else
+        rconURL := rconURL + serverConfig.Networking.RconIP;
+
+      // Port
+      rconURL := rconURL + ':' + serverConfig.Networking.RconPort.ToString;
+
+      // Password
+      rconURL := rconURL + '/' + TNetEncoding.URL.Encode(serverConfig.Networking.RconPassword);
+
+      wsClientRconICS.URL := rconURL;
+      wsClientRconICS.Timeout := 3000;
+      wsClientRconICS.WSConnect;
     end;
 
     // Auto Restart
@@ -1725,8 +1733,8 @@ end;
 procedure TfrmMain.tmrServerInfoTimer(Sender: TObject);
 begin
   // Request Server Info
-  if wsClientRcon.Active then
-    TRCON.SendRconCommand(RCON_CMD_SERVERINFO, RCON_ID_SERVERINFO, wsClientRcon);
+  if wsClientRconICS.Connected then
+    TRCON.SendRconCommand(RCON_CMD_SERVERINFO, RCON_ID_SERVERINFO, wsClientRconICS);
 end;
 
 procedure TfrmMain.tmrServicesStatusTimer(Sender: TObject);
@@ -1758,7 +1766,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.wsClientRconConnect(Connection: TsgcWSConnection);
+procedure TfrmMain.wsClientRconICSWSConnected(Sender: TObject);
 begin
   // Stat bar
   lblStatRconValue.Text := 'Connected';
@@ -1772,10 +1780,10 @@ begin
   tmrAutoRestart.Enabled := True;
 
   // Get Manifest
-  wsClientRcon.SendRconCommand(RCON_CMD_PRINTMANIFEST, RCON_ID_MANIFEST);
+  TRCON.SendRconCommand(RCON_CMD_PRINTMANIFEST, RCON_ID_MANIFEST, wsClientRconICS);
 end;
 
-procedure TfrmMain.wsClientRconDisconnect(Connection: TsgcWSConnection; Code: Integer);
+procedure TfrmMain.wsClientRconICSWSDisconnected(Sender: TObject);
 begin
   // Stat bar
   lblStatRconValue.Text := 'Disconnected';
@@ -1793,24 +1801,11 @@ begin
   // Clear Online Players
 end;
 
-procedure TfrmMain.wsClientRconError(Connection: TsgcWSConnection; const Error: string);
+procedure TfrmMain.wsClientRconICSWSFrameRcvd(Sender: TSslWebSocketCli;
+  const APacket: string; var AFrame: TWebSocketReceivedFrame);
 begin
-  lblStatRconValue.Text := 'Err: ' + Error;
-end;
-
-procedure TfrmMain.wsClientRconException(Connection: TsgcWSConnection; E: Exception);
-begin
-  if E.Message.ToLower.Contains('closed gracefully') then
-    lblStatRconValue.Text := 'Invalid rcon Password. Only use A-z and 0-9 chars!'
-  else if E.Message.ToLower.Contains('timed out') then
-    lblStatRconValue.Text := 'Waiting rcon server to start...'
-  else
-    lblStatRconValue.Text := 'Connection Failure: ' + E.ClassName + ': ' + E.Message;
-end;
-
-procedure TfrmMain.wsClientRconMessage(Connection: TsgcWSConnection; const Text: string);
-begin
-  rconEvents.OnRconMessage(TRCONParser.ParseRconMessage(Text));
+  if AFrame.Kind = TWebSocketFrameKind.wsfkText then
+    rconEvents.OnRconMessage(TRCONParser.ParseRconMessage(APacket));
 end;
 
 end.

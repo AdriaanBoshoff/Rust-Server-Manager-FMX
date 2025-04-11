@@ -46,8 +46,8 @@ object frmPlayerManager: TfrmPlayerManager
         TabOrder = 0
         RowCount = 5
         Options = [AlternatingRowBackground, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, AutoDisplacement]
-        Viewport.Width = 695.000000000000000000
-        Viewport.Height = 365.000000000000000000
+        Viewport.Width = 691.000000000000000000
+        Viewport.Height = 340.000000000000000000
         object strngclmnSteamID: TStringColumn
           Header = 'SteamID'
           HeaderSettings.TextSettings.WordWrap = False

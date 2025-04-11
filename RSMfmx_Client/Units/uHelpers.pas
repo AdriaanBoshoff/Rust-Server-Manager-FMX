@@ -4,15 +4,8 @@ interface
 
 uses
   System.Types, System.Classes, Winapi.Windows, PsAPI, System.SysUtils,
-  Rest.Client, FMX.Graphics, System.Math, sgcWebSocket, System.Threading,
-  FMX.Grid, XML.XMLDoc, XML.XMLIntf, System.JSON.Types, System.JSON.Writers,
-  ActiveX, ShellAPI;
-
-type
-  TsgcWebSocketClientHelper = class helper for TsgcWebSocketClient
-  public
-    procedure SendRconCommand(const Command: string; const Identifier: Integer = 0);
-  end;
+  Rest.Client, FMX.Graphics, System.Math, System.Threading, FMX.Grid, XML.XMLDoc,
+  XML.XMLIntf, System.JSON.Types, System.JSON.Writers, ActiveX, ShellAPI;
 
 type
   TBitmapHelper = class helper for TBitmap
@@ -287,30 +280,6 @@ begin
     Self.RowCount := Self.RowCount - 1;
   finally
     Self.EndUpdate;
-  end;
-end;
-
-{ TsgcWebsocketClientHelper }
-
-procedure TsgcWebSocketClientHelper.SendRconCommand(const Command: string; const Identifier: Integer);
-begin
-  if not Self.Active then
-    Exit;
-
-  var StringWriter := TStringWriter.Create();
-  var Writer := TJsonTextWriter.Create(StringWriter);
-  try
-    Writer.WriteStartObject;
-    Writer.WritePropertyName('Message');
-    Writer.WriteValue(Command);
-    Writer.WritePropertyName('Identifier');
-    Writer.WriteValue(Integer(Identifier));
-    Writer.WriteEndObject;
-
-    Self.WriteData(StringWriter.ToString);
-  finally
-    Writer.Free;
-    StringWriter.Free;
   end;
 end;
 

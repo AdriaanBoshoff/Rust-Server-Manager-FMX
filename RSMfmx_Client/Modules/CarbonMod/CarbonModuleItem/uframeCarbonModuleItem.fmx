@@ -51,6 +51,7 @@ object frameCarbonModuleItem: TframeCarbonModuleItem
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Open Config'
+      TextSettings.Trimming = None
       OnClick = btnOpenConfigClick
     end
   end

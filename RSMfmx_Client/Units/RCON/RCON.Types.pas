@@ -3,7 +3,7 @@
 interface
 
 uses
-  sgcWebSocket;
+  Ics.Fmx.OverbyteIcsWebSocketCli;
 
 type
   TRCONMessage = record
@@ -62,10 +62,10 @@ type
 
 type
   TRCON = class
-    class procedure SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
-    class procedure KickPlayer(const SteamID, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
-    class procedure BanPlayerID(const SteamID, Username, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
-    class procedure SetAuthLevel(const SteamID, Username, Reason: string; const AuthLevel: Integer; const rconClient: TsgcWebSocketClient);
+    class procedure SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TSslWebSocketCli);
+    class procedure KickPlayer(const SteamID, Reason: string; const Identifier: Integer; const rconClient: TSslWebSocketCli);
+    class procedure BanPlayerID(const SteamID, Username, Reason: string; const Identifier: Integer; const rconClient: TSslWebSocketCli);
+    class procedure SetAuthLevel(const SteamID, Username, Reason: string; const AuthLevel: Integer; const rconClient: TSslWebSocketCli);
   end;
 
 implementation
@@ -75,19 +75,19 @@ uses
 
 { TRCON }
 
-class procedure TRCON.BanPlayerID(const SteamID, Username, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
+class procedure TRCON.BanPlayerID(const SteamID, Username, Reason: string; const Identifier: Integer; const rconClient: TSslWebSocketCli);
 begin
   Self.SendRconCommand(Format('banid %s "%s" "%s"', [SteamID, Username, Reason]), Identifier, rconClient);
 end;
 
-class procedure TRCON.KickPlayer(const SteamID, Reason: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
+class procedure TRCON.KickPlayer(const SteamID, Reason: string; const Identifier: Integer; const rconClient: TSslWebSocketCli);
 begin
   Self.SendRconCommand(Format('kick %s "%s"', [SteamID, Reason]), Identifier, rconClient);
 end;
 
-class procedure TRCON.SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TsgcWebSocketClient);
+class procedure TRCON.SendRconCommand(const Command: string; const Identifier: Integer; const rconClient: TSslWebSocketCli);
 begin
-  if not rconClient.Active then
+  if not rconClient.Connected then
     Exit;
 
   var jCommand := TJSONObject.Create;
@@ -95,13 +95,13 @@ begin
     jCommand.AddPair('Message', Command);
     jCommand.AddPair('Identifier', Identifier);
 
-    rconClient.WriteData(jCommand.ToJSON);
+    rconClient.WSSendText(nil, jCommand.ToJSON);
   finally
     jCommand.Free;
   end;
 end;
 
-class procedure TRCON.SetAuthLevel(const SteamID, Username, Reason: string; const AuthLevel: Integer; const rconClient: TsgcWebSocketClient);
+class procedure TRCON.SetAuthLevel(const SteamID, Username, Reason: string; const AuthLevel: Integer; const rconClient: TSslWebSocketCli);
 begin
   case AuthLevel of
     2:

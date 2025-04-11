@@ -48,7 +48,7 @@ end;
 procedure TRCONEvents.OnPlayerCountChanged(const OldCount, NewCount: Integer);
 begin
   // Player Count Changed. Request new playerlist
-  TRCON.SendRconCommand(RCON_CMD_PLAYERLIST, RCON_ID_PLAYERLIST, frmMain.wsClientRcon);
+  TRCON.SendRconCommand(RCON_CMD_PLAYERLIST, RCON_ID_PLAYERLIST, frmMain.wsClientRconICS);
 
   // frmMain.lblAppVersionValue.Text := Format('OLD: %d  NEW: %d', [OldCount, NewCount]);
 end;

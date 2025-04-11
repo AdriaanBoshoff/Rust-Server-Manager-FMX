@@ -48,8 +48,8 @@ uses
 
 procedure TfrmPlayerManager.btnRefreshClick(Sender: TObject);
 begin
-  if frmMain.wsClientRcon.Connected then
-    TRCON.SendRconCommand(RCON_CMD_PLAYERLIST, RCON_ID_PLAYERLIST, frmMain.wsClientRcon);
+  if frmMain.wsClientRconICS.Connected then
+    TRCON.SendRconCommand(RCON_CMD_PLAYERLIST, RCON_ID_PLAYERLIST, frmMain.wsClientRconICS);
 end;
 
 procedure TfrmPlayerManager.edtSearchTyping(Sender: TObject);
@@ -96,7 +96,7 @@ begin
   var Username := strngrdOnlinePlayers.Cells[strngclmnUsername.Index, I];
 
   // Ban
-  TRCON.BanPlayerID(SteamID, Username, 'Banned by admin', 0, frmMain.wsClientRcon);
+  TRCON.BanPlayerID(SteamID, Username, 'Banned by admin', 0, frmMain.wsClientRconICS);
 
   // Refresh playerlist
   btnRefreshClick(mniBan);
@@ -116,7 +116,7 @@ begin
   var Username := strngrdOnlinePlayers.Cells[strngclmnUsername.Index, I];
 
   // Kick
-  TRCON.KickPlayer(SteamID, 'Kicked by admin', 0, frmMain.wsClientRcon);
+  TRCON.KickPlayer(SteamID, 'Kicked by admin', 0, frmMain.wsClientRconICS);
 
   // Refresh playerlist
   btnRefreshClick(mniKick);

@@ -94,8 +94,8 @@ begin
       TFile.WriteAllText(Self.FmoduleConfigFile, TJSONObject(jData).Format(2), TEncoding.UTF8);
 
       // Tell the server to load the config
-      if frmMain.wsClientRcon.Active then
-        TRCON.SendRconCommand(RCON_CMD_Carbon_LoadModuleConfig + ' ' + Self.moduleName, RCON_ID_Carbon_LoadModuleConfig, frmMain.wsClientRcon);
+      if frmMain.wsClientRconICS.Connected then
+        TRCON.SendRconCommand(RCON_CMD_Carbon_LoadModuleConfig + ' ' + Self.moduleName, RCON_ID_Carbon_LoadModuleConfig, frmMain.wsClientRconICS);
     end
     else
       // Remove switch option if the json option does not exist
