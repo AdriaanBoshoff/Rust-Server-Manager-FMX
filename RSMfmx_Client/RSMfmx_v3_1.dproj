@@ -199,9 +199,9 @@
         <UWP_DelphiLogo150>Assets\AppIcons\RSM.png</UWP_DelphiLogo150>
         <VerInfo_MajorVer>2025</VerInfo_MajorVer>
         <VerInfo_MinorVer>4</VerInfo_MinorVer>
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Release>12</VerInfo_Release>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2025.4.1.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.rustservermanager.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2025.4.12.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.rustservermanager.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=</VerInfo_Keys>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
         <VerInfo_Build>1</VerInfo_Build>
         <DCC_Define>HORSE_VCL;$(DCC_Define)</DCC_Define>
