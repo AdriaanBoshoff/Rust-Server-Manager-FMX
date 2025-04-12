@@ -401,6 +401,11 @@ type
     procedure wsClientRconICSWSDisconnected(Sender: TObject);
     procedure wsClientRconICSWSFrameRcvd(Sender: TSslWebSocketCli;
       const APacket: string; var AFrame: TWebSocketReceivedFrame);
+    procedure wsClientRconICSBgException(Sender: TObject; E: Exception;
+      var CanClose: Boolean);
+    procedure wsClientRconICSSocketError(Sender: TObject);
+    procedure wsClientRconICSSocksError(Sender: TObject; Error: Integer;
+      Msg: string);
   private
     { Private Const }
   private
@@ -1698,7 +1703,11 @@ begin
 
       wsClientRconICS.URL := rconURL;
       wsClientRconICS.Timeout := 3000;
-      wsClientRconICS.WSConnect;
+      try
+        wsClientRconICS.WSConnect;
+      except
+        // Silence Exception
+      end;
     end;
 
     // Auto Restart
@@ -1764,6 +1773,23 @@ begin
     lblRSMAPIStatusValue.Text := 'Offline';
     lblRSMAPIStatusValue.FontColor := TAlphaColorRec.Red;
   end;
+end;
+
+procedure TfrmMain.wsClientRconICSBgException(Sender: TObject;
+  E: Exception; var CanClose: Boolean);
+begin
+  Exit;
+end;
+
+procedure TfrmMain.wsClientRconICSSocketError(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmMain.wsClientRconICSSocksError(Sender: TObject;
+  Error: Integer; Msg: string);
+begin
+//
 end;
 
 procedure TfrmMain.wsClientRconICSWSConnected(Sender: TObject);

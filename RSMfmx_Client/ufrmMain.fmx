@@ -5101,7 +5101,7 @@ object frmMain: TfrmMain
     Agent = 'Mozilla/4.0'
     Accept = 'image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*'
     NoCache = False
-    ResponseNoException = False
+    ResponseNoException = True
     ContentTypePost = 'application/x-www-form-urlencoded'
     LmCompatLevel = 0
     RequestVer = '1.1'
@@ -5115,6 +5115,9 @@ object frmMain: TfrmMain
     Timeout = 30
     SocksLevel = '5'
     SocksAuthentication = socksNoAuthentication
+    OnSocksError = wsClientRconICSSocksError
+    OnSocketError = wsClientRconICSSocketError
+    OnBgException = wsClientRconICSBgException
     SocketFamily = sfAny
     SocketErrs = wsErrTech
     RestParams.PContent = PContUrlencoded
