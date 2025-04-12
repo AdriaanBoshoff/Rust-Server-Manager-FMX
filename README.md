@@ -12,7 +12,7 @@ Join the [RSMfmx Discord Server](https://discord.gg/HraUQhtUcN)
 
 All dependencies are now free.
 
-* Internet Component Suite (ICS) (Free) from [overbyte.eu](https://www.esegece.com/websockets) or [Getit](https://getitnow.embarcadero.com/ics-for-fmx-and-vcl-for-delphi/) (Preferred)
+* Internet Component Suite (ICS) (Free) from [overbyte.eu](https://wiki.overbyte.eu/wiki/index.php/ICS_Download) or [Getit](https://getitnow.embarcadero.com/ics-for-fmx-and-vcl-for-delphi/) (Preferred)
 * Delphi 12.3 ([Delphi 12 CE (Free)](https://www.embarcadero.com/products/delphi/starter) should also work)
 
 ## Libs Embedded
