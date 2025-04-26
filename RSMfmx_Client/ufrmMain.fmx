@@ -207,40 +207,40 @@ object frmMain: TfrmMain
       Align = Client
       Margins.Left = 60.000000000000000000
       Size.Width = 710.000000000000000000
-      Size.Height = 479.000000000000000000
+      Size.Height = 509.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 4
       object tbcNav: TTabControl
         Align = Client
         Size.Width = 710.000000000000000000
-        Size.Height = 479.000000000000000000
+        Size.Height = 509.000000000000000000
         Size.PlatformDefault = False
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
           710s
-          455s
+          485s
           710s
-          455s
+          485s
           710s
-          455s
+          485s
           710s
-          455s
+          485s
           710s
-          455s
+          485s
           710s
-          455s
+          485s
           710s
-          455s
+          485s
           710s
-          455s)
+          485s)
         object tbtmNavServerControls: TTabItem
           CustomIcon = <
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = False
+          IsSelected = True
           Size.Width = 101.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -317,7 +317,7 @@ object frmMain: TfrmMain
             Position.X = 5.000000000000000000
             Position.Y = 45.000000000000000000
             Size.Width = 148.000000000000000000
-            Size.Height = 405.000000000000000000
+            Size.Height = 435.000000000000000000
             Size.PlatformDefault = False
             Stroke.Color = claNull
             XRadius = 10.000000000000000000
@@ -429,7 +429,7 @@ object frmMain: TfrmMain
               Hint = 'RSM will kill the server process using the server PID.'
               Margins.Bottom = 10.000000000000000000
               Position.X = 10.000000000000000000
-              Position.Y = 365.000000000000000000
+              Position.Y = 395.000000000000000000
               Size.Width = 128.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
@@ -473,7 +473,7 @@ object frmMain: TfrmMain
             Margins.Right = 5.000000000000000000
             Margins.Bottom = 5.000000000000000000
             Size.Width = 547.000000000000000000
-            Size.Height = 405.000000000000000000
+            Size.Height = 435.000000000000000000
             Size.PlatformDefault = False
             Stroke.Color = claNull
             XRadius = 10.000000000000000000
@@ -483,11 +483,11 @@ object frmMain: TfrmMain
               Padding.Left = 10.000000000000000000
               Padding.Right = 10.000000000000000000
               Size.Width = 547.000000000000000000
-              Size.Height = 405.000000000000000000
+              Size.Height = 435.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
               Viewport.Width = 547.000000000000000000
-              Viewport.Height = 405.000000000000000000
+              Viewport.Height = 435.000000000000000000
               object lytServerAffinity: TLayout
                 Align = Top
                 Margins.Top = 10.000000000000000000
@@ -554,7 +554,7 @@ object frmMain: TfrmMain
                 StyledSettings = [Family, FontColor]
                 Margins.Top = 5.000000000000000000
                 Position.X = 10.000000000000000000
-                Position.Y = 267.000000000000000000
+                Position.Y = 237.000000000000000000
                 Size.Width = 527.000000000000000000
                 Size.Height = 17.000000000000000000
                 Size.PlatformDefault = False
@@ -568,11 +568,11 @@ object frmMain: TfrmMain
                 Align = Top
                 Margins.Top = 10.000000000000000000
                 Position.X = 10.000000000000000000
-                Position.Y = 294.000000000000000000
+                Position.Y = 264.000000000000000000
                 Size.Width = 527.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 6
+                TabOrder = 5
                 object swtchAutoRestart1: TSwitch
                   Align = Left
                   IsChecked = False
@@ -653,7 +653,7 @@ object frmMain: TfrmMain
                 Align = Top
                 Margins.Top = 5.000000000000000000
                 Position.X = 10.000000000000000000
-                Position.Y = 324.000000000000000000
+                Position.Y = 294.000000000000000000
                 Size.Width = 527.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -738,7 +738,7 @@ object frmMain: TfrmMain
                 Align = Top
                 Margins.Top = 5.000000000000000000
                 Position.X = 10.000000000000000000
-                Position.Y = 354.000000000000000000
+                Position.Y = 324.000000000000000000
                 Size.Width = 527.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
@@ -829,7 +829,7 @@ object frmMain: TfrmMain
                 Size.Width = 527.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 11
+                TabOrder = 10
                 object swtchStartServerWithRSM: TSwitch
                   Align = Left
                   Hint = 
@@ -875,7 +875,7 @@ object frmMain: TfrmMain
                 Size.Width = 527.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 10
+                TabOrder = 9
                 object swtchUpdateServerBeforeStartingServer: TSwitch
                   Align = Left
                   Hint = 
@@ -921,7 +921,7 @@ object frmMain: TfrmMain
                 Size.Width = 527.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 9
+                TabOrder = 8
                 object swtchInstallOxideBeforeServerStart: TSwitch
                   Align = Left
                   Hint = 
@@ -967,7 +967,7 @@ object frmMain: TfrmMain
                 Size.Width = 527.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 8
+                TabOrder = 7
                 object swtchAutoStartServerAfterShutdown: TSwitch
                   Align = Left
                   IsChecked = False
@@ -1009,7 +1009,7 @@ object frmMain: TfrmMain
                 Size.Width = 527.000000000000000000
                 Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 7
+                TabOrder = 6
                 object swtchExecuteBeforeServerStart: TSwitch
                   Align = Left
                   IsChecked = False
@@ -1063,55 +1063,6 @@ object frmMain: TfrmMain
                   end
                 end
               end
-              object lytAutoWipe: TLayout
-                Align = Top
-                Margins.Top = 5.000000000000000000
-                Position.X = 10.000000000000000000
-                Position.Y = 237.000000000000000000
-                Size.Width = 527.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TabOrder = 5
-                object swtchEnableAutoWipe: TSwitch
-                  Align = Left
-                  IsChecked = False
-                  Position.Y = 2.000000000000000000
-                  Size.Width = 40.000000000000000000
-                  Size.Height = 20.000000000000000000
-                  Size.PlatformDefault = False
-                  TabOrder = 0
-                  OnSwitch = swtchAutoRestart1Switch
-                end
-                object lblAutoWiipeHeader: TLabel
-                  Align = Left
-                  AutoSize = True
-                  StyledSettings = [Family, Size, FontColor]
-                  Margins.Left = 5.000000000000000000
-                  Position.X = 45.000000000000000000
-                  Size.Width = 59.000000000000000000
-                  Size.Height = 25.000000000000000000
-                  Size.PlatformDefault = False
-                  TextSettings.Font.StyleExt = {00060000000000000004000000}
-                  TextSettings.WordWrap = False
-                  Text = 'Auto Wipe'
-                  TabOrder = 1
-                end
-                object btnConfigureAutoWipe: TButton
-                  Align = Left
-                  CanFocus = False
-                  StyledSettings = [Family, Size, FontColor]
-                  Margins.Left = 10.000000000000000000
-                  Position.X = 114.000000000000000000
-                  Size.Width = 100.000000000000000000
-                  Size.Height = 25.000000000000000000
-                  Size.PlatformDefault = False
-                  TabOrder = 2
-                  Text = 'Configure'
-                  TextSettings.Font.StyleExt = {00060000000000000004000000}
-                  TextSettings.Trimming = None
-                  OnClick = btnConfigureAutoWipeClick
-                end
-              end
             end
           end
         end
@@ -1120,7 +1071,7 @@ object frmMain: TfrmMain
             item
             end>
           TextSettings.Trimming = None
-          IsSelected = True
+          IsSelected = False
           Size.Width = 92.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -1136,11 +1087,11 @@ object frmMain: TfrmMain
             Margins.Top = 10.000000000000000000
             Margins.Bottom = 5.000000000000000000
             Size.Width = 710.000000000000000000
-            Size.Height = 400.000000000000000000
+            Size.Height = 430.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
             Viewport.Width = 694.000000000000000000
-            Viewport.Height = 400.000000000000000000
+            Viewport.Height = 430.000000000000000000
             object lytHostnameHeader: TLayout
               Align = Top
               Position.X = 10.000000000000000000
@@ -2282,7 +2233,7 @@ object frmMain: TfrmMain
             Margins.Right = 5.000000000000000000
             Margins.Bottom = 5.000000000000000000
             Position.X = 5.000000000000000000
-            Position.Y = 415.000000000000000000
+            Position.Y = 445.000000000000000000
             Size.Width = 700.000000000000000000
             Size.Height = 35.000000000000000000
             Size.PlatformDefault = False
@@ -2404,22 +2355,22 @@ object frmMain: TfrmMain
     object lytServerInfo: TLayout
       Align = Right
       Position.X = 770.000000000000000000
-      Position.Y = 94.000000000000000000
+      Position.Y = 64.000000000000000000
       Size.Width = 220.000000000000000000
-      Size.Height = 479.000000000000000000
+      Size.Height = 509.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 5
       object tbcServerInfo: TTabControl
         Align = Client
         Size.Width = 220.000000000000000000
-        Size.Height = 479.000000000000000000
+        Size.Height = 509.000000000000000000
         Size.PlatformDefault = False
         TabIndex = 0
         TabOrder = 0
         TabPosition = None
         Sizes = (
           220s
-          479s)
+          509s)
         object tbtmServerInfo: TTabItem
           CustomIcon = <
             item
@@ -2437,11 +2388,11 @@ object frmMain: TfrmMain
           object vrtscrlbxServerInfo: TVertScrollBox
             Align = Client
             Size.Width = 220.000000000000000000
-            Size.Height = 479.000000000000000000
+            Size.Height = 509.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
             Viewport.Width = 220.000000000000000000
-            Viewport.Height = 479.000000000000000000
+            Viewport.Height = 509.000000000000000000
             object rctnglVersionInfo: TRectangle
               Align = Top
               Fill.Color = xFF1F222A
@@ -3052,7 +3003,7 @@ object frmMain: TfrmMain
       Size.Height = 595.000000000000000000
       Size.PlatformDefault = False
       Visible = False
-      TabOrder = 14
+      TabOrder = 13
       object rctnglUpdateAvailibleBG: TRectangle
         Align = Contents
         Fill.Color = claBlack
@@ -3175,45 +3126,9 @@ object frmMain: TfrmMain
         Text = 'Github'
         OnClick = mniGithubClick
       end
-    end
-    object pnlExperimentalWarning: TPanel
-      Align = Top
-      Position.Y = 24.000000000000000000
-      Size.Width = 990.000000000000000000
-      Size.Height = 30.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 9
-      object lblExperimentalWarning: TSkLabel
-        Align = Client
-        HitTest = True
-        Size.Width = 990.000000000000000000
-        Size.Height = 30.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.HorzAlign = Center
-        Words = <
-          item
-            Font.Weight = Semibold
-            FontColor = claOrangered
-            Name = 'Item 0'
-            StyledSettings = [Family, Size]
-            Text = 'Warning: '
-          end
-          item
-            FontColor = claWhite
-            Name = 'Item 1'
-            StyledSettings = [Family, Size]
-            Text = 'This is a early access build. Please report bugs in the '
-          end
-          item
-            Cursor = crHandPoint
-            Decorations.Decorations = [Underline]
-            Font.Weight = Semibold
-            FontColor = claLightblue
-            Name = 'Item 2'
-            StyledSettings = [Family, Size]
-            Text = 'RSMfmx Discord Server'
-            OnClick = lblExperimentalWarningWords2Click
-          end>
+      object mniCheckForUpdate: TMenuItem
+        Text = 'Check for Update'
+        OnClick = mniCheckForUpdateClick
       end
     end
     object statMain: TStatusBar
@@ -3439,7 +3354,7 @@ object frmMain: TfrmMain
       end
     end
     object tlbHeader: TToolBar
-      Position.Y = 54.000000000000000000
+      Position.Y = 24.000000000000000000
       Size.Width = 990.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
@@ -3491,7 +3406,7 @@ object frmMain: TfrmMain
       object lstNav: TListBox
         Align = Client
         Size.Width = 60.000000000000000000
-        Size.Height = 429.000000000000000000
+        Size.Height = 459.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         DisableFocusEffect = True
@@ -3500,7 +3415,7 @@ object frmMain: TfrmMain
         DefaultItemStyles.GroupFooterStyle = ''
         OnChange = lstNavChange
         Viewport.Width = 56.000000000000000000
-        Viewport.Height = 425.000000000000000000
+        Viewport.Height = 455.000000000000000000
         object lstServerControls: TListBoxItem
           Size.Width = 56.000000000000000000
           Size.Height = 50.000000000000000000
@@ -5073,7 +4988,7 @@ object frmMain: TfrmMain
       object btnAppSettings: TSpeedButton
         Align = Bottom
         Hint = 'RSM related settings'
-        Position.Y = 429.000000000000000000
+        Position.Y = 459.000000000000000000
         Size.Width = 60.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False

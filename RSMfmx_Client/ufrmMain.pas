@@ -194,8 +194,6 @@ type
     tbtmPluginManager: TTabItem;
     mniRSM: TMenuItem;
     mniClearRSMCache: TMenuItem;
-    pnlExperimentalWarning: TPanel;
-    lblExperimentalWarning: TSkLabel;
     lytUpdateAvailable: TLayout;
     rctnglUpdateAvailibleBG: TRectangle;
     pnlUpdateAvailableMain: TPanel;
@@ -296,10 +294,6 @@ type
     lytRSMAPIStatus: TLayout;
     lblRSMAPIStatusHeader: TLabel;
     lblRSMAPIStatusValue: TLabel;
-    lytAutoWipe: TLayout;
-    swtchEnableAutoWipe: TSwitch;
-    lblAutoWiipeHeader: TLabel;
-    btnConfigureAutoWipe: TButton;
     btnStartServerDebug: TButton;
     rctnglBorderTop: TRectangle;
     rctnglBorderLeft: TRectangle;
@@ -319,6 +313,7 @@ type
     mniDiscord: TMenuItem;
     mniGithub: TMenuItem;
     wsClientRconICS: TSslWebSocketCli;
+    mniCheckForUpdate: TMenuItem;
     procedure btnAdjustAffinityClick(Sender: TObject);
     procedure btnCloseUpdateMessageClick(Sender: TObject);
     procedure btnCopyRconPasswordClick(Sender: TObject);
@@ -345,7 +340,6 @@ type
     procedure edtRconPasswordValueExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblAppVersionValueResized(Sender: TObject);
-    procedure lblExperimentalWarningWords2Click(Sender: TObject);
     procedure lblStatPlayerCountValueResized(Sender: TObject);
     procedure lblStatRconValueClick(Sender: TObject);
     procedure lblStatRconValueResized(Sender: TObject);
@@ -384,7 +378,6 @@ type
     procedure btnBrowseExecuteBeforeStartClick(Sender: TObject);
     procedure swtchExecuteBeforeServerStartSwitch(Sender: TObject);
     procedure OnRSMAPIServerStatusClick(Sender: TObject);
-    procedure btnConfigureAutoWipeClick(Sender: TObject);
     procedure btnStartServerDebugClick(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure rctnglBorderTopMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Single);
@@ -399,13 +392,11 @@ type
     procedure lblAppVersionValueClick(Sender: TObject);
     procedure wsClientRconICSWSConnected(Sender: TObject);
     procedure wsClientRconICSWSDisconnected(Sender: TObject);
-    procedure wsClientRconICSWSFrameRcvd(Sender: TSslWebSocketCli;
-      const APacket: string; var AFrame: TWebSocketReceivedFrame);
-    procedure wsClientRconICSBgException(Sender: TObject; E: Exception;
-      var CanClose: Boolean);
+    procedure wsClientRconICSWSFrameRcvd(Sender: TSslWebSocketCli; const APacket: string; var AFrame: TWebSocketReceivedFrame);
+    procedure wsClientRconICSBgException(Sender: TObject; E: Exception; var CanClose: Boolean);
     procedure wsClientRconICSSocketError(Sender: TObject);
-    procedure wsClientRconICSSocksError(Sender: TObject; Error: Integer;
-      Msg: string);
+    procedure wsClientRconICSSocksError(Sender: TObject; Error: Integer; Msg: string);
+    procedure mniCheckForUpdateClick(Sender: TObject);
   private
     { Private Const }
   private
@@ -530,16 +521,6 @@ begin
   FSkipUpdateMessage := True;
   lytUpdateAvailable.Visible := False;
   lytUpdateAvailable.SendToBack;
-end;
-
-procedure TfrmMain.btnConfigureAutoWipeClick(Sender: TObject);
-begin
-  var dlg := TfrmAutoWipe.Create(Self);
-  try
-    dlg.ShowModal;
-  finally
-    dlg.Free;
-  end;
 end;
 
 procedure TfrmMain.btnCopyRconPasswordClick(Sender: TObject);
@@ -1192,11 +1173,6 @@ begin
   lytAppVersion.Width := lblAppVersionHeader.Width + 5 + lblAppVersionValue.Width;
 end;
 
-procedure TfrmMain.lblExperimentalWarningWords2Click(Sender: TObject);
-begin
-  OpenURL('https://discord.gg/U7jsFBrgFh');
-end;
-
 procedure TfrmMain.lblStatPlayerCountValueResized(Sender: TObject);
 begin
   lytStatPlayerCount.Width := lblStatPlayerCountHeader.Width + 3 + lblStatPlayerCountValue.Width;
@@ -1285,6 +1261,11 @@ begin
     TWindowState.wsMaximized:
       Self.WindowState := TWindowState.wsNormal;
   end;
+end;
+
+procedure TfrmMain.mniCheckForUpdateClick(Sender: TObject);
+begin
+  OpenURL('https://github.com/AdriaanBoshoff/Rust-Server-Manager-FMX/releases');
 end;
 
 procedure TfrmMain.mniClearRSMCacheClick(Sender: TObject);
@@ -1775,8 +1756,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.wsClientRconICSBgException(Sender: TObject;
-  E: Exception; var CanClose: Boolean);
+procedure TfrmMain.wsClientRconICSBgException(Sender: TObject; E: Exception; var CanClose: Boolean);
 begin
   Exit;
 end;
@@ -1786,8 +1766,7 @@ begin
 //
 end;
 
-procedure TfrmMain.wsClientRconICSSocksError(Sender: TObject;
-  Error: Integer; Msg: string);
+procedure TfrmMain.wsClientRconICSSocksError(Sender: TObject; Error: Integer; Msg: string);
 begin
 //
 end;
@@ -1827,8 +1806,7 @@ begin
   // Clear Online Players
 end;
 
-procedure TfrmMain.wsClientRconICSWSFrameRcvd(Sender: TSslWebSocketCli;
-  const APacket: string; var AFrame: TWebSocketReceivedFrame);
+procedure TfrmMain.wsClientRconICSWSFrameRcvd(Sender: TSslWebSocketCli; const APacket: string; var AFrame: TWebSocketReceivedFrame);
 begin
   if AFrame.Kind = TWebSocketFrameKind.wsfkText then
     rconEvents.OnRconMessage(TRCONParser.ParseRconMessage(APacket));
