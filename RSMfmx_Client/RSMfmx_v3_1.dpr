@@ -119,7 +119,15 @@ uses
   ufrmConfirmDialog in 'Forms\Dialogs\ConfirmDialog\ufrmConfirmDialog.pas' {frmConfirmDialog},
   ufrmConfirmCloseToTray in 'Forms\Dialogs\CloseToTray\ufrmConfirmCloseToTray.pas' {frmConfirmCloseToTray},
   ufrmAutoWipeItem in 'Modules\AutoWipe\ufrmAutoWipeItem.pas' {frmAutoWipeItem},
-  ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager};
+  ufrmPlayerManager in 'Modules\PlayerManager\ufrmPlayerManager.pas' {frmPlayerManager},
+  FMX.RichEdit.Style in 'Libs\FMXRichMemo\FMX.RichEdit.Style.pas',
+  SpellChecker in 'Libs\FMXRichMemo\SpellChecker.pas',
+  Syntax.Code.JSON in 'Libs\FMXRichMemo\Syntax.Code.JSON.pas',
+  Syntax.Code.MarkDown in 'Libs\FMXRichMemo\Syntax.Code.MarkDown.pas',
+  Syntax.Code in 'Libs\FMXRichMemo\Syntax.Code.pas',
+  Syntax.Code.Pascal in 'Libs\FMXRichMemo\Syntax.Code.Pascal.pas',
+  Syntax.Code.Python in 'Libs\FMXRichMemo\Syntax.Code.Python.pas',
+  Syntax.Code.SQL in 'Libs\FMXRichMemo\Syntax.Code.SQL.pas';
 
 {$R *.res}
 
