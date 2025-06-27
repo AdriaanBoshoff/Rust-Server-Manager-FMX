@@ -23,6 +23,7 @@ All dependencies are now free.
 * [IPTypesX](https://github.com/optinsoft/MMDBReader/blob/master/Source/IPTypesX.pas) - Used by MMDB Reader
 * [MMDB Reader](https://github.com/optinsoft/MMDBReader/tree/master) - Get IP info
 * [XSuperObject](https://github.com/onryldz/x-superobject) - Save / Load delphi objects as / from JSON
+* [FMXRichMemo](https://github.com/HemulGM/FMXRichMemo) - Used for syntax highlighting in the Config Editor.
 
 ## Usage Instructions
 
