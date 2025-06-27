@@ -127,7 +127,8 @@ uses
   Syntax.Code in 'Libs\FMXRichMemo\Syntax.Code.pas',
   Syntax.Code.Pascal in 'Libs\FMXRichMemo\Syntax.Code.Pascal.pas',
   Syntax.Code.Python in 'Libs\FMXRichMemo\Syntax.Code.Python.pas',
-  Syntax.Code.SQL in 'Libs\FMXRichMemo\Syntax.Code.SQL.pas';
+  Syntax.Code.SQL in 'Libs\FMXRichMemo\Syntax.Code.SQL.pas',
+  ufrmSyntaxEditor in 'Forms\Syntax Editor\ufrmSyntaxEditor.pas' {frmSyntaxEditor};
 
 {$R *.res}
 

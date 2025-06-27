@@ -43,14 +43,14 @@ type
 implementation
 
 uses
-  System.IOUtils, uWinUtils;
+  System.IOUtils, uWinUtils, ufrmSyntaxEditor;
 
 {$R *.fmx}
 
 procedure TframeInstalledPlugin.btnOpenConfigClick(Sender: TObject);
 begin
   if TFile.Exists(FPluginInfo.Path) then
-    OpenURL(FPluginInfo.ConfigPath);
+    EditConfig(FPluginInfo.ConfigPath);
 
 //  var editor := TfrmSyntaxEditor.Create(frmMain);
 //  editor.mmoEditor.LoadFromFile(FPluginInfo.ConfigPath);

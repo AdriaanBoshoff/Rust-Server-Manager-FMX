@@ -1,0 +1,67 @@
+object frmSyntaxEditor: TfrmSyntaxEditor
+  Left = 0
+  Top = 0
+  Caption = 'Syntax Editor'
+  ClientHeight = 480
+  ClientWidth = 640
+  Position = MainFormCenter
+  StyleBook = dmStyles.styleRedRock
+  FormStyle = StayOnTop
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  object mmoCode: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    StyledSettings = [FontColor]
+    TextSettings.Font.Family = 'Consolas'
+    TextSettings.Font.Size = 14.000000000000000000
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 445.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    OnPresentationNameChoosing = mmoCodePresentationNameChoosing
+    Viewport.Width = 628.000000000000000000
+    Viewport.Height = 437.000000000000000000
+  end
+  object pnlFooter: TPanel
+    Align = Bottom
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Position.Y = 445.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 35.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object btnSave: TButton
+      Align = Right
+      Position.X = 555.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Save'
+      TextSettings.Trimming = None
+      OnClick = btnSaveClick
+    end
+    object btnCancel: TButton
+      Align = Left
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Cancel'
+      TextSettings.Trimming = None
+      OnClick = btnCancelClick
+    end
+  end
+end

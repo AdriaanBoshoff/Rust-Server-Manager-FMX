@@ -25,11 +25,11 @@ begin
   inherited;
 
   FStringKey := TKeyWord.Create;
-  FStringKey.Color := $FFE7DB74;
+  FStringKey.Color := $FF03befc;
   FStringKey.Font.Assign(FDefaultFont);
 
   FNumKey := TKeyWord.Create;
-  FNumKey.Color := $FFAC80FF;
+  FNumKey.Color := $FFeb4034;
   FNumKey.Font.Assign(FDefaultFont);
 end;
 
@@ -42,7 +42,7 @@ end;
 
 function TCodeSyntaxJson.GetAttributesForLine(const Line: string; const Index: Integer): TArray<TTextAttributedRangeData>;
 const
-  Seps =[' ', ';', ')', '(', '[', ']', ':', '<', '>', ',', '+', '-', '=', '*', '/', '\'];
+  Seps =[ ' ',  ';',  ')',  '(',  '[',  ']',  ':',  '<',  '>',  ',',  '+',  '-',  '=',  '*',  '/',  '\'];
 begin
   if FCached.TryGetValue(Index, Result) then
     Exit;
@@ -53,6 +53,8 @@ begin
     begin
       if Line.IsEmpty then
         Continue;
+
+      // String
       if IsString then
       begin
         if Line.Chars[C] = '"' then
@@ -60,11 +62,7 @@ begin
           IsString := False;
           if not Buf.IsEmpty then
           begin
-            Result := Result + [
-              TTextAttributedRangeData.Create(
-              TTextRange.Create(C - Buf.Length - 1, Buf.Length + 2),
-              TTextAttribute.Create(FStringKey.Font, FStringKey.Color)
-              )];
+            Result := Result + [TTextAttributedRangeData.Create(TTextRange.Create(C - Buf.Length - 1, Buf.Length + 2), TTextAttribute.Create(FStringKey.Font, FStringKey.Color))];
             Buf := '';
           end;
           Continue;
@@ -79,6 +77,7 @@ begin
         Continue;
       end;
 
+      // Seps
       if (C = Line.Length) or CharInSet(Line.Chars[C], Seps) then
       begin
         if not Buf.IsEmpty then
@@ -86,17 +85,11 @@ begin
           var FL: Extended;
           if TryStrToFloat(Buf.Replace('.', FormatSettings.DecimalSeparator), FL) then
           begin
-            Result := Result + [TTextAttributedRangeData.Create(
-              TTextRange.Create(C - Buf.Length, Buf.Length),
-              TTextAttribute.Create(FNumKey.Font, FNumKey.Color)
-              )];
+            Result := Result + [TTextAttributedRangeData.Create(TTextRange.Create(C - Buf.Length, Buf.Length), TTextAttribute.Create(FNumKey.Font, FNumKey.Color))];
           end
           else if Buf.StartsWith('\') then
           begin
-            Result := Result + [TTextAttributedRangeData.Create(
-              TTextRange.Create(C - Buf.Length, Buf.Length),
-              TTextAttribute.Create(FStringKey.Font, FStringKey.Color)
-              )];
+            Result := Result + [TTextAttributedRangeData.Create(TTextRange.Create(C - Buf.Length, Buf.Length), TTextAttribute.Create(FStringKey.Font, FStringKey.Color))];
           end;
 
           Buf := '';
