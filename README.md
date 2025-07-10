@@ -39,3 +39,4 @@ All dependencies are now free.
 ## Misc
 
 Icons Provided by [icons8](https://icons8.com/)
+IP Details [MMDB](https://mailfud.org/geoip-legacy/)
