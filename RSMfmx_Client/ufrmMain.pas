@@ -1601,36 +1601,29 @@ begin
   if FDoAutoRestart then
     Exit;
 
-  // Check Auto Restart 1
   if rsmConfig.AutoRestart.AutoRestart1.Enabled then
   begin
-    if FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart1.Time) then
-    begin
-      TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart1.WarningTimeSecs.ToString, 0, wsClientRconICS);
-      FDoAutoRestart := True;
+    if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart1.Time)) then
       Exit;
-    end;
-  end;
 
-  // Check Auto Restart 2
-  if rsmConfig.AutoRestart.AutoRestart2.Enabled then
+    TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart1.WarningTimeSecs.ToString, 0, wsClientRconICS);
+    FDoAutoRestart := True;
+  end
+  else if rsmConfig.AutoRestart.AutoRestart2.Enabled then
   begin
-    if FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart2.Time) then
-    begin
-      TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart2.WarningTimeSecs.ToString, 0, wsClientRconICS);
-      FDoAutoRestart := True;
+    if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart2.Time)) then
       Exit;
-    end;
-  end;
 
-  // Check Auto Restart 3
-  if rsmConfig.AutoRestart.AutoRestart3.Enabled then
+    TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart2.WarningTimeSecs.ToString, 0, wsClientRconICS);
+    FDoAutoRestart := True;
+  end
+  else if rsmConfig.AutoRestart.AutoRestart3.Enabled then
   begin
-    if FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart3.Time) then
-    begin
-      TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs.ToString, 0, wsClientRconICS);
-      FDoAutoRestart := True;
-    end;
+    if not (FormatDateTime('hh:nn', Now) = FormatDateTime('hh:nn', rsmConfig.AutoRestart.AutoRestart3.Time)) then
+      Exit;
+
+    TRCON.SendRconCommand('restart ' + rsmConfig.AutoRestart.AutoRestart3.WarningTimeSecs.ToString, 0, wsClientRconICS);
+    FDoAutoRestart := True;
   end;
 end;
 
