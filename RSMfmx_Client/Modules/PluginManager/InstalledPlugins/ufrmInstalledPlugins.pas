@@ -10,7 +10,7 @@ uses
   FMX.Memo, FMX.ListBox;
 
 type
-  TPluginFramework = (pfUnkown, pfuMod, pfCarbonMod);
+  TPluginFramework = (pfUnknown, pfuMod, pfCarbonMod);
 
 type
   TInstalledPlugin = record
@@ -204,7 +204,7 @@ begin
       end;
 
       aControl.Width := flwlytInstalledPlugins.Width;
-      // Disable Help button if no url availible
+      // Disable Help button if no url available
     //  var pluginItem := TframeInstalledPlugin(aControl);
      // pluginItem.btnHelp.Visible := (not pluginItem.PluginInfo.url.Trim.IsEmpty);
     end;

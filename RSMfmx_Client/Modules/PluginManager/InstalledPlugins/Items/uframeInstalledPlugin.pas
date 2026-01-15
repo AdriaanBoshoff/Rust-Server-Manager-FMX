@@ -106,7 +106,7 @@ begin
   lblPluginTitle.Text := Value.Name;
 
   case Value.Framework of
-    pfUnkown:
+    pfUnknown:
       lblFrameworkValue.Text := 'UNKNOWN';
     pfuMod:
       lblFrameworkValue.Text := 'Oxide / uMod';
