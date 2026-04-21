@@ -44,6 +44,7 @@ object frmServerInstaller: TfrmServerInstaller
     end
     object lytServerInstallerBranch: TLayout
       Align = Top
+      Enabled = False
       Margins.Top = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 32.000000000000000000
@@ -103,6 +104,7 @@ object frmServerInstaller: TfrmServerInstaller
     end
     object lytAutoQuitSteamCMD: TLayout
       Align = Top
+      Enabled = False
       Margins.Top = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 67.000000000000000000
@@ -203,6 +205,7 @@ object frmServerInstaller: TfrmServerInstaller
     end
     object lytLimitProcessThreads: TLayout
       Align = Top
+      Enabled = False
       Margins.Top = 10.000000000000000000
       Position.X = 10.000000000000000000
       Position.Y = 102.000000000000000000
@@ -252,11 +255,11 @@ object frmServerInstaller: TfrmServerInstaller
     XRadius = 10.000000000000000000
     YRadius = 10.000000000000000000
     object lblServerInstallerLogHeader: TLabel
-      Align = MostTop
+      Align = Top
       StyledSettings = [Family, FontColor]
       Margins.Top = 5.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 5.000000000000000000
+      Position.Y = 35.000000000000000000
       Size.Width = 562.000000000000000000
       Size.Height = 17.000000000000000000
       Size.PlatformDefault = False
@@ -275,11 +278,21 @@ object frmServerInstaller: TfrmServerInstaller
       Align = Client
       Margins.Top = 10.000000000000000000
       Size.Width = 562.000000000000000000
-      Size.Height = 478.000000000000000000
+      Size.Height = 448.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Viewport.Width = 550.000000000000000000
-      Viewport.Height = 470.000000000000000000
+      Viewport.Height = 440.000000000000000000
+    end
+    object pbSteamDepotDownloader: TProgressBar
+      Align = MostTop
+      Orientation = Horizontal
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 562.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
     end
   end
 end

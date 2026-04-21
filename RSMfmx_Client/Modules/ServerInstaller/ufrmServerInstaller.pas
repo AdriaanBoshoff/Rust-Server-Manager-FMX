@@ -31,6 +31,7 @@ type
     lytLimitProcessThreads: TLayout;
     swtchLimitCPU: TSwitch;
     lblLimitProcessThreads: TLabel;
+    pbSteamDepotDownloader: TProgressBar;
     procedure btnCleanInstallServerClick(Sender: TObject);
     procedure btnInstallServerClick(Sender: TObject);
     procedure btnVerifyServerFilesClick(Sender: TObject);
@@ -155,11 +156,29 @@ end;
 procedure TfrmServerInstaller.btnInstallServerClick(Sender: TObject);
 begin
   // Testing Support
+  // TODO: Verify depotDownloader exists
+  // TODO: Fix potential memory leak
+  // TODO: Add method to stop download.
+  // TODO: Enable / Disable UI buttons according to status
+  // TODO: Limit Process Threads
 
   var steamDP := TDepotDownloader.Create(TPath.Combine([ExtractFilePath(ParamStr(0)), 'depotDownloader', 'DepotDownloader.exe']));
   steamDP.OnOutput :=
     procedure(const Line: string)
     begin
+      if Line.Contains('%') then
+      begin
+        var percVal := Copy(Line, 1, AnsiPos('%', Line) - 1);
+        percVal := percVal.Replace(',', '.');
+        var percValDouble: Double;
+        var fs: TFormatSettings;
+        fs.DecimalSeparator := '.';
+        if TryStrToFloat(percVal, percValDouble, fs) then
+          pbSteamDepotDownloader.Value := percValDouble;
+
+      //  mmoServerInstallerLog.Lines.Add(percVal);
+      end;
+
       btnInstallServer.Enabled := False;
       mmoServerInstallerLog.Lines.Add(Line);
       mmoServerInstallerLog.GoToTextEnd;
@@ -233,6 +252,9 @@ end;
 
 procedure TfrmServerInstaller.btnVerifyServerFilesClick(Sender: TObject);
 begin
+  ShowMessageBox('Verify files not implemented with SteamDepotDownloader', 'Depot Downloader', rctnglServerInstallerLogBG);
+  Exit;
+
   if FIsInstallingServer then
   begin
     ShowMessageBox('Server is currently busy installing!', 'SteamCMD busy', Self.Owner as TFmxObject);
