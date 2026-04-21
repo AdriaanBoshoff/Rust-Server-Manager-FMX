@@ -155,7 +155,6 @@ object frmServerInstaller: TfrmServerInstaller
       Text = 'Install / Update Server'
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
-      TextSettings.Trimming = None
       TintColor = claDarkgreen
       OnClick = btnInstallServerClick
     end
@@ -176,7 +175,6 @@ object frmServerInstaller: TfrmServerInstaller
       Text = 'Verify Server Files'
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
-      TextSettings.Trimming = None
       TintColor = xFFB36200
       OnClick = btnVerifyServerFilesClick
     end
@@ -200,7 +198,6 @@ object frmServerInstaller: TfrmServerInstaller
       Text = 'Perform Clean Install'
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00060000000000000004000000}
-      TextSettings.Trimming = None
       TintColor = xFFAA0000
       OnClick = btnCleanInstallServerClick
     end

@@ -133,7 +133,8 @@ uses
   Syntax.Code.Pascal in 'Libs\FMXRichMemo\Syntax.Code.Pascal.pas',
   Syntax.Code.Python in 'Libs\FMXRichMemo\Syntax.Code.Python.pas',
   Syntax.Code.SQL in 'Libs\FMXRichMemo\Syntax.Code.SQL.pas',
-  ufrmSyntaxEditor in 'Forms\Syntax Editor\ufrmSyntaxEditor.pas' {frmSyntaxEditor};
+  ufrmSyntaxEditor in 'Forms\Syntax Editor\ufrmSyntaxEditor.pas' {frmSyntaxEditor},
+  SteamDepotRunner in 'Units\SteamDepotRunner.pas';
 
 {$R *.res}
 
