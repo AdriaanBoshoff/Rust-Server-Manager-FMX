@@ -200,8 +200,8 @@
         <VerInfo_MajorVer>2026</VerInfo_MajorVer>
         <VerInfo_MinorVer>4</VerInfo_MinorVer>
         <VerInfo_Release>21</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2026.4.21.3;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.rustservermanager.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>3</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2026.4.21.5;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.rustservermanager.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>5</VerInfo_Build>
         <DCC_Define>HORSE_VCL;$(DCC_Define)</DCC_Define>
         <DCC_PreferredToolArchitecture>x64</DCC_PreferredToolArchitecture>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>

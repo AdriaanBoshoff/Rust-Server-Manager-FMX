@@ -22,6 +22,26 @@ type
   TOutputEvent = reference to procedure(const Line: string);
   TExitEvent   = reference to procedure(ExitCode: Integer);
 
+  /// Identifies a Steam branch (beta) to target.
+  /// Leave BranchName empty to use the default (public) branch.
+  TSteamBranch = record
+    BranchName    : string;   // e.g. 'beta', 'staging', 'experimental'
+    BranchPassword: string;   // Only needed for password-protected branches
+
+    class function Default: TSteamBranch; static;
+    class function Named(const AName: string;
+      const APassword: string = ''): TSteamBranch; static;
+  end;
+
+  /// Identifies one or more specific depots to download.
+  /// Leave Depots empty to download all depots for the app.
+  TSteamDepotFilter = record
+    DepotIDs: TArray<Integer>;
+
+    class function All: TSteamDepotFilter; static;
+    class function Only(const ADepotIDs: TArray<Integer>): TSteamDepotFilter; static;
+  end;
+
   TDepotDownloader = class
   private
     FDepotDownloaderPath : string;
@@ -43,17 +63,39 @@ type
     procedure CreateJobObject;
     {$ENDIF}
 
+    // Builds the branch/depot portion of the argument string
+    class function BuildBranchArgs(const Branch: TSteamBranch): string; static;
+    class function BuildDepotArgs(const DepotFilter: TSteamDepotFilter): string; static;
+
   public
     constructor Create(const ADepotDownloaderPath: string);
     destructor  Destroy; override;
 
-    /// Install or update a Steam app by AppID.
-    procedure InstallOrUpdate(AppID: Integer; const InstallDir: string;
-      const Username: string = 'anonymous'; const Password: string = '');
+    /// Install or update a Steam app — anonymous, default branch, all depots.
+    procedure InstallOrUpdate(AppID: Integer; const InstallDir: string); overload;
 
-    /// Verify an installed app against its depot manifest.
+    /// Install or update with explicit credentials, default branch, all depots.
+    procedure InstallOrUpdate(AppID: Integer; const InstallDir: string;
+      const Username: string; const Password: string = ''); overload;
+
+    /// Install or update with full control over credentials, branch, and depots.
+    procedure InstallOrUpdate(AppID: Integer; const InstallDir: string;
+      const Username: string; const Password: string;
+      const Branch: TSteamBranch;
+      const DepotFilter: TSteamDepotFilter); overload;
+
+    /// Verify an installed app — anonymous, default branch, all depots.
+    procedure Verify(AppID: Integer; const InstallDir: string); overload;
+
+    /// Verify with explicit credentials, default branch, all depots.
     procedure Verify(AppID: Integer; const InstallDir: string;
-      const Username: string = 'anonymous');
+      const Username: string); overload;
+
+    /// Verify with full control over credentials, branch, and depots.
+    procedure Verify(AppID: Integer; const InstallDir: string;
+      const Username: string;
+      const Branch: TSteamBranch;
+      const DepotFilter: TSteamDepotFilter); overload;
 
     /// Terminate the running DepotDownloader process immediately.
     procedure Terminate;
@@ -131,6 +173,34 @@ function prctl(option: Integer; arg2, arg3, arg4, arg5: NativeUInt): Integer;
   cdecl; external 'libc' name 'prctl';
 {$ENDIF}
 
+{ == TSteamBranch ============================================================ }
+
+class function TSteamBranch.Default: TSteamBranch;
+begin
+  Result.BranchName     := '';
+  Result.BranchPassword := '';
+end;
+
+class function TSteamBranch.Named(const AName: string;
+  const APassword: string): TSteamBranch;
+begin
+  Result.BranchName     := AName;
+  Result.BranchPassword := APassword;
+end;
+
+{ == TSteamDepotFilter ======================================================= }
+
+class function TSteamDepotFilter.All: TSteamDepotFilter;
+begin
+  Result.DepotIDs := [];
+end;
+
+class function TSteamDepotFilter.Only(
+  const ADepotIDs: TArray<Integer>): TSteamDepotFilter;
+begin
+  Result.DepotIDs := ADepotIDs;
+end;
+
 { == TDepotDownloader ======================================================== }
 
 constructor TDepotDownloader.Create(const ADepotDownloaderPath: string);
@@ -186,14 +256,54 @@ begin
 end;
 {$ENDIF}
 
+{ == Argument builders ======================================================= }
+
+class function TDepotDownloader.BuildBranchArgs(
+  const Branch: TSteamBranch): string;
+begin
+  Result := '';
+  if Branch.BranchName = '' then
+    Exit;
+
+  Result := ' -beta ' + Branch.BranchName;
+  if Branch.BranchPassword <> '' then
+    Result := Result + ' -betapassword ' + Branch.BranchPassword;
+end;
+
+class function TDepotDownloader.BuildDepotArgs(
+  const DepotFilter: TSteamDepotFilter): string;
+var
+  ID: Integer;
+begin
+  Result := '';
+  for ID in DepotFilter.DepotIDs do
+    Result := Result + ' -depot ' + ID.ToString;
+end;
+
 { == Public API ============================================================== }
 
 procedure TDepotDownloader.InstallOrUpdate(AppID: Integer;
-  const InstallDir, Username, Password: string);
+  const InstallDir: string);
+begin
+  InstallOrUpdate(AppID, InstallDir, 'anonymous', '',
+    TSteamBranch.Default, TSteamDepotFilter.All);
+end;
+
+procedure TDepotDownloader.InstallOrUpdate(AppID: Integer;
+  const InstallDir: string; const Username: string; const Password: string);
+begin
+  InstallOrUpdate(AppID, InstallDir, Username, Password,
+    TSteamBranch.Default, TSteamDepotFilter.All);
+end;
+
+procedure TDepotDownloader.InstallOrUpdate(AppID: Integer;
+  const InstallDir: string; const Username: string; const Password: string;
+  const Branch: TSteamBranch; const DepotFilter: TSteamDepotFilter);
 var
   Args: string;
 begin
   Args := Format('-app %d -dir "%s"', [AppID, InstallDir]);
+
   if not Username.Equals('anonymous') then
   begin
     Args := Args + ' -username ' + Username;
@@ -202,17 +312,40 @@ begin
     else
       Args := Args + ' -remember-password';
   end;
+
+  Args := Args + BuildBranchArgs(Branch);
+  Args := Args + BuildDepotArgs(DepotFilter);
+
   RunInternal(Args);
 end;
 
-procedure TDepotDownloader.Verify(AppID: Integer;
-  const InstallDir, Username: string);
+procedure TDepotDownloader.Verify(AppID: Integer; const InstallDir: string);
+begin
+  Verify(AppID, InstallDir, 'anonymous',
+    TSteamBranch.Default, TSteamDepotFilter.All);
+end;
+
+procedure TDepotDownloader.Verify(AppID: Integer; const InstallDir: string;
+  const Username: string);
+begin
+  Verify(AppID, InstallDir, Username,
+    TSteamBranch.Default, TSteamDepotFilter.All);
+end;
+
+procedure TDepotDownloader.Verify(AppID: Integer; const InstallDir: string;
+  const Username: string; const Branch: TSteamBranch;
+  const DepotFilter: TSteamDepotFilter);
 var
   Args: string;
 begin
   Args := Format('-app %d -dir "%s" -verify-all', [AppID, InstallDir]);
+
   if not Username.Equals('anonymous') then
     Args := Args + ' -username ' + Username;
+
+  Args := Args + BuildBranchArgs(Branch);
+  Args := Args + BuildDepotArgs(DepotFilter);
+
   RunInternal(Args);
 end;
 
@@ -445,4 +578,5 @@ begin
 
     end); // TTask.Run
 end;
+
 end.
