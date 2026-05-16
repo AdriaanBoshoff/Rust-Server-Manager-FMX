@@ -1713,7 +1713,7 @@ begin
       wsClientRconICS.URL := rconURL;
       wsClientRconICS.Timeout := 3000;
       try
-        wsClientRconICS.WSConnect;
+        wsClientRconICS.WSConnect(rconURL);
       except
         // Silence Exception
       end;
