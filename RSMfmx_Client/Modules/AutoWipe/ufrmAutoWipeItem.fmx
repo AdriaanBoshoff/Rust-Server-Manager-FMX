@@ -86,6 +86,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
         Size.Height = 25.000000000000000000
         Size.PlatformDefault = False
         TextPrompt = 'Wipe Description'
+        OnChange = edtDescriptionChange
       end
     end
     object rctnglInterval: TRectangle
@@ -404,7 +405,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
       Position.X = 10.000000000000000000
       Position.Y = 306.000000000000000000
       Size.Width = 569.000000000000000000
-      Size.Height = 266.000000000000000000
+      Size.Height = 301.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claNull
       XRadius = 10.000000000000000000
@@ -423,11 +424,55 @@ object frmAutoWipeItem: TfrmAutoWipeItem
         Text = 'Delete Files && Dirs'
         TabOrder = 0
       end
+      object lytGridButtons: TLayout
+        Align = Top
+        Margins.Top = 5.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 26.000000000000000000
+        Size.Width = 549.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object btnAddFile: TButton
+          Align = Left
+          Size.Width = 80.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Add File'
+          TextSettings.Trimming = None
+          OnClick = btnAddFileClick
+        end
+        object btnAddFolder: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Position.X = 85.000000000000000000
+          Size.Width = 90.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Add Folder'
+          TextSettings.Trimming = None
+          OnClick = btnAddFolderClick
+        end
+        object btnRemoveFilePath: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Position.X = 180.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Remove'
+          TextSettings.Trimming = None
+          OnClick = btnRemoveFileClick
+        end
+      end
       object strngrdDeleteFilesDirs: TStringGrid
         Align = Client
         CanFocus = True
         ClipChildren = True
-        Margins.Top = 10.000000000000000000
+        Margins.Top = 5.000000000000000000
         Size.Width = 549.000000000000000000
         Size.Height = 220.000000000000000000
         Size.PlatformDefault = False
@@ -444,7 +489,7 @@ object frmAutoWipeItem: TfrmAutoWipeItem
         object strngclmnFilePath: TStringColumn
           Header = 'File Path'
           HeaderSettings.TextSettings.WordWrap = False
-          Size.Width = 266.000000000000000000
+          Size.Width = 394.000000000000000000
         end
       end
     end

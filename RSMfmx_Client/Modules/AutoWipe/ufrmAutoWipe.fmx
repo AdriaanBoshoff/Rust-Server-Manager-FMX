@@ -60,6 +60,19 @@ object frmAutoWipe: TfrmAutoWipe
       TextSettings.Trimming = None
       OnClick = btnAddAutoWipeClick
     end
+    object btnDeleteAutoWipe: TButton
+      Align = Left
+      Margins.Left = 5.000000000000000000
+      Position.X = 95.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Delete Wipe'
+      TextSettings.Trimming = None
+      OnClick = btnDeleteAutoWipeClick
+    end
   end
   object tlbHeader: TToolBar
     Size.Width = 585.000000000000000000

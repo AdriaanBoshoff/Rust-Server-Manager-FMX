@@ -8,7 +8,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.Edit, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts,
   FMX.DateTimeCtrls, FMX.Objects, System.Rtti, FMX.Grid.Style, FMX.ScrollBox,
-  FMX.Grid,
+  FMX.Grid, FMX.TabControl,
   uAutoWipeManager;
 
 type
@@ -48,15 +48,27 @@ type
     lblDeleteSavFilesDescription: TLabel;
     rctnglDeleteFilesDirs: TRectangle;
     lblDeleteFilesDirsHeader: TLabel;
+    lytGridButtons: TLayout;
+    btnAddFile: TButton;
+    btnAddFolder: TButton;
+    btnRemoveFilePath: TButton;
     strngrdDeleteFilesDirs: TStringGrid;
     strngclmnFileName: TStringColumn;
     strngclmnFilePath: TStringColumn;
     procedure OnIntervalChange(Sender: TObject);
+    procedure edtDescriptionChange(Sender: TObject);
+    procedure btnAddFileClick(Sender: TObject);
+    procedure btnAddFolderClick(Sender: TObject);
+    procedure btnRemoveFileClick(Sender: TObject);
   private
+    FParentTab: TTabItem;
     function GetSelectedWipeDay: Integer;
     function ComputeNextWipe(wipeType: TAutoWipeType; wipeDay: Integer;
       const wipeTime: TTime): TDateTime;
+    function BrowseForFolder: string;
+    procedure AddPathToGrid(const aPath: string);
   public
+    procedure SetParentTab(tab: TTabItem);
     procedure LoadWipe(const aWipe: TAutoWipe);
     procedure SaveWipe(var aWipe: TAutoWipe);
   end;
@@ -66,7 +78,32 @@ var
 
 implementation
 
+uses
+  Winapi.Windows, Winapi.ShlObj, Winapi.ActiveX;
+
 {$R *.fmx}
+
+const
+  NO_DESCR = 'NO DESCR';
+
+{ TfrmAutoWipeItem }
+
+procedure TfrmAutoWipeItem.SetParentTab(tab: TTabItem);
+begin
+  FParentTab := tab;
+end;
+
+procedure TfrmAutoWipeItem.edtDescriptionChange(Sender: TObject);
+begin
+  if not Assigned(FParentTab) then
+    Exit;
+
+  var txt := edtDescrpiton.Text.Trim;
+  if txt.IsEmpty then
+    FParentTab.Text := NO_DESCR
+  else
+    FParentTab.Text := txt;
+end;
 
 procedure TfrmAutoWipeItem.OnIntervalChange(Sender: TObject);
 begin
@@ -81,32 +118,26 @@ begin
     // no day row needed
   end
   else if Sender = rbIntervalWeekly then
-  begin
-    lytIntervalDay.Enabled := True;
-  end
+    lytIntervalDay.Enabled := True
   else if Sender = rbIntervalBiWeekly then
-  begin
-    lytIntervalDay.Enabled := True;
-  end
+    lytIntervalDay.Enabled := True
   else if Sender = rbIntervalMonthly then
   begin
     // no specific day row needed
   end
   else
-  begin
     raise Exception.Create('[TfrmAutoWipeItem.OnIntervalChange] Unknown Sender.');
-  end;
 end;
 
 function TfrmAutoWipeItem.GetSelectedWipeDay: Integer;
 begin
-  if rbIntervalMon.IsChecked  then Result := 0
+  if rbIntervalMon.IsChecked       then Result := 0
   else if rbIntervalTue.IsChecked  then Result := 1
   else if rbIntervalWed.IsChecked  then Result := 2
   else if rbIntervalThur.IsChecked then Result := 3
   else if rbIntervalFri.IsChecked  then Result := 4
   else if rbIntervalSat.IsChecked  then Result := 5
-  else                                   Result := 6; // Sun default
+  else                                   Result := 6; // Sun
 end;
 
 function TfrmAutoWipeItem.ComputeNextWipe(wipeType: TAutoWipeType;
@@ -117,14 +148,13 @@ begin
   case wipeType of
     awtOnce, awtDaily:
       begin
-        // Next occurrence of this time: today if still in the future, else tomorrow
         Result := Today + wipeTime;
         if Result <= Now then
           Result := Result + 1;
       end;
     awtWeekly, awtBiWeekly:
       begin
-        // Convert DayOfWeek (1=Sun..7=Sat) to our scheme (0=Mon..6=Sun)
+        // DayOfWeek: 1=Sun..7=Sat → our scheme: 0=Mon..6=Sun
         nowWipeDay := (DayOfWeek(Now) + 5) mod 7;
         daysAhead := wipeDay - nowWipeDay;
         if (daysAhead < 0) or ((daysAhead = 0) and (wipeTime <= TimeOf(Now))) then
@@ -133,13 +163,114 @@ begin
       end;
     awtMonthly:
       begin
-        // Same time next month (or this month if still in the future today)
         Result := Today + wipeTime;
         if Result <= Now then
           Result := IncMonth(Result);
       end;
   else
     Result := Now + 1;
+  end;
+end;
+
+function TfrmAutoWipeItem.BrowseForFolder: string;
+var
+  bi: TBrowseInfo;
+  pidl: PItemIDList;
+  buffer: array[0..MAX_PATH - 1] of Char;
+begin
+  Result := '';
+  FillChar(bi, SizeOf(bi), 0);
+  bi.hwndOwner := 0;
+  bi.pszDisplayName := buffer;
+  bi.lpszTitle := 'Select Folder to Delete on Wipe';
+  bi.ulFlags := BIF_RETURNONLYFSDIRS or BIF_NEWDIALOGSTYLE;
+  pidl := SHBrowseForFolder(bi);
+  if Assigned(pidl) then
+  try
+    if SHGetPathFromIDList(pidl, buffer) then
+      Result := buffer;
+  finally
+    CoTaskMemFree(pidl);
+  end;
+end;
+
+procedure TfrmAutoWipeItem.AddPathToGrid(const aPath: string);
+var
+  row, emptyRow, I: Integer;
+begin
+  // Try to find an empty row first
+  emptyRow := -1;
+  for I := 0 to strngrdDeleteFilesDirs.RowCount - 1 do
+  begin
+    if strngrdDeleteFilesDirs.Cells[1, I].Trim.IsEmpty then
+    begin
+      emptyRow := I;
+      Break;
+    end;
+  end;
+
+  if emptyRow >= 0 then
+    row := emptyRow
+  else
+  begin
+    // All rows occupied — add a new row
+    row := strngrdDeleteFilesDirs.RowCount;
+    strngrdDeleteFilesDirs.RowCount := row + 1;
+  end;
+
+  strngrdDeleteFilesDirs.Cells[0, row] := ExtractFileName(aPath);
+  strngrdDeleteFilesDirs.Cells[1, row] := aPath;
+end;
+
+procedure TfrmAutoWipeItem.btnAddFileClick(Sender: TObject);
+var
+  dlg: TOpenDialog;
+begin
+  dlg := TOpenDialog.Create(Self);
+  try
+    dlg.Title := 'Select File to Delete on Wipe';
+    dlg.Options := [TOpenOption.ofDontAddToRecent, TOpenOption.ofFileMustExist];
+    dlg.Filter := 'All Files (*.*)|*.*';
+    if dlg.Execute then
+      AddPathToGrid(dlg.FileName);
+  finally
+    dlg.Free;
+  end;
+end;
+
+procedure TfrmAutoWipeItem.btnAddFolderClick(Sender: TObject);
+var
+  folder: string;
+begin
+  folder := BrowseForFolder;
+  if not folder.IsEmpty then
+    AddPathToGrid(folder);
+end;
+
+procedure TfrmAutoWipeItem.btnRemoveFileClick(Sender: TObject);
+var
+  selRow, I: Integer;
+begin
+  if strngrdDeleteFilesDirs.RowCount = 0 then
+    Exit;
+
+  selRow := strngrdDeleteFilesDirs.Row;
+
+  // Shift rows up from the deleted row onward
+  for I := selRow to strngrdDeleteFilesDirs.RowCount - 2 do
+  begin
+    strngrdDeleteFilesDirs.Cells[0, I] := strngrdDeleteFilesDirs.Cells[0, I + 1];
+    strngrdDeleteFilesDirs.Cells[1, I] := strngrdDeleteFilesDirs.Cells[1, I + 1];
+  end;
+
+  // Remove the last (now-duplicate) row only if we have more than the minimum 5
+  if strngrdDeleteFilesDirs.RowCount > 5 then
+    strngrdDeleteFilesDirs.RowCount := strngrdDeleteFilesDirs.RowCount - 1
+  else
+  begin
+    // Clear the last row instead of shrinking below minimum
+    strngrdDeleteFilesDirs.Cells[0, strngrdDeleteFilesDirs.RowCount - 1] := '';
+    strngrdDeleteFilesDirs.Cells[1, strngrdDeleteFilesDirs.RowCount - 1] := '';
   end;
 end;
 
@@ -150,7 +281,6 @@ begin
   swtchEnabled.IsChecked := aWipe.enabled;
   edtDescrpiton.Text := aWipe.description;
 
-  // Interval type
   case aWipe.wipeType of
     awtOnce:     rbIntervalOnce.IsChecked := True;
     awtDaily:    rbIntervalDaily.IsChecked := True;
@@ -159,7 +289,6 @@ begin
     awtMonthly:  rbIntervalMonthly.IsChecked := True;
   end;
 
-  // Day of week (relevant for weekly/biweekly)
   case aWipe.wipeDay of
     0: rbIntervalMon.IsChecked  := True;
     1: rbIntervalTue.IsChecked  := True;
@@ -170,35 +299,29 @@ begin
     6: rbIntervalSun.IsChecked  := True;
   end;
 
-  // Wipe time
   if aWipe.wipeTime > 0 then
     tmdtInterval.Time := aWipe.wipeTime
   else
-    tmdtInterval.Time := EncodeTime(5, 0, 0, 0); // default 05:00
+    tmdtInterval.Time := EncodeTime(5, 0, 0, 0);
 
-  // Shortcut options
   swtchWipeBlueprints.IsChecked := aWipe.WipeBlueprints;
   swtchDeleteSavFiles.IsChecked := aWipe.DeleteSavFiles;
 
-  // Populate grid with custom delete paths (wipeFiles; wipeDirs are treated the same)
   rowCount := Max(5, Length(aWipe.wipeFiles) + Length(aWipe.wipeDirs));
   strngrdDeleteFilesDirs.RowCount := rowCount;
 
-  // Clear all rows first
   for I := 0 to rowCount - 1 do
   begin
     strngrdDeleteFilesDirs.Cells[0, I] := '';
     strngrdDeleteFilesDirs.Cells[1, I] := '';
   end;
 
-  // Fill from wipeFiles
   for I := 0 to High(aWipe.wipeFiles) do
   begin
     strngrdDeleteFilesDirs.Cells[0, I] := ExtractFileName(aWipe.wipeFiles[I]);
     strngrdDeleteFilesDirs.Cells[1, I] := aWipe.wipeFiles[I];
   end;
 
-  // Append wipeDirs below wipeFiles
   for I := 0 to High(aWipe.wipeDirs) do
   begin
     var row := Length(aWipe.wipeFiles) + I;
@@ -206,7 +329,6 @@ begin
     strngrdDeleteFilesDirs.Cells[1, row] := aWipe.wipeDirs[I];
   end;
 
-  // Update day row visibility
   lytIntervalDay.Enabled :=
     rbIntervalWeekly.IsChecked or rbIntervalBiWeekly.IsChecked;
 end;
@@ -221,7 +343,6 @@ begin
   aWipe.enabled := swtchEnabled.IsChecked;
   aWipe.description := edtDescrpiton.Text;
 
-  // Interval type
   if rbIntervalOnce.IsChecked          then selectedType := awtOnce
   else if rbIntervalDaily.IsChecked    then selectedType := awtDaily
   else if rbIntervalWeekly.IsChecked   then selectedType := awtWeekly
@@ -230,21 +351,15 @@ begin
 
   aWipe.wipeType := selectedType;
 
-  // Day of week
   selectedDay := GetSelectedWipeDay;
   aWipe.wipeDay := selectedDay;
-
-  // Wipe time
   aWipe.wipeTime := tmdtInterval.Time;
 
-  // Shortcut options
   aWipe.WipeBlueprints := swtchWipeBlueprints.IsChecked;
   aWipe.DeleteSavFiles := swtchDeleteSavFiles.IsChecked;
 
-  // Compute the next wipe DateTime from the current settings
   aWipe.nextWipe := ComputeNextWipe(selectedType, selectedDay, aWipe.wipeTime);
 
-  // Collect non-empty paths from grid into wipeFiles
   SetLength(aWipe.wipeFiles, strngrdDeleteFilesDirs.RowCount);
   count := 0;
   for I := 0 to strngrdDeleteFilesDirs.RowCount - 1 do
@@ -257,11 +372,7 @@ begin
     end;
   end;
   SetLength(aWipe.wipeFiles, count);
-
-  // Grid covers both files and dirs; clear wipeDirs to avoid double-deletion
   SetLength(aWipe.wipeDirs, 0);
-
-  // newMap defaults — leave untouched so existing map settings are preserved
 end;
 
 end.

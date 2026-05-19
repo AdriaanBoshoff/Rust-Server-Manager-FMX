@@ -18,14 +18,17 @@ type
     btnSave: TButton;
     tbcAutoWipes: TTabControl;
     btnAddAutoWipe: TButton;
+    btnDeleteAutoWipe: TButton;
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure btnAddAutoWipeClick(Sender: TObject);
+    procedure btnDeleteAutoWipeClick(Sender: TObject);
   private
     FWipeItems: TList<TfrmAutoWipeItem>;
     procedure LoadFromManager;
     procedure SaveToManager;
     procedure AddWipeTab(const aWipe: TAutoWipe);
+    function ActiveWipeIndex: Integer;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -34,6 +37,9 @@ type
 implementation
 
 {$R *.fmx}
+
+const
+  NO_DESCR = 'NO DESCR';
 
 constructor TfrmAutoWipe.Create(AOwner: TComponent);
 begin
@@ -48,22 +54,30 @@ begin
   inherited;
 end;
 
+function TfrmAutoWipe.ActiveWipeIndex: Integer;
+begin
+  Result := tbcAutoWipes.TabIndex;
+end;
+
 procedure TfrmAutoWipe.AddWipeTab(const aWipe: TAutoWipe);
 var
   tab: TTabItem;
   wipeItem: TfrmAutoWipeItem;
+  tabText: string;
 begin
   tab := tbcAutoWipes.Add;
 
-  tab.Text := aWipe.description;
-  if tab.Text.IsEmpty then
-    tab.Text := 'Wipe ' + tbcAutoWipes.TabCount.ToString;
+  tabText := aWipe.description.Trim;
+  if tabText.IsEmpty then
+    tabText := NO_DESCR;
+  tab.Text := tabText;
 
-  // Create item form owned by the tab; reparent its children so they render
+  // Create item form owned by the tab; reparent its visual children to the tab
   wipeItem := TfrmAutoWipeItem.Create(tab);
   while wipeItem.ChildrenCount > 0 do
     wipeItem.Children[0].Parent := tab;
 
+  wipeItem.SetParentTab(tab);
   wipeItem.LoadWipe(aWipe);
   FWipeItems.Add(wipeItem);
 end;
@@ -72,7 +86,6 @@ procedure TfrmAutoWipe.LoadFromManager;
 var
   I: Integer;
 begin
-  // Clear existing tabs and references (tabs own the wipe-item forms)
   FWipeItems.Clear;
   while tbcAutoWipes.TabCount > 0 do
     tbcAutoWipes.Delete(0);
@@ -113,6 +126,24 @@ begin
   newWipe.newMap.CustomMapURL := '';
 
   AddWipeTab(newWipe);
+
+  // Switch to the newly added tab
+  tbcAutoWipes.TabIndex := tbcAutoWipes.TabCount - 1;
+end;
+
+procedure TfrmAutoWipe.btnDeleteAutoWipeClick(Sender: TObject);
+var
+  idx: Integer;
+begin
+  idx := ActiveWipeIndex;
+  if (idx < 0) or (idx >= FWipeItems.Count) then
+    Exit;
+
+  // Remove from list first so no dangling pointer remains after Delete frees the tab+form
+  FWipeItems.Delete(idx);
+
+  // Deleting the tab also frees the owned TfrmAutoWipeItem and all its controls
+  tbcAutoWipes.Delete(idx);
 end;
 
 procedure TfrmAutoWipe.btnCancelClick(Sender: TObject);
