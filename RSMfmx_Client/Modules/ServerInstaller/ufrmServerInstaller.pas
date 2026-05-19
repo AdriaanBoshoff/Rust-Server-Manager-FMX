@@ -19,19 +19,14 @@ type
     lstServerBranchStaging: TListBoxItem;
     lstServerBranchAux01: TListBoxItem;
     lstServerBranchAux02: TListBoxItem;
-    lytAutoQuitSteamCMD: TLayout;
-    swtchAutoQuitSteamCMD: TSwitch;
-    lblAutoQuitSteamCMDHeader: TLabel;
     btnInstallServer: TButton;
     btnVerifyServerFiles: TButton;
     btnCleanInstallServer: TButton;
     rctnglServerInstallerLogBG: TRectangle;
     lblServerInstallerLogHeader: TLabel;
     mmoServerInstallerLog: TMemo;
-    lytLimitProcessThreads: TLayout;
-    swtchLimitCPU: TSwitch;
-    lblLimitProcessThreads: TLabel;
     pbSteamDepotDownloader: TProgressBar;
+    lstServerBranchAux04: TListBoxItem;
     procedure btnCleanInstallServerClick(Sender: TObject);
     procedure btnInstallServerClick(Sender: TObject);
     procedure btnVerifyServerFilesClick(Sender: TObject);
@@ -267,46 +262,7 @@ begin
     Exit;
   end;
 
-  try
-    FIsInstallingServer := True;
-
-    // Install SteamCMD
-    InstallSteamCMD;
-
-    // Install Update Server
-    var steamCMD := TSteamCMD.Create(ExtractFilePath(FSteamCMDFilePath));
-    try
-      AddLog('Running SteamCMD...');
-
-      // Main Branch
-      if cbbServerInstallerBranch.ItemIndex = lstServerBranchMain.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, '', swtchLimitCPU.IsChecked);
-
-      // Staging Branch
-      if cbbServerInstallerBranch.ItemIndex = lstServerBranchStaging.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'staging', swtchLimitCPU.IsChecked);
-
-      // aux01 Branch
-      if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux01.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'aux01', swtchLimitCPU.IsChecked);
-
-      // aux02 Branch
-      if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux02.Index then
-        steamCMD.InstallApp(258550, ExtractFileDir(ParamStr(0)), swtchAutoQuitSteamCMD.IsChecked, TRUE, 'aux02', swtchLimitCPU.IsChecked);
-
-      FIsInstallingServer := False;
-
-      AddLog('DONE. If you have any issues please disable the SteamCMD auto close option and see the console window logs.');
-    finally
-      steamCMD.Free;
-    end;
-  except
-    on E: Exception do
-    begin
-      FIsInstallingServer := False;
-      AddLog('ERROR - ' + E.ClassName + ': ' + E.Message);
-    end;
-  end;
+ 
 end;
 
 procedure TfrmServerInstaller.cbbServerInstallerBranchChange(Sender: TObject);
