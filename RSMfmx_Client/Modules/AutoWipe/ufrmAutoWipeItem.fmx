@@ -162,11 +162,22 @@ object frmAutoWipeItem: TfrmAutoWipeItem
           Align = Left
           GroupName = 'interval'
           Position.X = 210.000000000000000000
-          Size.Width = 70.000000000000000000
+          Size.Width = 75.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Text = 'Bi-Weekyl'
+          Text = 'Bi-Weekly'
+          OnChange = OnIntervalChange
+        end
+        object rbIntervalMonthly: TRadioButton
+          Align = Left
+          GroupName = 'interval'
+          Position.X = 285.000000000000000000
+          Size.Width = 75.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Text = 'Monthly'
           OnChange = OnIntervalChange
         end
       end

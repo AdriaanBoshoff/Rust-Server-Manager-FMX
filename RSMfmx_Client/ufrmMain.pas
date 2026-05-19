@@ -416,6 +416,8 @@ type
     FDoAutoRestart: boolean;
     // OverrideClose
     FOverrideClose: Boolean;
+    // Auto Wipe check timer (created programmatically)
+    FtmrAutoWipe: TTimer;
   private
     { Private declarations }
     // UI
@@ -432,6 +434,9 @@ type
     procedure ShowServerInfo;
     // Window Border Controls
     procedure MaximizeWindow;
+    // Auto Wipe
+    procedure OnAutoWipeTimer(Sender: TObject);
+    procedure OnAutoWipeManagerClick(Sender: TObject);
   public
     { Public Variables }
     MainFormCreated: Boolean;
@@ -1091,6 +1096,12 @@ begin
 
   // Auto Wipe Manager
   autoWipeManager := TAutoWipeManager.Create;
+
+  // Auto Wipe check timer — fires every 60 s to call CheckDueWipes
+  FtmrAutoWipe := TTimer.Create(Self);
+  FtmrAutoWipe.Interval := 60000;
+  FtmrAutoWipe.OnTimer := OnAutoWipeTimer;
+  FtmrAutoWipe.Enabled := True;
 end;
 
 procedure TfrmMain.CreateModules;
@@ -1136,6 +1147,30 @@ begin
 
   // Start Services Monitor
   tmrServicesStatus.Enabled := True;
+
+  // Auto Wipe Manager entry in the RSM menu
+  var mniAutoWipe := TMenuItem.Create(mniRSM);
+  mniAutoWipe.Text := 'Auto Wipe Manager...';
+  mniAutoWipe.OnClick := OnAutoWipeManagerClick;
+  mniRSM.AddObject(mniAutoWipe);
+end;
+
+procedure TfrmMain.OnAutoWipeTimer(Sender: TObject);
+begin
+  if Assigned(autoWipeManager) then
+    autoWipeManager.CheckDueWipes;
+end;
+
+procedure TfrmMain.OnAutoWipeManagerClick(Sender: TObject);
+var
+  dlg: TfrmAutoWipe;
+begin
+  dlg := TfrmAutoWipe.Create(Self);
+  try
+    dlg.ShowModal;
+  finally
+    dlg.Free;
+  end;
 end;
 
 procedure TfrmMain.FreeClasses;

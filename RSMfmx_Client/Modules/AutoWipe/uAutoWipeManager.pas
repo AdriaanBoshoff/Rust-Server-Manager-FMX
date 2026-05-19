@@ -3,10 +3,11 @@ unit uAutoWipeManager;
 interface
 
 uses
-  System.IOUtils, System.DateUtils, System.SysUtils;
+  System.IOUtils, System.DateUtils, System.SysUtils, System.Threading,
+  System.Classes;
 
 type
-  TAutoWipeType = (awtOnce, awtDaily, awtWeekly, awtBiWeekly);
+  TAutoWipeType = (awtOnce, awtDaily, awtWeekly, awtBiWeekly, awtMonthly);
 
 type
   TAutoWipeNewMap = record
@@ -22,8 +23,13 @@ type
   TAutoWipe = record
   public
     enabled: Boolean;
+    description: string;
     wipeType: TAutoWipeType;
+    wipeDay: Integer;        // 0=Mon..6=Sun; relevant for weekly/biweekly display
+    wipeTime: TTime;         // time of day stored for display/recompute
     nextWipe: TDateTime;
+    WipeBlueprints: Boolean;
+    DeleteSavFiles: Boolean;
     wipeDirs: TArray<string>;
     wipeFiles: TArray<string>;
     newMap: TAutoWipeNewMap;
@@ -33,14 +39,17 @@ type
   TAutoWipeManager = class
   private
     const
-      AutoWipeTypeString: TArray<string> = ['Once', 'Daily', 'Weekly', 'Bi-Weekly'];
+      AutoWipeTypeString: TArray<string> = ['Once', 'Daily', 'Weekly', 'Bi-Weekly', 'Monthly'];
   private
+    FWipeInProgress: Boolean;
     function SaveFilePath: string;
+    procedure AdvanceNextWipe(var autoWipe: TAutoWipe);
   public
     wipes: TArray<TAutoWipe>;
   public
     constructor Create;
-    procedure DoWipe(var autoWipe: TAutoWipe);
+    procedure CheckDueWipes;
+    procedure DoWipe(const autoWipe: TAutoWipe);
     function GetAutoWipeTypeString(const aType: TAutoWipeType): string;
     procedure Load;
     procedure Save;
@@ -52,127 +61,146 @@ var
 implementation
 
 uses
-  XSuperObject, RSM.Core, uServerConfig, ufrmMain;
+  XSuperObject, RSM.Core, uServerConfig, uServerProcess, ufrmMain;
 
 { TAutoWipeManager }
 
 constructor TAutoWipeManager.Create;
 begin
   SetLength(wipes, 0);
+  FWipeInProgress := False;
+  Load;
 end;
 
-procedure TAutoWipeManager.DoWipe(var autoWipe: TAutoWipe);
+procedure TAutoWipeManager.AdvanceNextWipe(var autoWipe: TAutoWipe);
 begin
-  if not autoWipe.enabled then
-  begin
-    Exit;
-  end;
-
   case autoWipe.wipeType of
-    awtOnce:
-      begin
-        // TODO: Handle Auto Wipe
-      end;
-    awtDaily:
-      begin
-        // TODO: Handle Auto Wipe
-      end;
-    awtWeekly:
-      begin
-        // TODO: Handle Auto Wipe
-      end;
-    awtBiWeekly:
-      begin
-       // TODO: Handle Auto Wipe
-      end;
+    awtOnce:     autoWipe.nextWipe := IncYear(autoWipe.nextWipe, 99);
+    awtDaily:    autoWipe.nextWipe := IncDay(autoWipe.nextWipe);
+    awtWeekly:   autoWipe.nextWipe := IncWeek(autoWipe.nextWipe);
+    awtBiWeekly: autoWipe.nextWipe := IncWeek(autoWipe.nextWipe, 2);
+    awtMonthly:  autoWipe.nextWipe := IncMonth(autoWipe.nextWipe);
   end;
+end;
 
-  // Delete Dirs
-  for var aDir in autoWipe.wipeDirs do
+procedure TAutoWipeManager.CheckDueWipes;
+begin
+  if FWipeInProgress then
+    Exit;
+
+  for var I := 0 to High(wipes) do
   begin
-    try
-      if TDirectory.Exists(aDir) then
-      begin
-        TDirectory.Delete(aDir);
-      end;
-    except
-      on E: Exception do
-      begin
-        // TODO: Handle Auto Wipe exception when deleting dirs
+    if not wipes[I].enabled then
+      Continue;
+    if Now < wipes[I].nextWipe then
+      Continue;
 
-        raise E;
-      end;
-    end;
+    // Advance before launching so a second timer tick can't re-trigger
+    AdvanceNextWipe(wipes[I]);
+    Save;
+
+    DoWipe(wipes[I]);
+    Break; // Only one wipe at a time; next check will catch any others
   end;
+end;
 
-  // Delete Files
-  for var aFile in autoWipe.wipeFiles do
-  begin
-    try
-      if TFile.Exists(aFile) then
-      begin
-        TFile.Delete(aFile);
-      end;
-    except
-      on E: Exception do
-      begin
-        // TODO: Handle Auto Wipe exception when deleting files
-        raise E;
-      end;
-    end;
-  end;
+procedure TAutoWipeManager.DoWipe(const autoWipe: TAutoWipe);
+var
+  localWipe: TAutoWipe;
+begin
+  localWipe := autoWipe;
+  FWipeInProgress := True;
 
-  // Increment Next Wipe
-  try
-    case autoWipe.wipeType of
-      awtOnce:
-        begin
-          autoWipe.nextWipe := IncYear(autoWipe.nextWipe, 99);
-        end;
-      awtDaily:
-        begin
-          autoWipe.nextWipe := IncDay(autoWipe.nextWipe);
-        end;
-      awtWeekly:
-        begin
-          autoWipe.nextWipe := IncWeek(autoWipe.nextWipe);
-        end;
-      awtBiWeekly:
-        begin
-          autoWipe.nextWipe := IncWeek(autoWipe.nextWipe, 2);
-        end;
-    end;
-
-    // Change Map Settings
-    if autoWipe.newMap.ChangeMap then
+  TTask.Run(
+    procedure
+    var
+      serverIdentityDir: string;
     begin
-      serverConfig.Map.MapIndex := autoWipe.newMap.MapTypeIndex;
-      serverConfig.Map.MapName := frmMain.cbbServerMap.ListItems[serverConfig.Map.MapIndex].ItemData.Detail;
-      serverConfig.Map.MapSize := autoWipe.newMap.MapSize;
-      serverConfig.Map.MapSeed := autoWipe.newMap.MapSeed;
-      serverConfig.Map.CustomMapURL := autoWipe.newMap.CustomMapURL;
+      try
+        // Stop server if running
+        if serverProcess.isRunning then
+        begin
+          serverProcess.KillProcess;
+          var waitSecs := 30;
+          while serverProcess.isRunning and (waitSecs > 0) do
+          begin
+            Sleep(1000);
+            Dec(waitSecs);
+          end;
+        end;
 
-      serverConfig.SaveConfig;
-      frmMain.PopulateServerConfigUI;
-    end;
+        // Brief pause so the OS can release file handles
+        Sleep(2000);
 
-  except
-    on E: Exception do
-    begin
-      // TODO: Handle Auto Wipe exception when inc next wipe
+        serverIdentityDir := TPath.Combine([rsmCore.Paths.GetRootDir, 'server', 'rsm']);
 
-      raise E;
-    end;
-  end;
+        // Delete blueprint .db files
+        if localWipe.WipeBlueprints and TDirectory.Exists(serverIdentityDir) then
+        begin
+          try
+            for var f in TDirectory.GetFiles(serverIdentityDir, '*.db') do
+              try TFile.Delete(f); except end;
+          except
+          end;
+        end;
 
-  try
-    Self.Save;
-  except
-    on E: Exception do
-    begin
-      // TODO: Handle Auto Wipe exception when saving class
-    end;
-  end;
+        // Delete .sav and .map files
+        if localWipe.DeleteSavFiles and TDirectory.Exists(serverIdentityDir) then
+        begin
+          try
+            for var f in TDirectory.GetFiles(serverIdentityDir, '*.sav') do
+              try TFile.Delete(f); except end;
+            for var f in TDirectory.GetFiles(serverIdentityDir, '*.map') do
+              try TFile.Delete(f); except end;
+          except
+          end;
+        end;
+
+        // Delete configured directories
+        for var aDir in localWipe.wipeDirs do
+          try
+            if TDirectory.Exists(aDir) then
+              TDirectory.Delete(aDir, True);
+          except
+          end;
+
+        // Delete configured files (falls back to dir delete if path is a directory)
+        for var aFile in localWipe.wipeFiles do
+          try
+            if TFile.Exists(aFile) then
+              TFile.Delete(aFile)
+            else if TDirectory.Exists(aFile) then
+              TDirectory.Delete(aFile, True);
+          except
+          end;
+
+        // Apply map change on the main thread
+        if localWipe.newMap.ChangeMap then
+          TThread.Synchronize(nil,
+            procedure
+            begin
+              serverConfig.Map.MapIndex := localWipe.newMap.MapTypeIndex;
+              if localWipe.newMap.MapTypeIndex < frmMain.cbbServerMap.Count then
+                serverConfig.Map.MapName :=
+                  frmMain.cbbServerMap.ListItems[localWipe.newMap.MapTypeIndex].ItemData.Detail;
+              serverConfig.Map.MapSize := localWipe.newMap.MapSize;
+              serverConfig.Map.MapSeed := localWipe.newMap.MapSeed;
+              serverConfig.Map.CustomMapURL := localWipe.newMap.CustomMapURL;
+              serverConfig.SaveConfig;
+              frmMain.PopulateServerConfigUI;
+            end);
+
+        // Start the server on the main thread
+        TThread.Synchronize(nil,
+          procedure
+          begin
+            frmMain.btnStartServerClick(frmMain.btnStartServer);
+          end);
+
+      finally
+        FWipeInProgress := False;
+      end;
+    end);
 end;
 
 function TAutoWipeManager.GetAutoWipeTypeString(const aType: TAutoWipeType): string;
@@ -183,14 +211,21 @@ end;
 procedure TAutoWipeManager.Load;
 begin
   if TFile.Exists(Self.SaveFilePath) then
-    Self.AssignFromJSON(Self.SaveFilePath);
+    Self.AssignFromJSON(TFile.ReadAllText(Self.SaveFilePath, TEncoding.UTF8));
 
   Self.Save;
 end;
 
 procedure TAutoWipeManager.Save;
+var
+  path: string;
 begin
-  TFile.WriteAllText(Self.SaveFilePath, Self.AsJSON(True));
+  path := Self.SaveFilePath;
+
+  if not TDirectory.Exists(TPath.GetDirectoryName(path)) then
+    ForceDirectories(TPath.GetDirectoryName(path));
+
+  TFile.WriteAllText(path, Self.AsJSON(True));
 end;
 
 function TAutoWipeManager.SaveFilePath: string;
@@ -199,4 +234,3 @@ begin
 end;
 
 end.
-
