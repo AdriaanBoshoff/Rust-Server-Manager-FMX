@@ -1150,7 +1150,7 @@ begin
 
   // Auto Wipe Manager entry in the RSM menu
   var mniAutoWipe := TMenuItem.Create(mniRSM);
-  mniAutoWipe.Text := 'Auto Wipe Manager...';
+  mniAutoWipe.Text := 'Auto Wipe Manager (EXPERIMENTAL!)';
   mniAutoWipe.OnClick := OnAutoWipeManagerClick;
   mniRSM.AddObject(mniAutoWipe);
 end;

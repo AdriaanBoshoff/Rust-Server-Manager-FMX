@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   System.Generics.Collections, System.DateUtils,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FMX.DialogService, udmStyles,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, ufrmAutoWipeItem,
   uAutoWipeManager;
 
@@ -134,9 +135,16 @@ end;
 procedure TfrmAutoWipe.btnDeleteAutoWipeClick(Sender: TObject);
 var
   idx: Integer;
+  tabName: string;
 begin
   idx := ActiveWipeIndex;
   if (idx < 0) or (idx >= FWipeItems.Count) then
+    Exit;
+
+  tabName := tbcAutoWipes.Tabs[idx].Text;
+
+  if MessageDlg('Delete wipe "' + tabName + '"?' + sLineBreak + 'This cannot be undone.',
+    TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) <> mrYes then
     Exit;
 
   // Remove from list first so no dangling pointer remains after Delete frees the tab+form
