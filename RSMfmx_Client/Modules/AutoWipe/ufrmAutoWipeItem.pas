@@ -1,4 +1,4 @@
-unit ufrmAutoWipeItem;
+﻿unit ufrmAutoWipeItem;
 
 interface
 

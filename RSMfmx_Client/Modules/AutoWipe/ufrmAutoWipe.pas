@@ -5,8 +5,8 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   System.Generics.Collections, System.DateUtils,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
-  FMX.DialogService, udmStyles,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics,
+  FMX.DialogService, FMX.Dialogs, udmStyles,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, ufrmAutoWipeItem,
   uAutoWipeManager;
 
@@ -143,15 +143,15 @@ begin
 
   tabName := tbcAutoWipes.Tabs[idx].Text;
 
-  if MessageDlg('Delete wipe "' + tabName + '"?' + sLineBreak + 'This cannot be undone.',
-    TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) <> mrYes then
-    Exit;
-
-  // Remove from list first so no dangling pointer remains after Delete frees the tab+form
-  FWipeItems.Delete(idx);
-
-  // Deleting the tab also frees the owned TfrmAutoWipeItem and all its controls
-  tbcAutoWipes.Delete(idx);
+  TDialogService.MessageDialog(
+    'Delete wipe "' + tabName + '"?' + sLineBreak + 'This cannot be undone.',
+    TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], TMsgDlgBtn.mbNo, 0,
+    procedure(const AResult: TModalResult)
+    begin
+      if AResult <> mrYes then Exit;
+      FWipeItems.Delete(idx);
+      tbcAutoWipes.Delete(idx);
+    end);
 end;
 
 procedure TfrmAutoWipe.btnCancelClick(Sender: TObject);
