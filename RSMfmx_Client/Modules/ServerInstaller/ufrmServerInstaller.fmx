@@ -148,6 +148,24 @@ object frmServerInstaller: TfrmServerInstaller
       TintColor = xFFB36200
       OnClick = btnVerifyServerFilesClick
     end
+    object btnStopInstaller: TButton
+      Align = Top
+      Enabled = False
+      StyledSettings = [Family, FontColor]
+      Margins.Top = 25.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 257.000000000000000000
+      Size.Width = 180.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tintedbutton'
+      TabOrder = 5
+      Text = 'Stop'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00060000000000000004000000}
+      TintColor = claCrimson
+      OnClick = btnStopInstallerClick
+    end
     object btnCleanInstallServer: TButton
       Align = Bottom
       StyledSettings = [Family, FontColor]

@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, udmStyles,
   FMX.StdCtrls, FMX.ListBox, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects,
-  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, System.IOUtils, uServerProcess;
+  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, System.IOUtils, uServerProcess,
+  SteamDepotRunner;
 
 type
   TfrmServerInstaller = class(TForm)
@@ -27,9 +28,11 @@ type
     mmoServerInstallerLog: TMemo;
     pbSteamDepotDownloader: TProgressBar;
     lstServerBranchAux04: TListBoxItem;
+    btnStopInstaller: TButton;
     procedure btnCleanInstallServerClick(Sender: TObject);
     procedure btnInstallServerClick(Sender: TObject);
     procedure btnVerifyServerFilesClick(Sender: TObject);
+    procedure btnStopInstallerClick(Sender: TObject);
     procedure cbbServerInstallerBranchChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -40,6 +43,9 @@ type
       FSteamCMDFilePath: string;
       FSteamCMDZipPath: string;
       FServerInstallPath: string;
+      FActiveDepotDownloader: TDepotDownloader;
+    function GetSelectedBranch: TSteamBranch;
+    procedure SetInstallerBusy(const Busy: Boolean);
     procedure InstallSteamCMD;
     procedure AddLog(const Text: string);
   public
@@ -54,13 +60,31 @@ implementation
 
 uses
   System.Zip, Rest.Client, uSteamCMD, uframeMessageBox, RSM.Config,
-  uframeToastMessage, SteamDepotRunner;
+  uframeToastMessage;
 
 {$R *.fmx}
 
 procedure TfrmServerInstaller.AddLog(const Text: string);
 begin
   mmoServerInstallerLog.Lines.Add(Format('[%s] %s', [FormatDateTime('hh:nn:ss', Now), Text]));
+end;
+
+procedure TfrmServerInstaller.SetInstallerBusy(const Busy: Boolean);
+begin
+  btnInstallServer.Enabled      := not Busy;
+  btnVerifyServerFiles.Enabled  := not Busy;
+  btnCleanInstallServer.Enabled := not Busy;
+  cbbServerInstallerBranch.Enabled := not Busy;
+  btnStopInstaller.Enabled := Busy;
+end;
+
+function TfrmServerInstaller.GetSelectedBranch: TSteamBranch;
+begin
+  if      cbbServerInstallerBranch.ItemIndex = lstServerBranchStaging.Index then Result := TSteamBranch.Named('staging')
+  else if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux01.Index   then Result := TSteamBranch.Named('aux01')
+  else if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux02.Index   then Result := TSteamBranch.Named('aux02')
+  else if cbbServerInstallerBranch.ItemIndex = lstServerBranchAux04.Index   then Result := TSteamBranch.Named('aux04')
+  else                                                                            Result := TSteamBranch.Default;
 end;
 
 procedure TfrmServerInstaller.btnCleanInstallServerClick(Sender: TObject);
@@ -78,6 +102,7 @@ begin
     Exit;
   end;
 
+  SetInstallerBusy(True);
   try
     AddLog('Performing Clean Install...');
 
@@ -143,6 +168,7 @@ begin
     on E: Exception do
     begin
       FIsInstallingServer := False;
+      SetInstallerBusy(False);
       AddLog('ERROR - ' + E.ClassName + ': ' + E.Message);
     end;
   end;
@@ -158,6 +184,7 @@ begin
   // TODO: Limit Process Threads
 
   var steamDP := TDepotDownloader.Create(TPath.Combine([ExtractFilePath(ParamStr(0)), 'depotDownloader', 'DepotDownloader.exe']));
+  FActiveDepotDownloader := steamDP;
   steamDP.OnOutput :=
     procedure(const Line: string)
     begin
@@ -174,7 +201,6 @@ begin
       //  mmoServerInstallerLog.Lines.Add(percVal);
       end;
 
-      btnInstallServer.Enabled := False;
       mmoServerInstallerLog.Lines.Add(Line);
       mmoServerInstallerLog.GoToTextEnd;
     end;
@@ -184,11 +210,19 @@ begin
     begin
       mmoServerInstallerLog.Lines.Add('Done. Exit Code: ' + Code.ToString);
       mmoServerInstallerLog.GoToTextEnd;
-      btnInstallServer.Enabled := True;
+      SetInstallerBusy(False);
+      FActiveDepotDownloader := nil;
       FreeAndNil(steamDP);
     end;
 
-  steamDP.InstallOrUpdate(258550, ExtractFileDir(ParamStr(0)));
+  SetInstallerBusy(True);
+  var branch := GetSelectedBranch;
+  if branch.BranchName.IsEmpty then
+    AddLog('Starting install/update on branch: main')
+  else
+    AddLog('Starting install/update on branch: ' + branch.BranchName);
+  steamDP.InstallOrUpdate(258550, ExtractFileDir(ParamStr(0)),
+    'anonymous', '', branch, TSteamDepotFilter.All);
 
 ////////////////////////////////////// OLD SteamCMD Method ///////////////////////////////////////////
 //  if FIsInstallingServer then
@@ -247,22 +281,53 @@ end;
 
 procedure TfrmServerInstaller.btnVerifyServerFilesClick(Sender: TObject);
 begin
-  ShowMessageBox('Verify files not implemented with SteamDepotDownloader', 'Depot Downloader', rctnglServerInstallerLogBG);
-  Exit;
+  var steamDP := TDepotDownloader.Create(TPath.Combine([ExtractFilePath(ParamStr(0)), 'depotDownloader', 'DepotDownloader.exe']));
+  FActiveDepotDownloader := steamDP;
+  steamDP.OnOutput :=
+    procedure(const Line: string)
+    begin
+      if Line.Contains('%') then
+      begin
+        var percVal := Copy(Line, 1, AnsiPos('%', Line) - 1);
+        percVal := percVal.Replace(',', '.');
+        var percValDouble: Double;
+        var fs: TFormatSettings;
+        fs.DecimalSeparator := '.';
+        if TryStrToFloat(percVal, percValDouble, fs) then
+          pbSteamDepotDownloader.Value := percValDouble;
+      end;
 
-  if FIsInstallingServer then
+      mmoServerInstallerLog.Lines.Add(Line);
+      mmoServerInstallerLog.GoToTextEnd;
+    end;
+
+  steamDP.OnExit :=
+    procedure(Code: Integer)
+    begin
+      mmoServerInstallerLog.Lines.Add('Done. Exit Code: ' + Code.ToString);
+      mmoServerInstallerLog.GoToTextEnd;
+      SetInstallerBusy(False);
+      FActiveDepotDownloader := nil;
+      FreeAndNil(steamDP);
+    end;
+
+  SetInstallerBusy(True);
+  var branch := GetSelectedBranch;
+  if branch.BranchName.IsEmpty then
+    AddLog('Starting file verification on branch: main')
+  else
+    AddLog('Starting file verification on branch: ' + branch.BranchName);
+  steamDP.Verify(258550, ExtractFileDir(ParamStr(0)),
+    'anonymous', branch, TSteamDepotFilter.All);
+end;
+
+procedure TfrmServerInstaller.btnStopInstallerClick(Sender: TObject);
+begin
+  if Assigned(FActiveDepotDownloader) then
   begin
-    ShowMessageBox('Server is currently busy installing!', 'SteamCMD busy', Self.Owner as TFmxObject);
-    Exit;
+    AddLog('Stopping download...');
+    FActiveDepotDownloader.Terminate;
   end;
-
-  if serverProcess.isRunning then
-  begin
-    ShowMessageBox('Server is Running. Please stop the server first!', 'Server Running', Self.Owner as TFmxObject);
-    Exit;
-  end;
-
- 
 end;
 
 procedure TfrmServerInstaller.cbbServerInstallerBranchChange(Sender: TObject);
