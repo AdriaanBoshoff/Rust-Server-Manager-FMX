@@ -12,7 +12,7 @@ Join the [RSMfmx Discord Server](https://discord.gg/HraUQhtUcN)
 
 All dependencies are now free.
 
-* Internet Component Suite v9.5 + (ICS) (Free) from [overbyte.eu](https://wiki.overbyte.eu/wiki/index.php/ICS_Download) or GetIt Package Manager
+* Internet Component Suite v9.7 (ICS) (Free) from [overbyte.eu](https://wiki.overbyte.eu/wiki/index.php/ICS_Download) or GetIt Package Manager (Preffered method. Easy Install)
 * Delphi 13
 
 ## Libs Embedded
@@ -38,5 +38,5 @@ All dependencies are now free.
 
 ## Misc
 
-Icons Provided by [icons8](https://icons8.com/)
-IP Details [MMDB](https://mailfud.org/geoip-legacy/)
+* Icons Provided by [icons8](https://icons8.com/)
+* IP Details [MMDB](https://mailfud.org/geoip-legacy/)
