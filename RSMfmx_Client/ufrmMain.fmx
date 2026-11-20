@@ -3396,7 +3396,7 @@ object frmMain: TfrmMain
         Words = <
           item
             Name = 'Item 0'
-            Text = 'Issues? Suggestions? Wanna leave a like? Do so on '
+            Text = 'RSMfmx has been discontinued. No more updates will be released. '
           end
           item
             Cursor = crHandPoint
@@ -3404,12 +3404,8 @@ object frmMain: TfrmMain
             FontColor = xFF43BEFF
             Name = 'Item 1'
             StyledSettings = [Family, Size, Style]
-            Text = 'Github'
+            Text = 'Get RSMWeb'
             OnClick = lblMessageWords1Click
-          end
-          item
-            Name = 'Item 2'
-            Text = '!'
           end>
       end
     end

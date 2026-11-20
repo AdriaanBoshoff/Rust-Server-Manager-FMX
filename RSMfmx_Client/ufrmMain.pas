@@ -1219,7 +1219,7 @@ end;
 
 procedure TfrmMain.lblMessageWords1Click(Sender: TObject);
 begin
-  OpenURL('https://github.com/AdriaanBoshoff/Rust-Server-Manager-FMX');
+  OpenURL('https://rustservermanager.com/features.html');
 end;
 
 procedure TfrmMain.lblStatPlayerCountValueResized(Sender: TObject);
